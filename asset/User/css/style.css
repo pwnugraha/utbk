@@ -1,0 +1,132 @@
+/* SCROLLBAR */
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px grey;  */
+    /* border-radius: 10px; */
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(240, 133, 33); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b45f0f; 
+  }
+
+/* AKHIR SCROLLBAR */
+
+
+
+*{
+    transition: 1s;
+}
+
+.hide-content{
+    display: none;
+}
+
+.content{
+    background-color: white;
+}
+
+.text-hitam{
+    color: black !important;
+}
+
+.text-biru{
+    color: rgb(0, 0, 65) !important;
+}
+
+.bg-biru{
+    background-color: rgb(0, 0, 53) !important;
+}
+
+.btn-dark-blue{
+    background-color: #182F64;
+    color: white;
+}
+
+.text-orange{
+    color: #EF8521 !important;
+}
+
+.nav-item .nav-link i{
+    font-size: 30px !important;
+}
+
+.welcome ul {
+    list-style: none;
+  }
+
+.welcome ul li::before {
+    content: "\2022";
+    color: #F08521;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+.jadwal button{
+    background-color: #00CCF2; color: white; border-radius: 2em
+}
+
+.jadwal button:hover{
+    background-color: #182F64;
+    color: white;
+    transition: 0s;
+}
+
+.menu-statistik a:hover{
+    text-decoration: none;
+    color: #EF8521 !important;
+}
+
+.menu-statistik-active{
+    border-bottom: 4px solid  #EF8521;
+}
+
+.range-mk .progress-bar, .progress{
+    height: 4px;
+}
+
+.range-mk{
+    margin-bottom: 25px;
+}
+
+.btn-promo:hover{
+    background-color: white;
+    border: 3px solid rgb(243, 149, 41);
+    border-radius: 10ex;
+    font-size: 20px;
+    color: #EF8521;
+    text-decoration: none;
+}
+
+.btn-promo{
+    border: 3px solid rgb(255, 194, 123);
+    background-color: rgb(243, 149, 41);
+    text-decoration: none;
+    color: white;
+    border-radius: 10ex;
+
+}
+
+.card-promo{
+    border-radius: 5ex;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.head{
+    border-radius: 5ex 5ex 0 0;
+}
