@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
+=======
+defined('BASEPATH') OR exit('No direct script access allowed');
+>>>>>>> e50ffbcf161e47eb938f345044789acd0cc8fd4c
 
 /*
 | -------------------------------------------------------------------
@@ -75,9 +79,15 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+<<<<<<< HEAD
 	'hostname' => 'localhost:8889',
 	'username' => 'root',
 	'password' => 'root',
+=======
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+>>>>>>> e50ffbcf161e47eb938f345044789acd0cc8fd4c
 	'database' => 'utbk',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
