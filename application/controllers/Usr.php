@@ -3,6 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Usr extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library(['ion_auth']);
+        $this->_is_logged_in();
+    }
+
     public function index()
     {
         $data['title'] = "Dashboard";
@@ -44,5 +51,13 @@ class Usr extends CI_Controller
         $this->load->view('user/template/topbar');
         $this->load->view('user/profile');
         $this->load->view('user/template/footer');
+    }
+
+    public function _is_logged_in(){
+        if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
     }
 }

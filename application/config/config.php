@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-defined('BASEPATH') or exit('No direct script access allowed');
-=======
 defined('BASEPATH') OR exit('No direct script access allowed');
->>>>>>> e50ffbcf161e47eb938f345044789acd0cc8fd4c
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-<<<<<<< HEAD
-$config['base_url'] = 'http://localhost:8888/utbk/';
-=======
 $config['base_url'] = 'http://localhost/utbk/';
->>>>>>> e50ffbcf161e47eb938f345044789acd0cc8fd4c
 
 /*
 |--------------------------------------------------------------------------
@@ -60,11 +52,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-<<<<<<< HEAD
-$config['uri_protocol']    = 'REQUEST_URI';
-=======
 $config['uri_protocol']	= 'REQUEST_URI';
->>>>>>> e50ffbcf161e47eb938f345044789acd0cc8fd4c
 
 /*
 |--------------------------------------------------------------------------
@@ -88,11 +76,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-<<<<<<< HEAD
-$config['language']    = 'english';
-=======
 $config['language']	= 'english';
->>>>>>> e50ffbcf161e47eb938f345044789acd0cc8fd4c
 
 /*
 |--------------------------------------------------------------------------
@@ -239,7 +223,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 4;
+$config['log_threshold'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -416,19 +400,11 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-<<<<<<< HEAD
-$config['cookie_prefix']    = '';
-$config['cookie_domain']    = '';
-$config['cookie_path']        = '/';
-$config['cookie_secure']    = FALSE;
-$config['cookie_httponly']     = FALSE;
-=======
 $config['cookie_prefix']	= '';
 $config['cookie_domain']	= '';
 $config['cookie_path']		= '/';
 $config['cookie_secure']	= FALSE;
 $config['cookie_httponly'] 	= FALSE;
->>>>>>> e50ffbcf161e47eb938f345044789acd0cc8fd4c
 
 /*
 |--------------------------------------------------------------------------
@@ -513,11 +489,7 @@ $config['compress_output'] = FALSE;
 |
 */
 $config['time_reference'] = 'local';
-<<<<<<< HEAD
-date_default_timezone_set("Asia/Jakarta");
-=======
 date_default_timezone_set("Asia/Jakarta");										  
->>>>>>> e50ffbcf161e47eb938f345044789acd0cc8fd4c
 
 /*
 |--------------------------------------------------------------------------

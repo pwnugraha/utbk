@@ -54,7 +54,7 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="menu-login" href="<?= base_url('login'); ?>">Login</a>
+                            <a class="menu-login" href="<?= base_url('auth/login');?>">Login</a>
                         </li>
                     </ul>
                 </div>
