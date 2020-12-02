@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container <?= ($authorization === 'register') ? "sign-up-mode" : "" ?>">
         <div class="forms-container">
             <div class="signin-signup">
 
@@ -21,17 +21,16 @@
                 <h2 class="title" style="color: #EF8521">welcome Back !</h2>
                 <p class="title" style="font-size: 15px; color: #EF8521;">ayo mulai tingkatkan kemampuan
                     dan login sekarang </p>
-                <?php echo form_hidden('auth', 'login'); ?>
                 <?php if ($authorization === 'login') : ?>
                     <div id="infoMessage"><?php echo $message ?></div>
                 <?php endif; ?>
                 <div class="input-field" style="border: 2px solid #EF8521;">
                     <i class="fas fa-user" style="color: #EF8521;"></i>
-                    <?php echo form_input('identitylog', $this->form_validation->set_value('identitylog'), 'type="identitylog" placeholder="Username"'); ?>
+                    <input type="text" name="identitylog" value="<?=$this->form_validation->set_value('identitylog')?>" placeholder="Username"/>
                 </div>
                 <div class="input-field" style="border: 2px solid #EF8521;">
                     <i class="fas fa-lock" style="color: #EF8521;"></i>
-                    <?php echo form_input('passwordlog', $this->form_validation->set_value('passwordlog'), 'type="passwordlog" placeholder="Password"'); ?>
+                    <input type="password" name="passwordlog" value="<?=$this->form_validation->set_value('passwordlog')?>" placeholder="Password"/>
                 </div>
                 <button type="submit" value="Login" class="btn solid" style="background-color: #EF8521;">Login</button>
                 <!-- <a href="#" class="title" style="font-size: 15px; text-decoration: none; color: #182F64;">Lupa password ?</a> -->
@@ -54,21 +53,20 @@
                 <p class="title" style="font-size: 15px; text-align: center; color:#183f9b">Kursi PTN sudah mulai menipis tapi
                     peluangmu masih sangat besar <br>
                     amankan peluangmu dan join sekarang !</p>
-                <?php echo form_hidden('auth', 'register'); ?>
                 <?php if ($authorization === 'register') : ?>
                     <div id="infoMessage"><?php echo $message ?></div>
                 <?php endif; ?>
                 <div class=" input-field" style="border: 2px solid #183f9b;">
                     <i class="fas fa-user" style="color: #183f9b;"></i>
-                    <?php echo form_input('identity', $this->form_validation->set_value('identity'), 'type="identity" placeholder="Username"'); ?>
+                    <input type="text" name="identity" value="<?=$this->form_validation->set_value('identity')?>" placeholder="Username"/>
                 </div>
                 <div class="input-field" style="border: 2px solid #183f9b;">
                     <i class="fas fa-envelope" style="color: #183f9b;"></i>
-                    <?php echo form_input('email', $this->form_validation->set_value('email'), 'type="email" placeholder="Email"'); ?>
+                    <input type="email" name="email" value="<?=$this->form_validation->set_value('email')?>" placeholder="Email"/>
                 </div>
                 <div class="input-field" style="border: 2px solid #183f9b;">
                     <i class="fas fa-lock" style="color: #183f9b;"></i>
-                    <?php echo form_input('password', '', 'type="password" placeholder="Password"'); ?>
+                    <input type="password" name="password" value="<?=$this->form_validation->set_value('password')?>" placeholder="Password"/>
                 </div>
                 <input type="submit" class="btn" value="Daftar" style="background-color: #183f9b;" />
                 <p class="social-text">Or Sign up with social platforms</p>

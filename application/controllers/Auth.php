@@ -64,7 +64,7 @@ class Auth extends CI_Controller
 		}
 
 		$this->data['title'] = $this->lang->line('login_heading');
-		$this->data['authorization'] = $this->input->post('auth');
+		$this->data['authorization'] = 'login';
 
 		// validate form input
 		$this->form_validation->set_rules('identitylog', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
@@ -422,7 +422,7 @@ class Auth extends CI_Controller
 		$tables = $this->config->item('tables', 'ion_auth');
 		$identity_column = $this->config->item('identity', 'ion_auth');
 		$this->data['identity_column'] = $identity_column;
-		$this->data['authorization'] = $this->input->post('auth');
+		$this->data['authorization'] = 'register';
 
 		// validate form input
 		//$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'trim|required');

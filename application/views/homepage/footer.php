@@ -93,7 +93,7 @@
                 </a>
             </div>
             <div class="col-2  text-center">
-                <a href="<?= base_url('login'); ?>">
+                <a href="<?= base_url('auth/login'); ?>">
                     <img src="<?= base_url('asset/homepage/img'); ?>/icon/user.png" class="img-fluid" alt="">
                     <div class="text">Akun</div>
                 </a>
