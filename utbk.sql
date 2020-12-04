@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2020 at 02:11 PM
+-- Generation Time: Dec 04, 2020 at 01:08 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -213,16 +213,17 @@ CREATE TABLE `users` (
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL
+  `phone` varchar(20) DEFAULT NULL,
+  `gender` tinyint(1) NOT NULL,
+  `profile` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$0LCh5QeULgGcZRIeuzDfzOjNpf7SGmdUuEyNbKiT7uoqTYicTWHyG', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1606717671, 1, 'Admin', 'istrator', 'ADMIN', '0'),
-(6, '::1', 'dawd', '$2y$10$dHpI8BUcjmaC3jcJd7N8wuGfDoVOvSpUgaj790k/XHIeCXZ421QBO', 'primawnugraha@gmail.com', 'd1257097f27cab335011', '$2y$10$PVLrNqZwhmuT6d2xrcq7v.lN6j7rY7eAM65XdQR1TYkRi4uYhUdBa', NULL, NULL, NULL, NULL, NULL, 1606718358, NULL, 0, 'Prima', 'Nugraha', 'adawdwa', '081901026006');
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
+(1, '127.0.0.1', 'administrator', '$2y$10$nisIUPA2Fv/1sdbdK67pF.HT8ZhxTlQ6y4qT5soIDkblYr.yGTf4a', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1607035404, 1, 'Admin', 'istrator', 'ADMIN', '085743', 1, 'homepage-13.png');
 
 -- --------------------------------------------------------
 
@@ -235,15 +236,6 @@ CREATE TABLE `users_groups` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `group_id` mediumint(8) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users_groups`
---
-
-INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(7, 6, 2);
 
 --
 -- Indexes for dumped tables
@@ -362,7 +354,7 @@ ALTER TABLE `kategori_soal`
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `paket_soal`
@@ -392,13 +384,13 @@ ALTER TABLE `tryout_schedule`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

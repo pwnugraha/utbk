@@ -175,7 +175,8 @@ class Auth extends CI_Controller
 			];
 
 			// render
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			$this->session->set_flashdata('message', $this->data['message']);
+			redirect('auth/edit_user/'.$user->id, 'refresh');
 		} else {
 			$identity = $this->session->userdata('identity');
 
@@ -184,10 +185,10 @@ class Auth extends CI_Controller
 			if ($change) {
 				//if the password was successfully changed
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				$this->logout();
+				redirect('auth/edit_user/'.$user->id, 'refresh');
 			} else {
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/change_password', 'refresh');
+				redirect('auth/edit_user/'.$user->id, 'refresh');
 			}
 		}
 	}
@@ -198,6 +199,8 @@ class Auth extends CI_Controller
 	public function forgot_password()
 	{
 		$this->data['title'] = $this->lang->line('forgot_password_heading');
+		$this->config->set_item('identity', 'email');
+		echo $this->config->item('identity');
 
 		// setting validation rules by checking whether identity is username or email
 		if ($this->config->item('identity', 'ion_auth') != 'email') {
@@ -429,11 +432,11 @@ class Auth extends CI_Controller
 		//$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'trim|required');
 		if ($identity_column !== 'email') {
 			$this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['users'] . '.' . $identity_column . ']');
-			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email');
+			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
 		} else {
 			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
 		}
-		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim');
+		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim|numeric|required');
 		$this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'trim');
 		$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']');
 		//$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|matches[password_confirm]');
@@ -456,6 +459,7 @@ class Auth extends CI_Controller
 			// check to see if we are creating the user
 			// redirect them back to the admin page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
+			$this->_send_wa($this->input->post('phone'));
 			redirect("auth/login", 'refresh');
 		} else {
 			// display the create user form
@@ -549,10 +553,11 @@ class Auth extends CI_Controller
 
 
 		// validate form input
-		$this->form_validation->set_rules('first_name', $this->lang->line('edit_user_validation_fname_label'), 'trim|required');
-		$this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'trim|required');
-		$this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'trim');
-		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'trim');
+		$this->form_validation->set_rules('first_name', 'Full Name', 'trim|required');
+		//$this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'trim|required');
+		$this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'trim|numeric|required');
+		$this->form_validation->set_rules('company', 'Asal Sekolah', 'trim|required');
+		$this->form_validation->set_rules('gender', 'Gender', 'trim|required|in_list[1,2]');
 
 		if (isset($_POST) && !empty($_POST)) {
 			// do we have a valid request?
@@ -569,9 +574,10 @@ class Auth extends CI_Controller
 			if ($this->form_validation->run() === TRUE) {
 				$data = [
 					'first_name' => $this->input->post('first_name'),
-					'last_name' => $this->input->post('last_name'),
+					//'last_name' => $this->input->post('last_name'),
 					'company' => $this->input->post('company'),
 					'phone' => $this->input->post('phone'),
+					'gender' => $this->input->post('gender'),
 				];
 
 				// update the password if it was posted
@@ -594,13 +600,18 @@ class Auth extends CI_Controller
 
 				// check to see if we are updating the user
 				if ($this->ion_auth->update($user->id, $data)) {
+					//check if profile upload was succeded
+					$pic = $this->_do_upload();
+					if($pic !== TRUE){
+						$this->session->set_flashdata('picmessage', $pic);
+					}
 					// redirect them back to the admin page if admin, or to the base url if non admin
 					$this->session->set_flashdata('message', $this->ion_auth->messages());
-					$this->redirectUser();
+					redirect('auth/edit_user/' . $id, 'refresh');
 				} else {
 					// redirect them back to the admin page if admin, or to the base url if non admin
 					$this->session->set_flashdata('message', $this->ion_auth->errors());
-					$this->redirectUser();
+					redirect('auth/edit_user/' . $id, 'refresh');
 				}
 			}
 		}
@@ -650,8 +661,19 @@ class Auth extends CI_Controller
 			'id'   => 'password_confirm',
 			'type' => 'password'
 		];
+		$this->data['gender'] = [
+			'name'  => 'gender',
+			'id'    => 'gender',
+			'type'  => 'text',
+			'value' => $this->form_validation->set_value('gender', $user->gender),
+		];
 
-		$this->_render_page('auth/edit_user', $this->data);
+		$this->data['title'] = 'Profile';
+		$this->load->view('user/template/header', $this->data);
+		$this->load->view('user/template/sidebar');
+		$this->load->view('user/template/topbar');
+		$this->_render_page('user/profile');
+		$this->load->view('user/template/footer');
 	}
 
 	/**
@@ -810,28 +832,48 @@ class Auth extends CI_Controller
 		}
 	}
 
-	public function _send_wa(){
+	public function _send_wa($phone)
+	{
 		$curl = curl_init();
-			$token = "K3VKG5nu25TdV2Nvm7qDhWBX6PMHiKt142C1Wbsm80dSf6C9SnCdwWSVY5jg3kLx";
-			$data = [
-				'phone' => '6281901026006',
-				'message' => 'hellow world',
-			];
+		$token = "K3VKG5nu25TdV2Nvm7qDhWBX6PMHiKt142C1Wbsm80dSf6C9SnCdwWSVY5jg3kLx";
+		$data = [
+			'phone' => $phone,
+			'message' => 'Hallo Sobat Pintar, pesan ini dari SobatUTBK. Kamu telah berhasil mendaftar, untuk mengakses akun kamu harus klik link aktivasi yang dikirim ke emailmu yg telah didaftarkan. Cek inbox/spam pada emailmu. Kemudian silakan login. Bersama SobatUTBK, PTN jadi nyata!',
+		];
 
-			curl_setopt(
-				$curl,
-				CURLOPT_HTTPHEADER,
-				array(
-					"Authorization: $token",
-				)
-			);
-			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-			curl_setopt($curl, CURLOPT_URL, "https://teras.wablas.com/api/send-message");
-			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-			$result = curl_exec($curl);
-			curl_close($curl);
+		curl_setopt(
+			$curl,
+			CURLOPT_HTTPHEADER,
+			array(
+				"Authorization: $token",
+			)
+		);
+		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+		curl_setopt($curl, CURLOPT_URL, "https://teras.wablas.com/api/send-message");
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+		$result = curl_exec($curl);
+		curl_close($curl);
+	}
+
+	public function _do_upload()
+	{
+		if ($_FILES["profilepic"]["name"]) {
+			$config['upload_path']          = 'asset/user/profile/';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 250;//size in KB
+			$config['max_width']            = 1024;
+			$config['max_height']           = 768;
+
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('profilepic')) {
+				return $this->upload->display_errors();
+			}
+			$this->load->model('base_model');
+			$this->base_model->update_item('users', ['profile' => $this->upload->data('file_name')], ['id' => $this->session->userdata('user_id')]);
+		}
+		return TRUE;
 	}
 }

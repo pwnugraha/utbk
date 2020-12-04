@@ -13,6 +13,7 @@ class Usr extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard";
+        $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
         $this->load->view('user/template/header', $data);
         $this->load->view('user/template/sidebar');
         $this->load->view('user/template/topbar');
