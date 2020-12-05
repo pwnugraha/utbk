@@ -7,13 +7,8 @@
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top">
 
-            <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                <i class="fa fa-bars"></i>
-            </button>
-
             <!-- Topbar Search -->
-            <div class="h3 text-hitam"><?= $title; ?></div>
+            <div class="h1 text-hitam"><?= $title; ?></div>
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
