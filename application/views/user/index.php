@@ -1,6 +1,6 @@
 <!-- Begin Page Content -->
 
-<div class="container-fluid mb-4" style="height: 2000px;">
+<div class="container-fluid mb-5 pb-5">
     <div class="row">
         <div class="col-lg-9">
             <div class="card shadow welcome border-0 mb-3" style="border-radius: 2em;">
@@ -8,8 +8,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="h3 mb-5 text-hitam">Welcome back <span class="badge badge-light text-hitam">Jody
-                                        Septiawan</span></div>
+                                <div class="h3 mb-5 text-hitam">Welcome back <span class="badge badge-light text-hitam"><?= $this->session->userdata('username') ?></span></div>
                                 <div class="text-hitam">Apa yang harus kamu lakukan sekarang :</div>
                                 <ul>
                                     <li><span class="text-hitam"> Wow UTBK sudah mulai dekat ayo
@@ -111,7 +110,7 @@
                                     <td>07.00 - 10.00</td>
                                     <td>Full</td>
                                     <td>
-                                        <button class="btn py-0 px-3">Join</button>
+                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -121,7 +120,7 @@
                                     <td>07.00 - 10.00</td>
                                     <td>Full</td>
                                     <td>
-                                        <button class="btn py-0 px-3">Join</button>
+                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -131,7 +130,7 @@
                                     <td>07.00 - 10.00</td>
                                     <td>Full</td>
                                     <td>
-                                        <button class="btn py-0 px-3">Join</button>
+                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -141,7 +140,47 @@
                                     <td>07.00 - 10.00</td>
                                     <td>Full</td>
                                     <td>
-                                        <button class="btn py-0 px-3">Join</button>
+                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sesi 1</td>
+                                    <td>TPS</td>
+                                    <td>22 June 2020</td>
+                                    <td>07.00 - 10.00</td>
+                                    <td>Full</td>
+                                    <td>
+                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sesi 1</td>
+                                    <td>TPS</td>
+                                    <td>22 June 2020</td>
+                                    <td>07.00 - 10.00</td>
+                                    <td>Full</td>
+                                    <td>
+                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sesi 1</td>
+                                    <td>TPS</td>
+                                    <td>22 June 2020</td>
+                                    <td>07.00 - 10.00</td>
+                                    <td>Full</td>
+                                    <td>
+                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sesi 1</td>
+                                    <td>TPS</td>
+                                    <td>22 June 2020</td>
+                                    <td>07.00 - 10.00</td>
+                                    <td>Full</td>
+                                    <td>
+                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                     </td>
                                 </tr>
                             </tbody>

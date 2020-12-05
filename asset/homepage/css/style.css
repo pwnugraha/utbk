@@ -90,14 +90,24 @@ font-family: 'Courgette', cursive;
 
 .menu-login{
     font-style: normal;
-    color: rgb(243, 149, 41);
+    color: rgb(255, 230, 202);
     text-decoration: none;
     font-size: 18px;
+    padding: 0px 17px;
+    border-radius: .5em;
+    background-color: #F08521 !important;
 }
 
 .menu-login:hover{
     text-decoration: none;
     color: rgb(0, 0, 53);
+    background-color: #182F64 !important;
+    color: white;
+}
+.menu-login:active{
+    padding: 1px 5px;
+    font-size: 15px;
+
 }
 
 .text-1-cover{
@@ -145,7 +155,7 @@ font-family: 'Courgette', cursive;
     border: 3px solid rgb(255, 194, 123);
     background-color: rgb(243, 149, 41);
     text-decoration: none;
-    color: white;
+    color: white !important;
 }
 
 

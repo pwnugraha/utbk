@@ -39,11 +39,17 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="inputState">Photo</label>
+                        <label for="inputState">Photo profile</label>
                         <table width="100%">
                             <tr>
                                 <td width="30%">
-                                    <img class="img-fluid rounded float-" src="<?= base_url('asset/user/profile/' . $user->profile); ?>">
+                                    <?php
+                                    if (empty($user->profile)) : ?>
+                                        <span class="badge badge-danger">Belum upload</span>
+                                    <?php else : ?>
+                                        <img class="img-fluid rounded" src="<?= base_url('asset/user/profile/' . $user->profile); ?>">
+                                    <?php endif;
+                                    ?>
                                 </td>
                                 <td>
                                     <div class="input-group">

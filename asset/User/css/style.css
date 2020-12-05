@@ -76,14 +76,16 @@
     margin-left: -1em;
 }
 
-.jadwal button{
-    background-color: #00CCF2; color: white; border-radius: 2em
+.jadwal .btn-join-sesi{
+    background-color: #00CCF2; 
+    color: white; 
+    border-radius: 2em;
 }
 
-.jadwal button:hover{
+.jadwal .btn-join-sesi:hover{
     background-color: #182F64;
     color: white;
-    transition: 0s;
+    transition: .8s;
 }
 
 .menu-statistik a:hover{
@@ -129,4 +131,33 @@
 
 .head{
     border-radius: 5ex 5ex 0 0;
+}
+
+
+/* EXAM */
+
+.btn-simpan-ptn{
+    background-color: #EF8521;
+    color: white;
+    transition: .6s;
+}
+
+.btn-simpan-ptn:hover{
+    background-color: #182F64;
+    color: white;
+}
+
+.btn-mulai-ptn{
+    background-color: #EF8521;
+    color: white;
+    transition: .6s;
+}
+
+.btn-mulai-ptn:hover{
+    background-color: #00be29;
+    color: white;
+}
+.btn-mulai-ptn:active{
+    background-color: #182F64;
+    color: white;
 }

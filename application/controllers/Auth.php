@@ -176,7 +176,7 @@ class Auth extends CI_Controller
 
 			// render
 			$this->session->set_flashdata('message', $this->data['message']);
-			redirect('auth/edit_user/'.$user->id, 'refresh');
+			redirect('auth/edit_user/' . $user->id, 'refresh');
 		} else {
 			$identity = $this->session->userdata('identity');
 
@@ -185,10 +185,10 @@ class Auth extends CI_Controller
 			if ($change) {
 				//if the password was successfully changed
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('auth/edit_user/'.$user->id, 'refresh');
+				redirect('auth/edit_user/' . $user->id, 'refresh');
 			} else {
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/edit_user/'.$user->id, 'refresh');
+				redirect('auth/edit_user/' . $user->id, 'refresh');
 			}
 		}
 	}
@@ -602,7 +602,7 @@ class Auth extends CI_Controller
 				if ($this->ion_auth->update($user->id, $data)) {
 					//check if profile upload was succeded
 					$pic = $this->_do_upload();
-					if($pic !== TRUE){
+					if ($pic !== TRUE) {
 						$this->session->set_flashdata('picmessage', $pic);
 					}
 					// redirect them back to the admin page if admin, or to the base url if non admin
@@ -862,8 +862,8 @@ class Auth extends CI_Controller
 	{
 		if ($_FILES["profilepic"]["name"]) {
 			$config['upload_path']          = 'asset/user/profile/';
-			$config['allowed_types']        = 'gif|jpg|png';
-			$config['max_size']             = 250;//size in KB
+			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['max_size']             = 250; //size in KB
 			$config['max_width']            = 1024;
 			$config['max_height']           = 768;
 

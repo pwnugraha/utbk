@@ -54,11 +54,11 @@ class Usr extends CI_Controller
         $this->load->view('user/template/footer');
     }
 
-    public function _is_logged_in(){
-        if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+    public function _is_logged_in()
+    {
+        if (!$this->ion_auth->logged_in()) {
+            // redirect them to the login page
+            redirect('auth/login', 'refresh');
+        }
     }
 }
