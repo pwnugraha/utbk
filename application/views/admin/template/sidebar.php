@@ -87,13 +87,13 @@ endif;
             </a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link <?= $banksoal_1 ?>" href="<?= base_url('admin/banksoal') ?>">
+            <a class="nav-link <?= $banksoal_1 ?>" href="<?= base_url('manage/bank_soal') ?>">
                 <i class="fa fa-pencil <?= $banksoal ?>" aria-hidden="true"></i>
                 <span>Bank soal</span>
             </a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link <?= $paketsoal_1 ?>" href="<?= base_url('admin/paketsoal') ?>">
+            <a class="nav-link <?= $paketsoal_1 ?>" href="<?= base_url('manage/paket_soal') ?>">
                 <i class="fa fa-files-o <?= $paketsoal ?>" aria-hidden="true"></i>
                 <span>Paket soal</span>
             </a>

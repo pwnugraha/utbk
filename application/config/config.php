@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8888/utbk/';
+$config['base_url'] = 'http://localhost/utbk/';
 
 /*
 |--------------------------------------------------------------------------
@@ -448,12 +448,12 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_protection'] = TRUE;
+$config['csrf_protection'] = FALSE;
 $config['csrf_token_name'] = 'ar';
 $config['csrf_cookie_name'] = 'acc';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
-$config['csrf_exclude_uris'] = array(''); //if there are HTTP Post Method
+$config['csrf_exclude_uris'] = array('manage/bank_soal/get_subject/'); //if there are HTTP Post Method
 
 /*
 |--------------------------------------------------------------------------

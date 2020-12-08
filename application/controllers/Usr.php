@@ -3,18 +3,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Usr extends CI_Controller
 {
+    private $data = [];
+    
     public function __construct()
     {
         parent::__construct();
         $this->load->library(['ion_auth']);
         $this->_is_logged_in();
+        $this->data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
     }
 
     public function index()
     {
-        $data['title'] = "Dashboard";
-        $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
-        $this->load->view('user/template/header', $data);
+        $this->data['title'] = "Dashboard";
+        $this->load->view('user/template/header', $this->data);
         $this->load->view('user/template/sidebar');
         $this->load->view('user/template/topbar');
         $this->load->view('user/index');
@@ -23,9 +25,9 @@ class Usr extends CI_Controller
 
     public function statistik()
     {
-        $data['title'] = "Statistik";
+        $this->data['title'] = "Statistik";
 
-        $this->load->view('user/template/header', $data);
+        $this->load->view('user/template/header', $this->data);
         $this->load->view('user/template/sidebar');
         $this->load->view('user/template/topbar');
         $this->load->view('user/statistik');
@@ -34,9 +36,9 @@ class Usr extends CI_Controller
 
     public function product()
     {
-        $data['title'] = "Product";
+        $this->data['title'] = "Product";
 
-        $this->load->view('user/template/header', $data);
+        $this->load->view('user/template/header', $this->data);
         $this->load->view('user/template/sidebar');
         $this->load->view('user/template/topbar');
         $this->load->view('user/product');
@@ -45,9 +47,9 @@ class Usr extends CI_Controller
 
     public function profile()
     {
-        $data['title'] = "Profile";
+        $this->data['title'] = "Profile";
 
-        $this->load->view('user/template/header', $data);
+        $this->load->view('user/template/header', $this->data);
         $this->load->view('user/template/sidebar');
         $this->load->view('user/template/topbar');
         $this->load->view('user/profile');

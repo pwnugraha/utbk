@@ -36,7 +36,14 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('asset/user/') ?>js/demo/chart-area-demo.js"></script>
 <script src="<?= base_url('asset/user/') ?>js/demo/chart-pie-demo.js"></script>
-
+<script src="<?= base_url('asset/admin/js/utility.js') ?>"></script>
+<?php
+if (!empty($assets_footer) && ($this->uri->segment(3) == 'create_soal' || $this->uri->segment(3) == 'update_soal')) {
+    foreach ($assets_footer as $asset) {
+        echo $asset;
+    }
+}
+?>
 </body>
 
 </html>
