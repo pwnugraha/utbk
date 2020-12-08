@@ -159,7 +159,7 @@ class Bank_soal extends AdminBase
             } else {
                 $this->_result_msg('success', 'Data baru telah ditambahkan');
             }
-            redirect('manage/bank_soal/update/'.$id);
+            redirect('manage/bank_soal/update/' . $id);
         } else {
             $this->data['description'] = [
                 'name'  => 'description',
@@ -294,7 +294,7 @@ class Bank_soal extends AdminBase
             } else {
                 $this->_result_msg('success', 'Data baru telah ditambahkan');
             }
-            redirect('manage/bank_soal/update_soal/'.$id.'/'.$id_soal);
+            redirect('manage/bank_soal/update_soal/' . $id . '/' . $id_soal);
         } else {
             $this->data['description'] = [
                 'name'  => 'description',

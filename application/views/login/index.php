@@ -26,14 +26,14 @@
                 <?php endif; ?>
                 <div class="input-field" style="border: 2px solid #EF8521;">
                     <i class="fas fa-user" style="color: #EF8521;"></i>
-                    <input type="text" name="identitylog" value="<?=$this->form_validation->set_value('identitylog')?>" placeholder="Username"/>
+                    <input type="text" name="identitylog" value="<?= $this->form_validation->set_value('identitylog') ?>" placeholder="Username" />
                 </div>
                 <div class="input-field" style="border: 2px solid #EF8521;">
                     <i class="fas fa-lock" style="color: #EF8521;"></i>
-                    <input type="password" name="passwordlog" value="<?=$this->form_validation->set_value('passwordlog')?>" placeholder="Password"/>
+                    <input type="password" name="passwordlog" value="<?= $this->form_validation->set_value('passwordlog') ?>" placeholder="Password" />
                 </div>
-                <button type="submit" value="Login" class="btn solid" style="background-color: #EF8521;">Login</button>
-                <a href="#" class="title" style="font-size: 15px; text-decoration: none; color: #182F64;">Lupa password ?</a>
+                <button type="submit" value="Login" class="btn-login" style="background-color: #EF8521;">Login</button>
+                <a href="#" class="title lupa-pw">Lupa password ?</a>
                 <!-- <p class="social-text">Or Sign in with social platforms</p>
                 <div class="social-media">
                     <a href="#" class="social-icon">
@@ -58,19 +58,19 @@
                 <?php endif; ?>
                 <div class=" input-field" style="border: 2px solid #183f9b;">
                     <i class="fas fa-user" style="color: #183f9b;"></i>
-                    <input type="text" name="identity" value="<?=$this->form_validation->set_value('identity')?>" placeholder="Username"/>
+                    <input type="text" name="identity" value="<?= $this->form_validation->set_value('identity') ?>" placeholder="Username" />
                 </div>
                 <div class="input-field" style="border: 2px solid #183f9b;">
                     <i class="fas fa-envelope" style="color: #183f9b;"></i>
-                    <input type="email" name="email" value="<?=$this->form_validation->set_value('email')?>" placeholder="Email"/>
+                    <input type="email" name="email" value="<?= $this->form_validation->set_value('email') ?>" placeholder="Email" />
                 </div>
                 <div class="input-field" style="border: 2px solid #183f9b;">
                     <i class="fa fa-whatsapp" style="color: #183f9b;"></i>
-                    <input type="text" name="phone" value="<?=$this->form_validation->set_value('phone')?>" placeholder="No Whatsapp"/>
+                    <input type="text" name="phone" value="<?= $this->form_validation->set_value('phone') ?>" placeholder="No Whatsapp" />
                 </div>
                 <div class="input-field" style="border: 2px solid #183f9b;">
                     <i class="fas fa-lock" style="color: #183f9b;"></i>
-                    <input type="password" name="password" value="<?=$this->form_validation->set_value('password')?>" placeholder="Password"/>
+                    <input type="password" name="password" value="<?= $this->form_validation->set_value('password') ?>" placeholder="Password" />
                 </div>
                 <input type="submit" class="btn" value="Daftar" style="background-color: #183f9b;" />
                 <!-- <p class="social-text">Or Sign up with social platforms</p>
