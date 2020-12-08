@@ -27,7 +27,10 @@ class Exm extends CI_Controller
         $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
 
         $data['title'] = "Selamat Mengerjakan Tryout - SobatUTBK";
+
+        $this->load->view('exam/start-template/header', $data);
         $this->load->view('exam/start', $data);
+        $this->load->view('exam/start-template/footer', $data);
     }
 
 
