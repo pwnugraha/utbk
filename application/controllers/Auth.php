@@ -63,6 +63,7 @@ class Auth extends CI_Controller
 			redirect('usr', 'refresh');
 		}
 
+
 		$this->data['title'] = $this->lang->line('login_heading');
 		$this->data['authorization'] = 'login';
 

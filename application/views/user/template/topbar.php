@@ -8,7 +8,7 @@
         <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top">
 
             <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" style="color: #182F64;">
                 <i class="fa fa-bars"></i>
             </button>
 

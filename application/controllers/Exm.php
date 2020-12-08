@@ -22,9 +22,12 @@ class Exm extends CI_Controller
         $this->load->view('exam/template/footer');
     }
 
-    public function play($id = null)
+    public function start($id = null)
     {
-        $this->load->view('exam/index');
+        $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
+
+        $data['title'] = "Selamat Mengerjakan Tryout - SobatUTBK";
+        $this->load->view('exam/start', $data);
     }
 
 

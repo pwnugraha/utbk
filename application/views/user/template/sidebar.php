@@ -59,7 +59,7 @@ endif;
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0 " style="background-color: #64646446;" id="sidebarToggle"></button>
+            <button class="rounded-circle border-0 " style="background-color: #fafafa;" id="sidebarToggle"></button>
         </div>
 
     </ul>
