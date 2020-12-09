@@ -1,52 +1,65 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <div class="h3 text-biru">Tambah Produk Baru</div>
+            <div class="h3 text-biru"><?=($this->uri->segment(3) == 'create')?'Tambah':'Update'?> Produk Baru</div>
         </div>
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <form action="">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nama produk">
+                    <?php
+                    if ($this->uri->segment(3) == 'create') {
+                        echo form_open('manage/product/create');
+                    } else {
+                        echo form_open('manage/product/update/' . $post['id']);
+                    }
+                    ?>
+                    <div class="form-group">
+                        <?= form_input($name) ?>
+                    </div>
+                    <div class="form-group">
+                        <?= form_input($description) ?>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rp.</span>
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Deskripsi Produk">
+                        <?= form_input($price) ?>
+                    </div>
+                    <div class="input-group mb-3">
+                        <?= form_input($discount) ?>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">%</span>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Harga Produk" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <small>Tanggal mulai</small>
+                            <?= form_input($start_date) ?>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Diskon Produk" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">%</span>
-                            </div>
+                        <div class="col">
+                            <small>Tanggal berakhir</small>
+                            <?= form_input($end_date) ?>
                         </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <small>Tanggal mulai</small>
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col">
-                                <small>Tanggal berakhir</small>
-                                <input type="date" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for=""></label>
-                            <input type="number" placeholder="Total Tryout" class="form-control" name="" id="" aria-describedby="helpId">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" placeholder="Total Konsultasi" class="form-control" name="" id="" aria-describedby="helpId">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" placeholder="Total Pendalaman" class="form-control" name="" id="" aria-describedby="helpId">
-                        </div>
-                        <button type="button" class="btn btn-primary">Tambahkan produk</button>
-                    </form>
+                    </div>
+                    <div class="form-group">
+                        <label for=""></label>
+                        <?= form_input($tryout) ?>
+                    </div>
+                    <div class="form-group">
+                        <?= form_input($consultation) ?>
+                    </div>
+                    <div class="form-group">
+                        <?= form_input($pendalaman) ?>
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" name="status" id="status">
+                            <option>Status</option>
+                            <option <?= (!empty($post)) ? (($post['status'] == 1) ? 'selected' : '') : '' ?> value="1">Aktif</option>
+                            <option <?= (!empty($post)) ? (($post['status'] == 0) ? 'selected' : '') : '' ?> value="0">Non-aktif</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tambahkan produk</button>
+                    <?= form_close() ?>
                 </div>
             </div>
         </div>

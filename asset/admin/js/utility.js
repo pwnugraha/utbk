@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#category').change(function () {
         var category = $(this).val();
         $.ajax({
-            url: window.location.origin + '/utbk/manage/bank_soal/get_subject',
+            url: window.location.origin + '/manage/bank_soal/get_subject',
             method: "POST",
             data: { category: category },
             dataType: 'json',
@@ -24,7 +24,7 @@ $(document).ready(function () {
     $('#subject').change(function () {
         var subject = $(this).val();
         $.ajax({
-            url: window.location.origin + '/utbk/manage/bank_soal/get_subject',
+            url: window.location.origin + '/manage/bank_soal/get_subject',
             method: "POST",
             data: { id: subject },
             dataType: 'json',
@@ -40,6 +40,11 @@ $(document).ready(function () {
             }
         });
         return false;
+    });
+
+    $(document).on("click", "#delete", function () {
+        var url = $(this).attr("data-url");
+        $("#btn-modal-delete").attr("href", url);
     });
 
 });

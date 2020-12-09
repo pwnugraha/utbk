@@ -1,6 +1,9 @@
 <div class="container-fluid mb-5 pb-5">
     <div class="row">
         <div class="col-lg-12">
+            <p>
+                <?= $this->session->flashdata('msg') ?>
+            </p>
             <div class="h2 text-biru">Update Paket Soal</div>
         </div>
         <div class="col-lg-6">
@@ -72,7 +75,7 @@
 
                                     <td>
                                         <?php foreach ($kategori_bank_soal as $i) : ?>
-                                            <div class="card daftar-soal-<?=$i['id']?> hide-content">
+                                            <div class="card daftar-soal-<?= $i['id'] ?> hide-content">
                                                 <div class="card-body">
                                                     <div>
                                                         <div class="d-inline-block">
@@ -82,12 +85,12 @@
                                                             <span class="h5 text-biru">Daftar soal (<?= ucwords($i['category']) . ' - ' . ucwords($i['subject']) ?>)</span>
                                                         </div>
                                                         <span class="float-right mb-3 mb-md-0">
-                                                            <a href="#" type="button" class="btn btn-danger">
+                                                            <button id="delete" type="button" class="btn btn-danger" data-url="<?= site_url('manage/paket_soal/delete_all_soal/' . $post['id'] . '/' . $i['id']) ?>" data-toggle="modal" data-target="#delete-modal" data-backdrop="static" data-keyboard="false" title="Hapus">
                                                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                     <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
                                                                 </svg>
                                                                 Delete all
-                                                            </a>
+                                                            </button>
                                                         </span>
                                                     </div>
                                                     <div class="table-responsive shadow mt-4">
@@ -101,19 +104,21 @@
                                                                         <td class="pl-lg-4">
                                                                             <div class="h5 text-biru">No <?= $no;
                                                                                                             $no++ ?></div>
-                                                                            <?=$j['description']?>
+                                                                            <?= $j['description'] ?>
                                                                             <ol type="a">
-                                                                                <li <?=($j['answer'] == 1)?'class="text-success"': ''?>><?=$j['opt1']?></li>
-                                                                                <li <?=($j['answer'] == 2)?'class="text-success"': ''?>><?=$j['opt2']?></li>
-                                                                                <li <?=($j['answer'] == 3)?'class="text-success"': ''?>><?=$j['opt3']?></li>
-                                                                                <li <?=($j['answer'] == 4)?'class="text-success"': ''?>><?=$j['opt4']?></li>
-                                                                                <li <?=($j['answer'] == 5)?'class="text-success"': ''?>><?=$j['opt5']?></li>
+                                                                                <li <?= ($j['answer'] == 1) ? 'class="text-success"' : '' ?>><?= $j['opt1'] ?></li>
+                                                                                <li <?= ($j['answer'] == 2) ? 'class="text-success"' : '' ?>><?= $j['opt2'] ?></li>
+                                                                                <li <?= ($j['answer'] == 3) ? 'class="text-success"' : '' ?>><?= $j['opt3'] ?></li>
+                                                                                <li <?= ($j['answer'] == 4) ? 'class="text-success"' : '' ?>><?= $j['opt4'] ?></li>
+                                                                                <li <?= ($j['answer'] == 5) ? 'class="text-success"' : '' ?>><?= $j['opt5'] ?></li>
                                                                             </ol>
                                                                         </td>
                                                                         <td width="1" class="pr-lg-4">
-                                                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
-                                                                            </svg>
+                                                                            <button id="delete" type="button" class="btn btn-default btn-sm" data-url="<?= site_url('manage/paket_soal/delete_item_soal/' . $post['id'] . '/' . $j['id']) ?>" data-toggle="modal" data-target="#delete-modal" data-backdrop="static" data-keyboard="false" title="Hapus">
+                                                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+                                                                                </svg>
+                                                                            </button>
                                                                         </td>
                                                                     </tr>
                                                             <?php endif;

@@ -31,9 +31,12 @@ class Base_model extends CI_Model {
     }
     
     //relation example table1.id = table2.table1_id. option example is inner, outer, etc
-    public function get_join_item($search_type, $select, $order = NULL, $table1, $table_join, $relation, $option = NULL, $where = NULL, $limit = NULL, $offset = NULL) {
+    public function get_join_item($search_type, $select, $order = NULL, $table1, $table_join, $relation, $option = NULL, $where = NULL, $groupby= NULL, $limit = NULL, $offset = NULL) {
         if (!empty($where)) {
             $this->db->where($where);
+        }
+        if (!empty($groupby)){
+            $this->db->group_by($groupby);
         }
         if (isset($order)) {
             $this->db->order_by($order);

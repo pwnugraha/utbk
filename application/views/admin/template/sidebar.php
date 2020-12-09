@@ -99,13 +99,13 @@ endif;
             </a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link <?= $paketujian_1 ?>" href="<?= base_url('admin/paketujian') ?>">
+            <a class="nav-link <?= $paketujian_1 ?>" href="<?= base_url('manage/paket_ujian') ?>">
                 <i class="fa fa-folder-o <?= $paketujian ?>" aria-hidden="true"></i>
                 <span>Paket ujian</span>
             </a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link <?= $product_1 ?>" href="<?= base_url('admin/product') ?>">
+            <a class="nav-link <?= $product_1 ?>" href="<?= base_url('manage/product') ?>">
                 <i class="fa fa-shopping-cart <?= $product ?>" aria-hidden="true"></i>
                 <span>Product</span>
             </a>

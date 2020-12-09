@@ -33,9 +33,9 @@ class Paket_soal extends AdminBase
                 'modified' => date('Y-m-d H:i:s')
             );
             if ($this->base_model->insert_item('paket_soal', $params, 'id')) {
-                $this->_result_msg('danger', 'Gagal menambahkan data');
+                $this->_result_msg('danger', 'Data baru telah ditambahkan');
             } else {
-                $this->_result_msg('success', 'Data baru telah ditambahkan');
+                $this->_result_msg('success', 'Gagal menambahkan data');
             }
             redirect('manage/paket_soal/index');
         }
@@ -74,34 +74,54 @@ class Paket_soal extends AdminBase
         }
     }
 
-    public function delete($uri = NULL, $id = NULL)
+    public function delete($id = NULL)
     {
-        if (!$this->base_model->get_item('row', 'bank_soal', 'id', array('id' => $id))) {
-            $this->_result_msg('danger', 'Gagal menghapus data');
+        if (!$this->base_model->get_item('row', 'paket_soal', 'id', array('id' => $id))) {
+            $this->_result_msg('danger', 'Data tidak ditemukan');
         } else {
-            $result = $this->base_model->delete_item('bank_soal', array('id' => $id));
-            if ($result) {
-                $this->_result_msg('success', 'data telah dihapus');
+            if ($this->base_model->get_item('row', 'butir_paket_soal', 'id', array('paket_soal_id' => $id)) || $this->base_model->get_item('row', 'tryout', 'id', array('paket_soal_id' => $id))) {
+                $this->_result_msg('danger', 'Gagal menghapus data. Paket soal terkait dengan data lainnya.');
+            } else {
+                $result = $this->base_model->delete_item('paket_soal', array('id' => $id));
+                if ($result) {
+                    $this->_result_msg('success', 'Data telah dihapus');
+                } else {
+                    $this->_result_msg('danger', 'Gagal menghapus data');
+                }
+            }
+        }
+        redirect('manage/paket_soal');
+    }
+
+    public function delete_item_soal($paket_soal_id = NULL, $soal_id = NULL)
+    {
+        if (!$this->base_model->get_item('row', 'butir_paket_soal', 'id', array('paket_soal_id' => $paket_soal_id, 'soal_id' => $soal_id))) {
+            $this->_result_msg('danger', 'Data tidak ditemukan');
+        } else { 
+            if ($this->base_model->delete_item('butir_paket_soal', array('paket_soal_id' => $paket_soal_id, 'soal_id' => $soal_id))) {
+                $this->_result_msg('success', 'Data telah dihapus');
             } else {
                 $this->_result_msg('danger', 'Gagal menghapus data');
             }
         }
-        redirect('manage/bank_soal/show');
+        redirect('manage/paket_soal/update/' . $paket_soal_id);
     }
 
-    public function delete_all($uri = NULL)
+    public function delete_all_soal($paket_soal_id = NULL, $kategori_soal_id = NULL)
     {
-        $data = $this->input->post('pcheck');
-        if (!empty($data)) {
-            foreach ($data as $value) {
-                if ($this->base_model->get_item('row', 'bank_soal', 'id', array('id' => $value))) {
-                    $this->base_model->delete_item('bank_soal', array('id' => $value));
-                }
-            }
+        if (!$this->base_model->get_item('row', 'butir_paket_soal', 'id', array('paket_soal_id' => $paket_soal_id))) {
+            $this->_result_msg('danger', 'Data tidak ditemukan');
         } else {
-            $this->_result_msg('danger', 'Tidak ada data yang dipilih');
+            $item = $this->base_model->get_join_item('result', 'butir_paket_soal.*', NULL, 'kategori_soal', array('soal', 'butir_paket_soal'), array('kategori_soal.id=soal.kategori_soal_id', 'soal.id = butir_paket_soal.soal_id'), array('inner', 'inner'), array('kategori_soal.id' => $kategori_soal_id, 'butir_paket_soal.paket_soal_id' => $paket_soal_id));
+
+            if (!empty($item)) {
+                foreach($item as $i){
+                    $this->base_model->delete_item('butir_paket_soal', array('id' => $i['id']));
+                }
+                $this->_result_msg('success', 'Data telah dihapus');
+            }
         }
-        redirect('manage/bank_soal/show');
+        redirect('manage/paket_soal/update/' . $paket_soal_id);
     }
 
     public function add_soal()
@@ -114,17 +134,17 @@ class Paket_soal extends AdminBase
             $this->adminview('admin/paketsoal/tambahpaketsoal', $this->data);
         } else {
             $butir_soal = $this->base_model->get_item('result', 'soal', '*', ['bank_soal_id' => $this->input->post('material')]);
-            foreach($butir_soal as $soal){
+            foreach ($butir_soal as $soal) {
                 $params = array(
                     'paket_soal_id' => $this->input->post('paket_soal_id'),
                     'soal_id' => $soal['id']
                 );
-                if($this->base_model->get_item('row', 'butir_paket_soal', '*', $params)){
+                if ($this->base_model->get_item('row', 'butir_paket_soal', '*', $params)) {
                     $this->base_model->delete_item('butir_paket_soal', $params);
                 }
                 $this->base_model->insert_item('butir_paket_soal', $params);
             }
-            redirect('manage/paket_soal/update/'.$this->input->post('paket_soal_id'));
+            redirect('manage/paket_soal/update/' . $this->input->post('paket_soal_id'));
         }
     }
 }

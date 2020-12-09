@@ -13,7 +13,7 @@ class Bank_soal extends AdminBase
 
     public function index()
     {
-        $this->data['item'] = $this->base_model->get_join_item('result', 'bank_soal.*, category, subject', 'bank_soal.id DESC', 'bank_soal', array('kategori_soal'), array('bank_soal.kategori_soal_id=kategori_soal.id'), array('inner'));
+        $this->data['item'] = $this->base_model->get_join_item('result', 'bank_soal.*, category, subject, COUNT(*) as count', 'bank_soal.id DESC', 'bank_soal', array('kategori_soal', 'soal'), array('bank_soal.kategori_soal_id=kategori_soal.id', 'soal.bank_soal_id = bank_soal.id'), array('inner', 'inner'), NULL, array('bank_soal.id'));
         $this->adminview('admin/banksoal/banksoal', $this->data);
     }
 
@@ -35,9 +35,9 @@ class Bank_soal extends AdminBase
                 'modified' => date('Y-m-d H:i:s')
             );
             if ($this->base_model->insert_item('bank_soal', $params, 'id')) {
-                $this->_result_msg('danger', 'Gagal menambahkan data');
+                $this->_result_msg('danger', 'Data baru telah ditambahkan');
             } else {
-                $this->_result_msg('success', 'Data baru telah ditambahkan');
+                $this->_result_msg('success', 'Gagal menambahkan data');
             }
             redirect('manage/bank_soal/index');
         }
@@ -74,34 +74,23 @@ class Bank_soal extends AdminBase
         }
     }
 
-    public function delete($uri = NULL, $id = NULL)
+    public function delete($id = NULL)
     {
         if (!$this->base_model->get_item('row', 'bank_soal', 'id', array('id' => $id))) {
-            $this->_result_msg('danger', 'Gagal menghapus data');
+            $this->_result_msg('danger', 'Data tidak ditemukan');
         } else {
-            $result = $this->base_model->delete_item('bank_soal', array('id' => $id));
-            if ($result) {
-                $this->_result_msg('success', 'data telah dihapus');
+            if ($this->base_model->get_item('row', 'soal', 'id', array('bank_soal_id' => $id))) {
+                $this->_result_msg('danger', 'Gagal menghapus data. Bank soal terkait dengan data lainnya.');
             } else {
-                $this->_result_msg('danger', 'Gagal menghapus data');
-            }
-        }
-        redirect('manage/bank_soal/show');
-    }
-
-    public function delete_all($uri = NULL)
-    {
-        $data = $this->input->post('pcheck');
-        if (!empty($data)) {
-            foreach ($data as $value) {
-                if ($this->base_model->get_item('row', 'bank_soal', 'id', array('id' => $value))) {
-                    $this->base_model->delete_item('bank_soal', array('id' => $value));
+                $result = $this->base_model->delete_item('bank_soal', array('id' => $id));
+                if ($result) {
+                    $this->_result_msg('success', 'Data telah dihapus');
+                } else {
+                    $this->_result_msg('danger', 'Gagal menghapus data');
                 }
             }
-        } else {
-            $this->_result_msg('danger', 'Tidak ada data yang dipilih');
         }
-        redirect('manage/bank_soal/show');
+        redirect('manage/bank_soal');
     }
 
     public function get_subject()
@@ -140,14 +129,14 @@ class Bank_soal extends AdminBase
 
         if ($this->form_validation->run() === TRUE) {
             $params = array(
-                'description' => $this->input->post('description', TRUE),
-                'opt1' => $this->input->post('opt1', TRUE),
-                'opt2' => $this->input->post('opt2', TRUE),
-                'opt3' => $this->input->post('opt3', TRUE),
-                'opt4' => $this->input->post('opt4', TRUE),
-                'opt5' => $this->input->post('opt5', TRUE),
+                'description' => $this->input->post('description'),
+                'opt1' => $this->input->post('opt1'),
+                'opt2' => $this->input->post('opt2'),
+                'opt3' => $this->input->post('opt3'),
+                'opt4' => $this->input->post('opt4'),
+                'opt5' => $this->input->post('opt5'),
                 'answer' => $this->input->post('answer', TRUE),
-                'explanation' => $this->input->post('explanation', TRUE),
+                'explanation' => $this->input->post('explanation'),
                 'bank_soal_id' => $id,
                 'kategori_soal_id' => $this->input->post('kategori_soal_id', TRUE),
                 'created' => date('Y-m-d H:i:s'),
@@ -155,11 +144,11 @@ class Bank_soal extends AdminBase
             );
 
             if ($this->base_model->insert_item('soal', $params, 'id')) {
-                $this->_result_msg('danger', 'Gagal menambahkan data');
+                $this->_result_msg('danger', 'Data baru telah ditambahkan');
             } else {
-                $this->_result_msg('success', 'Data baru telah ditambahkan');
+                $this->_result_msg('success', 'Gagal menambahkan data');
             }
-            redirect('manage/bank_soal/update/'.$id);
+            redirect('manage/bank_soal/update/' . $id);
         } else {
             $this->data['description'] = [
                 'name'  => 'description',
@@ -276,25 +265,25 @@ class Bank_soal extends AdminBase
 
         if ($this->form_validation->run() === TRUE) {
             $params = array(
-                'description' => $this->input->post('description', TRUE),
-                'opt1' => $this->input->post('opt1', TRUE),
-                'opt2' => $this->input->post('opt2', TRUE),
-                'opt3' => $this->input->post('opt3', TRUE),
-                'opt4' => $this->input->post('opt4', TRUE),
-                'opt5' => $this->input->post('opt5', TRUE),
+                'description' => $this->input->post('description'),
+                'opt1' => $this->input->post('opt1'),
+                'opt2' => $this->input->post('opt2'),
+                'opt3' => $this->input->post('opt3'),
+                'opt4' => $this->input->post('opt4'),
+                'opt5' => $this->input->post('opt5'),
                 'answer' => $this->input->post('answer', TRUE),
-                'explanation' => $this->input->post('explanation', TRUE),
+                'explanation' => $this->input->post('explanation'),
                 'bank_soal_id' => $id,
                 'kategori_soal_id' => $this->input->post('kategori_soal_id', TRUE),
                 'modified' => date('Y-m-d H:i:s'),
             );
 
             if ($this->base_model->update_item('soal', $params, ['id' => $id_soal])) {
-                $this->_result_msg('danger', 'Gagal menambahkan data');
+                $this->_result_msg('danger', 'Data berhasil diubah ');
             } else {
-                $this->_result_msg('success', 'Data baru telah ditambahkan');
+                $this->_result_msg('success', 'Gagal menyimpan data');
             }
-            redirect('manage/bank_soal/update_soal/'.$id.'/'.$id_soal);
+            redirect('manage/bank_soal/update_soal/' . $id . '/' . $id_soal);
         } else {
             $this->data['description'] = [
                 'name'  => 'description',
@@ -387,6 +376,24 @@ class Bank_soal extends AdminBase
 
             $this->adminview('admin/banksoal/editpertanyaan', $this->data);
         }
+    }
+
+    public function delete_soal($bank_soal_id = NULL, $id = NULL)
+    {
+        if (!$this->base_model->get_item('row', 'soal', 'id', array('id' => $id))) {
+            $this->_result_msg('danger', 'Data tidak ditemukan');
+        } else {
+            if ($this->base_model->get_item('row', 'butir_paket_soal', 'id', array('soal_id' => $id))) {
+                $this->_result_msg('danger', 'Gagal menghapus data. Soal terkait dengan bank soal.');
+            } else {
+                if ($this->base_model->delete_item('soal', array('id' => $id))) {
+                    $this->_result_msg('success', 'Data telah dihapus');
+                } else {
+                    $this->_result_msg('danger', 'Gagal menghapus data');
+                }
+            }
+        }
+        redirect('manage/bank_soal/update/'.$bank_soal_id);
     }
     /*
      End Butir Soal
