@@ -63,7 +63,7 @@
                     ?>
                         <div class="card mt-3">
                             <div class="table-responsive">
-                                <table class="table mb-0 table-hover">
+                                <table class="table mb-0">
                                     <?php foreach ($soal as $i) : ?>
                                         <tr>
                                             <td class="pl-md-4 py-5">
@@ -80,8 +80,10 @@
                                                 </div>
                                                 <div class="card" style="background-color: bisque;">
                                                     <div class="card-body">
-                                                        <div class="text-biru">Pembahasan</div>
-                                                        <?= $i['explanation'] ?>
+                                                        <div class="text-biru">Pembahasan <i id="pembahasan<?= $no ?>" class="fa fa-eye text-primary" aria-hidden="true" style="cursor: pointer;"></i> </div>
+                                                        <span id="content-pembahasan<?= $no ?>">
+                                                            <?= $i['explanation'] ?>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </td>
@@ -93,14 +95,19 @@
                                                 </a>
                                             </td>
                                             <td width="1" class="pr-md-5 py-5">
-                                                <button id="delete" type="button" class="btn btn-default btn-sm" data-url="<?= site_url('manage/bank_soal/delete_soal/' . $post['id'].'/'.$i['id']) ?>" data-toggle="modal" data-target="#delete-modal" data-backdrop="static" data-keyboard="false" title="Hapus">
+                                                <a href="<?= base_url('manage/bank_soal') ?>" class="btn-hapus">
                                                     <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-trash-fill mt-3 text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
                                                     </svg>
-                                                </button>
+                                                </a>
                                             </td>
-
                                         </tr>
+                                        <script>
+                                            $("#content-pembahasan<?= $no ?>").hide();
+                                            $("#pembahasan<?= $no ?>").click(function() {
+                                                $("#content-pembahasan<?= $no ?>").toggle("slow");
+                                            });
+                                        </script>
                                     <?php $no++;
                                     endforeach; ?>
                                 </table>

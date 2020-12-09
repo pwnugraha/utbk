@@ -26,6 +26,9 @@
     <script src="<?= base_url('asset/user/') ?>vendor/chart.js/Chart.min.js"></script>
     <script src="<?= base_url('asset/user/') ?>vendor/jquery/jquery.min.js"></script>
 
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 
 </head>
 

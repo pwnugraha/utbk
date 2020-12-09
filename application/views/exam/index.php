@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <a href="<?= base_url('exm/play') ?>" type="button" class="btn btn-mulai-ptn btn-block mt-4">Mulai ujian</a>
+            <a href="<?= base_url('exm/start') ?>" type="button" class="btn btn-mulai-ptn btn-block mt-4">Mulai ujian</a>
         </div>
     </div>
 </div>

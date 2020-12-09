@@ -398,3 +398,70 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
+.lupa-pw{
+  font-size: 15px; 
+  text-decoration: none; 
+  color: #182F64;
+transition: .3s;
+
+}
+
+.lupa-pw:hover{
+  color: #3965cc;
+  font-size: 19px; 
+transition: .3s;
+}
+.lupa-pw:active{
+  color: #EF8521;
+  font-size: 13px; 
+  transition: .3s;
+}
+
+.btn-login{
+  background-color: #EF8521 !important; 
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 40px;
+  font-size: 17px;
+  border-radius: 2em;
+  outline: none;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: .5s;
+}
+.btn-login:hover{
+  background-color: #ff9029 !important;
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 8px 35px;
+  font-size: 17px;
+  border-radius: 2em;
+  outline: none;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.btn-login:active{
+  padding: 5px 20px;
+  font-size: 13px;
+  border-radius: 2em;
+  outline: none;
+  cursor: pointer;
+  transition: .5s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid rgba(0, 128, 0, 0);
+  -webkit-text-fill-color:#182F64;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

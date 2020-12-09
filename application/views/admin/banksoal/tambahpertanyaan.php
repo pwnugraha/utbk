@@ -72,7 +72,7 @@
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
-                    <?=form_hidden('kategori_soal_id',$bank_soal['kategori_id'])?>
+                    <?= form_hidden('kategori_soal_id', $bank_soal['kategori_id']) ?>
                     <?= form_close(); ?>
                 </div>
             </div>
