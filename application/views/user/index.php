@@ -56,7 +56,12 @@
                     <img src="<?= base_url('asset/user/') ?>img/tiket-kuning.png" class="img-fluid float-left mr-2">
                     <div class="text-hitam">
                         <div class="mb-0">Tiket Tryout</div>
-                        <div>8</div>
+                        <div>
+                            <?php
+                            $user_ticket = $ticket['tka_saintek'] + $ticket['tka_soshum'] + $ticket['tka_campuran'] + $ticket['tps'] - 1;
+                            echo $user_ticket
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,102 +95,85 @@
             <div class="card shadow border-0" style="border-radius: 2em;">
                 <div class="card-body px-0 jadwal">
                     <div class="h3 mb-4 text-hitam ml-4">Jadwal Tryout</div>
-                    <div class="table-responsive px-3">
-                        <table class="table table-sm">
-                            <thead>
-                                <tr class="border-0 text-hitam">
-                                    <th class="py-2">Sesi</th>
-                                    <th class="py-2">CUSTOMER</th>
-                                    <th class="py-2">DATE</th>
-                                    <th class="py-2">Jam</th>
-                                    <th class="py-2">Status</th>
-                                    <th class="py-2"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Sesi 1</td>
-                                    <td>TPS</td>
-                                    <td>22 June 2020</td>
-                                    <td>07.00 - 10.00</td>
-                                    <td>Full</td>
-                                    <td>
-                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sesi 1</td>
-                                    <td>TPS</td>
-                                    <td>22 June 2020</td>
-                                    <td>07.00 - 10.00</td>
-                                    <td>Full</td>
-                                    <td>
-                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sesi 1</td>
-                                    <td>TPS</td>
-                                    <td>22 June 2020</td>
-                                    <td>07.00 - 10.00</td>
-                                    <td>Full</td>
-                                    <td>
-                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sesi 1</td>
-                                    <td>TPS</td>
-                                    <td>22 June 2020</td>
-                                    <td>07.00 - 10.00</td>
-                                    <td>Full</td>
-                                    <td>
-                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sesi 1</td>
-                                    <td>TPS</td>
-                                    <td>22 June 2020</td>
-                                    <td>07.00 - 10.00</td>
-                                    <td>Full</td>
-                                    <td>
-                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sesi 1</td>
-                                    <td>TPS</td>
-                                    <td>22 June 2020</td>
-                                    <td>07.00 - 10.00</td>
-                                    <td>Full</td>
-                                    <td>
-                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sesi 1</td>
-                                    <td>TPS</td>
-                                    <td>22 June 2020</td>
-                                    <td>07.00 - 10.00</td>
-                                    <td>Full</td>
-                                    <td>
-                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sesi 1</td>
-                                    <td>TPS</td>
-                                    <td>22 June 2020</td>
-                                    <td>07.00 - 10.00</td>
-                                    <td>Full</td>
-                                    <td>
-                                        <a href="<?= base_url('exm') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <?php
+                    if ($user_ticket < 1) {
+                    ?>
+                        <p class="text-center">Kamu tidak memiliki jadwal tryout</p>
+                        <?php
+                    } else {
+                        if (!empty($tryout)) {
+                        ?>
+                            <div class="table-responsive px-3">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr class="border-0 text-hitam">
+                                            <th class="py-2">Sesi</th>
+                                            <th class="py-2">Tanggal</th>
+                                            <th class="py-2">Jam</th>
+                                            <th class="py-2">Room Status</th>
+                                            <th class="py-2"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ($tryout as $i) {
+                                            if ($ticket['tka_saintek'] > 0 && $i['type'] == 1) {
+                                        ?>
+                                                <tr>
+                                                    <td><?= $i['name'] ?></td>
+                                                    <td>17 Desember 2020</td>
+                                                    <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
+                                                    <td><?= ($active_room['tka_saintek'] < 400) ? 400 - $active_room['tka_saintek'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                    <td>
+                                                        <a href="<?= base_url('exm/index/tka_saintek') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                    </td>
+                                                </tr>
+                                            <?php }
+                                            if ($ticket['tka_soshum'] > 0 && $i['type'] == 2) {
+                                            ?>
+                                                <tr>
+                                                    <td><?= $i['name'] ?></td>
+                                                    <td>17 Desember 2020</td>
+                                                    <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
+                                                    <td><?= ($active_room['tka_soshum'] < 400) ? 400 - $active_room['tka_soshum'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                    <td>
+                                                        <a href="<?= base_url('exm/index/tka_soshum') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                    </td>
+                                                </tr>
+                                            <?php }
+                                            if ($ticket['tka_campuran'] > 0 && $i['type'] == 3) {
+                                            ?>
+                                                <tr>
+                                                    <td><?= $i['name'] ?></td>
+                                                    <td>17 Desember 2020</td>
+                                                    <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
+                                                    <td><?= ($active_room['tka_campuran'] < 400) ? 400 - $active_room['tka_campuran'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                    <td>
+                                                        <a href="<?= base_url('exm/index/tka_campuran') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                    </td>
+                                                </tr>
+                                            <?php }
+                                            if ($ticket['tps'] > 0 && $i['type'] == 4) {
+                                            ?>
+                                                <tr>
+                                                    <td><?= $i['name'] ?></td>
+                                                    <td>17 Desember 2020</td>
+                                                    <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
+                                                    <td><?= ($active_room['tps'] < 400) ? 400 - $active_room['tps'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                    <td>
+                                                        <a href="<?= base_url('exm/index/tps') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                    </td>
+                                                </tr>
+                                        <?php }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                    <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>

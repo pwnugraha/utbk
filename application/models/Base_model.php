@@ -6,7 +6,7 @@ class Base_model extends CI_Model {
     
     //isset for non array and empty for array
 
-    public function get_item($search_type, $table, $select = NULL, $where = NULL, $order = NULL, $limit = NULL, $offset = NULL) {
+    public function get_item($search_type, $table, $select = NULL, $where = NULL, $groupby= NULL, $order = NULL, $limit = NULL, $offset = NULL) {
         if (isset($select)) {
             $this->db->select($select);
         }
@@ -16,6 +16,10 @@ class Base_model extends CI_Model {
         if (!empty($where)) {
             $this->db->where($where);
         }
+        if (!empty($groupby)){
+            $this->db->group_by($groupby);
+        }
+        
         $query = $this->db->get($table, $limit, $offset);
         if ($query->num_rows() > 0) {
              if($search_type == 'result'){

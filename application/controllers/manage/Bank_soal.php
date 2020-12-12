@@ -13,7 +13,7 @@ class Bank_soal extends AdminBase
 
     public function index()
     {
-        $this->data['item'] = $this->base_model->get_join_item('result', 'bank_soal.*, category, subject, COUNT(*) as count', 'bank_soal.id DESC', 'bank_soal', array('kategori_soal', 'soal'), array('bank_soal.kategori_soal_id=kategori_soal.id', 'soal.bank_soal_id = bank_soal.id'), array('inner', 'inner'), NULL, array('bank_soal.id'));
+        $this->data['item'] = $this->base_model->get_join_item('result', 'bank_soal.*, category, subject, COUNT(soal.id) as count', 'bank_soal.id DESC', 'bank_soal', array('kategori_soal', 'soal'), array('bank_soal.kategori_soal_id=kategori_soal.id', 'soal.bank_soal_id = bank_soal.id'), array('inner', 'left'), NULL, array('bank_soal.id'));
         $this->adminview('admin/banksoal/banksoal', $this->data);
     }
 

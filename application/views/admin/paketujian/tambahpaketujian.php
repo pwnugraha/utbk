@@ -10,7 +10,7 @@
                     if ($this->uri->segment(3) == 'create') {
                         echo form_open('manage/paket_ujian/create');
                     } else {
-                        echo form_open('manage/paket_ujian/update/' . $sesi['id']);
+                        echo form_open('manage/paket_ujian/update/' . $post['id']);
                     }
                     ?>
                     <div class="form-group">
@@ -38,17 +38,42 @@
                             <option>Pilih Paket Soal</option>
                             <?php if (!empty($paket_soal)) :
                                 foreach ($paket_soal as $i) : ?>
-                                    <option <?= ($i['id'] == ((!empty($sesi)) ? $sesi['paket_soal_id'] : 0)) ? 'selected' : '' ?> value="<?= $i['id'] ?>"><?= $i['name'] ?></option>
+                                    <option <?= ($i['id'] == ((!empty($post)) ? $post['paket_soal_id'] : 0)) ? 'selected' : '' ?> value="<?= $i['id'] ?>"><?= $i['name'] ?></option>
                             <?php endforeach;
                             endif; ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for=""></label>
+                        <select class="custom-select" name="type" id="type">
+                            <option>Kategori</option>
+                            <option <?= (!empty($post)) ? (($post['type'] == 1) ? 'selected' : '') :'' ?> value="1">TKA - SAINTEK</option>
+                            <option <?= (!empty($post)) ? (($post['type'] == 2) ? 'selected' : '') :'' ?> value="1">TKA - SOSHUM</option>
+                            <option <?= (!empty($post)) ? (($post['type'] == 3) ? 'selected' : '') :'' ?> value="1">TKA - CAMPURAN</option>
+                            <option <?= (!empty($post)) ? (($post['type'] == 4) ? 'selected' : '') :'' ?> value="4">TPS</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <select class="custom-select" name="status" id="status">
                             <option>Status</option>
-                            <option <?= (!empty($sesi)) ? (($sesi['status'] == 1) ? 'selected' : '') :'' ?> value="1">Aktif</option>
-                            <option <?= (!empty($sesi)) ? (($sesi['status'] == 0) ? 'selected' : '') :'' ?> value="0">Non-aktif</option>
+                            <option <?= (!empty($post)) ? (($post['status'] == 1) ? 'selected' : '') :'' ?> value="1">Aktif</option>
+                            <option <?= (!empty($post)) ? (($post['status'] == 0) ? 'selected' : '') :'' ?> value="0">Non-aktif</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" name="active_month" id="active_month">
+                            <option>Aktif di bulan</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 1) ? 'selected' : '') :'' ?> value="1">Januari</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 2) ? 'selected' : '') :'' ?> value="2">Februari</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 3) ? 'selected' : '') :'' ?> value="3">Maret</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 4) ? 'selected' : '') :'' ?> value="4">April</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 5) ? 'selected' : '') :'' ?> value="5">Mei</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 6) ? 'selected' : '') :'' ?> value="6">Juni</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 7) ? 'selected' : '') :'' ?> value="7">Juli</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 8) ? 'selected' : '') :'' ?> value="8">Agustus</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 9) ? 'selected' : '') :'' ?> value="9">September</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 10) ? 'selected' : '') :'' ?> value="10">Oktober</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 11) ? 'selected' : '') :'' ?> value="11">November</option>
+                            <option <?= (!empty($post)) ? (($post['active_month'] == 12) ? 'selected' : '') :'' ?> value="12">Desember</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">TAMBAH JADWAL TRYOUT</button>

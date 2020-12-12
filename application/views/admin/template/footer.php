@@ -22,21 +22,6 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content modal-confirm">
-            <div class="modal-body text-center text-semi-bold">
-                <p><i class="fa fa-info-circle text-warning fa-2x"></i></p>
-                <p>Data ini akan dihapus. Lanjutkan ?</p>
-                <div class="text-center">
-                    <a href="" class="btn btn-primary btn-sm" id="btn-modal-delete">Ya</a>
-                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Tidak</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Bootstrap core JavaScript-->
 <script src="<?= base_url('asset/user/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

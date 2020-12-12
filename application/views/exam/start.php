@@ -1,48 +1,12 @@
 <?php
 // ================= Contoh Data =================
 
-$mapel = array('Sejarah', 'Geografi', 'Ekonomi', 'Sosiologi', 'matematika', 'biologi', 'kimia');
+$mapel = $subjects;
 
-$soal = array(
-    'Necessitatibus eligendi consequatur minima placeat in et quos. Maxime eaque sed saepe quia et nemo rerum et. Ab dignissimos rerum et ex officiis qui dignissimos delectus. Eveniet reprehenderit et voluptas. Non labore dignissimos alias et nostrum. Molestias id libero porro soluta ducimus voluptatem et nam eos.',
-    'Praesentium tenetur ea ullam placeat quo voluptas.Quos odit aut culpa dolor.Voluptatem quas ut possimus et ut.Ipsa quia minus alias magnam molestias libero assumenda.',
-    'Distinctio facere nihil aliquam quia occaecati praesentium odio natus. Modi atque sed natus ullam totam. Tempora at cum dolorum.Nam id voluptatibus dolorem similique veritatis dolore culpa. Repudiandae aut aliquid ut a qui recusandae nobis aut incidunt. Vel quos quaerat quasi neque omnis eos nobis veniam ut. Non aut est veritatis qui dolor harum aperiam ipsam. Accusantium quasi neque asperiores magnam.Voluptas optio consequatur omnis similique velit doloribus asperiores et asperiores. Vitae qui voluptates et et voluptatem perferendis provident. Itaque ea consequatur. Tenetur corrupti vitae id repellendus repudiandae repellat dolorum non.',
-    'Necessitatibus quidem blanditiis voluptas illum consequuntur quae dolores nisi quis. Mollitia ut voluptatibus qui. Incidunt optio aut odit ipsum.',
-    'Voluptate delectus sequi ipsa nostrum dolore.Alias consectetur voluptatem explicabo et et quis.Et quasi vel provident blanditiis.Et explicabo ut corporis est.',
-    'Necessitatibus eligendi consequatur minima placeat in et quos. Maxime eaque sed saepe quia et nemo rerum et. Ab dignissimos rerum et ex officiis qui dignissimos delectus. Eveniet reprehenderit et voluptas. Non labore dignissimos alias et nostrum. Molestias id libero porro soluta ducimus voluptatem et nam eos.',
-    'Praesentium tenetur ea ullam placeat quo voluptas.Quos odit aut culpa dolor.Voluptatem quas ut possimus et ut.Ipsa quia minus alias magnam molestias libero assumenda.',
-    'Distinctio facere nihil aliquam quia occaecati praesentium odio natus. Modi atque sed natus ullam totam. Tempora at cum dolorum.Nam id voluptatibus dolorem similique veritatis dolore culpa. Repudiandae aut aliquid ut a qui recusandae nobis aut incidunt. Vel quos quaerat quasi neque omnis eos nobis veniam ut. Non aut est veritatis qui dolor harum aperiam ipsam. Accusantium quasi neque asperiores magnam.Voluptas optio consequatur omnis similique velit doloribus asperiores et asperiores. Vitae qui voluptates et et voluptatem perferendis provident. Itaque ea consequatur. Tenetur corrupti vitae id repellendus repudiandae repellat dolorum non.',
-    'Necessitatibus quidem blanditiis voluptas illum consequuntur quae dolores nisi quis. Mollitia ut voluptatibus qui. Incidunt optio aut odit ipsum.',
-    'Voluptate delectus sequi ipsa nostrum dolore.Alias consectetur voluptatem explicabo et et quis.Et quasi vel provident blanditiis.Et explicabo ut corporis est.',
-    'Necessitatibus eligendi consequatur minima placeat in et quos. Maxime eaque sed saepe quia et nemo rerum et. Ab dignissimos rerum et ex officiis qui dignissimos delectus. Eveniet reprehenderit et voluptas. Non labore dignissimos alias et nostrum. Molestias id libero porro soluta ducimus voluptatem et nam eos.',
-    'Praesentium tenetur ea ullam placeat quo voluptas.Quos odit aut culpa dolor.Voluptatem quas ut possimus et ut.Ipsa quia minus alias magnam molestias libero assumenda.',
-    'Distinctio facere nihil aliquam quia occaecati praesentium odio natus. Modi atque sed natus ullam totam. Tempora at cum dolorum.Nam id voluptatibus dolorem similique veritatis dolore culpa. Repudiandae aut aliquid ut a qui recusandae nobis aut incidunt. Vel quos quaerat quasi neque omnis eos nobis veniam ut. Non aut est veritatis qui dolor harum aperiam ipsam. Accusantium quasi neque asperiores magnam.Voluptas optio consequatur omnis similique velit doloribus asperiores et asperiores. Vitae qui voluptates et et voluptatem perferendis provident. Itaque ea consequatur. Tenetur corrupti vitae id repellendus repudiandae repellat dolorum non.',
-    'Necessitatibus quidem blanditiis voluptas illum consequuntur quae dolores nisi quis. Mollitia ut voluptatibus qui. Incidunt optio aut odit ipsum.',
-    '
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    Cum laudantium et repellat provident. Provident similique placeat quia ratione aspernatur. Ex mollitia perferendis necessitatibus. In delectus cum labore dignissimos odio illum. Unde et explicabo et est commodi aut temporibus molestiae et.Odit quia tenetur. Cumque et rerum. Aliquam consequatur perspiciatis unde sapiente aut dolores voluptatibus magni laudantium. Omnis tempora commodi ut. Quisquam molestias dolor enim et dolorum nobis molestiae optio dicta. Porro aut eligendi dolor.Quod quia nesciunt et voluptatem sunt iusto distinctio. Et et occaecati cumque eos quia. Non corrupti reprehenderit. Ut doloribus nesciunt et aut autem.
-    '
-);
+$soal = $subjects_soal;
 
 // Opsi
-$jawaban = array(
-    'Commodi qui et adipisci culpa.',
-    'Quidem qui numquam qui similique ratione natus et sint voluptatibus.',
-    'Ipsam distinctio accusamus sed ex autem dolorum perferendis.',
-    'Qui fugit vel quae eius unde quaerat numquam explicabo.',
-    'Inventore officia in.Odio nobis enim incidunt ea dolorem sunt.'
-);
+$jawaban = $subjects_soal;
 ?>
 
 
@@ -52,7 +16,7 @@ $jawaban = array(
             <div class="border-bottom py-3">
                 <div class="text-biru">Waktu Tersisa</div>
                 <div class="h2 text-success" id="getting-started"></div>
-                <div class="text-biru">Ujian SOSHUM okt</div>
+                <div class="text-biru">Ujian <?=$exam_name?></div>
             </div>
             <div class="mata-pelajaran my-2">
                 <div class="ket-warna-soal">
@@ -97,7 +61,7 @@ $jawaban = array(
                         <div class="container-fluid">
                             <div class="row">
                                 <?php $j = 1;
-                                foreach ($soal as $s) : ?>
+                                foreach ($soal[$m] as $s) : ?>
                                     <div class="col-3 my-2 text-center">
                                         <button id="soal-<?= $i ?>-<?= $j ?>" class="kotak-nomor bg-orange rounded"><?= $j ?></button>
                                     </div>
@@ -110,7 +74,7 @@ $jawaban = array(
                 endforeach; ?>
 
                 <div class="text-center mt-5">
-                    <a href="<?= base_url('usr') ?>" id="btn-selesai" class="btn btn-selesai border-0 btn-primary py-1 px-5" style="background-color: #05164E; border-radius: 2em;">Selesai</a>
+                    <a href="<?= base_url('exm/finish') ?>" id="btn-selesai" class="btn btn-selesai border-0 btn-primary py-1 px-5" style="background-color: #05164E; border-radius: 2em;">Selesai</a>
                 </div>
             </div>
         </div>
@@ -124,7 +88,7 @@ $jawaban = array(
                 foreach ($mapel as $m) :
 
                     $j = 1;
-                    foreach ($soal as $s) :
+                    foreach ($soal[$m] as $key => $s) :
 
             ?>
                         <div class="card shadow mb-5 kotak-pertanyaan" id="no-soal-<?= $i; ?>-<?= $j ?>">
@@ -134,17 +98,17 @@ $jawaban = array(
                                 <hr>
                                 <!-- Pertanyaan -->
                                 <div class="text-hitam mt-4 pertanyaan text-justify">
-                                    <?= $s ?>
+                                    <?= $s['soal'] ?>
                                 </div>
                                 <!-- Opsi Jawaban -->
                                 <form action="">
                                     <?php $k = 1;
-                                    foreach ($jawaban as $jwb) : ?>
+                                    foreach ($jawaban[$m][$key]['opt'] as $jwb) : ?>
                                         <div class="form-group mt-3">
                                             <div class="form-check form-check-inline d-block">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="radio" name="answer" id="answer-<?= $i ?>-<?= $j ?>-<?= $k ?>" value="<?= $k ?>">
-                                                    <?= $jwb ?>
+                                                    <input class="form-check-input" type="radio" name="answer" id="answer-<?= $i ?>-<?= $j ?>-<?= $k ?>" data-soalid="<?= $s['soal_id'] ?>" value="<?= $k ?>" <?= ($jawaban[$m][$key]['user_answer'] == $k) ? 'checked' : '' ?>>
+                                                    <?= substr($jwb, 3, -4) ?>
                                                 </label>
                                             </div>
                                         </div>
@@ -184,7 +148,7 @@ $jawaban = array(
     $(document).ready(function() {
         $(".rotate").click(function() {})
         var waktu = $("#getting-started").countdowntimer({
-            minutes: 120,
+            seconds: <?=$exam_time?>,
         });
     });
 </script>
@@ -214,7 +178,7 @@ $jawaban = array(
 $i = 1;
 foreach ($mapel as $s) :
     $j = 1;
-    foreach ($soal as $m) :
+    foreach ($soal[$s] as $key => $m) :
 ?>
         <script>
             // HIDE
@@ -259,7 +223,7 @@ foreach ($mapel as $s) :
 
         <?php
         $k = 1;
-        foreach ($jawaban as $jwb) : ?>
+        foreach ($jawaban[$s][$key]['opt'] as $jwb) : ?>
             <script>
                 if ($('#answer-<?= $i; ?>-<?= $j ?>-<?= $k ?>').is(':checked')) {
                     $(".kotak-nomor").removeClass("bg-primary");
@@ -269,6 +233,22 @@ foreach ($mapel as $s) :
                     if ($('#answer-<?= $i; ?>-<?= $j ?>-<?= $k ?>').is(':checked')) {
                         $(".kotak-nomor").removeClass("bg-primary");
                         $("#soal-<?= $i ?>-<?= $j ?>").addClass("bg-success text-white");
+
+                        //update answer
+                        $.ajax({
+                            url: window.location.origin + '/utbk/exm/update_answer',
+                            method: "POST",
+                            data: {
+                                id: $(this).attr('data-soalid'),
+                                answer: $(this).val()
+                            },
+                            dataType: 'json',
+                            success: function(data) {
+                                if (data.status) {
+
+                                }
+                            }
+                        });
                     }
                 });
             </script>

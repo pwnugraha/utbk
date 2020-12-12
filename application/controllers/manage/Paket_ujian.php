@@ -28,8 +28,10 @@ class Paket_ujian extends AdminBase
         $this->form_validation->set_rules('end_time', 'Jam selesai', 'trim|required');
         $this->form_validation->set_rules('paket_soal', 'Paket Soal', 'trim|required|numeric');
         $this->form_validation->set_rules('status', 'Status', 'trim|required|numeric');
+        $this->form_validation->set_rules('type', 'Kategori', 'trim|required|numeric');
+        $this->form_validation->set_rules('active_month', 'Bulan aktif', 'trim|required|numeric');
 
-        $this->data['sesi'] = [];
+        $this->data['post'] = [];
         if ($this->form_validation->run() === FALSE) {
             $this->data['name'] = [
                 'name'  => 'name',
@@ -78,6 +80,8 @@ class Paket_ujian extends AdminBase
                 'start_time' => $this->input->post('start_time', TRUE),
                 'end_time' => $this->input->post('end_time', TRUE),
                 'paket_soal_id' => $this->input->post('paket_soal', TRUE),
+                'type' => $this->input->post('type', TRUE),
+                'active_month' => $this->input->post('active_month', TRUE),
                 'status' => $this->input->post('status', TRUE),
                 'created' => date('Y-m-d H:i:s'),
                 'modified' => date('Y-m-d H:i:s')
@@ -106,14 +110,15 @@ class Paket_ujian extends AdminBase
         $this->form_validation->set_rules('end_time', 'Jam selesai', 'trim|required');
         $this->form_validation->set_rules('paket_soal', 'Paket Soal', 'trim|required|numeric');
         $this->form_validation->set_rules('status', 'Status', 'trim|required|numeric');
+        $this->form_validation->set_rules('type', 'Kategori', 'trim|required|numeric');
+        $this->form_validation->set_rules('active_month', 'Bulan Aktif', 'trim|required|numeric');
 
-        $this->data['sesi'] = $this->base_model->get_item('row', 'tryout', '*');
         if ($this->form_validation->run() === FALSE) {
             $this->data['name'] = [
                 'name'  => 'name',
                 'id'    => 'name',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('name', $this->data['sesi']['name']),
+                'value' => $this->form_validation->set_value('name', $this->data['post']['name']),
                 'class' => 'form-control',
                 'placeholder' => 'Nama sesi tryout'
             ];
@@ -121,7 +126,7 @@ class Paket_ujian extends AdminBase
                 'name'  => 'description',
                 'id'    => 'description',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('description', $this->data['sesi']['description']),
+                'value' => $this->form_validation->set_value('description', $this->data['post']['description']),
                 'class' => 'form-control',
                 'placeholder' => 'Deskripsi tryout'
             ];
@@ -129,7 +134,7 @@ class Paket_ujian extends AdminBase
                 'name'  => 'quota',
                 'id'    => 'quota',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('quota', $this->data['sesi']['quota']),
+                'value' => $this->form_validation->set_value('quota', $this->data['post']['quota']),
                 'class' => 'form-control',
                 'placeholder' => 'Kuota (Isikan 0 jika tidak terbatas)'
             ];
@@ -137,14 +142,14 @@ class Paket_ujian extends AdminBase
                 'name'  => 'start_time',
                 'id'    => 'start_time',
                 'type'  => 'time',
-                'value' => $this->form_validation->set_value('start_time', $this->data['sesi']['start_time']),
+                'value' => $this->form_validation->set_value('start_time', $this->data['post']['start_time']),
                 'class' => 'form-control',
             ];
             $this->data['end_time'] = [
                 'name'  => 'end_time',
                 'id'    => 'end_time',
                 'type'  => 'time',
-                'value' => $this->form_validation->set_value('end_time', $this->data['sesi']['end_time']),
+                'value' => $this->form_validation->set_value('end_time', $this->data['post']['end_time']),
                 'class' => 'form-control',
             ];
             $this->adminview('admin/paketujian/tambahpaketujian', $this->data);
@@ -156,6 +161,8 @@ class Paket_ujian extends AdminBase
                 'start_time' => $this->input->post('start_time', TRUE),
                 'end_time' => $this->input->post('end_time', TRUE),
                 'paket_soal_id' => $this->input->post('paket_soal', TRUE),
+                'type' => $this->input->post('type', TRUE),
+                'active_month' => $this->input->post('active_month', TRUE),
                 'status' => $this->input->post('status', TRUE),
                 'modified' => date('Y-m-d H:i:s')
             );

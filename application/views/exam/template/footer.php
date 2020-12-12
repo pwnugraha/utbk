@@ -55,6 +55,7 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('asset/user/') ?>js/demo/chart-area-demo.js"></script>
 <script src="<?= base_url('asset/user/') ?>js/demo/chart-pie-demo.js"></script>
+<script src="<?= base_url('asset/user/') ?>js/utility.js"></script>
 <script>
     $('.custom-file-input').on('change', function() {
         let filename = $(this).val().split('\\').pop();

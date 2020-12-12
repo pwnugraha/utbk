@@ -85,12 +85,12 @@
                                                             <span class="h5 text-biru">Daftar soal (<?= ucwords($i['category']) . ' - ' . ucwords($i['subject']) ?>)</span>
                                                         </div>
                                                         <span class="float-right mb-3 mb-md-0">
-                                                            <button id="delete" type="button" class="btn btn-danger" data-url="<?= site_url('manage/paket_soal/delete_all_soal/' . $post['id'] . '/' . $i['id']) ?>" data-toggle="modal" data-target="#delete-modal" data-backdrop="static" data-keyboard="false" title="Hapus">
+                                                            <a href="<?= base_url('manage/paket_soal/delete_all_soal/' . $post['id'] . '/' . $i['id']) ?>" class="btn btn-danger btn-hapus">
                                                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                     <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
                                                                 </svg>
                                                                 Delete all
-                                                            </button>
+                                                            </a>
                                                         </span>
                                                     </div>
                                                     <div class="table-responsive shadow mt-4">
@@ -114,11 +114,11 @@
                                                                             </ol>
                                                                         </td>
                                                                         <td width="1" class="pr-lg-4">
-                                                                            <button id="delete" type="button" class="btn btn-default btn-sm" data-url="<?= site_url('manage/paket_soal/delete_item_soal/' . $post['id'] . '/' . $j['id']) ?>" data-toggle="modal" data-target="#delete-modal" data-backdrop="static" data-keyboard="false" title="Hapus">
+                                                                            <a href="<?= base_url('manage/paket_soal/delete_item_soal/' . $post['id'] . '/' . $j['id']) ?>" class="btn-hapus">
                                                                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                                     <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
                                                                                 </svg>
-                                                                            </button>
+                                                                            </a>
                                                                         </td>
                                                                     </tr>
                                                             <?php endif;

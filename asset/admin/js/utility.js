@@ -41,10 +41,4 @@ $(document).ready(function () {
         });
         return false;
     });
-
-    $(document).on("click", "#delete", function () {
-        var url = $(this).attr("data-url");
-        $("#btn-modal-delete").attr("href", url);
-    });
-
 });
