@@ -77,6 +77,16 @@ class Auth extends CI_Controller
 			$remember = (bool)$this->input->post('remember');
 
 			if ($this->ion_auth->login($this->input->post('identitylog'), $this->input->post('passwordlog'), $remember)) {
+				//this is for testing only and first test on 17th des 2020
+				if(!$this->base_model->get_item('row', 'ticket', '*', ['user_id' => $this->session->userdata('user_id')])){
+					$par = array(
+						'user_id' => $this->session->userdata('user_id'),
+						'tka_saintek' => 1,
+						'tka_soshum' => 1,
+						'tps' => 1,
+					);
+					$this->base_model->insert_item('ticket', $par);
+				}
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());

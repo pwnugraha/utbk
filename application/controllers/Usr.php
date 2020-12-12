@@ -19,7 +19,8 @@ class Usr extends CI_Controller
     {
         $this->data['title'] = "Dashboard";
         $this->data['ticket'] = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $this->session->userdata('user_id')]);
-        $this->data['tryout'] = $this->base_model->get_item('result', 'tryout', '*', ['status' => 1]);
+        $this->data['tryout'] = $this->base_model->get_item('result', 'tryout', '*', ['status' => 1, 'active_month' => date('n')]);
+        $this->data['exam'] = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id')]);
         $this->data['active_room'] = [
             'tka_saintek' => 0,
             'tka_soshum' => 0,

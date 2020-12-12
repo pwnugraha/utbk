@@ -58,7 +58,7 @@
                         <div class="mb-0">Tiket Tryout</div>
                         <div>
                             <?php
-                            $user_ticket = $ticket['tka_saintek'] + $ticket['tka_soshum'] + $ticket['tka_campuran'] + $ticket['tps'] - 1;
+                            $user_ticket = $ticket['tka_saintek'] + $ticket['tka_soshum'] + $ticket['tka_campuran'] + $ticket['tps'];
                             echo $user_ticket
                             ?>
                         </div>
@@ -72,7 +72,7 @@
                     <img src="<?= base_url('asset/user/') ?>img/tiketmerah.png" class="img-fluid float-left mr-2">
                     <div class="text-hitam">
                         <div class="mb-0">Tiket Pendalaman Soal</div>
-                        <div>5</div>
+                        <div>0</div>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                     <img src="<?= base_url('asset/user/') ?>img/tiket-hijau.png" class="img-fluid float-left mr-2">
                     <div class="text-hitam">
                         <div class="mb-0">Tiket Konsultasi</div>
-                        <div>3</div>
+                        <div>0</div>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                                         ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
-                                                    <td>17 Desember 2020</td>
+                                                    <td>1-26 Desember 2020</td>
                                                     <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
                                                     <td><?= ($active_room['tka_saintek'] < 400) ? 400 - $active_room['tka_saintek'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
@@ -133,7 +133,7 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
-                                                    <td>17 Desember 2020</td>
+                                                    <td>1-26 Desember 2020</td>
                                                     <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
                                                     <td><?= ($active_room['tka_soshum'] < 400) ? 400 - $active_room['tka_soshum'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
@@ -145,7 +145,7 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
-                                                    <td>17 Desember 2020</td>
+                                                    <td>1-26 Desember 2020</td>
                                                     <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
                                                     <td><?= ($active_room['tka_campuran'] < 400) ? 400 - $active_room['tka_campuran'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
@@ -157,7 +157,7 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
-                                                    <td>17 Desember 2020</td>
+                                                    <td>1-26 Desember 2020</td>
                                                     <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
                                                     <td><?= ($active_room['tps'] < 400) ? 400 - $active_room['tps'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
@@ -182,11 +182,11 @@
                 <div class="card-body text-hitam">
                     <div class="h5">Yang sudah kamu kerjakan</div>
                     <span class="mr-3">
-                        <i class="fa fa-check text-light rounded-circle p-1 mr-1" style="background-color: #00CCF2;" aria-hidden="true"></i>
+                        <i class="fa <?= ($exam['tps'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tps'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
                         <label>TPS</label>
                     </span>
                     <span>
-                        <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                        <i class="fa <?= ($exam['tka'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tka'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
                         <label>TKA</label>
                     </span>
                 </div>
