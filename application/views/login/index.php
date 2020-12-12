@@ -24,6 +24,9 @@
                 <?php if ($authorization === 'login') : ?>
                     <div id="infoMessage"><?php echo $message ?></div>
                 <?php endif; ?>
+
+                <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message_sa'); ?>"></div>
+
                 <div class="input-field" style="border: 2px solid #EF8521;">
                     <i class="fas fa-user" style="color: #EF8521;"></i>
                     <input type="text" name="identitylog" value="<?= $this->form_validation->set_value('identitylog') ?>" placeholder="Username" />
@@ -123,8 +126,10 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="<?= base_url('asset/auth/') ?>app.js"></script>
+
 </body>
 
 </html>

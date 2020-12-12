@@ -114,7 +114,7 @@ $jawaban = array(
                 </div>
             </div>
         </div>
-        <div class="col-md-9 py-3" style="right: 0; position: absolute;">
+        <div class="col-md-9 py-3">
             <div class="text-right mb-5 pb-5">Hay, <span class="h5"><?= $user->username ?></span> semoga kamu berhasil</div>
 
             <?php

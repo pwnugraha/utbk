@@ -9,3 +9,18 @@ sign_up_btn.addEventListener("click", () => {
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
+
+
+const flashdata = $('.flash-data').data('flashdata');
+
+
+if (flashdata) {
+  // alert(flashdata);
+
+  Swal.fire({
+    title: 'Pendaftaran berhasil <br> silahkan aktivasi akun',
+    html: 'Cek inbox/spam pada emailmu untuk aktivasi akun.',
+    icon: 'success'
+  });
+
+};

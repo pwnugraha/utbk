@@ -114,13 +114,30 @@
                     </div>
                 </div>
             </div>
-            <a href="<?= base_url('exm/start') ?>" type="button" class="btn btn-mulai-ptn btn-block mt-4">Mulai ujian</a>
+            <a href="<?= base_url('exm/start') ?>" type="button" id="btn-mulai-ptn" class="btn btn-mulai-ptn btn-block mt-4">Mulai Tryout</a>
         </div>
     </div>
 </div>
 
 </div>
+<script src="<?= base_url('asset/exam/js/sweetalert/sweetalert2.all.min.js') ?>"></script>
 
 <script>
-
+    $('#btn-mulai-ptn').on('click', function(e) {
+        e.preventDefault();
+        const href = $(this).attr('href');
+        Swal.fire({
+            title: 'Yakin mulai tryout ?',
+            // text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yakin'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+    });
 </script>
