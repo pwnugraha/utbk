@@ -33,10 +33,13 @@
                 </div>
                 <div class="input-field" style="border: 2px solid #EF8521;">
                     <i class="fas fa-lock" style="color: #EF8521;"></i>
-                    <input type="password" name="passwordlog" value="<?= $this->form_validation->set_value('passwordlog') ?>" placeholder="Password" />
+                    <input type="password" id="password-login" name="passwordlog" value="<?= $this->form_validation->set_value('passwordlog') ?>" placeholder="Password" />
+                    <span toggle="#password-login" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                 </div>
+
                 <button type="submit" value="Login" class="btn-login" style="background-color: #EF8521;">Login</button>
-                <a href="#" class="title lupa-pw">Lupa password ?</a>
+                <a href="<?= base_url('login/lupa_password')  ?>" class="title lupa-pw">Lupa password ?</a>
                 <!-- <p class="social-text">Or Sign in with social platforms</p>
                 <div class="social-media">
                     <a href="#" class="social-icon">
@@ -73,7 +76,9 @@
                 </div>
                 <div class="input-field" style="border: 2px solid #183f9b;">
                     <i class="fas fa-lock" style="color: #183f9b;"></i>
-                    <input type="password" name="password" value="<?= $this->form_validation->set_value('password') ?>" placeholder="Password" />
+                    <input type="password" id="password-regis" name="password" value="<?= $this->form_validation->set_value('password') ?>" placeholder="Password" />
+                    <span toggle="#password-regis" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                 </div>
                 <input type="submit" class="btn" value="Daftar" style="background-color: #183f9b;" />
                 <!-- <p class="social-text">Or Sign up with social platforms</p>
@@ -126,6 +131,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $('#exampleModal').on('show.bs.modal', event => {
+            var button = $(event.relatedTarget);
+            var modal = $(this);
+            // Use above variables to manipulate the DOM
+
+        });
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="<?= base_url('asset/auth/') ?>app.js"></script>

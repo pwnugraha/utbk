@@ -265,9 +265,9 @@ class Auth extends CI_Controller
 	 */
 	public function reset_password($code = NULL)
 	{
-		if (!$code) {
-			show_404();
-		}
+		// if (!$code) {
+		// 	show_404();
+		// }
 
 		$this->data['title'] = $this->lang->line('reset_password_heading');
 

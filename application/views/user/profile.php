@@ -83,15 +83,21 @@
                     </div>
                     <div class="form-group">
                         <label for="nama">Password lama</label>
-                        <input type="password" class="form-control" name="old" id="password_old" aria-describedby="helpId" placeholder="">
+                        <input type="password" id="password-lama" class="form-control" name="old" id="password_old" aria-describedby="helpId" placeholder="">
+                        <span toggle="#password-lama" class="fa fa-fw fa-eye field-icon toggle-password text-dark"></span>
+
                     </div>
                     <div class="form-group">
                         <label for="nama">Password baru</label>
-                        <input type="password" class="form-control" name="new" id="password" aria-describedby="helpId" placeholder="">
+                        <input id="password-baru" type="password" class="form-control" name="new" id="password" aria-describedby="helpId" placeholder="">
+                        <span toggle="#password-baru" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                     </div>
                     <div class="form-group">
                         <label for="nama">Verifikasi Password</label>
-                        <input type="password" class="form-control" name="new_confirm" id="password_confirm" aria-describedby="helpId" placeholder="">
+                        <input id="verifikasi-password" type="password" class="form-control" name="new_confirm" id="password_confirm" aria-describedby="helpId" placeholder="">
+                        <span toggle="#verifikasi-password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                     </div>
                     <hr>
                     <div class="form-group text-right">
@@ -106,5 +112,17 @@
 
     </div>
 </div>
+<script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+</script>
 
 <!-- /.container-fluid -->
