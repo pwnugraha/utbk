@@ -8,8 +8,15 @@
         </div>
     </div>
 
+    <div class="row activity">
+        <div class="col text-center">
+            <div class="text-biru h4 mb-5"> Nilai tryout kamu sedang kami proses <br> silahkan cek lagi ditanggal <b> 27 </b> ya </div>
+            <img src="<?= base_url('asset/User/img/statistik2.svg') ?>" width="45%" class="img-fluid" alt="">
+        </div>
+    </div>
+
     <!-- Activity -->
-    <div class="row mb-5 activity">
+    <!-- <div class="row mb-5 activity">
         <div class="col-lg-8">
             <div class="card shadow welcome border-0 mb-3" style="border-radius: 1em;">
                 <div class="card-body">
@@ -243,168 +250,169 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-    </div>
+</div>
 
-    <div class="row mb-5 history hide-content">
-        <div class="col-lg-8">
-            <div class="card shadow welcome border-0 mb-4" style="border-radius: 1em;">
-                <div class="card-body">
-                    <div class="h5 text-hitam mb-4">History Tryout</div>
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            <thead>
-                                <tr class="text-hitam">
-                                    <th>ID Tryout</th>
-                                    <th>Nama Tryout</th>
-                                    <th>Date</th>
-                                    <th>Score</th>
-                                    <th>Status</th>
-                                    <th>Konsultasi</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="card shadow welcome border-0" style="border-radius: 1em;">
-                <div class="card-body">
-                    <div class="h5 text-hitam">Orders</div>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-hover">
-                            <thead>
-                                <tr class="text-hitam">
-                                    <th>ID Tryout</th>
-                                    <th>Nama Tryout</th>
-                                    <th>Date</th>
-                                    <th>Score</th>
-                                    <th>Status</th>
-                                    <th>Konsultasi</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Tryout Soshum</td>
-                                    <td>22 June 2020</td>
-                                    <td>581.000</td>
-                                    <td>Complete</td>
-                                    <td>IN332942</td>
-                                    <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+<!-- HISTORY -->
+<div class="row mb-5 history hide-content">
+    <div class="col-lg-8">
+        <div class="card shadow welcome border-0 mb-4" style="border-radius: 1em;">
+            <div class="card-body">
+                <div class="h5 text-hitam mb-4">History Tryout</div>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr class="text-hitam">
+                                <th>ID Tryout</th>
+                                <th>Nama Tryout</th>
+                                <th>Date</th>
+                                <th>Score</th>
+                                <th>Status</th>
+                                <th>Konsultasi</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-2 col-xl-3">
-            <div class="card shadow" style="background-color: #2D62ED; border-radius: 2em;">
-                <div class="card-body text-light border-0">
-                    <img src="<?= base_url('asset/user/') ?>img/file.png" alt="">
-                    <div class="h1 mb-0">Disc 15%</div>
-                    <div class="mb-4">6x tryout</div>
-                    <div class="text-right">
-                        <a href="#" class="text-light">
-                            <b>Beli sekarang</b>
-                            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="background-color: rgba(216, 216, 216, 0.514); padding: 10px; border-radius: 50%">
-                                <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
-                            </svg>
-                        </a>
-                    </div>
+        <div class="card shadow welcome border-0" style="border-radius: 1em;">
+            <div class="card-body">
+                <div class="h5 text-hitam">Orders</div>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr class="text-hitam">
+                                <th>ID Tryout</th>
+                                <th>Nama Tryout</th>
+                                <th>Date</th>
+                                <th>Score</th>
+                                <th>Status</th>
+                                <th>Konsultasi</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>003452</td>
+                                <td>Tryout Soshum</td>
+                                <td>22 June 2020</td>
+                                <td>581.000</td>
+                                <td>Complete</td>
+                                <td>IN332942</td>
+                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 col-xl-3">
+        <div class="card shadow" style="background-color: #2D62ED; border-radius: 2em;">
+            <div class="card-body text-light border-0">
+                <img src="<?= base_url('asset/user/') ?>img/file.png" alt="">
+                <div class="h1 mb-0">Disc 15%</div>
+                <div class="mb-4">6x tryout</div>
+                <div class="text-right">
+                    <a href="#" class="text-light">
+                        <b>Beli sekarang</b>
+                        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="background-color: rgba(216, 216, 216, 0.514); padding: 10px; border-radius: 50%">
+                            <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Akhir Activity -->
+<!-- Akhir Activity -->
 
 
 </div>

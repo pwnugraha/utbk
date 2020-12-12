@@ -53,7 +53,7 @@
 
     <div class="row mt-2">
         <div class="col-lg-12">
-            <?= form_open('exm/index/' . $exam) ?>
+            <?= form_open('exm/index/' . $exam, 'id="form-pretest"') ?>
             <div class="card shadow">
                 <div class="card-body">
                     <div class="container-fluid px-0">
@@ -104,14 +104,31 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-mulai-ptn btn-block mt-4">Mulai ujian</button>
+            <button type="submit" class="btn btn-mulai-ptn btn-block mt-4" id="btn-mulai-ptn">Mulai ujian</button>
             <?= form_close() ?>
         </div>
     </div>
 </div>
 
 </div>
+<script src="<?= base_url('asset/exam/js/sweetalert/sweetalert2.all.min.js') ?>"></script>
 
 <script>
-
+    $('#btn-mulai-ptn').on('click', function(e) {
+        e.preventDefault();
+        const href = $(this).attr('href');
+        Swal.fire({
+            title: 'Yakin mulai tryout ?',
+            // text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yakin'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#form-pretest').submit();
+            }
+        })
+    });
 </script>

@@ -19,6 +19,7 @@ class Auth extends CI_Controller
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
+		$this->load->model('base_model');
 	}
 
 	/**
@@ -278,9 +279,9 @@ class Auth extends CI_Controller
 	 */
 	public function reset_password($code = NULL)
 	{
-		if (!$code) {
-			show_404();
-		}
+		// if (!$code) {
+		// 	show_404();
+		// }
 
 		$this->data['title'] = $this->lang->line('reset_password_heading');
 
@@ -473,6 +474,7 @@ class Auth extends CI_Controller
 			// check to see if we are creating the user
 			// redirect them back to the admin page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
+			$this->session->set_flashdata('message_sa', 'example');
 			$this->_send_wa($this->input->post('phone'));
 			redirect("auth/login", 'refresh');
 		} else {

@@ -161,3 +161,11 @@
     background-color: #182F64;
     color: white;
 }
+
+.field-icon {
+    cursor: pointer;
+    position: absolute;
+    /* top: 50%; */
+    right: 25px;
+    transform: translateY(-25px);
+  }

@@ -8,8 +8,8 @@ class Login extends CI_Controller
         $this->load->view('login/index');
     }
 
-    public function proses()
+    public function lupa_password()
     {
-        redirect('usr');
+        $this->load->view('login/lupa_password');
     }
 }

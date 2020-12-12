@@ -47,7 +47,7 @@ endif;
                 <span>Statistik</span>
             </a>
         </li>
-        <li class="nav-item active">
+        <!-- <li class="nav-item active">
             <a class="nav-link <?= $product ?>" href="<?= base_url('usr/product') ?>">
                 <i class="fa fa-shopping-cart <?= $product ?>" aria-hidden="true"></i>
                 <span>Product</span>
