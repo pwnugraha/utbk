@@ -12,7 +12,7 @@ $jawaban = $subjects_soal;
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 pb-5 text-center border-secondary shadow">
+        <div class="col-md-3 pb-5 text-center shadow">
             <div class="text-right mb-2 d-md-none">Hay, <span class="h5"><?= $user->username ?></span> semoga kamu berhasil</div>
 
             <div class="border-bottom py-3">
@@ -123,9 +123,18 @@ $jawaban = $subjects_soal;
                                 <div class="text-right">
                                     <?php if (!($j - 1 == 0)) : ?>
                                         <button class="btn btn-dark py-0" id="back-<?= $i; ?>-<?= $j - 1 ?>" style="background-color: #05164E;">Back</button>
+                                    <?php else : ?>
+                                        <?php if ($i != 1) : ?>
+                                            <button class="btn btn-dark py-0" id="back-mapel-<?= $i; ?>-<?= $j ?>" style="background-color: #05164E;">Back - <?= $mapel[$i - 2] ?></button>
+                                        <?php endif; ?>
                                     <?php endif; ?>
+
                                     <?php if (!($j - count($soal[$m]) == 0)) : ?>
                                         <button class="btn btn-dark py-0" id="next-<?= $i; ?>-<?= $j + 1 ?>" style="background-color: #05164E;">Next</button>
+                                    <?php else : ?>
+                                        <?php if (count($mapel) != $i) : ?>
+                                            <button class="btn btn-dark py-0" id="next-mapel-<?= $i ?>-<?= $j ?>" style="background-color: #05164E;">Next - <?= $mapel[$i] ?></button>
+                                        <?php endif; ?>
                                     <?php endif; ?>
 
                                 </div>
@@ -206,7 +215,6 @@ foreach ($mapel as $s) :
                 $("#soal-<?= $i ?>-<?= $j ?>").addClass("bg-primary text-light");
             }
 
-
             // TOGGLE pertanyaan
             $("#soal-<?= $i ?>-<?= $j ?>").click(function() {
                 $(".kotak-pertanyaan").hide();
@@ -230,6 +238,36 @@ foreach ($mapel as $s) :
 
                 $("#no-soal-<?= $i; ?>-<?= $j - 1 ?>").show();
                 $("#soal-<?= $i ?>-<?= $j - 1 ?>").addClass("bg-primary text-light");
+            });
+
+            // next mapel
+            $("#next-mapel-<?= $i ?>-<?= $j ?>").click(function() {
+                $(".kotak-nomor").removeClass("bg-primary text-light");
+
+                $("#no-soal-<?= $i ?>-<?= $j ?>").hide();
+                $("#no-soal-<?= $i + 1 ?>-1").show();
+
+                $("#list-soal-<?= $i ?>").toggle("slow");
+                $("#icon-arrow-<?= $i ?>").toggleClass("down");
+
+                $("#list-soal-<?= $i + 1 ?>").toggle("slow");
+                $("#icon-arrow-<?= $i + 1 ?>").toggleClass("down");
+                $("#soal-<?= $i + 1 ?>-1").addClass("bg-primary text-light");
+            });
+
+            // back mapel
+            $("#back-mapel-<?= $i ?>-<?= $j ?>").click(function() {
+                $(".kotak-nomor").removeClass("bg-primary text-light");
+
+                $("#no-soal-<?= $i ?>-<?= $j ?>").hide();
+                $("#no-soal-<?= $i - 1 ?>-1").show();
+
+                $("#list-soal-<?= $i ?>").toggle("slow");
+                $("#icon-arrow-<?= $i ?>").toggleClass("down");
+
+                $("#list-soal-<?= $i - 1 ?>").toggle("slow");
+                $("#icon-arrow-<?= $i - 1 ?>").toggleClass("down");
+                $("#soal-<?= $i - 1 ?>-1").addClass("bg-primary text-light");
             });
         </script>
 

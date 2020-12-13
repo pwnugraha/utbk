@@ -141,15 +141,15 @@
             if (jurusan1 == 0 && jurusan2 > 0) {
                 $('#notif-danger').hide();
                 $('#notif-danger').show();
-                $('#notif-danger').text('Jurusan 1 belum diisi');
+                $('#notif-danger').text('Jurusan PTN 1 belum diisi');
             } else if (jurusan1 > 0 && jurusan2 == 0) {
                 $('#notif-danger').hide();
                 $('#notif-danger').show();
-                $('#notif-danger').text('Jurusan 2 belum diisi');
+                $('#notif-danger').text('Jurusan PTN 2 belum diisi');
             } else {
                 $('#notif-danger').hide();
                 $('#notif-danger').show();
-                $('#notif-danger').text('Jurusan 1 dan 2 belum diisi');
+                $('#notif-danger').text('Jurusan PTN 1 dan PTN 2 belum diisi');
             }
         } else {
             $('#notif-danger').hide();
