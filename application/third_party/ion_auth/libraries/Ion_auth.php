@@ -140,7 +140,7 @@ class Ion_auth
 	public function forgotten_password($identity)
 	{
 		// Retrieve user information
-		$user = $this->where($this->ion_auth_model->identity_column, $identity)
+		$user = $this->where('email', $identity)
 					 ->where('active', 1)
 					 ->users()->row();
 

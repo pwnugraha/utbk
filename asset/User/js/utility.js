@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#ptn1').change(function () {
         var ptn = $(this).val();
         $.ajax({
-            url: window.location.origin + '/exm/get_jurusan',
+            url: window.location.origin + '/utbk/exm/get_jurusan',
             method: "POST",
             data: { nama: ptn },
             dataType: 'json',
@@ -24,7 +24,7 @@ $(document).ready(function () {
     $('#ptn2').change(function () {
         var ptn = $(this).val();
         $.ajax({
-            url: window.location.origin + '/exm/get_jurusan',
+            url: window.location.origin + '/utbk/exm/get_jurusan',
             method: "POST",
             data: { nama: ptn },
             dataType: 'json',

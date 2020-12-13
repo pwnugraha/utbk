@@ -16,7 +16,7 @@ $jawaban = $subjects_soal;
             <div class="border-bottom py-3">
                 <div class="text-biru">Waktu Tersisa</div>
                 <div class="h2 text-success" id="getting-started"></div>
-                <div class="text-biru">Ujian <?=$exam_name?></div>
+                <div class="text-biru">Ujian <?= $exam_name ?></div>
             </div>
             <div class="mata-pelajaran my-2">
                 <div class="ket-warna-soal">
@@ -148,8 +148,13 @@ $jawaban = $subjects_soal;
     $(document).ready(function() {
         $(".rotate").click(function() {})
         var waktu = $("#getting-started").countdowntimer({
-            seconds: <?=$exam_time?>,
+            seconds: <?= $exam_time ?>,
+            timeUp : timeIsUp
         });
+
+        function timeIsUp() {
+            window.location.replace(window.location.origin+'/utbk/exm/finish');
+        }
     });
 </script>
 <!-- =========================== AKHIR COUNDOWN TIME =========================== -->

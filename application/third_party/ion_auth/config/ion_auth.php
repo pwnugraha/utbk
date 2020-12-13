@@ -131,7 +131,7 @@ $config['argon2_admin_params']		= [
  | This is an arbitrary (long) value to protect against DOS attack.
  */
 $config['site_title']                 = "SobatUTBK";       // Site Title, example.com
-$config['admin_email']                = "admin@sobatutbk.rasyiidu.com"; // Admin Email, admin@example.com
+$config['admin_email']                = "admin@dev.rasyiidu.com"; // Admin Email, admin@example.com
 $config['default_group']              = 'members';           // Default group, use name
 $config['admin_group']                = 'admin';             // Default administrators group, use name
 $config['identity']                   = 'username';             /* You can use any unique column in your table as identity column.
@@ -186,9 +186,9 @@ $config['use_ci_email'] = TRUE; // Send Email using the builtin CI email class, 
 $config['email_config'] = [
 	'mailtype' => 'html',
 	'protocol' => 'smtp',
-	'smtp_host' => 'sobatutbk.rasyiidu.com',
-	'smtp_user' => 'admin@sobatutbk.rasyiidu.com',
-	'smtp_pass' => ')}D_fcf^G&(W',
+	'smtp_host' => 'dev.rasyiidu.com',
+	'smtp_user' => 'admin@dev.rasyiidu.com',
+	'smtp_pass' => 'ID9,-%u,Yx-t',
 	'smtp_crypto' => 'ssl',
 	'smtp_port' => '465',
 	'charset' => 'utf-8',

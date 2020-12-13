@@ -39,7 +39,7 @@
                 </div>
 
                 <button type="submit" value="Login" class="btn-login" style="background-color: #EF8521;">Login</button>
-                <a href="<?= base_url('login/lupa_password')  ?>" class="title lupa-pw">Lupa password ?</a>
+                <a href="<?= base_url('auth/forgot_password')  ?>" class="title lupa-pw">Lupa password ?</a>
                 <!-- <p class="social-text">Or Sign in with social platforms</p>
                 <div class="social-media">
                     <a href="#" class="social-icon">

@@ -139,7 +139,7 @@ class Exm extends CI_Controller
                     $params['tka'] = 1;
                     break;
                 case 4:
-                    $params['tks'] = 1;
+                    $params['tps'] = 1;
                     break;
             }
             $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));

@@ -23,13 +23,18 @@
 
 
                         <img class="mt-5" src="<?= base_url('asset/auth/img/lupa_password.svg') ?>" alt="" style="width: 35%;">
-                        <div class="h5 text-dark mt-3">Kesulitan Untuk Masuk?</div>
-                        <p class="text-secondary">Masukkan email yang telah terdaftar dan kami akan mengirimi kamu tautan untuk kembali ke akun kamu.</p>
-                        <?php echo form_open("auth/forgot_password"); ?>
+                        <div class="h5 text-dark mt-3">Reset Password</div>
+                        <p class="text-secondary">Isikan password baru kamu</p>
+                        <?php echo form_open('auth/reset_password/' . $code); ?>
                         <div class="form-group">
-                            <?php echo form_input($identity, '', 'type="email" class="form-control text-center" placeholder="email"'); ?>
+                            <?php echo form_input($new_password, '', 'type="password" class="form-control text-center" placeholder="Password"'); ?>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Kirim Tautan Masuk</button>
+                        <div class="form-group">
+                            <?php echo form_input($new_password_confirm, '', 'type="password" class="form-control text-center" placeholder="Ulangi Password"'); ?>
+                        </div>
+                        <?php echo form_input($user_id); ?>
+                        <?php echo form_hidden($csrf); ?>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
                         <?php echo form_close(); ?>
                         <div class="container-fluid mt-4">
                             <div class="row">
