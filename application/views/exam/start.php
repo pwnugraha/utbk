@@ -108,7 +108,7 @@ $jawaban = $subjects_soal;
                                             <div class="form-check form-check-inline d-block">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="radio" name="answer" id="answer-<?= $i ?>-<?= $j ?>-<?= $k ?>" data-soalid="<?= $s['soal_id'] ?>" value="<?= $k ?>" <?= ($jawaban[$m][$key]['user_answer'] == $k) ? 'checked' : '' ?>>
-                                                    <?= substr(str_replace('<span xss=removed>','', $jwb), 3, -4) ?>
+                                                    <div style="display: inline-block;"><?= $jwb ?></div>
                                                 </label>
                                             </div>
                                         </div>

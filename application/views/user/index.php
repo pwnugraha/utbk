@@ -182,11 +182,11 @@
                 <div class="card-body text-hitam">
                     <div class="h5">Yang sudah kamu kerjakan</div>
                     <span class="mr-3">
-                        <i class="fa <?= ($exam['tps'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tps'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
+                        <i class="fa <?= (!empty($exam)) ? (($exam['tps'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin') : 'fa-circle-thin' ?>" <?= (!empty($exam)) ? (($exam['tps'] == 1) ? 'style="background-color: #00CCF2;"' : '') : '' ?> aria-hidden="true"></i>
                         <label>TPS</label>
                     </span>
                     <span>
-                        <i class="fa <?= ($exam['tka'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tka'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
+                        <i class="fa <?= (!empty($exam)) ? (($exam['tka'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin') : 'fa-circle-thin' ?>" <?= (!empty($exam)) ? (($exam['tka'] == 1) ? 'style="background-color: #00CCF2;"' : '') : '' ?> aria-hidden="true"></i>
                         <label>TKA</label>
                     </span>
                 </div>

@@ -34,9 +34,9 @@ class AdminBase extends CI_Controller {
 
     public function _is_logged_in()
     {
-        if (!$this->ion_auth->logged_in()) {
+        if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
             // redirect them to the login page
-            redirect('auth/login', 'refresh');
+            show_404();
         }
     }
 }

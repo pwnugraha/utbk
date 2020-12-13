@@ -20,11 +20,12 @@ class Exm extends CI_Controller
         $data['ptn'] = $this->base_model->get_item('result', 'ptn', 'DISTINCT(nama)');
         $data['exam'] = $exam;
 
-        $this->form_validation->set_rules('jurusan1', 'Jurusan 1', 'trim|required|numeric');
-        $this->form_validation->set_rules('jurusan2', 'Jurusan 2', 'trim|required|numeric');
+        $this->form_validation->set_rules('jurusan1', 'PTN Pilihan 1', 'trim|required|numeric');
+        $this->form_validation->set_rules('jurusan2', 'PTN Pilihan 2', 'trim|required|numeric');
 
         if ($this->form_validation->run() === FALSE) {
 
+            $data['error_message'] = (NULL != validation_errors()) ? 'Lengkapi PTN Pilihan 1 dan 2 sebelum memulai ujian' : '';
             $this->load->view('exam/template/header', $data);
             // $this->load->view('exam/template/sidebar');
             $this->load->view('exam/template/topbar');
