@@ -112,6 +112,7 @@
 </div>
 
 </div>
+<div class="flash-data" data-flashdata="<?= $error_message; ?>"></div>
 <script src="<?= base_url('asset/exam/js/sweetalert/sweetalert2.all.min.js') ?>"></script>
 
 <script>
@@ -145,4 +146,16 @@
             })
         }
     });
+
+    const flashdata = $('.flash-data').data('flashdata');
+    if (flashdata) {
+        // alert(flashdata);
+
+        Swal.fire({
+            title: 'Informasi',
+            html: flashdata,
+            icon: 'info'
+        });
+
+    };
 </script>

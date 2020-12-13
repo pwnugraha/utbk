@@ -21,11 +21,12 @@ class Exm extends CI_Controller
         $data['ptn'] = $this->base_model->get_item('result', 'ptn', 'DISTINCT(nama)');
         $data['exam'] = $exam;
 
-        $this->form_validation->set_rules('jurusan1', 'Jurusan 1', 'trim|required|numeric');
-        $this->form_validation->set_rules('jurusan2', 'Jurusan 2', 'trim|required|numeric');
+        $this->form_validation->set_rules('jurusan1', 'PTN Pilihan 1', 'trim|required|numeric');
+        $this->form_validation->set_rules('jurusan2', 'PTN Pilihan 2', 'trim|required|numeric');
 
         if ($this->form_validation->run() === FALSE) {
 
+            $data['error_message'] = (NULL != validation_errors()) ? 'Lengkapi PTN Pilihan 1 dan 2 sebelum memulai ujian' : '';
             $this->load->view('exam/template/header', $data);
             // $this->load->view('exam/template/sidebar');
             $this->load->view('exam/template/topbar');
@@ -213,9 +214,17 @@ class Exm extends CI_Controller
                             // die;
                             if ($ctg_exam[$ctg] != 1) {
                                 return TRUE;
+                            } else {
+                                $this->session->set_flashdata('message_sa', 'Kamu sudah mengikuti ujian' . strtoupper($ctg) . ' bulan ini. Info lebih lanjut hubungi CS kami.');
                             }
+                        } else {
+                            $this->session->set_flashdata('message_sa', 'Kuota kursi sudah penuh/tiket tidak tersedia. Cek kembali tiketmu dan silakan ikuti sesi selanjutnya sesuai jam sesi. Info lebih lanjut hubungi CS kami.');
                         }
+                    } else {
+                        $this->session->set_flashdata('message_sa', 'Sesi ujian yang dipilih belum dimulai. Cek kembali jam sesi. Info lebih lanjut hubungi CS kami.');
                     }
+                } else {
+                    $this->session->set_flashdata('message_sa', 'Sesi ujian yang dipilih tidak tersedia/tiket tidak tersedia. Info lebih lanjut hubungi CS kami.');
                 }
                 redirect('usr');
             default:
@@ -286,7 +295,7 @@ class Exm extends CI_Controller
                         $params['tka'] = 1;
                         break;
                     case 4:
-                        $params['tks'] = 1;
+                        $params['tps'] = 1;
                         break;
                 }
                 $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
@@ -312,7 +321,7 @@ class Exm extends CI_Controller
                         $params['tka'] = 1;
                         break;
                     case 4:
-                        $params['tks'] = 1;
+                        $params['tps'] = 1;
                         break;
                 }
 
