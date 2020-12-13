@@ -181,14 +181,25 @@
             <div class="card shadow border-0 my-3" style="border-radius: 1em;">
                 <div class="card-body text-hitam">
                     <div class="h5">Yang sudah kamu kerjakan</div>
-                    <span class="mr-3">
-                        <i class="fa <?= ($exam['tps'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tps'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
-                        <label>TPS</label>
-                    </span>
-                    <span>
-                        <i class="fa <?= ($exam['tka'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tka'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
-                        <label>TKA</label>
-                    </span>
+                    <?php if ($exam) : ?>
+                        <span class="mr-3">
+                            <i class="fa <?= ($exam['tps'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tps'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
+                            <label>TPS</label>
+                        </span>
+                        <span>
+                            <i class="fa <?= ($exam['tka'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tka'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
+                            <label>TKA</label>
+                        </span>
+                    <?php else : ?>
+                        <span class="mr-3">
+                            <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                            <label>TPS</label>
+                        </span>
+                        <span>
+                            <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                            <label>TKA</label>
+                        </span>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="card shadow border-0" style="border-radius: 1em; background-color: #FF007C;">
@@ -198,7 +209,7 @@
                         Untuk UTBK kamu wajib
                         menyelesaikan soal TPS dan TKA
                         bila tidak nanti nilaimu tidak keluar
-                        loh di statistk
+                        loh di statistik
                     </div>
                 </div>
             </div>

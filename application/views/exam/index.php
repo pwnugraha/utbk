@@ -102,6 +102,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="alert alert-danger" role="alert" id="notif-danger"></div>
                 </div>
             </div>
             <button type="submit" class="btn btn-mulai-ptn btn-block mt-4" id="btn-mulai-ptn">Mulai ujian</button>
@@ -114,21 +115,34 @@
 <script src="<?= base_url('asset/exam/js/sweetalert/sweetalert2.all.min.js') ?>"></script>
 
 <script>
+    $('#notif-danger').hide();
     $('#btn-mulai-ptn').on('click', function(e) {
         e.preventDefault();
-        const href = $(this).attr('href');
-        Swal.fire({
-            title: 'Yakin mulai tryout ?',
-            // text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yakin'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $('#form-pretest').submit();
-            }
-        })
+        const ptn1 = $('#ptn1').find(":selected").index();
+        const ptn2 = $('#ptn2').find(":selected").index();
+        const jurusan1 = $('#jurusan1').find(":selected").index();
+        const jurusan2 = $('#jurusan2').find(":selected").index();
+        if (ptn1 == 0 || ptn2 == 0 || jurusan1 == 0 || jurusan2 == 0) {
+            $('#notif-danger').show();
+            $('#notif-danger').text('PTN 1 dan 2 belum diisi');
+
+        }
+        elseif()
+        if (false) {
+            const href = $(this).attr('href');
+            Swal.fire({
+                title: 'Yakin mulai tryout ?',
+                // text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yakin'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#form-pretest').submit();
+                }
+            })
+        }
     });
 </script>

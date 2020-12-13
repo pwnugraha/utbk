@@ -15,6 +15,7 @@ class Exm extends CI_Controller
     {
         $this->_is_doing_exam();
         $this->_check_exam_category($exam);
+
         $data['title'] = "Tata tertib";
         $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
         $data['ptn'] = $this->base_model->get_item('result', 'ptn', 'DISTINCT(nama)');
@@ -208,6 +209,8 @@ class Exm extends CI_Controller
                         //check if ticket and session quota available
                         if ($ticket[$exam] > 0 && $this->base_model->count_result_item('exam', ['status' => $status]) < $sesi['quota']) {
                             //check if already test on the current month base on exam category
+                            // var_dump($ctg_exam);
+                            // die;
                             if ($ctg_exam[$ctg] != 1) {
                                 return TRUE;
                             }
