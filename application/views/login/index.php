@@ -34,7 +34,7 @@
                 <div class="input-field" style="border: 2px solid #EF8521;">
                     <i class="fas fa-lock" style="color: #EF8521;"></i>
                     <input type="password" id="password-login" name="passwordlog" value="<?= $this->form_validation->set_value('passwordlog') ?>" placeholder="Password" />
-                    <span toggle="#password-login" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    <span toggle="#password-login" class="fa fa-fw fa-eye fa-eye-slash field-icon toggle-password"></span>
 
                 </div>
 
@@ -77,7 +77,7 @@
                 <div class="input-field" style="border: 2px solid #183f9b;">
                     <i class="fas fa-lock" style="color: #183f9b;"></i>
                     <input type="password" id="password-regis" name="password" value="<?= $this->form_validation->set_value('password') ?>" placeholder="Password" />
-                    <span toggle="#password-regis" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    <span toggle="#password-regis" class="fa fa-fw fa-eye fa-eye-slash field-icon toggle-password"></span>
 
                 </div>
                 <input type="submit" class="btn" value="Daftar" style="background-color: #183f9b;" />

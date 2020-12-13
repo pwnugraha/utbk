@@ -200,7 +200,12 @@
                             <label>TKA</label>
                         </span>
                     <?php endif; ?>
-
+                    <?php
+                    if ($exam['tps'] == 1 && $exam['tka'] == 1) : ?>
+                        <div class="notif-tpas-tpa-clear" data-notif="clear"></div>
+                    <?php
+                    endif;
+                    ?>
                 </div>
             </div>
             <div class="card shadow border-0" style="border-radius: 1em; background-color: #FF007C;">
@@ -222,17 +227,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     const flashdata = $('.flash-data').data('flashdata');
+    const notif = $('.notif-tpas-tpa-clear').data('notif');
 
 
     if (flashdata) {
-        // alert(flashdata);
-
         Swal.fire({
             title: 'Informasi',
             html: flashdata,
             icon: 'info'
         });
+    };
 
+    if (notif) {
+        Swal.fire({
+            title: 'Informasi',
+            html: 'Nilai tryout kamu sedang kami proses <br> silahkan cek lagi ditanggal <b>27</b> ya',
+            icon: 'info'
+        });
     };
 </script>
 

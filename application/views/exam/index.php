@@ -123,13 +123,37 @@
         const ptn2 = $('#ptn2').find(":selected").index();
         const jurusan1 = $('#jurusan1').find(":selected").index();
         const jurusan2 = $('#jurusan2').find(":selected").index();
-        if (ptn1 == 0 || ptn2 == 0 || jurusan1 == 0 || jurusan2 == 0) {
-            $('#notif-danger').show();
-            $('#notif-danger').text('PTN 1 dan 2 belum diisi');
+        if (ptn1 == 0 || ptn2 == 0) {
+            if (ptn1 == 0 && ptn2 > 0) {
+                $('#notif-danger').hide();
+                $('#notif-danger').show();
+                $('#notif-danger').text('PTN 1 belum diisi');
+            } else if (ptn1 > 0 && ptn2 == 0) {
+                $('#notif-danger').hide();
+                $('#notif-danger').show();
+                $('#notif-danger').text('PTN 2 belum diisi');
+            } else {
+                $('#notif-danger').hide();
+                $('#notif-danger').show();
+                $('#notif-danger').text('PTN 1 dan 2 belum diisi');
+            }
+        } else if (jurusan1 == 0 || jurusan2 == 0) {
+            if (jurusan1 == 0 && jurusan2 > 0) {
+                $('#notif-danger').hide();
+                $('#notif-danger').show();
+                $('#notif-danger').text('Jurusan 1 belum diisi');
+            } else if (jurusan1 > 0 && jurusan2 == 0) {
+                $('#notif-danger').hide();
+                $('#notif-danger').show();
+                $('#notif-danger').text('Jurusan 2 belum diisi');
+            } else {
+                $('#notif-danger').hide();
+                $('#notif-danger').show();
+                $('#notif-danger').text('Jurusan 1 dan 2 belum diisi');
+            }
+        } else {
+            $('#notif-danger').hide();
 
-        }
-        elseif()
-        if (false) {
             const href = $(this).attr('href');
             Swal.fire({
                 title: 'Yakin mulai tryout ?',

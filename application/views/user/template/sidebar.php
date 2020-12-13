@@ -41,7 +41,7 @@ endif;
                 <span>Dashboard</span>
             </a>
         </li>
-        <!-- <li class="nav-item active">
+        <li class="nav-item active">
             <a class="nav-link <?= $statistik ?>" href="<?= base_url('usr/statistik') ?>">
                 <i class="fa fa-pie-chart <?= $statistik ?>" aria-hidden="true"></i>
                 <span>Statistik</span>

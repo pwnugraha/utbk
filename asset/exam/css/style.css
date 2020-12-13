@@ -6,6 +6,14 @@
     background-color: orange !important;
 }
 
+.bg-hijau{
+    background-color: #28a745;
+}
+
+.bg-biru{
+    background-color: #007bff !important;
+}
+
 .text-orange{
     color: orange !important;
 }
