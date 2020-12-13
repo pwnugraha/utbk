@@ -1,5 +1,5 @@
 <!-- Begin Page Content -->
-
+<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message_sa'); ?>"></div>
 <div class="container-fluid mb-5 pb-5">
     <div class="row">
         <div class="col-lg-9">
@@ -207,5 +207,21 @@
     </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    const flashdata = $('.flash-data').data('flashdata');
+
+
+    if (flashdata) {
+        // alert(flashdata);
+
+        Swal.fire({
+            title: 'Informasi',
+            html: flashdata,
+            icon: 'info'
+        });
+
+    };
+</script>
 
 <!-- /.container-fluid -->

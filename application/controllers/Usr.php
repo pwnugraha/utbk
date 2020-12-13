@@ -96,6 +96,7 @@ class Usr extends CI_Controller
 
     public function _is_doing_exam()
     {
+        
         $exam_data = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status !=' => 0]);
         if ($exam_data) {
             if (date('Y-m-d H:i:s') <= date('Y-m-d H:i:s', strtotime($exam_data['end_date']))) {
@@ -112,7 +113,7 @@ class Usr extends CI_Controller
                         $params['tka'] = 1;
                         break;
                     case 4:
-                        $params['tks'] = 1;
+                        $params['tps'] = 1;
                         break;
                 }
                 $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));

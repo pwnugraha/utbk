@@ -108,7 +108,7 @@ $jawaban = $subjects_soal;
                                             <div class="form-check form-check-inline d-block">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="radio" name="answer" id="answer-<?= $i ?>-<?= $j ?>-<?= $k ?>" data-soalid="<?= $s['soal_id'] ?>" value="<?= $k ?>" <?= ($jawaban[$m][$key]['user_answer'] == $k) ? 'checked' : '' ?>>
-                                                    <?= substr($jwb, 3, -4) ?>
+                                                    <?= substr(str_replace('<span xss=removed>','', $jwb), 3, -4) ?>
                                                 </label>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@ $jawaban = $subjects_soal;
                                     <?php if (!($j - 1 == 0)) : ?>
                                         <button class="btn btn-dark py-0" id="back-<?= $i; ?>-<?= $j - 1 ?>" style="background-color: #05164E;">Back</button>
                                     <?php endif; ?>
-                                    <?php if (!($j - count($soal) == 0)) : ?>
+                                    <?php if (!($j - count($soal[$m]) == 0)) : ?>
                                         <button class="btn btn-dark py-0" id="next-<?= $i; ?>-<?= $j + 1 ?>" style="background-color: #05164E;">Next</button>
                                     <?php endif; ?>
 

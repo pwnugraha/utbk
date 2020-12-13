@@ -210,9 +210,17 @@ class Exm extends CI_Controller
                             //check if already test on the current month base on exam category
                             if ($ctg_exam[$ctg] != 1) {
                                 return TRUE;
+                            } else {
+                                $this->session->set_flashdata('message_sa', 'Kamu sudah mengikuti ujian' . strtoupper($ctg) . ' bulan ini. Info lebih lanjut hubungi CS kami.');
                             }
+                        } else {
+                            $this->session->set_flashdata('message_sa', 'Kuota kursi sudah penuh/tiket tidak tersedia. Cek kembali tiketmu dan silakan ikuti sesi selanjutnya sesuai jam sesi. Info lebih lanjut hubungi CS kami.');
                         }
+                    } else {
+                        $this->session->set_flashdata('message_sa', 'Sesi ujian yang dipilih belum dimulai. Cek kembali jam sesi. Info lebih lanjut hubungi CS kami.');
                     }
+                } else {
+                    $this->session->set_flashdata('message_sa', 'Sesi ujian yang dipilih tidak tersedia/tiket tidak tersedia. Info lebih lanjut hubungi CS kami.');
                 }
                 redirect('usr');
             default:
@@ -283,7 +291,7 @@ class Exm extends CI_Controller
                         $params['tka'] = 1;
                         break;
                     case 4:
-                        $params['tks'] = 1;
+                        $params['tps'] = 1;
                         break;
                 }
                 $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
@@ -309,7 +317,7 @@ class Exm extends CI_Controller
                         $params['tka'] = 1;
                         break;
                     case 4:
-                        $params['tks'] = 1;
+                        $params['tps'] = 1;
                         break;
                 }
 
