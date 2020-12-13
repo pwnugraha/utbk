@@ -210,8 +210,6 @@ class Exm extends CI_Controller
                         //check if ticket and session quota available
                         if ($ticket[$exam] > 0 && $this->base_model->count_result_item('exam', ['status' => $status]) < $sesi['quota']) {
                             //check if already test on the current month base on exam category
-                            // var_dump($ctg_exam);
-                            // die;
                             if ($ctg_exam[$ctg] != 1) {
                                 return TRUE;
                             } else {

@@ -236,9 +236,7 @@
             html: flashdata,
             icon: 'info'
         });
-    };
-
-    if (notif) {
+    } else if (notif) {
         Swal.fire({
             title: 'Informasi',
             html: 'Nilai tryout kamu sedang kami proses <br> silahkan cek lagi ditanggal <b>27</b> ya',
