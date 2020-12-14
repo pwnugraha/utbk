@@ -12,13 +12,17 @@ $jawaban = $subjects_soal;
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 pb-5 text-center border-secondary shadow">
+        <div class="col-md-3 pb-5 text-center shadow">
+            <div class="text-right mb-2 d-md-none">Hay, <span class="h5"><?= $user->username ?></span> semoga kamu berhasil</div>
+
             <div class="border-bottom py-3">
                 <div class="text-biru">Waktu Tersisa</div>
                 <div class="h2 text-success" id="getting-started"></div>
                 <div class="text-biru">Ujian <?= $exam_name ?></div>
             </div>
+
             <div class="mata-pelajaran my-2">
+                <!-- <div class="d-none d-md-block"> -->
                 <div class="ket-warna-soal">
                     <div class="container-fluid">
                         <div class="row">
@@ -72,14 +76,14 @@ $jawaban = $subjects_soal;
                     </div>
                 <?php $i++;
                 endforeach; ?>
-
+                <!-- </div> -->
                 <div class="text-center mt-5">
                     <a href="<?= base_url('exm/finish') ?>" id="btn-selesai" class="btn btn-selesai border-0 btn-primary py-1 px-5" style="background-color: #05164E; border-radius: 2em;">Selesai</a>
                 </div>
             </div>
         </div>
         <div class="col-md-9 py-3">
-            <div class="text-right mb-5 pb-5">Hay, <span class="h5"><?= $user->username ?></span> semoga kamu berhasil</div>
+            <div class="text-right mb-5 pb-5 d-none d-md-block">Hay, <span class="h5"><?= $user->username ?></span> semoga kamu berhasil</div>
 
             <?php
             if ($soal) :
@@ -119,9 +123,18 @@ $jawaban = $subjects_soal;
                                 <div class="text-right">
                                     <?php if (!($j - 1 == 0)) : ?>
                                         <button class="btn btn-dark py-0" id="back-<?= $i; ?>-<?= $j - 1 ?>" style="background-color: #05164E;">Back</button>
+                                    <?php else : ?>
+                                        <?php if ($i != 1) : ?>
+                                            <button class="btn btn-dark py-0" id="back-mapel-<?= $i; ?>-<?= $j ?>" style="background-color: #05164E;">Back - <?= $mapel[$i - 2] ?></button>
+                                        <?php endif; ?>
                                     <?php endif; ?>
+
                                     <?php if (!($j - count($soal[$m]) == 0)) : ?>
                                         <button class="btn btn-dark py-0" id="next-<?= $i; ?>-<?= $j + 1 ?>" style="background-color: #05164E;">Next</button>
+                                    <?php else : ?>
+                                        <?php if (count($mapel) != $i) : ?>
+                                            <button class="btn btn-dark py-0" id="next-mapel-<?= $i ?>-<?= $j ?>" style="background-color: #05164E;">Next - <?= $mapel[$i] ?></button>
+                                        <?php endif; ?>
                                     <?php endif; ?>
 
                                 </div>
@@ -134,8 +147,11 @@ $jawaban = $subjects_soal;
                 endforeach;
             endif;
             ?>
-
+            <!-- <div class="text-center mt-5 d-md-none mb-5">
+                <a href="<?= base_url('exm/finish') ?>" id="btn-selesai" class="btn btn-selesai border-0 btn-primary py-1 px-5" style="background-color: #05164E; border-radius: 2em;">Selesai</a>
+            </div> -->
         </div>
+
     </div>
 </div>
 
@@ -149,11 +165,11 @@ $jawaban = $subjects_soal;
         $(".rotate").click(function() {})
         var waktu = $("#getting-started").countdowntimer({
             seconds: <?= $exam_time ?>,
-            timeUp : timeIsUp
+            timeUp: timeIsUp
         });
 
         function timeIsUp() {
-            window.location.replace(window.location.origin+'/utbk/exm/finish');
+            window.location.replace(window.location.origin + '/utbk/exm/finish');
         }
     });
 </script>
@@ -199,7 +215,6 @@ foreach ($mapel as $s) :
                 $("#soal-<?= $i ?>-<?= $j ?>").addClass("bg-primary text-light");
             }
 
-
             // TOGGLE pertanyaan
             $("#soal-<?= $i ?>-<?= $j ?>").click(function() {
                 $(".kotak-pertanyaan").hide();
@@ -224,16 +239,60 @@ foreach ($mapel as $s) :
                 $("#no-soal-<?= $i; ?>-<?= $j - 1 ?>").show();
                 $("#soal-<?= $i ?>-<?= $j - 1 ?>").addClass("bg-primary text-light");
             });
+
+            // next mapel
+            $("#next-mapel-<?= $i ?>-<?= $j ?>").click(function() {
+                $(".kotak-nomor").removeClass("bg-primary text-light");
+
+                $("#no-soal-<?= $i ?>-<?= $j ?>").hide();
+                $("#no-soal-<?= $i + 1 ?>-1").show();
+
+                $("#list-soal-<?= $i ?>").toggle("slow");
+                $("#icon-arrow-<?= $i ?>").toggleClass("down");
+
+                $("#list-soal-<?= $i + 1 ?>").toggle("slow");
+                $("#icon-arrow-<?= $i + 1 ?>").toggleClass("down");
+                $("#soal-<?= $i + 1 ?>-1").addClass("bg-primary text-light");
+            });
+
+            // back mapel
+            $("#back-mapel-<?= $i ?>-<?= $j ?>").click(function() {
+                $(".kotak-nomor").removeClass("bg-primary text-light");
+
+                $("#no-soal-<?= $i ?>-<?= $j ?>").hide();
+                $("#no-soal-<?= $i - 1 ?>-1").show();
+
+                $("#list-soal-<?= $i ?>").toggle("slow");
+                $("#icon-arrow-<?= $i ?>").toggleClass("down");
+
+                $("#list-soal-<?= $i - 1 ?>").toggle("slow");
+                $("#icon-arrow-<?= $i - 1 ?>").toggleClass("down");
+                $("#soal-<?= $i - 1 ?>-1").addClass("bg-primary text-light");
+            });
         </script>
 
         <?php
         $k = 1;
         foreach ($jawaban[$s][$key]['opt'] as $jwb) : ?>
             <script>
+                var val_i = parseInt(<?= $i ?>);
+                var val_j = parseInt(<?= $j ?>);
+                var val_k = parseInt(<?= $k ?>);
+
                 if ($('#answer-<?= $i; ?>-<?= $j ?>-<?= $k ?>').is(':checked')) {
                     $(".kotak-nomor").removeClass("bg-primary");
                     $("#soal-<?= $i ?>-<?= $j ?>").addClass("bg-success text-white");
                 }
+
+                $("#soal-<?= $i ?>-<?= $j ?>").click(function() {
+                    // console.log(1);
+                    // $(".kotak-pertanyaan").hide();
+                    // $(".kotak-nomor").removeClass("bg-primary text-light");
+
+                    // $("#no-soal-<?= $i; ?>-<?= $j ?>").toggle();
+                    // $("#soal-<?= $i ?>-<?= $j ?>").addClass("bg-primary text-light");
+                });
+
                 $("#answer-<?= $i; ?>-<?= $j ?>-<?= $k ?>").click(function() {
                     if ($('#answer-<?= $i; ?>-<?= $j ?>-<?= $k ?>').is(':checked')) {
                         $(".kotak-nomor").removeClass("bg-primary");

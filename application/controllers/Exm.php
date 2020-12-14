@@ -15,6 +15,7 @@ class Exm extends CI_Controller
     {
         $this->_is_doing_exam();
         $this->_check_exam_category($exam);
+
         $data['title'] = "Tata tertib";
         $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
         $data['ptn'] = $this->base_model->get_item('result', 'ptn', 'DISTINCT(nama)');

@@ -181,14 +181,31 @@
             <div class="card shadow border-0 my-3" style="border-radius: 1em;">
                 <div class="card-body text-hitam">
                     <div class="h5">Yang sudah kamu kerjakan</div>
-                    <span class="mr-3">
-                        <i class="fa <?= (!empty($exam)) ? (($exam['tps'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin') : 'fa-circle-thin' ?>" <?= (!empty($exam)) ? (($exam['tps'] == 1) ? 'style="background-color: #00CCF2;"' : '') : '' ?> aria-hidden="true"></i>
-                        <label>TPS</label>
-                    </span>
-                    <span>
-                        <i class="fa <?= (!empty($exam)) ? (($exam['tka'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin') : 'fa-circle-thin' ?>" <?= (!empty($exam)) ? (($exam['tka'] == 1) ? 'style="background-color: #00CCF2;"' : '') : '' ?> aria-hidden="true"></i>
-                        <label>TKA</label>
-                    </span>
+                    <?php if ($exam) : ?>
+                        <span class="mr-3">
+                            <i class="fa <?= ($exam['tps'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tps'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
+                            <label>TPS</label>
+                        </span>
+                        <span>
+                            <i class="fa <?= ($exam['tka'] == 1) ? 'fa-check text-light rounded-circle p-1 mr-1' : 'fa-circle-thin' ?>" <?= ($exam['tka'] == 1) ? 'style="background-color: #00CCF2;"' : '' ?> aria-hidden="true"></i>
+                            <label>TKA</label>
+                        </span>
+                    <?php else : ?>
+                        <span class="mr-3">
+                            <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                            <label>TPS</label>
+                        </span>
+                        <span>
+                            <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                            <label>TKA</label>
+                        </span>
+                    <?php endif; ?>
+                    <?php
+                    if ($exam['tps'] == 1 && $exam['tka'] == 1) : ?>
+                        <div class="notif-tpas-tpa-clear" data-notif="clear"></div>
+                    <?php
+                    endif;
+                    ?>
                 </div>
             </div>
             <div class="card shadow border-0" style="border-radius: 1em; background-color: #FF007C;">
@@ -198,7 +215,7 @@
                         Untuk UTBK kamu wajib
                         menyelesaikan soal TPS dan TKA
                         bila tidak nanti nilaimu tidak keluar
-                        loh di statistk
+                        loh di statistik
                     </div>
                 </div>
             </div>
@@ -210,17 +227,21 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     const flashdata = $('.flash-data').data('flashdata');
+    const notif = $('.notif-tpas-tpa-clear').data('notif');
 
 
     if (flashdata) {
-        // alert(flashdata);
-
         Swal.fire({
             title: 'Informasi',
             html: flashdata,
             icon: 'info'
         });
-
+    } else if (notif) {
+        Swal.fire({
+            title: 'Informasi',
+            html: 'Nilai tryout kamu sedang kami proses <br> silahkan cek lagi ditanggal <b>27</b> ya',
+            icon: 'info'
+        });
     };
 </script>
 
