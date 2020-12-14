@@ -873,4 +873,45 @@ class Auth extends CI_Controller
 		}
 		return TRUE;
 	}
+
+	public function generate_user()
+	{
+		show_404();
+		$users_data = $this->base_model->get_item('result', 'users_generate', '*');
+		if (!empty($users_data)) {
+			$j = 1;
+			foreach ($users_data as $i) {
+				$char = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+
+				$email = (isset($i['email']) && $i['email'] != '') ? strtolower($i['email']) : $i['username'];
+				$identity = $i['username'];
+				$password = substr(str_shuffle($char), 0, 8);;
+
+				$additional_data = [
+					'first_name' => $i['first_name'],
+					'last_name' => NULL,
+					'company' => $i['company'],
+					'phone' => $i['phone'],
+					'gender' => $i['gender'],
+				];
+				echo $j . '. ' . $i['username'] . ' = ';
+				if ($this->ion_auth->register($identity, $password, $email, $additional_data)) {
+
+					// check to see if we are creating the user
+					// redirect them back to the admin page
+					$this->base_model->update_item('users_generate', ['password' => $password], ['id' => $i['id']]);
+					echo 'acoount succesfully created';
+				} else {
+					// display the create user form
+					// set the flash data error message if there is one
+					$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+					echo $this->data['message'] . ' error in user ' . $i['id'];
+					die();
+				}
+				echo '<br>';
+				$j++;
+			}
+		}
+	}
 }

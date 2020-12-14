@@ -19,6 +19,13 @@ class Exm extends CI_Controller
         $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
         $data['ptn'] = $this->base_model->get_item('result', 'ptn', 'DISTINCT(nama)');
         $data['exam'] = $exam;
+        $data['get_exam'] = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n')]);
+
+        //get data ptn1 and ptn2
+        $data['ptn_jurusan1'] = $this->base_model->get_item('row', 'ptn', '*', ['id' => $data['get_exam']['ptn1']]);
+        $data['all_jurusan_ptn1'] = $this->base_model->get_item('result', 'ptn', '*', ['nama' => $data['ptn_jurusan1']['nama']]);
+        $data['ptn_jurusan2'] = $this->base_model->get_item('row', 'ptn', '*', ['id' => $data['get_exam']['ptn2']]);
+        $data['all_jurusan_ptn2'] = $this->base_model->get_item('result', 'ptn', '*', ['nama' => $data['ptn_jurusan2']['nama']]);
 
         $this->form_validation->set_rules('jurusan1', 'PTN Pilihan 1', 'trim|required|numeric');
         $this->form_validation->set_rules('jurusan2', 'PTN Pilihan 2', 'trim|required|numeric');
@@ -45,7 +52,7 @@ class Exm extends CI_Controller
                 'status' => $category_exam,
                 'end_date' => $end_date,
             );
-            if ($this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n')])) {
+            if ($data['get_exam']) {
                 $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n')));
             } else {
                 $params['user_id'] = $this->session->userdata('user_id');
@@ -145,6 +152,7 @@ class Exm extends CI_Controller
             }
             $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
         }
+        $this->session->set_flashdata('message_sa', 'Selamat kamu telah menyelesaikan TPS/TKA');
         redirect('usr');
     }
 
@@ -174,15 +182,21 @@ class Exm extends CI_Controller
         if ($this->form_validation->run() === FALSE) {
             echo json_encode(['status' => FALSE, 'data' => [], 'message' => validation_errors()]);
         } else {
-            $params = [
-                'user_answer' => $this->input->post('answer', TRUE)
-            ];
-            $data = $this->base_model->update_item('user_exam', $params, array('id' => $this->input->post('id', TRUE)));
+            $data = $this->base_model->get_item('row', 'user_exam', '*', ['id' => $this->input->post('id')]);
             if ($data) {
-                echo json_encode(['status' => TRUE, 'data' => $data, 'message' => '']);
-            } else {
-                echo json_encode(['status' => FALSE, 'data' => $data, 'message' => '']);
+                $score = ($data['answer'] == $this->input->post('answer', TRUE)) ? 1 : 0;
+                $params = [
+                    'user_answer' => $this->input->post('answer', TRUE),
+                    'score' => $score,
+                ];
+                $act = $this->base_model->update_item('user_exam', $params, array('id' => $this->input->post('id')));
+                if ($act) {
+                    echo json_encode(['status' => TRUE, 'data' => $act, 'message' => '']);
+                } else {
+                    echo json_encode(['status' => FALSE, 'data' => $act, 'message' => '']);
+                }
             }
+            echo json_encode(['status' => FALSE, 'data' => [], 'message' => '']);
         }
     }
 

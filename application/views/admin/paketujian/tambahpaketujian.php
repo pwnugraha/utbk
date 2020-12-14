@@ -47,8 +47,8 @@
                         <select class="custom-select" name="type" id="type">
                             <option>Kategori</option>
                             <option <?= (!empty($post)) ? (($post['type'] == 1) ? 'selected' : '') :'' ?> value="1">TKA - SAINTEK</option>
-                            <option <?= (!empty($post)) ? (($post['type'] == 2) ? 'selected' : '') :'' ?> value="1">TKA - SOSHUM</option>
-                            <option <?= (!empty($post)) ? (($post['type'] == 3) ? 'selected' : '') :'' ?> value="1">TKA - CAMPURAN</option>
+                            <option <?= (!empty($post)) ? (($post['type'] == 2) ? 'selected' : '') :'' ?> value="2">TKA - SOSHUM</option>
+                            <option <?= (!empty($post)) ? (($post['type'] == 3) ? 'selected' : '') :'' ?> value="3">TKA - CAMPURAN</option>
                             <option <?= (!empty($post)) ? (($post['type'] == 4) ? 'selected' : '') :'' ?> value="4">TPS</option>
                         </select>
                     </div>

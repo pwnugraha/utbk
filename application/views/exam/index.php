@@ -66,7 +66,7 @@
                                         <?php
                                         if (!empty($ptn)) :
                                             foreach ($ptn as $i) : ?>
-                                                <option value="<?= $i['nama'] ?>"><?= $i['nama'] ?></option>
+                                                <option <?= ($i['nama'] == $ptn_jurusan1['nama']) ? 'selected' : '' ?> value="<?= $i['nama'] ?>"><?= $i['nama'] ?></option>
                                         <?php
                                             endforeach;
                                         endif;
@@ -76,6 +76,14 @@
                                 <div class="form-group">
                                     <select class="form-control" name="jurusan1" id="jurusan1">
                                         <option selected>Jurusan</option>
+                                        <?php
+                                        if (!empty($all_jurusan_ptn1)) :
+                                            foreach ($all_jurusan_ptn1 as $i) : ?>
+                                                <option <?= ($i['id'] == $get_exam['ptn1']) ? 'selected' : '' ?> value="<?= $i['id'] ?>"><?= $i['jurusan'] ?></option>
+                                        <?php
+                                            endforeach;
+                                        endif;
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -87,7 +95,7 @@
                                         <?php
                                         if (!empty($ptn)) :
                                             foreach ($ptn as $i) : ?>
-                                                <option value="<?= $i['nama'] ?>"><?= $i['nama'] ?></option>
+                                                <option <?= ($i['nama'] == $ptn_jurusan2['nama']) ? 'selected' : '' ?> value="<?= $i['nama'] ?>"><?= $i['nama'] ?></option>
                                         <?php
                                             endforeach;
                                         endif;
@@ -97,6 +105,14 @@
                                 <div class="form-group">
                                     <select class="form-control" name="jurusan2" id="jurusan2">
                                         <option selected>Jurusan</option>
+                                        <?php
+                                        if (!empty($all_jurusan_ptn2)) :
+                                            foreach ($all_jurusan_ptn2 as $i) : ?>
+                                                <option <?= ($i['id'] == $get_exam['ptn2']) ? 'selected' : '' ?> value="<?= $i['id'] ?>"><?= $i['jurusan'] ?></option>
+                                        <?php
+                                            endforeach;
+                                        endif;
+                                        ?>
                                     </select>
                                 </div>
                             </div>

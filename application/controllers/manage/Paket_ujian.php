@@ -55,7 +55,7 @@ class Paket_ujian extends AdminBase
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('quota'),
                 'class' => 'form-control',
-                'placeholder' => 'Kuota (Isikan 0 jika tidak terbatas)'
+                'placeholder' => 'Kuota'
             ];
             $this->data['start_time'] = [
                 'name'  => 'start_time',
@@ -136,7 +136,7 @@ class Paket_ujian extends AdminBase
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('quota', $this->data['post']['quota']),
                 'class' => 'form-control',
-                'placeholder' => 'Kuota (Isikan 0 jika tidak terbatas)'
+                'placeholder' => 'Kuota'
             ];
             $this->data['start_time'] = [
                 'name'  => 'start_time',
