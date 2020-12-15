@@ -13,7 +13,7 @@ $jawaban = $subjects_soal;
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 pb-5 text-center shadow">
-            <div class="text-right mb-2 d-md-none">Hay, <span class="h5"><?= $user->username ?></span> semoga kamu berhasil</div>
+            <div class="text-right mb-2 d-md-none">Hay, <span class="h5"><?= ucwords(strtolower($user->first_name)) ?></span> semoga kamua berhasil</div>
 
             <div class="border-bottom py-3">
                 <div class="text-biru">Waktu Tersisa</div>
@@ -83,7 +83,7 @@ $jawaban = $subjects_soal;
             </div>
         </div>
         <div class="col-md-9 py-3">
-            <div class="text-right mb-5 pb-5 d-none d-md-block">Hay, <span class="h5"><?= $user->username ?></span> semoga kamu berhasil</div>
+            <div class="text-right mb-5 pb-5 d-none d-md-block">Hay, <span class="h5"><?= ucwords(strtolower($user->first_name)) ?></span> semoga kamu berhasil</div>
 
             <?php
             if ($soal) :

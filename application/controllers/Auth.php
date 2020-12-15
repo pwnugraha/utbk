@@ -84,6 +84,7 @@ class Auth extends CI_Controller
 						'user_id' => $this->session->userdata('user_id'),
 						'tka_saintek' => 1,
 						'tka_soshum' => 1,
+						'tka_campuran' => 1,
 						'tps' => 1,
 					);
 					$this->base_model->insert_item('ticket', $par);
@@ -536,6 +537,7 @@ class Auth extends CI_Controller
 	public function edit_user($id)
 	{
 		$this->data['title'] = $this->lang->line('edit_user_heading');
+		$tables = $this->config->item('tables', 'ion_auth');
 
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id))) {
 			redirect('auth', 'refresh');
@@ -555,6 +557,10 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'trim|numeric|required');
 		$this->form_validation->set_rules('company', 'Asal Sekolah', 'trim|required');
 		$this->form_validation->set_rules('gender', 'Gender', 'trim|required|in_list[1,2]');
+		
+		if($user->email == NULL){
+			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
+		}
 
 		if (isset($_POST) && !empty($_POST)) {
 			// do we have a valid request?
@@ -576,6 +582,9 @@ class Auth extends CI_Controller
 					'phone' => $this->input->post('phone'),
 					'gender' => $this->input->post('gender'),
 				];
+				if($user->email == NULL){
+					$data['email'] = $this->input->post('email');
+				}
 
 				// update the password if it was posted
 				if ($this->input->post('password')) {
@@ -583,17 +592,17 @@ class Auth extends CI_Controller
 				}
 
 				// Only allow updating groups if user is admin
-				if ($this->ion_auth->is_admin()) {
-					// Update the groups user belongs to
-					$this->ion_auth->remove_from_group('', $id);
+				// if ($this->ion_auth->is_admin()) {
+				// 	// Update the groups user belongs to
+				// 	$this->ion_auth->remove_from_group('', $id);
 
-					$groupData = $this->input->post('groups');
-					if (isset($groupData) && !empty($groupData)) {
-						foreach ($groupData as $grp) {
-							$this->ion_auth->add_to_group($grp, $id);
-						}
-					}
-				}
+				// 	$groupData = $this->input->post('groups');
+				// 	if (isset($groupData) && !empty($groupData)) {
+				// 		foreach ($groupData as $grp) {
+				// 			$this->ion_auth->add_to_group($grp, $id);
+				// 		}
+				// 	}
+				// }
 
 				// check to see if we are updating the user
 				if ($this->ion_auth->update($user->id, $data)) {
@@ -664,6 +673,15 @@ class Auth extends CI_Controller
 			'type'  => 'text',
 			'value' => $this->form_validation->set_value('gender', $user->gender),
 		];
+
+		if($user->email == NULL){
+			$this->data['email'] = [
+				'name'  => 'email',
+				'id'    => 'email',
+				'type'  => 'email',
+				'value' => $this->form_validation->set_value('email', $user->email),
+			];
+		}		
 
 		$this->data['title'] = 'Profile';
 		$this->load->view('user/template/header', $this->data);
@@ -874,44 +892,64 @@ class Auth extends CI_Controller
 		return TRUE;
 	}
 
-	public function generate_user()
-	{
-		show_404();
-		$users_data = $this->base_model->get_item('result', 'users_generate', '*');
-		if (!empty($users_data)) {
-			$j = 1;
-			foreach ($users_data as $i) {
-				$char = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+	// public function generate_user()
+	// {
+		
+    //     if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
+    //         // redirect them to the login page
+    //         show_404();
+	// 	}
+	// 	show_404();
+	// 	$users_data = $this->base_model->get_item('result', 'users_generate', '*');
+	// 	if (!empty($users_data)) {
+	// 		$j = 1;
+	// 		foreach ($users_data as $i) {
+	// 			$char = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
 
-				$email = (isset($i['email']) && $i['email'] != '') ? strtolower($i['email']) : $i['username'];
-				$identity = $i['username'];
-				$password = substr(str_shuffle($char), 0, 8);;
+	// 			$email = (isset($i['email']) && $i['email'] != '') ? strtolower($i['email']) : $i['username'];
+	// 			$identity = $i['username'];
+	// 			$password = substr(str_shuffle($char), 0, 8);;
 
-				$additional_data = [
-					'first_name' => $i['first_name'],
-					'last_name' => NULL,
-					'company' => $i['company'],
-					'phone' => $i['phone'],
-					'gender' => $i['gender'],
-				];
-				echo $j . '. ' . $i['username'] . ' = ';
-				if ($this->ion_auth->register($identity, $password, $email, $additional_data)) {
+	// 			$additional_data = [
+	// 				'first_name' => $i['first_name'],
+	// 				'last_name' => NULL,
+	// 				'company' => $i['company'],
+	// 				'phone' => $i['phone'],
+	// 				'gender' => $i['gender'],
+	// 			];
+	// 			echo $j . '. ' . $i['username'] . ' = ';
+	// 			if ($this->ion_auth->register($identity, $password, $email, $additional_data)) {
 
-					// check to see if we are creating the user
-					// redirect them back to the admin page
-					$this->base_model->update_item('users_generate', ['password' => $password], ['id' => $i['id']]);
-					echo 'acoount succesfully created';
-				} else {
-					// display the create user form
-					// set the flash data error message if there is one
-					$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+	// 				// check to see if we are creating the user
+	// 				// redirect them back to the admin page
+	// 				$this->base_model->update_item('users_generate', ['password' => $password], ['id' => $i['id']]);
+	// 				echo 'acoount succesfully created';
+	// 			} else {
+	// 				// display the create user form
+	// 				// set the flash data error message if there is one
+	// 				$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-					echo $this->data['message'] . ' error in user ' . $i['id'];
-					die();
-				}
-				echo '<br>';
-				$j++;
-			}
-		}
-	}
+	// 				echo $this->data['message'] . ' error in user ' . $i['id'];
+	// 				die();
+	// 			}
+	// 			echo '<br>';
+	// 			$j++;
+	// 		}
+	// 	}
+	// }
+
+	// public function generate_group(){
+	// 	if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
+    //         // redirect them to the login page
+    //         show_404();
+	// 	}
+	// 	show_404();
+	// 	$users_data = $this->base_model->get_item('result', 'users', '*');
+
+	// 	if(!empty($users_data)){
+	// 		foreach($users_data as $i){
+	// 			$this->base_model->insert_item('users_groups', ['user_id' => $i['id'], 'group_id' => 2]);
+	// 		}
+	// 	}
+	// }
 }
