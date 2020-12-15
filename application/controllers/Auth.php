@@ -84,6 +84,7 @@ class Auth extends CI_Controller
 						'user_id' => $this->session->userdata('user_id'),
 						'tka_saintek' => 1,
 						'tka_soshum' => 1,
+						'tka_campuran' => 1,
 						'tps' => 1,
 					);
 					$this->base_model->insert_item('ticket', $par);
