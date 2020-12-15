@@ -32,7 +32,7 @@ class Exm extends CI_Controller
         if (empty($data['get_exam'])) {
             $this->form_validation->set_rules('jurusan1', 'PTN Pilihan 1', 'trim|required|numeric');
             $this->form_validation->set_rules('jurusan2', 'PTN Pilihan 2', 'trim|required|numeric');
-        } else{
+        } else {
             $this->form_validation->set_rules('jurusan1', 'PTN Pilihan 1', 'trim|numeric');
             $this->form_validation->set_rules('jurusan2', 'PTN Pilihan 2', 'trim|numeric');
         }
@@ -225,7 +225,7 @@ class Exm extends CI_Controller
                 //check sesi using tiket, time range, quota
                 $sesi = $this->base_model->get_item('row', 'tryout', '*', ['status' => 1, 'type' => $status, 'active_month' => date('n'), 'id' => $id]);
                 //check if now(date) is not between exam date
-                if(date('Y-m-d') < date('Y-m-d', strtotime($sesi['start_date'])) || date('Y-m-d') > date('Y-m-d', strtotime($sesi['end_date']))){
+                if (date('Y-m-d') < date('Y-m-d', strtotime($sesi['start_date'])) || date('Y-m-d') > date('Y-m-d', strtotime($sesi['end_date']))) {
                     $this->session->set_flashdata('message_sa', 'Tanggal sesi ujian yang kamu pilih belum dimulai. Info lebih lanjut hubungi CS kami.');
                     redirect('usr');
                 }
@@ -236,8 +236,9 @@ class Exm extends CI_Controller
                         //check if ticket and session quota available
                         if ($ticket[$exam] > 0 && $this->base_model->count_result_item('exam', ['status' => $status]) < $sesi['quota']) {
                             //check if already test on the current month base on exam category
+
                             if ($ctg_exam[$ctg] != 1) {
-                                return TRUE;
+                                return true;
                             } else {
                                 $this->session->set_flashdata('message_sa', 'Kamu sudah mengikuti ujian' . strtoupper($ctg) . ' bulan ini. Info lebih lanjut hubungi CS kami.');
                             }
