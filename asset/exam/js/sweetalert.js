@@ -4,7 +4,7 @@ $('#btn-selesai').click(function (e) {
 
     Swal.fire({
         // title: 'Yakin ?',
-        text: "Yakin sudah selesai ?",
+        text: "Yakin Tryout sudah selesai ?",
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

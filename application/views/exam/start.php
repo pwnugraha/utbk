@@ -78,7 +78,7 @@ $jawaban = $subjects_soal;
                 endforeach; ?>
                 <!-- </div> -->
                 <div class="text-center mt-5">
-                    <a href="<?= base_url('exm/finish') ?>" id="btn-selesai" class="btn btn-selesai border-0 btn-primary py-1 px-5" style="background-color: #05164E; border-radius: 2em;">Selesai</a>
+                    <a href="<?= base_url('exm/finish') ?>" id="btn-selesai" class="btn btn-selesai border-0 btn-primary py-1 px-5" style="background-color: #05164E; border-radius: 2em;">Selesai Tryout</a>
                 </div>
             </div>
         </div>
