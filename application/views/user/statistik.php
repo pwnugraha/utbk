@@ -266,65 +266,34 @@
                             <tr class="text-hitam">
                                 <th>ID Tryout</th>
                                 <th>Nama Tryout</th>
-                                <th>Date</th>
-                                <th>Score</th>
-                                <th>Status</th>
-                                <th>Konsultasi</th>
+                                <th>Tanggal Sesi</th>
+                                <th>Jam Sesi</th>
+                                <th>Mengikuti Tryout Pada</th>
+                                <th>Nilai</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
+                            <?php if (!empty($exam_history)) :
+                                foreach ($exam_history as $i) :
+                            ?>
+                                    <tr>
+                                        <td><?= $i['id'] ?></td>
+                                        <td><?= $i['name'] ?></td>
+                                        <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                        <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                        <td><?= date('d', strtotime($i['date'])) . ' ' . get_month(date('n', strtotime($i['date']))) . ' ' . date('Y', strtotime($i['date'])) . ' - ' . date('H:i', strtotime($i['date'])) ?></td>
+                                        <td><?= ($i['score'] == NULL) ? '-' : $i['score'] ?></td>
+                                        <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                                    </tr>
+                            <?php endforeach;
+                            endif; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="card shadow welcome border-0" style="border-radius: 1em;">
+        <!-- <div class="card shadow welcome border-0" style="border-radius: 1em;">
             <div class="card-body">
                 <div class="h5 text-hitam">Orders</div>
                 <div class="table-responsive">
@@ -390,7 +359,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="col-lg-1"></div>
     <div class="col-lg-2 col-xl-3">
@@ -569,3 +538,37 @@
         });
     }
 </script>
+
+<?php
+function get_month($month)
+{
+    switch ($month) {
+        case 1:
+            return 'Januari';
+        case 2:
+            return 'Februari';
+        case 3:
+            return 'Maret';
+        case 4:
+            return 'April';
+        case 5:
+            return 'Mei';
+        case 6:
+            return 'Juni';
+        case 7:
+            return 'Juli';
+        case 8:
+            return 'Agustus';
+        case 9:
+            return 'September';
+        case 10:
+            return 'Oktober';
+        case 11:
+            return 'November';
+        case 12:
+            return 'Desember';
+        default:
+            return '';
+    }
+}
+?>

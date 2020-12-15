@@ -53,7 +53,7 @@
 
     <div class="row mt-2">
         <div class="col-lg-12">
-            <?= form_open('exm/index/' . $exam, 'id="form-pretest"') ?>
+            <?= form_open('exm/index/' . $exam . '/' . $exam_id, 'id="form-pretest"') ?>
             <div class="card shadow">
                 <div class="card-body">
                     <div class="container-fluid px-0">
@@ -61,8 +61,8 @@
                             <div class="col-sm-6">
                                 <div class="h5 text-biru mb-2 text-center">PTN Pilihan 1</div>
                                 <div class="form-group">
-                                    <select class="form-control" name="ptn1" id="ptn1">
-                                        <option selected>PTN</option>
+                                    <select class="form-control" name="ptn1" id="ptn1" <?= (!empty($get_exam)) ? 'disabled' : '' ?>>
+                                        <option>PTN</option>
                                         <?php
                                         if (!empty($ptn)) :
                                             foreach ($ptn as $i) : ?>
@@ -74,8 +74,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" name="jurusan1" id="jurusan1">
-                                        <option selected>Jurusan</option>
+                                    <select class="form-control" name="jurusan1" id="jurusan1" <?= (!empty($get_exam)) ? 'disabled' : '' ?>>
+                                        <option>Jurusan</option>
                                         <?php
                                         if (!empty($all_jurusan_ptn1)) :
                                             foreach ($all_jurusan_ptn1 as $i) : ?>
@@ -90,8 +90,8 @@
                             <div class="col-sm-6">
                                 <div class="h5 text-biru mb-2 text-center">PTN Pilihan 2</div>
                                 <div class="form-group">
-                                    <select class="form-control" name="ptn2" id="ptn2">
-                                        <option selected>PTN</option>
+                                    <select class="form-control" name="ptn2" id="ptn2" <?= (!empty($get_exam)) ? 'disabled' : '' ?>>
+                                        <option>PTN</option>
                                         <?php
                                         if (!empty($ptn)) :
                                             foreach ($ptn as $i) : ?>
@@ -103,8 +103,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" name="jurusan2" id="jurusan2">
-                                        <option selected>Jurusan</option>
+                                    <select class="form-control" name="jurusan2" id="jurusan2" <?= (!empty($get_exam)) ? 'disabled' : '' ?>>
+                                        <option>Jurusan</option>
                                         <?php
                                         if (!empty($all_jurusan_ptn2)) :
                                             foreach ($all_jurusan_ptn2 as $i) : ?>

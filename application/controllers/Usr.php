@@ -56,6 +56,7 @@ class Usr extends CI_Controller
 
     public function statistik()
     {
+        $this->data['exam_history'] = $this->base_model->get_join_item('result', 'exam_history.*, score', NULL, 'exam_history', ['exam'], ['exam.id=exam_history.exam_id'], ['inner'], ['exam.user_id' => $this->session->userdata('user_id')]);
         $this->data['title'] = "Statistik";
 
         $this->load->view('user/template/header', $this->data);
@@ -118,6 +119,7 @@ class Usr extends CI_Controller
                         break;
                 }
                 $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
+                $this->session->set_flashdata('message_sa', 'Selamat kamu telah menyelesaikan TPS/TKA');
                 redirect('usr');
             }
         }

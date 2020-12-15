@@ -11,15 +11,16 @@ class Exm extends CI_Controller
         $this->_is_logged_in();
     }
 
-    public function index($exam = null)
+    public function index($exam = NULL, $id = NULL)
     {
         $this->_is_doing_exam();
-        $this->_check_exam_category($exam);
+        $this->_check_exam_category($exam, $id);
 
         $data['title'] = "Tata tertib";
         $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
         $data['ptn'] = $this->base_model->get_item('result', 'ptn', 'DISTINCT(nama)');
         $data['exam'] = $exam;
+        $data['exam_id'] = $id;
         $data['get_exam'] = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n')]);
 
         //get data ptn1 and ptn2
@@ -28,8 +29,13 @@ class Exm extends CI_Controller
         $data['ptn_jurusan2'] = $this->base_model->get_item('row', 'ptn', '*', ['id' => $data['get_exam']['ptn2']]);
         $data['all_jurusan_ptn2'] = $this->base_model->get_item('result', 'ptn', '*', ['nama' => $data['ptn_jurusan2']['nama']]);
 
-        $this->form_validation->set_rules('jurusan1', 'PTN Pilihan 1', 'trim|required|numeric');
-        $this->form_validation->set_rules('jurusan2', 'PTN Pilihan 2', 'trim|required|numeric');
+        if (empty($data['get_exam'])) {
+            $this->form_validation->set_rules('jurusan1', 'PTN Pilihan 1', 'trim|required|numeric');
+            $this->form_validation->set_rules('jurusan2', 'PTN Pilihan 2', 'trim|required|numeric');
+        } else{
+            $this->form_validation->set_rules('jurusan1', 'PTN Pilihan 1', 'trim|numeric');
+            $this->form_validation->set_rules('jurusan2', 'PTN Pilihan 2', 'trim|numeric');
+        }
 
         if ($this->form_validation->run() === FALSE) {
 
@@ -41,15 +47,13 @@ class Exm extends CI_Controller
             $this->load->view('exam/template/footer');
         } else {
 
-            $this->_check_exam_category($exam);
+            $this->_check_exam_category($exam, $id);
             $category_exam = $this->_exam_status($exam);
             //get sesi for decide end time for user
-            $sesi = $this->base_model->get_item('row', 'tryout', '*', ['status' => 1, 'type' => $category_exam, 'active_month' => date('n')]);
-            $exam_time = date('H:i:s', strtotime('+1 hour +45 minutes', strtotime(date("H:i:s"))));
+            $sesi = $this->base_model->get_item('row', 'tryout', '*', ['status' => 1, 'type' => $category_exam, 'active_month' => date('n'), 'id' => $id]);
+            $exam_time = ($this->_exam_category($exam) == 'tps') ? date('H:i:s', strtotime('+1 hour +45 minutes', strtotime(date("H:i:s")))) : date('H:i:s', strtotime('+1 hour +30 minutes', strtotime(date("H:i:s"))));
             $end_date = ($exam_time >= $sesi['end_time']) ? date('Y-m-d H:i:s', strtotime($sesi['end_time'])) : date('Y-m-d H:i:s', strtotime($exam_time));
             $params = array(
-                'ptn1' => $this->input->post('jurusan1', TRUE),
-                'ptn2' => $this->input->post('jurusan2', TRUE),
                 'status' => $category_exam,
                 'end_date' => $end_date,
             );
@@ -58,14 +62,18 @@ class Exm extends CI_Controller
             } else {
                 $params['user_id'] = $this->session->userdata('user_id');
                 $params['month'] = date('n');
+                $params['ptn1'] = $this->input->post('jurusan1', TRUE);
+                $params['ptn2'] = $this->input->post('jurusan2', TRUE);
                 $this->base_model->insert_item('exam', $params);
             }
 
             //tiket min 1
             $this->base_model->update_item('ticket', [$exam => $exam - 1], array('user_id' => $this->session->userdata('user_id')));
             $exam_id = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n')]);
+            //add exam history
+            $this->base_model->insert_item('exam_history', ['name' => $sesi['name'], 'date' => date('Y-m-d H:i:s'), 'exam_id' => $exam_id['id'], 'category' => $sesi['type'], 'start_date' => $sesi['start_date'], 'end_date' => $sesi['end_date'], 'start_time' => $sesi['start_time'], 'end_time' => $sesi['end_time']]);
             //duplicate soal to user
-            $exam_data = $this->base_model->get_join_item('result', 'soal.*', NULL, 'soal', ['butir_paket_soal', 'paket_soal', 'tryout'], ['soal.id = butir_paket_soal.soal_id', 'butir_paket_soal.paket_soal_id = paket_soal.id', 'paket_soal.id = tryout.paket_soal_id'], ['inner', 'inner', 'inner'], ['type' => $this->_exam_status($exam), 'active_month' => date('n'), 'status' => 1]);
+            $exam_data = $this->base_model->get_join_item('result', 'soal.*', NULL, 'soal', ['butir_paket_soal', 'paket_soal', 'tryout'], ['soal.id = butir_paket_soal.soal_id', 'butir_paket_soal.paket_soal_id = paket_soal.id', 'paket_soal.id = tryout.paket_soal_id'], ['inner', 'inner', 'inner'], ['type' => $this->_exam_status($exam), 'active_month' => date('n'), 'status' => 1, 'tryout.id' => $id]);
             if (!empty($exam_data)) {
                 foreach ($exam_data as $i) {
                     $soal = array(
@@ -124,9 +132,6 @@ class Exm extends CI_Controller
                 }
             }
         }
-        // var_dump($data['subjects']);
-        // var_dump($data['subjects_soal']);
-        // die();
 
         $this->load->view('exam/start-template/header', $data);
         $this->load->view('exam/start', $data);
@@ -196,12 +201,13 @@ class Exm extends CI_Controller
                 } else {
                     echo json_encode(['status' => FALSE, 'data' => $act, 'message' => '']);
                 }
+            } else {
+                echo json_encode(['status' => FALSE, 'data' => [], 'message' => '']);
             }
-            echo json_encode(['status' => FALSE, 'data' => [], 'message' => '']);
         }
     }
 
-    public function _check_exam_category($exam = NULL)
+    public function _check_exam_category($exam = NULL, $id = NULL)
     {
         switch ($exam) {
             case 'tka_saintek':
@@ -217,7 +223,13 @@ class Exm extends CI_Controller
                 //get exam category
                 $ctg = $this->_exam_category($exam);
                 //check sesi using tiket, time range, quota
-                $sesi = $this->base_model->get_item('row', 'tryout', '*', ['status' => 1, 'type' => $status, 'active_month' => date('n')]);
+                $sesi = $this->base_model->get_item('row', 'tryout', '*', ['status' => 1, 'type' => $status, 'active_month' => date('n'), 'id' => $id]);
+                //check if now(date) is not between exam date
+                if(date('Y-m-d') < date('Y-m-d', strtotime($sesi['start_date'])) || date('Y-m-d') > date('Y-m-d', strtotime($sesi['end_date']))){
+                    $this->session->set_flashdata('message_sa', 'Tanggal sesi ujian yang kamu pilih belum dimulai. Info lebih lanjut hubungi CS kami.');
+                    redirect('usr');
+                }
+
                 if (!empty($sesi) && !empty($ticket)) {
                     //check if test is taken between time session
                     if (date('H:i:s') >= date('H:i:s', strtotime($sesi['start_time'])) && date('H:i:s') <= date('H:i:s', strtotime($sesi['end_time']))) {
@@ -311,6 +323,7 @@ class Exm extends CI_Controller
                         break;
                 }
                 $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
+                $this->session->set_flashdata('message_sa', 'Selamat kamu telah menyelesaikan TPS/TKA');
                 redirect('usr');
             }
         }
@@ -338,6 +351,7 @@ class Exm extends CI_Controller
                 }
 
                 $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
+                $this->session->set_flashdata('message_sa', 'Selamat kamu telah menyelesaikan TPS/TKA');
                 redirect('usr');
             }
         } else {

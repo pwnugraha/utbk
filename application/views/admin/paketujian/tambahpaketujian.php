@@ -24,6 +24,16 @@
                     </div>
                     <div class="form-row">
                         <div class="col">
+                            <small>Tanggal mulai</small>
+                            <?= form_input($start_date) ?>
+                        </div>
+                        <div class="col">
+                            <small>Tanggal berakhir</small>
+                            <?= form_input($end_date) ?>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
                             <small>Dari Jam</small>
                             <?= form_input($start_time) ?>
                         </div>

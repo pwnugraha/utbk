@@ -26,6 +26,8 @@ class Paket_ujian extends AdminBase
         $this->form_validation->set_rules('quota', 'Kuota', 'trim|is_natural');
         $this->form_validation->set_rules('start_time', 'Jam mulai', 'trim|required');
         $this->form_validation->set_rules('end_time', 'Jam selesai', 'trim|required');
+        $this->form_validation->set_rules('start_date', 'Tanggal mulai', 'trim|required');
+        $this->form_validation->set_rules('end_date', 'Tanggal berakhir', 'trim|required');
         $this->form_validation->set_rules('paket_soal', 'Paket Soal', 'trim|required|numeric');
         $this->form_validation->set_rules('status', 'Status', 'trim|required|numeric');
         $this->form_validation->set_rules('type', 'Kategori', 'trim|required|numeric');
@@ -71,13 +73,29 @@ class Paket_ujian extends AdminBase
                 'value' => $this->form_validation->set_value('end_time'),
                 'class' => 'form-control',
             ];
+            $this->data['start_date'] = [
+                'name'  => 'start_date',
+                'id'    => 'start_date',
+                'type'  => 'date',
+                'value' => $this->form_validation->set_value('start_date'),
+                'class' => 'form-control',
+            ];
+            $this->data['end_date'] = [
+                'name'  => 'end_date',
+                'id'    => 'end_date',
+                'type'  => 'date',
+                'value' => $this->form_validation->set_value('end_date'),
+                'class' => 'form-control',
+            ];
             $this->adminview('admin/paketujian/tambahpaketujian', $this->data);
         } else {
             $params = array(
                 'name' => $this->input->post('name', TRUE),
                 'description' => $this->input->post('description', TRUE),
                 'quota' => $this->input->post('quota', TRUE),
+                'start_date' => $this->input->post('start_date', TRUE),
                 'start_time' => $this->input->post('start_time', TRUE),
+                'end_date' => $this->input->post('end_date', TRUE),
                 'end_time' => $this->input->post('end_time', TRUE),
                 'paket_soal_id' => $this->input->post('paket_soal', TRUE),
                 'type' => $this->input->post('type', TRUE),
@@ -108,6 +126,8 @@ class Paket_ujian extends AdminBase
         $this->form_validation->set_rules('quota', 'Kuota', 'trim|is_natural');
         $this->form_validation->set_rules('start_time', 'Jam mulai', 'trim|required');
         $this->form_validation->set_rules('end_time', 'Jam selesai', 'trim|required');
+        $this->form_validation->set_rules('start_date', 'Tanggal mulai', 'trim|required');
+        $this->form_validation->set_rules('end_date', 'Tanggal berakhir', 'trim|required');
         $this->form_validation->set_rules('paket_soal', 'Paket Soal', 'trim|required|numeric');
         $this->form_validation->set_rules('status', 'Status', 'trim|required|numeric');
         $this->form_validation->set_rules('type', 'Kategori', 'trim|required|numeric');
@@ -152,13 +172,29 @@ class Paket_ujian extends AdminBase
                 'value' => $this->form_validation->set_value('end_time', $this->data['post']['end_time']),
                 'class' => 'form-control',
             ];
+            $this->data['start_date'] = [
+                'name'  => 'start_date',
+                'id'    => 'start_date',
+                'type'  => 'date',
+                'value' => $this->form_validation->set_value('start_date', $this->data['post']['start_date']),
+                'class' => 'form-control',
+            ];
+            $this->data['end_date'] = [
+                'name'  => 'end_date',
+                'id'    => 'end_date',
+                'type'  => 'date',
+                'value' => $this->form_validation->set_value('end_date', $this->data['post']['end_date']),
+                'class' => 'form-control',
+            ];
             $this->adminview('admin/paketujian/tambahpaketujian', $this->data);
         } else {
             $params = array(
                 'name' => $this->input->post('name', TRUE),
                 'description' => $this->input->post('description', TRUE),
                 'quota' => $this->input->post('quota', TRUE),
+                'start_date' => $this->input->post('start_date', TRUE),
                 'start_time' => $this->input->post('start_time', TRUE),
+                'end_date' => $this->input->post('end_date', TRUE),
                 'end_time' => $this->input->post('end_time', TRUE),
                 'paket_soal_id' => $this->input->post('paket_soal', TRUE),
                 'type' => $this->input->post('type', TRUE),

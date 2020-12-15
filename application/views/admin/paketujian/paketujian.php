@@ -67,8 +67,14 @@
                                     </td>
                                     <td>
                                         <div class="d-inline-block">
+                                            <small>Tanggal</small>
+                                            <p class="text-biru"><?= date('d-m-Y', strtotime($i['start_date'])) . ' - ' . date('d-m-Y', strtotime($i['end_date'])) ?></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-inline-block">
                                             <small>Sesi</small>
-                                            <p class="text-biru"><?= $i['start_time'] . ' - ' . $i['end_time'] ?></p>
+                                            <p class="text-biru"><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></p>
                                         </div>
                                     </td>
                                     <td>

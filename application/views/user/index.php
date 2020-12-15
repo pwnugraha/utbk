@@ -121,11 +121,11 @@
                                         ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
-                                                    <td>1-26 Desember 2020</td>
-                                                    <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
+                                                    <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))). ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                    <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
                                                     <td><?= ($active_room['tka_saintek'] < 400) ? 400 - $active_room['tka_saintek'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('exm/index/tka_saintek') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                        <a href="<?= base_url('exm/index/tka_saintek/'.$i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                                     </td>
                                                 </tr>
                                             <?php }
@@ -133,11 +133,11 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
-                                                    <td>1-26 Desember 2020</td>
-                                                    <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
+                                                    <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))). ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                    <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
                                                     <td><?= ($active_room['tka_soshum'] < 400) ? 400 - $active_room['tka_soshum'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('exm/index/tka_soshum') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                        <a href="<?= base_url('exm/index/tka_soshum/'.$i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                                     </td>
                                                 </tr>
                                             <?php }
@@ -145,11 +145,11 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
-                                                    <td>1-26 Desember 2020</td>
-                                                    <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
+                                                    <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))). ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                    <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
                                                     <td><?= ($active_room['tka_campuran'] < 400) ? 400 - $active_room['tka_campuran'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('exm/index/tka_campuran') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                        <a href="<?= base_url('exm/index/tka_campuran/'.$i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                                     </td>
                                                 </tr>
                                             <?php }
@@ -157,11 +157,11 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
-                                                    <td>1-26 Desember 2020</td>
-                                                    <td><?= $i['start_time'] . ' - ' . $i['end_time'] ?></td>
+                                                    <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))). ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                    <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
                                                     <td><?= ($active_room['tps'] < 400) ? 400 - $active_room['tps'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('exm/index/tps') ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                        <a href="<?= base_url('exm/index/tps/'.$i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                                     </td>
                                                 </tr>
                                         <?php }
@@ -224,6 +224,39 @@
     </div>
 
 </div>
+<?php
+function get_month($month)
+{
+    switch ($month) {
+        case 1:
+            return 'Januari';
+        case 2:
+            return 'Februari';
+        case 3:
+            return 'Maret';
+        case 4:
+            return 'April';
+        case 5:
+            return 'Mei';
+        case 6:
+            return 'Juni';
+        case 7:
+            return 'Juli';
+        case 8:
+            return 'Agustus';
+        case 9:
+            return 'September';
+        case 10:
+            return 'Oktober';
+        case 11:
+            return 'November';
+        case 12:
+            return 'Desember';
+        default:
+            return '';
+    }
+}
+?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     const flashdata = $('.flash-data').data('flashdata');
