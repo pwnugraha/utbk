@@ -18,10 +18,19 @@
                         <label for="nama">Username</label>
                         <input type="text" class="form-control disable" value="<?= $user->username ?>" aria-describedby="helpId" placeholder="" disabled>
                     </div>
-                    <div class="form-group">
-                        <label for="nama">Email</label>
-                        <input type="text" class="form-control disable" value="<?= $user->email ?>" aria-describedby="helpId" placeholder="" disabled>
-                    </div>
+                    <?php
+                    if ($user->email == NULL) :
+                    ?>
+                        <div class="form-group">
+                            <label for="nama">Email</label>
+                            <?php echo form_input($email, '', 'class="form-control" aria-describedby="helpId" placeholder="Email tidak dapat diubah setelah terisi"'); ?>
+                        </div>
+                    <?php else : ?>
+                        <div class="form-group">
+                            <label for="nama">Email</label>
+                            <input type="text" class="form-control disable" value="<?= $user->email ?>" aria-describedby="helpId" placeholder="" disabled>
+                        </div>
+                    <?php endif; ?>
                     <div class="form-group">
                         <label for="nama">Telephone</label>
                         <?php echo form_input($phone, '', 'class="form-control" aria-describedby="helpId" placeholder=""'); ?>
