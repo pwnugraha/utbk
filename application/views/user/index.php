@@ -8,7 +8,13 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="h3 mb-5 text-hitam">Welcome back <span class="badge badge-light text-hitam"><?= ucwords(strtolower($this->session->userdata('name'))) ?></span></div>
+                                <div class="h3 mb-5 text-hitam">Welcome back <span class="badge badge-light text-hitam">
+                                        <?php if ($this->session->userdata('name')) {
+                                            echo ucwords(strtolower($this->session->userdata('name')));
+                                        } else {
+                                            echo $this->session->userdata('username');
+                                        }; ?>
+                                    </span></div>
                                 <div class="text-hitam">Apa yang harus kamu lakukan sekarang :</div>
                                 <ul>
                                     <li><span class="text-hitam"> Wow UTBK sudah mulai dekat ayo
