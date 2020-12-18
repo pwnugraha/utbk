@@ -21,7 +21,13 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-dark small">Hay, <?= ucwords(strtolower($this->session->userdata('name'))) ?></span>
+                        <span class="mr-2 d-none d-lg-inline text-dark small">Hay,
+                            <?php if ($this->session->userdata('name')) {
+                                echo ucwords(strtolower($this->session->userdata('name')));
+                            } else {
+                                echo $this->session->userdata('username');
+                            }; ?>
+                        </span>
                         <?php
                         if (empty($user->profile)) : ?>
                             <img class="img-profile rounded-circle" src="<?= base_url('asset/user/profile/profile.svg'); ?>">

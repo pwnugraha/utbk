@@ -14,8 +14,7 @@
                                         } else {
                                             echo $this->session->userdata('username');
                                         }; ?>
-                                    </span>
-                                </div>
+                                    </span></div>
                                 <div class="text-hitam">Apa yang harus kamu lakukan sekarang :</div>
                                 <ul>
                                     <li><span class="text-hitam"> Wow UTBK sudah mulai dekat ayo

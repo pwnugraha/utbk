@@ -11,7 +11,7 @@
     <div class="row activity d-none">
         <div class="col text-center">
             <div class="text-biru h4 mb-5"> Nilai tryout kamu sedang kami proses <br> silahkan cek lagi ditanggal <b> 27 </b> ya </div>
-            <img src="<?= base_url('asset/User/img/statistik2.svg') ?>" width="45%" class="img-fluid" alt="">
+            <img src="<?= base_url('asset/user/img/statistik2.svg') ?>" width="45%" class="img-fluid" alt="">
         </div>
     </div>
 
@@ -30,7 +30,7 @@
             <div class="card shadow bg-warning border-0" style="border-radius: 1em;">
                 <div class="card-body">
                     <div class="text-biru h5 mb-5"> Nilai tryout kamu sedang kami proses silahkan cek lagi ditanggal <b> 27 </b> ya </div>
-                    <img src="<?= base_url('asset/User/img/statistik2.svg') ?>" width="90%" class="img-fluid" alt="">
+                    <img src="<?= base_url('asset/user/img/statistik2.svg') ?>" width="90%" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
@@ -125,6 +125,54 @@
                         <table width="100%">
                             <tr>
                                 <td class="text-hitam">Matematika Soshum</td>
+                                <td class="text-right pr-3"><small>0</small></td>
+                            </tr>
+                        </table>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
+                        </div>
+                    </div>
+
+                    <div class="range-mk">
+                        <table width="100%">
+                            <tr>
+                                <td class="text-hitam">Kimia</td>
+                                <td class="text-right pr-3"><small>0</small></td>
+                            </tr>
+                        </table>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
+                        </div>
+                    </div>
+
+                    <div class="range-mk">
+                        <table width="100%">
+                            <tr>
+                                <td class="text-hitam">Biologi</td>
+                                <td class="text-right pr-3"><small>0</small></td>
+                            </tr>
+                        </table>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
+                        </div>
+                    </div>
+
+                    <div class="range-mk">
+                        <table width="100%">
+                            <tr>
+                                <td class="text-hitam">Fisika</td>
+                                <td class="text-right pr-3"><small>0</small></td>
+                            </tr>
+                        </table>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
+                        </div>
+                    </div>
+
+                    <div class="range-mk">
+                        <table width="100%">
+                            <tr>
+                                <td class="text-hitam">Matematika Saintek</td>
                                 <td class="text-right pr-3"><small>0</small></td>
                             </tr>
                         </table>
