@@ -19,30 +19,36 @@ class Usr extends CI_Controller
     {
         $this->data['title'] = "Dashboard";
         $this->data['ticket'] = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $this->session->userdata('user_id')]);
-        $this->data['tryout'] = $this->base_model->get_item('result', 'tryout', '*', ['status' => 1, 'active_month' => date('n')]);
+        $this->data['tryout'] = $this->base_model->get_item('result', 'tryout', '*', ['status' => 1], NULL, 'active_month DESC');
         $this->data['exam'] = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id')]);
 
-        $this->data['active_room'] = [
-            'tka_saintek' => 0,
-            'tka_soshum' => 0,
-            'tka_campuran' => 0,
-            'tps' => 0,
-        ];
-
-        $doing_exam = $this->base_model->get_item('result', 'exam', 'status, COUNT(*) as active_exam', ['month' => date('n')], ['status']);
-        if (!empty($doing_exam)) {
-            foreach ($doing_exam as $i) {
-                if ($i['status'] == 1) {
-                    $this->data['active_room']['tka_saintek'] = $i['active_exam'];
+        foreach ($this->data['tryout'] as $sesi) {
+            if ($sesi['type'] == 1) {
+                $this->data['active_room'][$sesi['active_month']]['tka_saintek'] = 0;
+            }
+            if ($sesi['type'] == 2) {
+                $this->data['active_room'][$sesi['active_month']]['tka_soshum'] = 0;
+            }
+            if ($sesi['type'] == 3) {
+                $this->data['active_room'][$sesi['active_month']]['tka_campuran'] = 0;
+            }
+            if ($sesi['type'] == 4) {
+                $this->data['active_room'][$sesi['active_month']]['tps'] = 0;
+            }
+            $doing_exam = $this->base_model->get_item('row', 'exam', 'month, status, COUNT(*) as active_exam', ['month' => $sesi['active_month'], 'status' => $sesi['type']]);
+ 
+            if (!empty($doing_exam)) {
+                if ($doing_exam['status'] == 1) {
+                    $this->data['active_room'][$sesi['active_month']]['tka_saintek'] = $doing_exam['active_exam'];
                 }
-                if ($i['status'] == 2) {
-                    $this->data['active_room']['tka_soshum'] = $i['active_exam'];
+                if ($doing_exam['status'] == 2) {
+                    $this->data['active_room'][$sesi['active_month']]['tka_soshum'] = $doing_exam['active_exam'];
                 }
-                if ($i['status'] == 3) {
-                    $this->data['active_room']['tka_campuran'] = $i['active_exam'];
+                if ($doing_exam['status'] == 3) {
+                    $this->data['active_room'][$sesi['active_month']]['tka_campuran'] = $doing_exam['active_exam'];
                 }
-                if ($i['status'] == 4) {
-                    $this->data['active_room']['tps'] = $i['active_exam'];
+                if ($doing_exam['status'] == 4) {
+                    $this->data['active_room'][$sesi['active_month']]['tps'] = $doing_exam['active_exam'];
                 }
             }
         }
@@ -98,7 +104,7 @@ class Usr extends CI_Controller
 
     public function _is_doing_exam()
     {
-        
+
         $exam_data = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status !=' => 0]);
         if ($exam_data) {
             if (date('Y-m-d H:i:s') <= date('Y-m-d H:i:s', strtotime($exam_data['end_date']))) {

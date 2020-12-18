@@ -3,18 +3,19 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require_once 'application/controllers/manage/Base.php';
 
-class Product extends AdminBase
+class Userdata extends AdminBase
 {
     public function __construct()
     {
         parent::__construct();
-        $this->data['title'] = "Product";
+        $this->data['title'] = "User data";
     }
 
-    public function index()
+    public function index($id = NULL)
     {
-        $this->data['item'] = $this->base_model->get_item('result', 'product', '*');
-        $this->adminview('admin/produk/product', $this->data);
+        $this->data['user'] = $this->base_model->get_item('row', 'users', '*', ['id' => $id]);
+        $this->data['item'] = $this->base_model->get_item('result', 'users', '*', ['id !=' => 1]);
+        $this->adminview('admin/userdata/userdata', $this->data);
     }
 
     public function create()
@@ -46,7 +47,7 @@ class Product extends AdminBase
         } else {
             $params = array(
                 'name' => $this->input->post('name', TRUE),
-                'description' => $this->input->post('description'),
+                'description' => $this->input->post('description', TRUE),
                 'type' => $this->input->post('type', TRUE),
                 'status' => $this->input->post('status', TRUE),
                 'created' => date('Y-m-d H:i:s'),
@@ -69,7 +70,7 @@ class Product extends AdminBase
         if (!$this->data['post']) {
             show_404();
         }
-        $this->data['product_item'] = $this->base_model->get_join_item('result', 'product_item.*', NULL, 'product_item', ['product'], ['product_item.product_id=product.id'], ['inner'], ['product.id' => $id]);
+        $this->data['product_item'] = $this->base_model->get_join_item('result', 'product_item.*', NULL, 'product_item', ['product'], ['product_item.product_id=product.id'], ['inner']);
 
         $this->form_validation->set_rules('name', 'Nama Produk', 'trim|required');
         $this->form_validation->set_rules('description', 'Deskripsi', 'trim');
@@ -88,7 +89,7 @@ class Product extends AdminBase
             $this->data['description'] = [
                 'name'  => 'description',
                 'id'    => 'description',
-                'type'  => 'textarea',
+                'type'  => 'text',
                 'value' => $this->form_validation->set_value('description', $this->data['post']['description']),
                 'class' => 'form-control',
                 'placeholder' => 'Deskripsi Produk'
@@ -98,7 +99,7 @@ class Product extends AdminBase
         } else {
             $params = array(
                 'name' => $this->input->post('name', TRUE),
-                'description' => $this->input->post('description'),
+                'description' => $this->input->post('description', TRUE),
                 'type' => $this->input->post('type', TRUE),
                 'status' => $this->input->post('status', TRUE),
                 'modified' => date('Y-m-d H:i:s')
@@ -115,27 +116,30 @@ class Product extends AdminBase
 
     public function add_ticket()
     {
-        $this->form_validation->set_rules('product_id', 'Produk', 'trim|numeric|required');
+        $this->form_validation->set_rules('type', 'Produk', 'trim|required');
         $this->form_validation->set_rules('quantity', 'Jumlah Tiket', 'trim|numeric|required');
-        $this->form_validation->set_rules('price', 'Harga', 'trim|numeric|required');
-        $this->form_validation->set_rules('description', 'Keterangan Deskripsi', 'trim');
 
         if ($this->form_validation->run() === FALSE) {
             $this->_result_msg('danger', validation_errors());
-            redirect('manage/product/update/' . $this->input->post('product_id'));
+            redirect('manage/userdata/index/' . $this->input->post('user_id'));
         } else {
-            $params = array(
-                'product_id' => $this->input->post('product_id', TRUE),
-                'quantity' => $this->input->post('quantity', TRUE),
-                'price' => $this->input->post('price', TRUE),
-                'description' => $this->input->post('description', TRUE),
-            );
-            if ($this->base_model->insert_item('product_item', $params, 'id')) {
-                $this->_result_msg('danger', 'Data baru telah ditambahkan');
+            $ticket = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $this->input->post('user_id')]);
+            if (!$ticket) {
+                $params = array(
+                    'user_id' => $this->input->post('user_id'),
+                    $this->input->post('type') => $this->input->post('quantity'),
+                    'tps' => $this->input->post('quantity'),
+                );
+                $this->base_model->insert_item('ticket', $params, 'id');
             } else {
-                $this->_result_msg('success', 'Gagal menambahkan data');
+                $params = array(
+                    $this->input->post('type') => $ticket[$this->input->post('type')] + $this->input->post('quantity'),
+                    'tps' => $ticket['tps'] + $this->input->post('quantity'),
+                );
+                $this->base_model->update_item('ticket', $params, array('user_id' => $this->input->post('user_id')));
             }
-            redirect('manage/product/update/' . $this->input->post('product_id'));
+            $this->_result_msg('danger', 'Tiket berhasil ditambahkan');
+            redirect('manage/userdata/index/' . $this->input->post('user_id'));
         }
     }
 

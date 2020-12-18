@@ -5,7 +5,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg-8 mt-md-0 mt-3 order-2 order-md-1">
             <div class="card shadow" style="border-radius: 1em;">
                 <div class="card-body">
@@ -185,7 +185,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="row mt-4">
         <div class="col-lg-8">
@@ -199,7 +199,7 @@
                                 </span>
                             </div>
                             <div class="col-md-6 mt-3 mt-md-0 text-right">
-                                <a href="" class="bg-biru-muda text-light px-4 h5" style="border-radius: 2em;">Filter</a>
+                                <!-- <a href="" class="bg-biru-muda text-light px-4 h5" style="border-radius: 2em;">Filter</a> -->
                                 <a href="" class="bg-biru-muda text-light px-4 h5" style="border-radius: 2em;">+ Add New</a>
                             </div>
                         </div>

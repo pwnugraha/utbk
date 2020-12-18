@@ -173,7 +173,7 @@ $opsi = array("A.","B.","C.","D.","E.");
         });
 
         function timeIsUp() {
-            window.location.replace(window.location.origin + '/utbk/exm/finish');
+            window.location.replace(window.location.origin + '/exm/finish');
         }
     });
 </script>
@@ -304,7 +304,7 @@ foreach ($mapel as $s) :
 
                         //update answer
                         $.ajax({
-                            url: window.location.origin + '/utbk/exm/update_answer',
+                            url: window.location.origin + '/exm/update_answer',
                             method: "POST",
                             data: {
                                 id: $(this).attr('data-soalid'),

@@ -117,7 +117,7 @@ endif;
             </a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link <?= $userdata_1 ?>" href="<?= base_url('admin/userdata') ?>">
+            <a class="nav-link <?= $userdata_1 ?>" href="<?= base_url('manage/userdata') ?>">
                 <i class="fa fa-user <?= $userdata ?>" aria-hidden="true"></i>
                 <span>User data</span>
             </a>

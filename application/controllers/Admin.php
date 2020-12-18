@@ -138,7 +138,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/template/header', $data);
         $this->load->view('admin/template/sidebar');
         $this->load->view('admin/template/topbar');
-        $this->load->view('admin/laporan');
+        $this->load->view('admin/laporan/laporan');
         $this->load->view('admin/template/footer');
     }
     // ========= AKHIR LAPORAN

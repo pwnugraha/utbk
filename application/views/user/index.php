@@ -8,7 +8,14 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="h3 mb-5 text-hitam">Welcome back <span class="badge badge-light text-hitam"><?= ucwords(strtolower($this->session->userdata('name'))) ?></span></div>
+                                <div class="h3 mb-5 text-hitam">Welcome back <span class="badge badge-light text-hitam">
+                                        <?php if ($this->session->userdata('name')) {
+                                            echo ucwords(strtolower($this->session->userdata('name')));
+                                        } else {
+                                            echo $this->session->userdata('username');
+                                        }; ?>
+                                    </span>
+                                </div>
                                 <div class="text-hitam">Apa yang harus kamu lakukan sekarang :</div>
                                 <ul>
                                     <li><span class="text-hitam"> Wow UTBK sudah mulai dekat ayo
@@ -107,7 +114,8 @@
                                 <table class="table table-sm">
                                     <thead>
                                         <tr class="border-0 text-hitam">
-                                            <th class="py-2">Sesi</th>
+                                            <th class="py-2">Nama Sesi</th>
+                                            <th class="py-2">Bulan Sesi</th>
                                             <th class="py-2">Tanggal</th>
                                             <th class="py-2">Jam</th>
                                             <th class="py-2">Room Status</th>
@@ -117,49 +125,53 @@
                                     <tbody>
                                         <?php
                                         foreach ($tryout as $i) {
-                                            if ($ticket['tka_saintek'] > 0 && $i['type'] == 1) {
+                                            if ($i['type'] == 1) {
                                         ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
+                                                    <td><?= get_month($i['active_month']) ?></td>
                                                     <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
                                                     <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
-                                                    <td><?= ($active_room['tka_saintek'] < 400) ? 400 - $active_room['tka_saintek'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                    <td><?= ($active_room[$i['active_month']]['tka_saintek'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_saintek'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
                                                         <a href="<?= base_url('exm/index/tka_saintek/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                                     </td>
                                                 </tr>
                                             <?php }
-                                            if ($ticket['tka_soshum'] > 0 && $i['type'] == 2) {
+                                            if ($i['type'] == 2) {
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
+                                                    <td><?= get_month($i['active_month']) ?></td>
                                                     <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
                                                     <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
-                                                    <td><?= ($active_room['tka_soshum'] < 400) ? 400 - $active_room['tka_soshum'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                    <td><?= ($active_room[$i['active_month']]['tka_soshum'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_soshum'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
                                                         <a href="<?= base_url('exm/index/tka_soshum/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                                     </td>
                                                 </tr>
                                             <?php }
-                                            if ($ticket['tka_campuran'] > 0 && $i['type'] == 3) {
+                                            if ($i['type'] == 3) {
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
+                                                    <td><?= get_month($i['active_month']) ?></td>
                                                     <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
                                                     <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
-                                                    <td><?= ($active_room['tka_campuran'] < 400) ? 400 - $active_room['tka_campuran'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                    <td><?= ($active_room[$i['active_month']]['tka_campuran'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_campuran'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
                                                         <a href="<?= base_url('exm/index/tka_campuran/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                                     </td>
                                                 </tr>
                                             <?php }
-                                            if ($ticket['tps'] > 0 && $i['type'] == 4) {
+                                            if ($i['type'] == 4) {
                                             ?>
                                                 <tr>
                                                     <td><?= $i['name'] ?></td>
+                                                    <td><?= get_month($i['active_month']) ?></td>
                                                     <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
                                                     <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
-                                                    <td><?= ($active_room['tps'] < 400) ? 400 - $active_room['tps'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                    <td><?= ($active_room[$i['active_month']]['tps'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tps'] . ' kursi kosong' : 'Room Full' ?></td>
                                                     <td>
                                                         <a href="<?= base_url('exm/index/tps/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
                                                     </td>

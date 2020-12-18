@@ -38,6 +38,18 @@
 <script src="<?= base_url('asset/user/') ?>js/demo/chart-pie-demo.js"></script>
 <script src="<?= base_url('asset/admin/js/utility.js') ?>"></script>
 <script src="<?= base_url('asset/admin/js/sweetalert.js') ?>"></script>
+<?php if ($this->uri->segment(2) == 'product') : ?>
+    <script src="https://cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('description', {height: 150});
+    </script>
+<?php endif; ?>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#data_table').DataTable();
+    });
+</script>
 <?php
 if (!empty($assets_footer) && ($this->uri->segment(3) == 'create_soal' || $this->uri->segment(3) == 'update_soal')) {
     foreach ($assets_footer as $asset) {

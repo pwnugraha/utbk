@@ -1,5 +1,10 @@
 <div class="container-fluid">
     <div class="row">
+        <div class="col-lg-12">
+            <p>
+                <?= $this->session->flashdata('msg') ?>
+            </p>
+        </div>
         <div class="col-lg-6">
             <div class="card shadow">
                 <div class="card-body p-1">
@@ -10,27 +15,23 @@
                             </tr>
                             <tr>
                                 <td class="text-biru">Name</td>
-                                <td>Agus Priyono</td>
+                                <td><?= empty($user) ? '-' : $user['first_name'] ?></td>
                             </tr>
                             <tr>
                                 <td class="text-biru">Email</td>
-                                <td>gaa@hdjd.com</td>
+                                <td><?= empty($user) ? '-' : $user['email'] ?></td>
                             </tr>
                             <tr>
                                 <td class="text-biru">Phone</td>
-                                <td>082828828282</td>
+                                <td><?= empty($user) ? '-' : $user['phone'] ?></td>
                             </tr>
                             <tr>
                                 <td class="text-biru">Asal Sekolah</td>
-                                <td>jajaj</td>
+                                <td><?= empty($user) ? '-' : $user['company'] ?></td>
                             </tr>
                             <tr>
                                 <td class="text-biru">UserName</td>
-                                <td>aguspriyono</td>
-                            </tr>
-                            <tr>
-                                <td class="text-biru">NISN</td>
-                                <td>1222222222</td>
+                                <td><?= empty($user) ? '-' : $user['username'] ?></td>
                             </tr>
                         </table>
                     </div>
@@ -43,24 +44,36 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-6 text-center text-md-right">
-                                <button type="button" class="btn border tambah-produk-manual">Tambah Produk Manual</button>
-                            </div>
-                            <div class="col-6 text-center text-md-left">
-                                <button type="button" class="btn border send-pw-baru">Send Password Baru</button>
+                                <button type="button" class="btn border tambah-produk-manual">Tambah Tiket</button>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
+                                        <?= form_open('manage/userdata/add_ticket') ?>
                                         <div class="form-group">
-                                            <select class="form-control" name="" id="">
+                                            <select class="form-control" name="type" id="type">
                                                 <option selected>Nama Produk</option>
-                                                <option>A</option>
-                                                <option>B</option>
+                                                <option value="tka_saintek">SAINTEK</option>
+                                                <option value="tka_soshum">SOSHUM</option>
+                                                <option value="tka_campuran">CAMPURAN</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="btn btn-primary">Tambah Produk</button>
+                                        <div class="form-group">
+                                            <select class="form-control" name="quantity" id="quantity">
+                                                <option selected>Jumlah tiket</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+                                        <?= form_hidden('user_id', $user['id']) ?>
+                                        <button type="submit" class="btn btn-primary">Tambah Tiket</button>
+                                        <?= form_close() ?>
                                     </div>
                                 </div>
                             </div>
@@ -73,62 +86,55 @@
 
     <div class="row mt-5">
         <div class="col-12">
-            <div class="h3 text-biru">Paket Users</div>
+            <div class="h3 text-biru">Data Users</div>
         </div>
         <div class="col-12">
             <div class="card shadow">
                 <div class="card-body px-0">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-6 text-center text-md-right">
-                                <button type="button" class="btn border paket-users" id="menu-belum">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-collection" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M14.5 13.5h-13A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5zm-13 1A1.5 1.5 0 0 1 0 13V6a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 16 6v7a1.5 1.5 0 0 1-1.5 1.5h-13zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z" />
-                                    </svg>
-                                    <div> Paket Belum Digunakan </div>
-                                </button>
-                            </div>
-                            <div class="col-6 text-center text-md-left">
-                                <button type="button" class="btn border" id="menu-sudah">
-                                    <svg width=" 1em" height="1em" viewBox="0 0 16 16" class="bi bi-collection" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M14.5 13.5h-13A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5zm-13 1A1.5 1.5 0 0 1 0 13V6a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 16 6v7a1.5 1.5 0 0 1-1.5 1.5h-13zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z" />
-                                    </svg>
-                                    <div> Paket Sudah Digunakan </div>
-                                </button>
-                            </div>
-                        </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div class="table-responsive " id="paket-belum">
-                                    <table class="table">
+                                <div class="table-responsive">
+                                    <table class="table" id="data_table">
                                         <thead>
                                             <tr class="text-dark">
-                                                <th>Nama</th>
-                                                <th>Kategori</th>
-                                                <th>Jadwal</th>
-                                                <th>Status</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>Sekolah</th>
+                                                <th>Username</th>
+                                                <th>Status Akun</th>
                                                 <th>Aksi</th>
                                             </tr>
-                                            <tr>
-                                                <td colspan="5" class="text-center">No data <b>Paket belum digunakan</b> </td>
-                                            </tr>
                                         </thead>
-                                    </table>
-                                </div>
-                                <div class="table-responsive hide-content" id="paket-sudah">
-                                    <table class="table">
-                                        <thead>
-                                            <tr class="text-dark">
-                                                <th>Nama</th>
-                                                <th>Kategori</th>
-                                                <th>Jadwal</th>
-                                                <th>Status</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5" class="text-center">No data <b>Paket sudah digunakan</b></td>
-                                            </tr>
-                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            if (empty($item)) {
+                                                echo '<tr><td colspan="5" class="text-center">No data <b>Belum ada data user.</b> </td></tr>';
+                                            } else {
+                                                foreach ($item as $i) { ?>
+                                                    <tr>
+                                                        <td><?= $i['first_name'] ?></td>
+                                                        <td><?= $i['company'] ?></td>
+                                                        <td><?= $i['username'] ?></td>
+                                                        <td><?= $i['active'] == 1 ? 'Aktif' : 'Tidak Aktif' ?></td>
+
+                                                        <td width="1">
+                                                            <a href="<?= site_url('manage/userdata/index/' . $i['id']) ?>">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                                                                    <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                                                                    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                                                                    <path fill-rule="evenodd" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                                                    <path d="M8 12c4 0 5 1.755 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12z" />
+                                                                </svg>
+                                                            </a>
+                                                        </td>
+
+                                                    </tr>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -139,25 +145,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    $(document).ready(function() {
-
-        $("#menu-belum").click(function() {
-            $("#paket-sudah").addClass("hide-content");
-            $("#paket-belum").removeClass("hide-content");
-
-            $("#menu-belum").addClass("paket-users");
-            $("#menu-sudah").removeClass("paket-users");
-        });
-
-        $("#menu-sudah").click(function() {
-            $("#paket-belum").addClass("hide-content");
-            $("#paket-sudah").removeClass("hide-content");
-
-            $("#menu-sudah").addClass("paket-users");
-            $("#menu-belum").removeClass("paket-users");
-        });
-    });
-</script>
