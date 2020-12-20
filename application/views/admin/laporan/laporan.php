@@ -198,10 +198,6 @@
                                     Orders
                                 </span>
                             </div>
-                            <div class="col-md-6 mt-3 mt-md-0 text-right">
-                                <!-- <a href="" class="bg-biru-muda text-light px-4 h5" style="border-radius: 2em;">Filter</a> -->
-                                <a href="" class="bg-biru-muda text-light px-4 h5" style="border-radius: 2em;">+ Add New</a>
-                            </div>
                         </div>
                     </div>
                     <div class="table-responsive mt-4">
@@ -211,102 +207,82 @@
                                     <th class="text-hitam">INVOICE</th>
                                     <th class="text-hitam">COSTUMER</th>
                                     <th class="text-hitam">DATE</th>
+                                    <th class="text-hitam">TIKET</th>
                                     <th class="text-hitam">AMOUNT</th>
                                     <th class="text-hitam">STATUS</th>
-                                    <th colspan="2" class="text-hitam">TRACKING</th>
+                                    <th class="text-hitam"></th>
                                 </tr>
                             </thead>
+
                             <tbody>
+                                <?php if (!empty($item)) :
+                                    foreach ($item as $i) : ?>
+                                        <tr>
+                                            <td><?= $i['id'] ?></td>
+                                            <td><?= $i['first_name'] ?></td>
+                                            <td><?= date('d-m-Y H:i', strtotime($i['created'])) ?></td>
+                                            <td><?= $i['quantity'] ?></td>
+                                            <td><?= number_format($i['price'], 0, '', '.') ?></td>
+                                            <td><?= $i['status'] == 1 ? 'Paid' : 'Unpaid' ?></td>
+                                            <td>
+                                                <?php if ($i['status'] == 1) : ?>
+                                                    Complete
+                                                <?php else : ?>
+                                                    <a href="<?= base_url('manage/laporan/order_update/' . $i['id']) ?>" class="btn-update">
+                                                        Proses
+                                                    </a>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                <?php endforeach;
+                                endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-8">
+            <div class="card shadow orders" style="border-radius: 1em;">
+                <div class="card-body">
+                    <div class="container-fluid p-0">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="h4 text-biru">
+                                    Ujian
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive mt-4">
+                        <table class="table mb-0">
+                            <thead>
                                 <tr>
-                                    <td>003452</td>
-                                    <td>Company Name</td>
-                                    <td>22 June 2020</td>
-                                    <td>$200.00</td>
-                                    <td>Delivered</td>
-                                    <td>IN332942</td>
-                                    <td>
-                                        <a href="">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical text-biru" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                            </svg>
-                                        </a>
-                                    </td>
+                                    <th class="text-hitam">BULAN SESI</th>
+                                    <th class="text-hitam">IKUT UJIAN</th>
+                                    <th class="text-hitam">PROSES NILAI</th>
+                                    <th class="text-hitam">AKSI</th>
                                 </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Company Name</td>
-                                    <td>22 June 2020</td>
-                                    <td>$200.00</td>
-                                    <td>Delivered</td>
-                                    <td>IN332942</td>
-                                    <td>
-                                        <a href="">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical text-biru" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Company Name</td>
-                                    <td>22 June 2020</td>
-                                    <td>$200.00</td>
-                                    <td>Delivered</td>
-                                    <td>IN332942</td>
-                                    <td>
-                                        <a href="">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical text-biru" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Company Name</td>
-                                    <td>22 June 2020</td>
-                                    <td>$200.00</td>
-                                    <td>Delivered</td>
-                                    <td>IN332942</td>
-                                    <td>
-                                        <a href="">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical text-biru" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Company Name</td>
-                                    <td>22 June 2020</td>
-                                    <td>$200.00</td>
-                                    <td>Delivered</td>
-                                    <td>IN332942</td>
-                                    <td>
-                                        <a href="">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical text-biru" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>003452</td>
-                                    <td>Company Name</td>
-                                    <td>22 June 2020</td>
-                                    <td>$200.00</td>
-                                    <td>Delivered</td>
-                                    <td>IN332942</td>
-                                    <td>
-                                        <a href="">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical text-biru" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php if (!empty($exam)) :
+                                    foreach ($exam as $i) : ?>
+                                        <tr>
+                                            <td><?= get_month($i['month']) ?></td>
+                                            <td><?= $i['total'] ?></td>
+                                            <td><?= !empty($i['proses']) ?$i['proses']: 'Semua tryout sudah dinilai' ?></td>
+                                            <td>
+                                                <a href="<?= base_url('manage/laporan/define_exam_score/'. $i['month']) ?>" class="btn-proses">
+                                                    Proses Nilai
+                                                </a>
+                                            </td>
+                                        </tr>
+                                <?php endforeach;
+                                endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -316,3 +292,85 @@
     </div>
 
 </div>
+<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message_sa'); ?>"></div>
+<?php 
+function get_month($month)
+{
+    switch ($month) {
+        case 1:
+            return 'Januari';
+        case 2:
+            return 'Februari';
+        case 3:
+            return 'Maret';
+        case 4:
+            return 'April';
+        case 5:
+            return 'Mei';
+        case 6:
+            return 'Juni';
+        case 7:
+            return 'Juli';
+        case 8:
+            return 'Agustus';
+        case 9:
+            return 'September';
+        case 10:
+            return 'Oktober';
+        case 11:
+            return 'November';
+        case 12:
+            return 'Desember';
+        default:
+            return '';
+    }
+}
+?>
+<script>
+    $('.btn-update').on('click', function(e) {
+        e.preventDefault();
+        const href = $(this).attr('href');
+
+        Swal.fire({
+            // title: 'Yakin ?',
+            text: "Proses Pesanan Ini?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'PROSES',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+    });
+
+    $('.btn-proses').on('click', function(e) {
+        e.preventDefault();
+        const href = $(this).attr('href');
+
+        Swal.fire({
+            // title: 'Yakin ?',
+            text: "Lama waktu proses nilai tergantung jumlah ujian. Lanjutkan?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'PROSES',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+    });
+
+    const flashdata = $('.flash-data').data('flashdata');
+    if (flashdata) {
+        Swal.fire({
+            title: 'Informasi',
+            html: flashdata,
+            icon: 'info'
+        });
+    }
+</script>

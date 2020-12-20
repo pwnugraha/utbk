@@ -333,6 +333,7 @@
                             </thead>
                             <tbody>
                                 <?php if (!empty($exam_history)) :
+                                    $no = 0;
                                     foreach ($exam_history as $i) :
                                 ?>
                                         <tr>
@@ -341,7 +342,43 @@
                                             <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
                                             <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
                                             <td><?= date('d', strtotime($i['date'])) . ' ' . get_month(date('n', strtotime($i['date']))) . ' ' . date('Y', strtotime($i['date'])) . ' - ' . date('H:i', strtotime($i['date'])) ?></td>
+
                                             <td><?= ($i['score'] == NULL) ? '-' : $i['score'] ?></td>
+                                            <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                                        </tr>
+                                <?php $no++;
+                                    endforeach;
+                                endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow welcome border-0" style="border-radius: 1em;">
+                <div class="card-body">
+                    <div class="h5 text-hitam">Orders</div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr class="text-hitam">
+                                    <th>ID Order</th>
+                                    <th>Nama Produk</th>
+                                    <th>Tanggal</th>
+                                    <th>Harga</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (!empty($orders)) :
+                                    foreach ($orders as $i) :
+                                ?>
+                                        <tr>
+                                            <td><?= $i['id'] ?></td>
+                                            <td><?= $i['quantity'] . ' Tiket ' . $i['product_name'] ?></td>
+                                            <td><?= date('d', strtotime($i['created'])) . ' ' . get_month(date('n', strtotime($i['created']))) . ' ' . date('Y', strtotime($i['created'])) ?></td>
+                                            <td><?= number_format($i['price'], 0, '', '.') ?></td>
+                                            <td><?= $i['status'] == 0 ? 'Diproses' : 'Complete' ?></td>
                                             <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
                                         </tr>
                                 <?php endforeach;
@@ -351,73 +388,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="card shadow welcome border-0" style="border-radius: 1em;">
-            <div class="card-body">
-                <div class="h5 text-hitam">Orders</div>
-                <div class="table-responsive">
-                    <table class="table table-sm table-hover">
-                        <thead>
-                            <tr class="text-hitam">
-                                <th>ID Tryout</th>
-                                <th>Nama Tryout</th>
-                                <th>Date</th>
-                                <th>Score</th>
-                                <th>Status</th>
-                                <th>Konsultasi</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>003452</td>
-                                <td>Tryout Soshum</td>
-                                <td>22 June 2020</td>
-                                <td>581.000</td>
-                                <td>Complete</td>
-                                <td>IN332942</td>
-                                <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div> -->
         </div>
         <div class="col-lg-1"></div>
         <div class="col-lg-2 col-xl-3 d-none">

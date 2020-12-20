@@ -29,7 +29,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                    <span aria-hidden="true"></span>
                 </button>
             </div>
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -55,12 +55,59 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('asset/user/') ?>js/demo/chart-area-demo.js"></script>
 <script src="<?= base_url('asset/user/') ?>js/demo/chart-pie-demo.js"></script>
-<script src="<?= base_url('asset/user/') ?>js/utility.js"></script>
+<!--<script src="<?= base_url('asset/user/') ?>js/utility.js"></script>-->
 <script>
     $('.custom-file-input').on('change', function() {
         let filename = $(this).val().split('\\').pop();
         $(this).next('.custom-file-label').addClass("selected").html(filename);
     });
+    
+    $(document).ready(function () {
+
+    $('#ptn1').change(function () {
+        var ptn = $(this).val();
+      
+        $.ajax({
+            url: window.location.origin + '/exm/get_jurusan',
+            method: "POST",
+            data: { nama: ptn },
+            dataType: 'json',
+            success: function (data) {
+                var html = '';
+                if (data.status) {
+                    $.each(data.data, function (index, value) {
+                        html += '<option value="' + value.id + '">' + value.jurusan + '</option>';
+                    });
+
+                    $('#jurusan1').html('<option selected>Jurusan</option>' + html);
+                }
+            }
+        });
+        return false;
+    });
+
+    $('#ptn2').change(function () {
+        var ptn = $(this).val();
+        $.ajax({
+            url: window.location.origin + '/exm/get_jurusan',
+            method: "POST",
+            data: { nama: ptn },
+            dataType: 'json',
+            success: function (data) {
+                var html = '';
+                if (data.status) {
+                    $.each(data.data, function (index, value) {
+                        html += '<option value="' + value.id + '">' + value.jurusan + '</option>';
+                    });
+
+                    $('#jurusan2').html('<option selected>Jurusan</option>' + html);
+                }
+            }
+        });
+        return false;
+    });
+});
+    
 </script>
 </body>
 

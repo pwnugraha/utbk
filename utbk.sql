@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 16, 2020 at 02:06 PM
--- Server version: 10.5.8-MariaDB
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Dec 20, 2020 at 12:40 PM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `soba_utbk`
+-- Database: `utbk`
 --
 
 -- --------------------------------------------------------
@@ -31,8 +32,8 @@ CREATE TABLE `bank_soal` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
   `kategori_soal_id` int(10) UNSIGNED NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -67,7 +68,7 @@ CREATE TABLE `butir_paket_soal` (
   `id` int(10) UNSIGNED NOT NULL,
   `paket_soal_id` int(10) UNSIGNED NOT NULL,
   `soal_id` int(10) UNSIGNED NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp()
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -489,6 +490,225 @@ INSERT INTO `butir_paket_soal` (`id`, `paket_soal_id`, `soal_id`, `created`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dummy`
+--
+
+CREATE TABLE `dummy` (
+  `id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `soal` int(11) NOT NULL,
+  `nilai` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `dummy`
+--
+
+INSERT INTO `dummy` (`id`, `user`, `soal`, `nilai`) VALUES
+(1, 1, 1, 1),
+(2, 1, 2, 1),
+(3, 1, 3, 0),
+(4, 1, 4, 0),
+(5, 1, 5, 1),
+(6, 1, 6, 1),
+(7, 1, 7, 1),
+(8, 1, 8, NULL),
+(9, 1, 9, NULL),
+(10, 1, 10, NULL),
+(11, 1, 11, 1),
+(12, 1, 12, 1),
+(13, 1, 13, 0),
+(14, 1, 14, 1),
+(15, 1, 15, NULL),
+(16, 1, 16, 0),
+(17, 1, 17, NULL),
+(18, 1, 18, NULL),
+(19, 1, 19, 1),
+(20, 1, 20, 1),
+(21, 2, 1, 1),
+(22, 2, 2, 0),
+(23, 2, 3, 1),
+(24, 2, 4, 1),
+(25, 2, 5, 1),
+(26, 2, 6, NULL),
+(27, 2, 7, 0),
+(28, 2, 8, 1),
+(29, 2, 9, 0),
+(30, 2, 10, 1),
+(31, 2, 11, 1),
+(32, 2, 12, NULL),
+(33, 2, 13, 1),
+(34, 2, 14, 0),
+(35, 2, 15, NULL),
+(36, 2, 16, 1),
+(37, 2, 17, 0),
+(38, 2, 18, 1),
+(39, 2, 19, NULL),
+(40, 2, 20, NULL),
+(41, 3, 1, NULL),
+(42, 3, 2, NULL),
+(43, 3, 3, 1),
+(44, 3, 4, NULL),
+(45, 3, 5, NULL),
+(46, 3, 6, 1),
+(47, 3, 7, 1),
+(48, 3, 8, NULL),
+(49, 3, 9, NULL),
+(50, 3, 10, NULL),
+(51, 3, 11, 1),
+(52, 3, 12, 0),
+(53, 3, 13, 1),
+(54, 3, 14, NULL),
+(55, 3, 15, 1),
+(56, 3, 16, 1),
+(57, 3, 17, 1),
+(58, 3, 18, 0),
+(59, 3, 19, NULL),
+(60, 3, 20, 1),
+(61, 4, 1, 1),
+(62, 4, 2, 0),
+(63, 4, 3, NULL),
+(64, 4, 4, 1),
+(65, 4, 5, NULL),
+(66, 4, 6, 1),
+(67, 4, 7, 0),
+(68, 4, 8, NULL),
+(69, 4, 9, 0),
+(70, 4, 10, 1),
+(71, 4, 11, 1),
+(72, 4, 12, 1),
+(73, 4, 13, 1),
+(74, 4, 14, NULL),
+(75, 4, 15, NULL),
+(76, 4, 16, 0),
+(77, 4, 17, 1),
+(78, 4, 18, 1),
+(79, 4, 19, NULL),
+(80, 4, 20, 0),
+(81, 5, 1, 1),
+(82, 5, 2, 1),
+(83, 5, 3, 1),
+(84, 5, 4, 1),
+(85, 5, 5, 1),
+(86, 5, 6, NULL),
+(87, 5, 7, NULL),
+(88, 5, 8, 0),
+(89, 5, 9, NULL),
+(90, 5, 10, NULL),
+(91, 5, 11, 1),
+(92, 5, 12, 0),
+(93, 5, 13, 0),
+(94, 5, 14, 0),
+(95, 5, 15, NULL),
+(96, 5, 16, 1),
+(97, 5, 17, 0),
+(98, 5, 18, 1),
+(99, 5, 19, 1),
+(100, 5, 20, 1),
+(101, 6, 1, 1),
+(102, 6, 2, 0),
+(103, 6, 3, 1),
+(104, 6, 4, 1),
+(105, 6, 5, 0),
+(106, 6, 6, 1),
+(107, 6, 7, NULL),
+(108, 6, 8, NULL),
+(109, 6, 9, NULL),
+(110, 6, 10, 0),
+(111, 6, 11, 1),
+(112, 6, 12, 0),
+(113, 6, 13, 1),
+(114, 6, 14, 1),
+(115, 6, 15, 0),
+(116, 6, 16, 0),
+(117, 6, 17, 0),
+(118, 6, 18, 0),
+(119, 6, 19, 0),
+(120, 6, 20, 1),
+(121, 7, 1, 1),
+(122, 7, 2, 0),
+(123, 7, 3, NULL),
+(124, 7, 4, 1),
+(125, 7, 5, NULL),
+(126, 7, 6, 1),
+(127, 7, 7, NULL),
+(128, 7, 8, 1),
+(129, 7, 9, 1),
+(130, 7, 10, 0),
+(131, 7, 11, 1),
+(132, 7, 12, 0),
+(133, 7, 13, NULL),
+(134, 7, 14, 1),
+(135, 7, 15, 0),
+(136, 7, 16, NULL),
+(137, 7, 17, 1),
+(138, 7, 18, 1),
+(139, 7, 19, NULL),
+(140, 7, 20, 1),
+(141, 8, 1, 1),
+(142, 8, 2, 1),
+(143, 8, 3, NULL),
+(144, 8, 4, NULL),
+(145, 8, 5, 1),
+(146, 8, 6, 1),
+(147, 8, 7, 0),
+(148, 8, 8, 1),
+(149, 8, 9, 1),
+(150, 8, 10, 0),
+(151, 8, 11, NULL),
+(152, 8, 12, 0),
+(153, 8, 13, 0),
+(154, 8, 14, NULL),
+(155, 8, 15, 1),
+(156, 8, 16, NULL),
+(157, 8, 17, 1),
+(158, 8, 18, 1),
+(159, 8, 19, 1),
+(160, 8, 20, 1),
+(161, 9, 1, 1),
+(162, 9, 2, 1),
+(163, 9, 3, 1),
+(164, 9, 4, 0),
+(165, 9, 5, NULL),
+(166, 9, 6, 1),
+(167, 9, 7, 0),
+(168, 9, 8, 1),
+(169, 9, 9, 1),
+(170, 9, 10, 1),
+(171, 9, 11, 1),
+(172, 9, 12, 1),
+(173, 9, 13, 0),
+(174, 9, 14, 0),
+(175, 9, 15, 1),
+(176, 9, 16, NULL),
+(177, 9, 17, 0),
+(178, 9, 18, 1),
+(179, 9, 19, 0),
+(180, 9, 20, 1),
+(181, 10, 1, NULL),
+(182, 10, 2, 1),
+(183, 10, 3, NULL),
+(184, 10, 4, NULL),
+(185, 10, 5, NULL),
+(186, 10, 6, 1),
+(187, 10, 7, 1),
+(188, 10, 8, 1),
+(189, 10, 9, 1),
+(190, 10, 10, NULL),
+(191, 10, 11, NULL),
+(192, 10, 12, 1),
+(193, 10, 13, NULL),
+(194, 10, 14, 0),
+(195, 10, 15, NULL),
+(196, 10, 16, 1),
+(197, 10, 17, 0),
+(198, 10, 18, NULL),
+(199, 10, 19, 1),
+(200, 10, 20, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `exam`
 --
 
@@ -498,14 +718,22 @@ CREATE TABLE `exam` (
   `ptn2` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `month` tinyint(2) UNSIGNED NOT NULL,
-  `tka` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `tps` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `tka` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `tps` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `score` float DEFAULT NULL,
-  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0=tdk ujian, 1=ujian tka-saintek, 2=ujian tka-soshum, 3=ujian tka-campuran, 4=ujian tps',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '0=tdk ujian, 1=ujian tka-saintek, 2=ujian tka-soshum, 3=ujian tka-campuran, 4=ujian tps',
   `end_date` datetime DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exam`
+--
+
+INSERT INTO `exam` (`id`, `ptn1`, `ptn2`, `user_id`, `month`, `tka`, `tps`, `score`, `status`, `end_date`, `created`, `modified`) VALUES
+(3, 503, 580, 177, 12, 1, 1, NULL, 1, NULL, '2020-12-17 13:33:10', '2020-12-18 00:39:17'),
+(4, 503, 580, 180, 12, 1, 1, NULL, 3, NULL, '2020-12-17 13:33:10', '2020-12-18 02:39:05');
 
 -- --------------------------------------------------------
 
@@ -524,6 +752,15 @@ CREATE TABLE `exam_history` (
   `start_time` time NOT NULL,
   `end_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exam_history`
+--
+
+INSERT INTO `exam_history` (`id`, `name`, `date`, `exam_id`, `category`, `start_date`, `end_date`, `start_time`, `end_time`) VALUES
+(2, 'TKA SOSHUM', '2020-12-17 20:33:10', 3, 2, '2020-12-17', '2020-12-26', '09:00:00', '23:59:00'),
+(3, 'TPS SAINTEK-SOSHUM', '2020-12-17 20:34:21', 3, 4, '2020-12-17', '2020-12-26', '09:00:00', '23:59:00'),
+(4, 'TKA CAMPURAN', '2020-12-17 20:35:12', 3, 3, '2020-12-17', '2020-12-26', '09:00:00', '23:59:00');
 
 -- --------------------------------------------------------
 
@@ -589,6 +826,38 @@ CREATE TABLE `login_attempts` (
   `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
+(1, '::1', 'admin', 1608295262);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `product_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` tinyint(1) UNSIGNED NOT NULL,
+  `price` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `payment` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '1=transfer',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=unpaid, 1=paid'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `product_id`, `product_name`, `quantity`, `price`, `user_id`, `created`, `payment`, `status`) VALUES
+(1, 3, 'SOSHUM', 1, 100000, 1, '2020-12-19 07:20:27', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -598,9 +867,9 @@ CREATE TABLE `login_attempts` (
 CREATE TABLE `paket_soal` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
-  `description` text CHARACTER SET utf8mb4 DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `description` text CHARACTER SET utf8mb4,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -622,27 +891,35 @@ INSERT INTO `paket_soal` (`id`, `name`, `description`, `created`, `modified`) VA
 
 CREATE TABLE `product` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` int(10) UNSIGNED NOT NULL,
-  `discount` tinyint(3) UNSIGNED NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `tryout` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `consultation` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `pendalaman` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `type` tinyint(1) UNSIGNED NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `description`, `price`, `discount`, `start_date`, `end_date`, `tryout`, `consultation`, `pendalaman`, `status`, `created`, `modified`) VALUES
-(3, 'SOSHUM', 'Paket Hemat SOSHUM 6X tryout DISC 15%', 330000, 20, '2020-12-17', '2020-12-31', 6, 1, 0, 1, '2020-12-15 06:15:21', '2020-12-15 06:15:21'),
-(4, 'SOSHUM', 'TRYOUT SOSHUM', 55000, 0, '2020-12-16', '2020-12-31', 1, 0, 0, 1, '2020-12-15 06:25:24', '2020-12-15 06:25:24');
+INSERT INTO `product` (`id`, `name`, `description`, `type`, `status`, `created`, `modified`) VALUES
+(3, 'SOSHUM', '<p>Pemahaman umum, Penalaran umum, kempuan membaca, Kuantitatif, MTK Saintek, Fisiki, Kimia, Biologi, Report lengkap, Progerss pencapaian, konsultasi jurusan.</p>\r\n\r\n<p style=\"text-align:center\"><span style=\"font-size:16px\">Rp. <s>330.000</s></span></p>\r\n\r\n<p style=\"text-align:center\"><span style=\"color:#f39c12\"><span style=\"font-size:24px\">Rp. 280.000</span></span></p>', 2, 1, '2020-12-15 06:15:21', '2020-12-18 13:02:03'),
+(4, 'SAINTEK', 'TRYOUT SOSHUM', 1, 1, '2020-12-15 06:25:24', '2020-12-18 12:53:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_item`
+--
+
+CREATE TABLE `product_item` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `quantity` tinyint(1) UNSIGNED NOT NULL,
+  `price` int(10) UNSIGNED NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2750,8 +3027,8 @@ CREATE TABLE `soal` (
   `opt5` text CHARACTER SET utf8mb4 NOT NULL,
   `answer` tinyint(1) UNSIGNED NOT NULL,
   `explanation` text CHARACTER SET utf8mb4 NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -3061,10 +3338,10 @@ INSERT INTO `soal` (`id`, `bank_soal_id`, `kategori_soal_id`, `description`, `op
 CREATE TABLE `ticket` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
-  `tka_saintek` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
-  `tka_soshum` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
-  `tka_campuran` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
-  `tps` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
+  `tka_saintek` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `tka_soshum` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `tka_campuran` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `tps` tinyint(3) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -3073,7 +3350,6 @@ CREATE TABLE `ticket` (
 
 INSERT INTO `ticket` (`id`, `user_id`, `tka_saintek`, `tka_soshum`, `tka_campuran`, `tps`) VALUES
 (1, 771, 0, 0, 0, 0),
-(2, 173, 1, 1, 1, 1),
 (3, 174, 1, 1, 1, 1),
 (4, 175, 1, 1, 1, 1),
 (5, 176, 1, 1, 1, 1),
@@ -3645,7 +3921,9 @@ INSERT INTO `ticket` (`id`, `user_id`, `tka_saintek`, `tka_soshum`, `tka_campura
 (571, 742, 1, 1, 1, 1),
 (572, 743, 1, 1, 1, 1),
 (573, 744, 1, 1, 1, 1),
-(574, 745, 1, 1, 1, 1);
+(574, 745, 1, 1, 1, 1),
+(575, 1, 10, 9, 9, 9),
+(577, 173, 5, 3, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -3666,8 +3944,8 @@ CREATE TABLE `tryout` (
   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '1=tka saintek, 2=tka soshum, 3=tka campuran, 4=tps',
   `active_month` tinyint(2) UNSIGNED NOT NULL,
   `paket_soal_id` int(10) UNSIGNED NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -3677,7 +3955,7 @@ CREATE TABLE `tryout` (
 INSERT INTO `tryout` (`id`, `name`, `description`, `quota`, `start_date`, `start_time`, `end_date`, `end_time`, `status`, `type`, `active_month`, `paket_soal_id`, `created`, `modified`) VALUES
 (5, 'TKA SAINTEK', 'ini paket soal TKA saintek untuk desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 1, 12, 1, '2020-12-10 02:47:20', '2020-12-16 13:29:59'),
 (6, 'TKA SOSHUM', 'ini paket soal TKA soshum untuk desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 2, 12, 2, '2020-12-10 02:47:54', '2020-12-16 13:33:55'),
-(7, 'TPS SAINTEK-SOSHUM', 'ini paket soal TPS saintek dan soshum untuk desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 4, 12, 3, '2020-12-10 02:48:45', '2020-12-16 13:30:30'),
+(7, 'TPS SAINTEK-SOSHUM', 'ini paket soal TPS saintek dan soshum untuk desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 4, 12, 3, '2020-12-10 02:48:45', '2020-12-18 02:58:48'),
 (8, 'simulasi pengerjaan soal', 'Simulasi', 500, '2020-12-14', '00:01:00', '2020-12-26', '23:58:00', 0, 3, 12, 4, '2020-12-15 01:03:19', '2020-12-16 12:46:47'),
 (9, 'TKA CAMPURAN', 'Paket CAMPURAN Desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 3, 12, 5, '2020-12-16 07:50:18', '2020-12-16 13:44:41');
 
@@ -3708,7 +3986,7 @@ CREATE TABLE `users` (
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `gender` tinyint(1) NOT NULL,
-  `profile` text DEFAULT NULL
+  `profile` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3716,7 +3994,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$XiRevnvtyCo.I0DF3InheuyudhNCcFJp9kXp8TmoEY9Cq7ZjjjQ/q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1608127427, 1, 'Admin', 'istrator', 'ADMIN', '085743', 1, 'homepage-13.png'),
+(1, '127.0.0.1', 'administrator', '$2y$12$XiRevnvtyCo.I0DF3InheuyudhNCcFJp9kXp8TmoEY9Cq7ZjjjQ/q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1608352973, 1, 'Admin', 'istrator', 'ADMIN', '085743', 1, 'homepage-13.png'),
 (173, '::1', '0020904782', '$2y$10$vPt0iuT32EJgpmqqu.BLnesm/9rY5UBa.eiHdMDTHXvHONxVZXcuW', 'ekafitrian88@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861365, NULL, 1, 'ALEX PRIGUNTORO', NULL, 'SMAN 5 TUBAN', '085785135558', 1, NULL),
 (174, '::1', '0034375628', '$2y$10$LL6BSH7j6Oi3bmUsnlHTQOINWO4hMhQKQDEBVFJHiJXgG9oGg.9Jy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861366, NULL, 1, 'ANNISA FATHONI', NULL, 'SMAN 5 TUBAN', '085784385499', 2, NULL),
 (175, '::1', '0024042345', '$2y$10$3bl2GeXf.cUrxhkGYu3cW.y4/yu7ganJuiX1XtM8.ElFtv1vCfw7e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861366, NULL, 1, 'ARIA RAHMATDANI MULYONO', NULL, 'SMAN 5 TUBAN', '085708856537', 1, NULL),
@@ -4321,589 +4599,8 @@ CREATE TABLE `users_generate` (
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `gender` tinyint(1) NOT NULL,
-  `profile` text DEFAULT NULL
+  `profile` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users_generate`
---
-
-INSERT INTO `users_generate` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
-(1, '', '0020904782', 'LpU17lvD', 'ekafitrian88@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALEX PRIGUNTORO', NULL, 'SMAN 5 TUBAN', '085785135558', 1, NULL),
-(2, '', '0034375628', 'kS69wARW', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANNISA FATHONI', NULL, 'SMAN 5 TUBAN', '085784385499', 2, NULL),
-(3, '', '0024042345', 'bWZ8Ug9T', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ARIA RAHMATDANI MULYONO', NULL, 'SMAN 5 TUBAN', '085708856537', 1, NULL),
-(4, '', '0027911825', 'REgQIt4o', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AYU NUR KHARISMA', NULL, 'SMAN 5 TUBAN', '08978281856', 2, NULL),
-(5, '', '0035898755', 'Nrzim91H', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BAGAS MAHARDIKA', NULL, 'SMAN 5 TUBAN', '085733184024', 1, NULL),
-(6, '', '0025538145', 'nz4TV8ov', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BAYU KRISNA ARI SADEWA', NULL, 'SMAN 5 TUBAN', '081325690146', 1, NULL),
-(7, '', '0038686771', 'KM9Hks6t', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Daimatul Afifah', NULL, 'SMAN 5 TUBAN', '082331358980', 2, NULL),
-(8, '', '0029929215', 'gKySmXbM', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DEVANY RIZKI ARIFIANSYAH', NULL, 'SMAN 5 TUBAN', '085806934982', 1, NULL),
-(9, '', '0025396812', 'G40rPoNw', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DEWI ZUL MASITAH', NULL, 'SMAN 5 TUBAN', '088226185696', 2, NULL),
-(10, '', '0031951738', 'AWhTDReC', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DINA AL FIYANATA', NULL, 'SMAN 5 TUBAN', '083143153519', 2, NULL),
-(11, '', '0024350213', 'BfhqTjyb', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FITTO ALFIAN AKBAR', NULL, 'SMAN 5 TUBAN', '089664800704', 1, NULL),
-(12, '', '0031816221', 'mln4gu6T', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HENTIKA CAHYA SARI', NULL, 'SMAN 5 TUBAN', '085707934961', 2, NULL),
-(13, '', '0031816261', 'x30mLIRP', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KAMILA DWI NINGSIH', NULL, 'SMAN 5 TUBAN', '083831128882', 2, NULL),
-(14, '', '0031952434', 'ZM21j6J0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KRIDO LUHUR PAMBUDI', NULL, 'SMAN 5 TUBAN', '08884063598', 1, NULL),
-(15, '', '0024350599', 'gfWQGKVq', 'labbaikalmaghfiroh@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LABAIKAL MAGHFIROH', NULL, 'SMAN 5 TUBAN', '0895609696565', 2, NULL),
-(16, '', '0025497545', 'lFVnfG3P', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LAELLY RAHMAWATI', NULL, 'SMAN 5 TUBAN', '085895426464', 2, NULL),
-(17, '', '0024350212', 'OrYPwi2U', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LIK ANDRIAN', NULL, 'SMAN 5 TUBAN', '085731714804', 1, NULL),
-(18, '', '0032231854', 'VET2mtgX', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LUTFAN ALFA IRSADI', NULL, 'SMAN 5 TUBAN', '089675656458', 1, NULL),
-(19, '', '0017733766', '4W7ibG6e', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOCH. ZIDAN IDUL FIDRA', NULL, 'SMAN 5 TUBAN', '089687359848', 1, NULL),
-(20, '', '0024698171', 'Ttiowmkq', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOCHAMMAD ABRILLA AL AMIEN', NULL, 'SMAN 5 TUBAN', '082230777959', 1, NULL),
-(21, '', '0034663693', 'MLcBjVtY', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD RIZQI HABIB AL MUQOFFI', NULL, 'SMAN 5 TUBAN', '082142234108', 1, NULL),
-(22, '', '0024704785', 'phqEsVe8', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NANDA NUR WAHID', NULL, 'SMAN 5 TUBAN', '088228519906', 1, NULL),
-(23, '', '0024350231', 'OFp5gx1T', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NATHAN APTA PRADANA', NULL, 'SMAN 5 TUBAN', '085648619997', 1, NULL),
-(24, '', '0024618127', 'PfEclACt', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NUR ALMA BUSSAINA', NULL, 'SMAN 5 TUBAN', '089699271616', 2, NULL),
-(25, '', '0039379163', 'Runp8KqF', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NURIKA FAUZIAH', NULL, 'SMAN 5 TUBAN', '0881026872441', 2, NULL),
-(26, '', '0025497655', 'HXCJOc5m', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'OPI NIA AGUSTIN', NULL, 'SMAN 5 TUBAN', '089513766286', 2, NULL),
-(27, '', '0026497766', 'rIURlPfg', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RAMADHANI SETIAWAN', NULL, 'SMAN 5 TUBAN', '082142251358', 1, NULL),
-(28, '', '0025495262', 'ASOrTBVq', 'rinapuspita846@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RINA PUSPITA', NULL, 'SMAN 5 TUBAN', '085785130471', 2, NULL),
-(29, '', '0024350222', 'BgVXk9UJ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SATRIA WAHYU RAMADHAN', NULL, 'SMAN 5 TUBAN', '089699253050', 1, NULL),
-(30, '', '0031816250', 'zLbxRiPW', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SEFIA DIAN MARISKA', NULL, 'SMAN 5 TUBAN', '085816296218', 2, NULL),
-(31, '', '0017910821', 'CXyx5Ruw', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHAFIRA AYU LIDIA', NULL, 'SMAN 5 TUBAN', '085707251817', 2, NULL),
-(32, '', '0025495859', 'qv0h8loR', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Siti Nur Ilmia', NULL, 'SMAN 5 TUBAN', '083130748346', 2, NULL),
-(33, '', '0025494838', '3wB1gWK2', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WILYAN PURWA ADI', NULL, 'SMAN 5 TUBAN', '083833697950', 1, NULL),
-(34, '', '0025479694', 'P6H2RKzQ', 'ariestaintan53@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WULAN WAHYU RIFANA', NULL, 'SMAN 5 TUBAN', '085732659848', 2, NULL),
-(35, '', '0025496208', 'bJIHuNPK', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YOHANES SETIAWAN', NULL, 'SMAN 5 TUBAN', '089514689920', 1, NULL),
-(36, '', '0025497544', 's7rxyJ9X', 'yuanissa22@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YUANISSA RAHMAWATI', NULL, 'SMAN 5 TUBAN', '085802743793', 2, NULL),
-(37, '', '0038136648', 'Xo43yTQ1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'A. ABDUL AZIZ', NULL, 'SMAN 5 TUBAN', '085156977235', 1, NULL),
-(38, '', '0028806857', 'GWetFf8V', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ADJI DWI CIPTA TEJA KUSUMA', NULL, 'SMAN 5 TUBAN', '085806429735', 1, NULL),
-(39, '', '0032116290', 'NwDe4Q50', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AGISTA ALDHIANSHA', NULL, 'SMAN 5 TUBAN', '085701133922', 1, NULL),
-(40, '', '0025397258', '48urwvlQ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AMIRUL MU MININ', NULL, 'SMAN 5 TUBAN', '087859573539', 2, NULL),
-(41, '', '0030416308', '1xuJyvHk', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AUDY POPY DEVINA', NULL, 'SMAN 5 TUBAN', '08978533011', 2, NULL),
-(42, '', '0024670066', 'HUf8KxDt', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AZZAHRA DAHLIA RIFDA CHOIRANI', NULL, 'SMAN 5 TUBAN', '081217474910', 2, NULL),
-(43, '', '0024574548', 'KZ1HmN5z', 'dhl.hstig@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DAHLIA PUTRI HESTI NING TIAS', NULL, 'SMAN 5 TUBAN', '081331681226', 2, NULL),
-(44, '', '0025396796', 've02NXjs', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DHAFID ERWANDA', NULL, 'SMAN 5 TUBAN', '085746518141', 1, NULL),
-(45, '', '0031952558', 'YQLDUbVp', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIMAS INTAN SAPUTRA', NULL, 'SMAN 5 TUBAN', '085231651449', 1, NULL),
-(46, '', '0031953427', 'rj30ZvfK', 'ditaayu817@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DITA AYU MAHARANI', NULL, 'SMAN 5 TUBAN', '0895383630409', 2, NULL),
-(47, '', '0024350175', '5HiJ6ERU', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIVA DWI LESTARI', NULL, 'SMAN 5 TUBAN', '0895335774280', 2, NULL),
-(48, '', '0025496133', '1iU0g2RO', 'donycahya911@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DONY CAHYA SAPUTRA', NULL, 'SMAN 5 TUBAN', '081233684479', 1, NULL),
-(49, '', '0025495278', '6r3khRD1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DWI SEPTYAN ARDIYANSYAH', NULL, 'SMAN 5 TUBAN', '085852028620', 1, NULL),
-(50, '', '0030416146', 'B7eci1OS', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'GAESCHA REYNA MIENDIETA', NULL, 'SMAN 5 TUBAN', '082233700892', 1, NULL),
-(51, '', '0025497551', 'yXGCT15u', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'GISTA AMANDA OKTAVIANI', NULL, 'SMAN 5 TUBAN', '085707273682', 2, NULL),
-(52, '', '0030416299', 'lZ0LNKmt', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HANDYTA RAYANG SUGIANTO', NULL, 'SMAN 5 TUBAN', '0895397369711', 2, NULL),
-(53, '', '0024610562', 'ATuU7Go3', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IHWAL WIJDAN YAFI', NULL, 'SMAN 5 TUBAN', '081252582979', 1, NULL),
-(54, '', '0031953429', 'nk2iKEYa', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KHOIRUDIN SAPUTRA', NULL, 'SMAN 5 TUBAN', '089652600712', 1, NULL),
-(55, '', '0024172239', 'EYI0UPkx', 'lilingengli016@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LILING ENGLI', NULL, 'SMAN 5 TUBAN', '081217528972', 2, NULL),
-(56, '', '0039151460', 'EXcAfyhZ', 'madaemil@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MADA EMIL MUSAFAK ROUF', NULL, 'SMAN 5 TUBAN', '089652600629', 1, NULL),
-(57, '', '0017219857', 'hlPYxqtn', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MARCELLINO ALDI SETIAWAN', NULL, 'SMAN 5 TUBAN', '089678472598', 1, NULL),
-(58, '', '0031209236', '9t6jplve', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOHAMAD RIKI BACHTIAR', NULL, 'SMAN 5 TUBAN', '085816922975', 1, NULL),
-(59, '', '0002544139', '2jhkHi6r', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD AFIFUDDIN SYIHAB', NULL, 'SMAN 5 TUBAN', '0895395399113', 1, NULL),
-(60, '', '0021754268', 'q7C56usZ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD ZAKY AIRLANGGA', NULL, 'SMAN 5 TUBAN', '087880566709', 1, NULL),
-(61, '', '0034431136', 'sLZKEBbQ', 'nabilaichass@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NABILA FAIZA FAYI', NULL, 'SMAN 5 TUBAN', '088996013808', 2, NULL),
-(62, '', '0031952089', 'AWDycPk2', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Ngadmini', NULL, 'SMAN 5 TUBAN', '085230895230', 2, NULL),
-(63, '', '0024350376', 'UPOMAVXh', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PUTRI AULIA', NULL, 'SMAN 5 TUBAN', '085714154519', 2, NULL),
-(64, '', '0020904784', 'VayFG5A8', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PUTRI DHEA MISWANDA', NULL, 'SMAN 5 TUBAN', '085967234190', 2, NULL),
-(65, '', '0013424471', '51L94Aj7', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SALMA MAHZUMAH AMATULLAH', NULL, 'SMAN 5 TUBAN', '089509261823', 2, NULL),
-(66, '', '0029569586', '2wEmj9nt', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SALWA SALSABILA NUR\'AINI WICAKSONO', NULL, 'SMAN 5 TUBAN', '089688000020', 2, NULL),
-(67, '', '0024350286', 'v68pMsN1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHAFIRA ZAHRA SALSABILA', NULL, 'SMAN 5 TUBAN', '0881036701795', 2, NULL),
-(68, '', '0034664312', '69gNrfjL', 'tholibatulhikmah8@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'THOLIBATUL HIKMAH', NULL, 'SMAN 5 TUBAN', '085604299288', 2, NULL),
-(69, '', '0031753226', '8i6awzPB', 'partonoanang@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YENNY CAROLIN', NULL, 'SMAN 5 TUBAN', '085812506357', 2, NULL),
-(70, '', '0031816535', 'nc3NvDSO', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YUSUF DODY SETYAWAN', NULL, 'SMAN 5 TUBAN', '08563503815', 1, NULL),
-(71, '', '0017910831', '35bPqQc2', 'achmadpanjalu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ACHMAD PANJALU ADY PRATAMA', NULL, 'SMAN 5 TUBAN', '085336034194', 1, NULL),
-(72, '', '0025396839', 'Ku6pPSgn', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AGNES TRI RICA NASAMA RATU', NULL, 'SMAN 5 TUBAN', '085846148492', 2, NULL),
-(73, '', '0024350264', 'S8oDY0QM', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANNISA\'UL AMALIYAH', NULL, 'SMAN 5 TUBAN', '089688296473', 2, NULL),
-(74, '', '0025396737', 'iT9rvbAH', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANNY RODHOTUL ZANAH', NULL, 'SMAN 5 TUBAN', '082337968120', 2, NULL),
-(75, '', '0025496217', 'rY3IglWb', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AYU DWI WULANDARI', NULL, 'SMAN 5 TUBAN', '085746599794', 2, NULL),
-(76, '', '0024350476', 'J6AWKlBw', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CANDRA ARDIYANTO', NULL, 'SMAN 5 TUBAN', '0882009627133', 1, NULL),
-(77, '', '0023324833', 'TDwWlGuL', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CHINTIANI DESY PUTRI WAHYUANA PUSPITASARI', NULL, 'SMAN 5 TUBAN', '082231243785', 2, NULL),
-(78, '', '0025497340', 'P0qn8Ivw', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DEVIRA AULIA RAHMA', NULL, 'SMAN 5 TUBAN', '083110803753', 2, NULL),
-(79, '', '0025497663', '38QRq16n', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIAH AYU SAFITRI', NULL, 'SMAN 5 TUBAN', '083830146862', 2, NULL),
-(80, '', '0024352562', 'IPVCzAmf', 'mochsaiful94@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ELANG SATRIA PERMANA', NULL, 'SMAN 5 TUBAN', '081331751863', 1, NULL),
-(81, '', '0011128980', '58YupSUH', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Erich Berger', NULL, 'SMAN 5 TUBAN', '081233675811', 1, NULL),
-(82, '', '0024350140', '7QYqbLCE', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FAIZAH FITRIA MASHUDINI', NULL, 'SMAN 5 TUBAN', '089665157347', 2, NULL),
-(83, '', '0031953484', '9bjsFCuO', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FHAREL INDRA CAHYA', NULL, 'SMAN 5 TUBAN', '082332771739', 2, NULL),
-(84, '', '0024589270', 'U5F2M7q1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Fuad Hasan', NULL, 'SMAN 5 TUBAN', '081335766298', 1, NULL),
-(85, '', '0025496229', 'xcACWTkO', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'GROMMY NATATA', NULL, 'SMAN 5 TUBAN', '083104991581', 1, NULL),
-(86, '', '0030376441', '7Cve60xk', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HARLAN HADI PRASTIYO', NULL, 'SMAN 5 TUBAN', '082139411068', 1, NULL),
-(87, '', '0025496284', 'mkcOoyxs', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KHANIFA', NULL, 'SMAN 5 TUBAN', '085815249884', 2, NULL),
-(88, '', '0020812838', 'REC8IF3k', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KOLINKA KARTIKA FEBRYANI', NULL, 'SMAN 5 TUBAN', '082126945855', 2, NULL),
-(89, '', '0035464161', 'AiIPZQhL', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KRISNA BAGUS MAHENDRA', NULL, 'SMAN 5 TUBAN', '085785127742', 1, NULL),
-(90, '', '0022404805', 'pygRUjYq', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'M. KHOIRUL ARIFIN', NULL, 'SMAN 5 TUBAN', '082229097381', 1, NULL),
-(91, '', '0024193036', 'EjgFY5P2', 'rotinmavi@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MAVI ROTIN', NULL, 'SMAN 5 TUBAN', '085784130549', 2, NULL),
-(92, '', '0024610279', 'oXBSftDK', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOCHAMAD SYAIFUN NIZAR', NULL, 'SMAN 5 TUBAN', '089529809512', 1, NULL),
-(93, '', '0024364000', 'F4iCvTDe', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD KAMALUL KAHFI', NULL, 'SMAN 5 TUBAN', '089530220503', 1, NULL),
-(94, '', '0025497651', 'bCZ5P1DL', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD NUR HALIM', NULL, 'SMAN 5 TUBAN', '085804256557', 1, NULL),
-(95, '', '0014890692', 'uWh3otjs', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NILNA IZZA BELLA', NULL, 'SMAN 5 TUBAN', '0881036758861', 2, NULL),
-(96, '', '0031953259', 'bJgK3Y78', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NURUL BADRIYAH', NULL, 'SMAN 5 TUBAN', '083119676736', 2, NULL),
-(97, '', '0024350195', 'uUyhCLEn', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PUTRI WEGA NADIA TRISNA', NULL, 'SMAN 5 TUBAN', '089508765095', 2, NULL),
-(98, '', '0024698174', 'xTg7ZWlp', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'QONIA DEVA ERLIANINGRAT', NULL, 'SMAN 5 TUBAN', '082335594310', 2, NULL),
-(99, '', '0027157778', 'bgCx7lNc', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Ratna Afidatul Fara', NULL, 'SMAN 5 TUBAN', '085702537446', 2, NULL),
-(100, '', '0031951667', 'QVCy3cHp', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RIZAL AHMAD FAOZI', NULL, 'SMAN 5 TUBAN', '082256453170', 1, NULL),
-(101, '', '0031816224', 'QGBar3wE', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SANTIAGO TEDDY PRAMANA', NULL, 'SMAN 5 TUBAN', '085895233297', 1, NULL),
-(102, '', '0031953489', 'HAyKT2IB', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SITI HERDIANA PUTRI', NULL, 'SMAN 5 TUBAN', '082228437104', 2, NULL),
-(103, '', '0030751508', 'iReLxq9H', 'tahtajimmy55@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TAHTA JIMMY SYAHRUL PUTRA', NULL, 'SMAN 5 TUBAN', '085816835499', 1, NULL),
-(104, '', '0030376337', '1Wxqch9E', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'VALDY TRI MAHARDIKA PRATAMA', NULL, 'SMAN 5 TUBAN', '085711944655', 1, NULL),
-(105, '', '0034502535', 'tLlswNJv', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ACHMAD FEBRYAN NAUFAL NUGROHO', NULL, 'SMAN 5 TUBAN', '081323935603', 1, NULL),
-(106, '', '0026416949', 'SMh1bgQ9', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANASTASYA ANITA', NULL, 'SMAN 5 TUBAN', '08883121441', 2, NULL),
-(107, '', '0025495253', '3vfR9JSH', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'APRILLIA WULANDARI', NULL, 'SMAN 5 TUBAN', '081999750512', 2, NULL),
-(108, '', '0033147858', 'LZ9kSODP', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BHENAM BIMANTORO HADI', NULL, 'SMAN 5 TUBAN', '0895396461090', 1, NULL),
-(109, '', '0034534844', 'OJxsRS8h', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BUNGA MAHARANI', NULL, 'SMAN 5 TUBAN', '083849315708', 2, NULL),
-(110, '', '0038794410', 'Ssxr32W8', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DANIAR RICO ROHANSYAH', NULL, 'SMAN 5 TUBAN', '082245863639', 1, NULL),
-(111, '', '0020642126', 'ZmVn0K9D', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DELLA PUTRI DINANTI', NULL, 'SMAN 5 TUBAN', '083852528696', 2, NULL),
-(112, '', '0026038622', 'H3kJqtSB', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIAH AYU OKTAFIANTI', NULL, 'SMAN 5 TUBAN', '085708343889', 2, NULL),
-(113, '', '0025496354', '5914FTZa', 'dika.redi17@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIKA REDI AGISTA', NULL, 'SMAN 5 TUBAN', '081336064421', 1, NULL),
-(114, '', '0025497652', 'jOE1FPGz', 'dwisemart980@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DWI SUMARTINI', NULL, 'SMAN 5 TUBAN', '0895320549448', 2, NULL),
-(115, '', '0031952473', 'VlXSu8vp', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ELVIN MAHMUDI', NULL, 'SMAN 5 TUBAN', '083831130822', 1, NULL),
-(116, '', '0025397233', '0angEVSo', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Govinda Martika Cahya Yasinta', NULL, 'SMAN 5 TUBAN', '082140690303', 2, NULL),
-(117, '', '0029892360', 'jznHMwqi', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HENY APRILIA PUSPITASARI', NULL, 'SMAN 5 TUBAN', '083114643786', 2, NULL),
-(118, '', '0025396832', 'hPNRE2jc', 'fadlimeno@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HIMAWAN DA I KHOLIFUL FADLI', NULL, 'SMAN 5 TUBAN', '085895861767', 1, NULL),
-(119, '', '0031816539', '2N9G63Ob', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Ilham Ananda Putra', NULL, 'SMAN 5 TUBAN', '089637655644', 1, NULL),
-(120, '', '0025496221', 'WutPH7DB', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ITA SETIAWATI', NULL, 'SMAN 5 TUBAN', '0895803286439', 2, NULL),
-(121, '', '0017214703', 'ak7LA6Zx', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'M. INDRA WIJAYA', NULL, 'SMAN 5 TUBAN', '081999641482', 1, NULL),
-(122, '', '0034461660', 'KSGOh9aW', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD', NULL, 'SMAN 5 TUBAN', '083833328881', 1, NULL),
-(123, '', '0024352568', 'UCViRZXm', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD ALFAN AZIZY', NULL, 'SMAN 5 TUBAN', '083139795895', 1, NULL),
-(124, '', '0024698221', 'a3Kcx0nq', 'amien.jaya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD BRAMUDYA ALDI BAHTIAR', NULL, 'SMAN 5 TUBAN', '085259399477', 1, NULL),
-(125, '', '0029896477', 'bieFl1y0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NIKO HENDRA SAPUTRA', NULL, 'SMAN 5 TUBAN', '085606963352', 1, NULL),
-(126, '', '0024375504', '7Xk2FniI', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NIRWATITAH PUTRA CAHYA LINTANG', NULL, 'SMAN 5 TUBAN', '089652163407', 1, NULL),
-(127, '', '0031951260', 'Q2OSEnaU', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Nurul Anisah', NULL, 'SMAN 5 TUBAN', '0881026567659', 2, NULL),
-(128, '', '0017733715', 'm0rTvejY', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PURWANTI', NULL, 'SMAN 5 TUBAN', '083130052308', 2, NULL),
-(129, '', '0024352625', 'o0FX7KP2', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PUTRI AULIA PRISCA DEVITASARI', NULL, 'SMAN 5 TUBAN', '085773072178', 2, NULL),
-(130, '', '0014841129', 'ylf4skQr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'REYHAN PRAKOSO SAKTI', NULL, 'SMAN 5 TUBAN', '081259747292', 1, NULL),
-(131, '', '0024698010', 'qExkYOXH', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RIZKY SETYA WIHATAMA', NULL, 'SMAN 5 TUBAN', '089699254600', 1, NULL),
-(132, '', '0014892618', '2RUn5gJC', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ROYYAN AJI SETYAWAN', NULL, 'SMAN 5 TUBAN', '085335274929', 1, NULL),
-(133, '', '0031952351', 'IBaDtgRz', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Siti Nur Hasanah', NULL, 'SMAN 5 TUBAN', '085733193297', 2, NULL),
-(134, '', '0028986478', 'l78xUNsG', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WINDY OKTAVIA EKA PUTRI', NULL, 'SMAN 5 TUBAN', '089508786846', 2, NULL),
-(135, '', '0024375496', 'HQfR3bcC', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YESSYKA FITRIAN HARDIANA', NULL, 'SMAN 5 TUBAN', '088228319839', 2, NULL),
-(136, '', '0012840856', '2pXzo0LN', 'yogaa348@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YOGA AMIN NUR CAHYO', NULL, 'SMAN 5 TUBAN', '089523262448', 1, NULL),
-(137, '', '0025496222', '0WVILYuN', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ADHI BIMA MAHASTA RAJA', NULL, 'SMAN 5 TUBAN', '089682083879', 1, NULL),
-(138, '', '0032315744', 'VQptyGwI', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ADITA NUR KARISMAH', NULL, 'SMAN 5 TUBAN', '089513766572', 2, NULL),
-(139, '', '0031953316', 'D5O90TVa', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANISA\'U BIYUTI NAFI\'A', NULL, 'SMAN 5 TUBAN', '082264190524', 2, NULL),
-(140, '', '0024375562', 'RZwLCO3u', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BELLA ANA TASYA', NULL, 'SMAN 5 TUBAN', '0895803287988', 2, NULL),
-(141, '', '0025538146', 'wmbzeBMc', 'cahyabudi315@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CAHYA BUDI UTAMA', NULL, 'SMAN 5 TUBAN', '085850271115', 1, NULL),
-(142, '', '0024172348', '9NsyGKSh', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DWI SANTAFIANA PUTRA', NULL, 'SMAN 5 TUBAN', '089687301624', 1, NULL),
-(143, '', '0026952540', 'TO9tPYGz', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ERIEN FRIDAYANTI', NULL, 'SMAN 5 TUBAN', '089523261028', 2, NULL),
-(144, '', '0028161497', '29Gn7Uaw', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FITRA NOOR RIZKY ANWARY', NULL, 'SMAN 5 TUBAN', '085234440039', 1, NULL),
-(145, '', '0025497547', 'JP7qLVwY', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FRISCHA PUTRI DWI LESTARI', NULL, 'SMAN 5 TUBAN', '085797292951', 2, NULL),
-(146, '', '0030378906', '7wDuPaX2', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'GEARAULDEY RAHMAD DANNY', NULL, 'SMAN 5 TUBAN', '0895326070109', 1, NULL),
-(147, '', '0017219471', 'mEJsK7YD', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HAFID NUSANTIAR', NULL, 'SMAN 5 TUBAN', '0895322613116', 1, NULL),
-(148, '', '0024352578', 'BW9ApyT5', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ILHAM NUR IHSANAT', NULL, 'SMAN 5 TUBAN', '083808160214', 1, NULL),
-(149, '', '0024350190', 'TOuopHbq', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ITA UL FAIZAH AL MUTHAHARAH', NULL, 'SMAN 5 TUBAN', '081259159069', 2, NULL),
-(150, '', '0025496275', 'tk7jF3Km', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IVAN YULIANTO', NULL, 'SMAN 5 TUBAN', '089508774817', 1, NULL),
-(151, '', '0030750087', 'V5kixIjw', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IVANA ABIGAIL WELDIV SETYAWAN', NULL, 'SMAN 5 TUBAN', '081234915032', 2, NULL),
-(152, '', '0031816284', '9JHnRCVk', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Jufa Anis Nabila', NULL, 'SMAN 5 TUBAN', '088235901924', 2, NULL),
-(153, '', '0025495845', 'l7GtfTP2', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Kris Pradita Hartono Putra', NULL, 'SMAN 5 TUBAN', '085806976500', 1, NULL),
-(154, '', '0024698236', 'V4HUuESP', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MEZA SALMA AGIT R.', NULL, 'SMAN 5 TUBAN', '085781024102', 2, NULL),
-(155, '', '0025497542', 'D7jECLeJ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOHAMMAD IRWAN', NULL, 'SMAN 5 TUBAN', '085771255021', 1, NULL),
-(156, '', '0030378764', 'OrTjWIgf', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Monica Aurerilia Fernanda', NULL, 'SMAN 5 TUBAN', '081354420954', 2, NULL),
-(157, '', '0025538149', 'K4N72rsV', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NAUFAL HARITS DEWANTARA', NULL, 'SMAN 5 TUBAN', '081332896659', 1, NULL),
-(158, '', '0025496283', 'yhfOnoEA', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NOVIA DWI ROMADHONA', NULL, 'SMAN 5 TUBAN', '085784239979', 2, NULL),
-(159, '', '0012684371', 'SBImkUjs', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NYENTIK DEWI PEBRIHANTI', NULL, 'SMAN 5 TUBAN', '083102485293', 2, NULL),
-(160, '', '0024698300', 'ATsFeD2f', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'OKTA SITI NURCOLIFAH', NULL, 'SMAN 5 TUBAN', '085784069930', 2, NULL),
-(161, '', '0036446184', 'KWLAegiE', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RACHMAD YOGA DWIYONO NUR MUSTIKA', NULL, 'SMAN 5 TUBAN', '081249699073', 1, NULL),
-(162, '', '0025497538', '4Rb2fVqj', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'REVINA ARMEILIA', NULL, 'SMAN 5 TUBAN', '085235714925', 2, NULL),
-(163, '', '0025397234', 'KNIQCBjv', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SITI TUMAMAH NABILAH', NULL, 'SMAN 5 TUBAN', '087760461958', 2, NULL),
-(164, '', '0024063368', 'GHIWi7RJ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SUDENDY KRISNA JULIANTO', NULL, 'SMAN 5 TUBAN', '081332896404', 1, NULL),
-(165, '', '0025318809', '3KDevZGJ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SYAFIRA ALMAS SANIA', NULL, 'SMAN 5 TUBAN', '085731505197', 2, NULL),
-(166, '', '0024619087', 'XfDFy62T', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TUTIK NOVIANA AMANDA RAMADANI', NULL, 'SMAN 5 TUBAN', '089699211313', 2, NULL),
-(167, '', '0023651521', 'e2qYQuSJ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'VERI IRAWAN', NULL, 'SMAN 5 TUBAN', '081233401377', 1, NULL),
-(168, '', '0038490859', 'EzlngbsY', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YOGHA PRASETIYA TAMA', NULL, 'SMAN 5 TUBAN', '083119036912', 1, NULL),
-(169, '', '0032592236', 'R3q4fX7L', 'adelyaova4@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ADELYA OKTAFIA ARDA', NULL, 'SMA Negeri 1 Tuban', '085649183958', 2, NULL),
-(170, '', '0024698185', 'exhJrycP', 'dianwachid46@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ADINDA SALSABILA PUTRI S.', NULL, 'SMA Negeri 1 Tuban', '0895379433223', 2, NULL),
-(171, '', '0030752135', 'egXpuFcK', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AHMAD NAUFAL TSANI AZIZY', NULL, 'SMA Negeri 1 Tuban', '081999268850', 1, NULL),
-(172, '', '0041595139', 'GiW4rPXq', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AHMAD NURAZKY AJRI', NULL, 'SMA Negeri 1 Tuban', '088235482193', 1, NULL),
-(173, '', '0024574470', 'nSNmkh59', 'jkt48yupii@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AHMAD ZULVIKAR HANDRIAWAN', NULL, 'SMA Negeri 1 Tuban', '081336946602', 1, NULL),
-(174, '', '0038234565', 'gFXxc4vb', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANANDA RAHMAH YULIANA PUTRI', NULL, 'SMA Negeri 1 Tuban', '082259531668', 2, NULL),
-(175, '', '0040414868', 'F79LZQvl', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANGELA DARLENE SUSANTO', NULL, 'SMA Negeri 1 Tuban', '0822111824183', 2, NULL),
-(176, '', '0024350199', 'PsDrO2o5', 'Anggitatrs@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANGGITA TRIAS YUNIAR WULANDARI', NULL, 'SMA Negeri 1 Tuban', '089529719625', 2, NULL),
-(177, '', '0024352530', 'KmwJjszp', 'dwivikasari@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DWI VIKASARI', NULL, 'SMA Negeri 1 Tuban', '0895326070305', 2, NULL),
-(178, '', '0024618120', 'JYbEPoyW', 'fadhelahmadassiddiqi@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FADHEL AHMAD ASSIDDIQI', NULL, 'SMA Negeri 1 Tuban', '081249337618', 1, NULL),
-(179, '', '0024618113', '5oRBpj6T', 'farifkidava@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FARIFKI DAVA NURHAWALI', NULL, 'SMA Negeri 1 Tuban', '085701134198', 1, NULL),
-(180, '', '0031480673', 'S3pgUXGq', 'Feb.febriana.febi@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FEBRIANA', NULL, 'SMA Negeri 1 Tuban', '082335190351', 2, NULL),
-(181, '', '0024350301', 'NOteP40H', 'hfelanza@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FELANZA HERMA DESTIA', NULL, 'SMA Negeri 1 Tuban', '085804411783', 2, NULL),
-(182, '', '0026417180', 'rUa7K0QS', 'Ydwi0482@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FITRI DWI JAYANTI', NULL, 'SMA Negeri 1 Tuban', '081357628353', 2, NULL),
-(183, '', '0030811152', 'UwCgYIrT', 'hawakurnia2003@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HAWA KURNIA AWWALINA', NULL, 'SMA Negeri 1 Tuban', '082140304327', 2, NULL),
-(184, '', '0033758600', 'th42kXCS', 'Ijazatulmucholidah@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IJAZATUL MUCHOLIDAH', NULL, 'SMA Negeri 1 Tuban', '081234051582', 2, NULL),
-(185, '', '0039703479', 'K79HX4un', 'ikanuraulia@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IKA NUR AULIA PUTRI RAHMAWATI', NULL, 'SMA Negeri 1 Tuban', '08563160501', 2, NULL),
-(186, '', '0032731596', '3pD68VZc', 'indrikhoir@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'INDRI NAUWALAL KHOIR', NULL, 'SMA Negeri 1 Tuban', '085852128284', 2, NULL),
-(187, '', '0030376247', 'HG54OpZw', 'insanialfinurmasitoh@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'INSANI ALFINUR MASITHOH', NULL, 'SMA Negeri 1 Tuban', '089664800401', 2, NULL),
-(188, '', '0033838047', 'YCSnvXR0', 'Iisnatulagil0929@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ISNATUL AGIL KINANTI', NULL, 'SMA Negeri 1 Tuban', '085888074824', 2, NULL),
-(189, '', '0024618077', 'wfY6KsIC', 'kafitnurrohman@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Kafit Nur Rohman', NULL, 'SMA Negeri 1 Tuban', '082335189359', 1, NULL),
-(190, '', '0024574539', 'P9g3k1BZ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Lailatul Arifah', NULL, 'SMA Negeri 1 Tuban', '085731395821', 1, NULL),
-(191, '', '0024670055', '2sZ5O1Hr', 'merylwillya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MERYL WILLYA FADHILATIN', NULL, 'SMA Negeri 1 Tuban', '085646949347', 2, NULL),
-(192, '', '0031951398', 'vlui5YcZ', 'miskhaainunnisa@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Miskha Ainun Nisa', NULL, 'SMA Negeri 1 Tuban', '085259163226', 2, NULL),
-(193, '', '0030811160', 'pZSThbMe', 'ARVIAN.RAFSYAJANI@GMAIL.COM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOCHAMMAD ARVIAN RAFSYAJANI', NULL, 'SMA Negeri 1 Tuban', '082131208388', 1, NULL),
-(194, '', '0030376390', 'DnIpstPk', 'Crozzoco99@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD FADLI FIRMANSYAH', NULL, 'SMA Negeri 1 Tuban', '082141359993', 1, NULL),
-(195, '', '0025336047', 'euH7WI8N', 'nadilayunitam@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NADILA YUNITA MAHARANI', NULL, 'SMA Negeri 1 Tuban', '08816339860', 2, NULL),
-(196, '', '0026692431', 'J7qhcm4n', 'safiranurlaily@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SAFIRA NURLAILY', NULL, 'SMA Negeri 1 Tuban', '081999750298', 2, NULL),
-(197, '', '0029501324', 'FGlJDQ9A', 'andrianoseftyan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Seftyan Andriyano Nugraha', NULL, 'SMA Negeri 1 Tuban', '085804411072', 1, NULL),
-(198, '', '0024670042', 'i5pjaVyR', 'syafiranabila2718@gmil.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SYAFIRA NABILA ZAHRA', NULL, 'SMA Negeri 1 Tuban', '081335211719', 2, NULL),
-(199, '', '0024618109', '5qHIfAa4', 'Syahrizalp25@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Syahrizal Putra Lorenza', NULL, 'SMA Negeri 1 Tuban', '081249273031', 1, NULL),
-(200, '', '0030811180', '49AbD5fi', 'tfarrahatni@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TALINA FARRAHATNI', NULL, 'SMA Negeri 1 Tuban', '089622681881', 2, NULL),
-(201, '', '0030376305', 'nzlPQv4T', 'hayuningtyastalisa@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TALISA HAYUNINGTYAS', NULL, 'SMA Negeri 1 Tuban', '081235377371', 2, NULL),
-(202, '', '0024618125', 'BARn60S3', 'vioaurel99@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Vio Aurel Gracesyana Prasetyani', NULL, 'SMA Negeri 1 Tuban', '081216958750', 2, NULL),
-(203, '', '0024384548', 'bh0iVXqU', 'wahjogs@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WAHYU HENDRAWAN', NULL, 'SMA Negeri 1 Tuban', '082141126315', 1, NULL),
-(204, '', '0030416203', 'F6rGDlJ7', 'bakaturt12@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALDY DWI ARSYA AMANU', NULL, 'SMA Negeri 1 Tuban', '081249611476', 1, NULL),
-(205, '', '0002943642', 'jKu5lOrc', 'Anandakhoirunnisa103@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANANDA KHOIRUNNISA', NULL, 'SMA Negeri 1 Tuban', '089509680304', 2, NULL),
-(206, '', '0024698055', 'P0vSKyOC', 'dedefarhans96@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANISA RATNA SARI', NULL, 'SMA Negeri 1 Tuban', '083831135715', 2, NULL),
-(207, '', '0026157023', 'KDMgXvUl', 'augiesubarkah1422@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AUGIE SUBARKAH', NULL, 'SMA Negeri 1 Tuban', '0895627103555', 1, NULL),
-(208, '', '0034734814', 'ts8NVv5u', 'bayuss8787@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BAYU ANGGARA RIZQYTA PUTRA', NULL, 'SMA Negeri 1 Tuban', '082140417300', 1, NULL),
-(209, '', '0030376314', 'Vo8O6Mzj', 'Daniartbn1@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DANIAR CASTA CABASE', NULL, 'SMA Negeri 1 Tuban', '087861080544', 2, NULL),
-(210, '', '0024618123', 'UEpj0sfc', 'Dheanitaputri4@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DHEANITA PUTRI RAMADHANI', NULL, 'SMA Negeri 1 Tuban', '085235482442', 2, NULL),
-(211, '', '0030376334', 'XBWpgSza', 'dianputrisaraswati00@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIAN PUTRI SARASWATI', NULL, 'SMA Negeri 1 Tuban', '087760267183', 2, NULL),
-(212, '', '0024350337', 'JOY2qhmP', 'tachibanaken57@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ERLIANA EKA SUGIANTI', NULL, 'SMA Negeri 1 Tuban', '085608638112', 2, NULL),
-(213, '', '0024618093', 'KxXf1lkC', 'averachma29@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'EVA RACHMA ASYARI', NULL, 'SMA Negeri 1 Tuban', '083192777161', 2, NULL),
-(214, '', '0024618121', 'zyQVNevi', 'fadhilvario150@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FADHIL AHMAD ASSIDDIQI', NULL, 'SMA Negeri 1 Tuban', '081231928660', 1, NULL),
-(215, '', '0033753466', 'P9aQHBpM', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Fangga Malik Alfian', NULL, 'SMA Negeri 1 Tuban', '085812097715', 1, NULL),
-(216, '', '0030811181', 'ZO5Tc2Ce', 'Ferdyanmfalah@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FERDYAN MOHAMMAD FALAH', NULL, 'SMA Negeri 1 Tuban', '0896346131710', 1, NULL),
-(217, '', '0025537474', 'a6kIOtZl', 'finnaamaliyah4@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FINNA IKHLASUL AMALIYAH', NULL, 'SMA Negeri 1 Tuban', '0895336134889', 2, NULL),
-(218, '', '0024670054', '8wt1poUT', 'Hanin.faradilla@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HANINDYA FARADILLA PUTRI', NULL, 'SMA Negeri 1 Tuban', '082244748886', 2, NULL),
-(219, '', '0033758265', 'e952tMDw', 'intannila88@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'INTAN NILA NURJANAH', NULL, 'SMA Negeri 1 Tuban', '081231550991', 2, NULL),
-(220, '', '0025537486', 'Z94ayPRg', 'mahardikap70@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KHABIB MUHAMMAD AL-AZKA', NULL, 'SMA Negeri 1 Tuban', '083832347847', 1, NULL),
-(221, '', '0024350352', 'vmVTIp4D', 'khansaimut17@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KHANSA FAKHIRA BUDIANTO', NULL, 'SMA Negeri 1 Tuban', '082245541702', 2, NULL),
-(222, '', '0024350233', 'AmU76Rvr', 'krisnaarifudin6@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Krisna Arifudin', NULL, 'SMA Negeri 1 Tuban', '087859916501', 1, NULL),
-(223, '', '0026038551', 'Tvm5PqIl', 'lucyariani@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Lucy Ariani', NULL, 'SMA Negeri 1 Tuban', '085648620562', 2, NULL),
-(224, '', '0032397444', 'mkGsHvqA', 'dikri.ibad278@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'M. DIKRI KHOIRUL IBAD', NULL, 'SMA Negeri 1 Tuban', '082234921841', 1, NULL),
-(225, '', '0021284256', 'lr6m59Yh', 'akmalinzaky373@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOH. AKMAL INZAKI', NULL, 'SMA Negeri 1 Tuban', '081229409087', 1, NULL),
-(226, '', '0025538153', '3eRvqr4c', 'fawwazul10@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD FAWWAZUL BARIQ', NULL, 'SMA Negeri 1 Tuban', '081231567791', 1, NULL),
-(227, '', '0030376168', 'goQlYjrM', 'rizkyaw3001@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD RIZKY ADWITYA WIBOWO', NULL, 'SMA Negeri 1 Tuban', '081355752168', 1, NULL),
-(228, '', '0024698172', 'mB7H1gw2', 'nadhilashelfia23@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NADHILA SHELFIA FIRIDZKY', NULL, 'SMA Negeri 1 Tuban', '082234502277', 2, NULL),
-(229, '', '0028317190', 'AkW7hYSJ', 'ochanauza22@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NAUZA HAFIDHA ANSHORI', NULL, 'SMA Negeri 1 Tuban', '085853035166', 2, NULL),
-(230, '', '0030376255', 'ZUilTC2F', 'pradiniarizky@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PRADINIA RIZKY SANTOSO', NULL, 'SMA Negeri 1 Tuban', '082245746388', 2, NULL),
-(231, '', '0025497537', 'LcrmIqOS', 'aurielrisna@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RISNA AURIEL EKA PUTRI', NULL, 'SMA Negeri 1 Tuban', '081515215302', 2, NULL),
-(232, '', '0024698146', 'TJ97Rzeg', 'sherin@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHERIN MAULINA', NULL, 'SMA Negeri 1 Tuban', '082141338852', 2, NULL),
-(233, '', '0032592071', 'BA5oxG9f', 'tasyabekikok@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TASYA FATMA YANTI KHOIRINA', NULL, 'SMA Negeri 1 Tuban', '085749460197', 2, NULL),
-(234, '', '0024698218', 'a6tkoepv', 'Vivianahkm@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'VIVIANA AL HAKIM', NULL, 'SMA Negeri 1 Tuban', '081252144020', 2, NULL),
-(235, '', '0025479860', 'ZW3wha5S', 'tisaero77@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WAHYU WIDYASTUTI', NULL, 'SMA Negeri 1 Tuban', '081336734489', 2, NULL),
-(236, '', '0025538169', 'pzUxt3j9', 'zifamuza@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ZIFA MUZADIDA D\'AMANO', NULL, 'SMA Negeri 1 Tuban', '08970274164', 2, NULL),
-(237, '', '0033754044', 'qGcRfipZ', 'egaadela@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ADELA OGYA GAVRILA', NULL, 'SMA Negeri 1 Tuban', '085156869141', 2, NULL),
-(238, '', '0032879052', '2InkR3Wq', 'ratingnuansah@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AHMAD RATING NUANSYAH', NULL, 'SMA Negeri 1 Tuban', '081232098019', 1, NULL),
-(239, '', '0030376301', 'RmVBoaUs', 'alfinahadaya3331@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALFINA SHOFIE HADAYA', NULL, 'SMA Negeri 1 Tuban', '081259170512', 2, NULL),
-(240, '', '0024587185', 'z7Ap58cW', 'asnoveraf@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANGGIE SHINTA NOVERA FITRI', NULL, 'SMA Negeri 1 Tuban', '0895602992478', 2, NULL),
-(241, '', '0034483717', '4mBSIUcL', 'athiranur12042017@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ATHIRA NUR SYAHIDA INSANI', NULL, 'SMA Negeri 1 Tuban', '08885057871', 2, NULL),
-(242, '', '0033176470', 'XCyKPH2n', 'aadilla84@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Aulia Asha Adilla', NULL, 'SMA Negeri 1 Tuban', '081332664881', 2, NULL),
-(243, '', '0024350329', 'NW7w5z20', 'Chyntia809@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CHYNTIA AMALIA', NULL, 'SMA Negeri 1 Tuban', '089637658233', 2, NULL),
-(244, '', '0024350208', 'Q0KbMfVT', 'Divahernanda199@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIVA HERNANDA PUTRI PARASITA', NULL, 'SMA Negeri 1 Tuban', '085604451397', 2, NULL),
-(245, '', '0026353976', 'lPDbMLXS', 'ermiku02@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ERMI KUSUMA NINGRUM', NULL, 'SMA Negeri 1 Tuban', '082247342174', 2, NULL),
-(246, '', '0034849248', 'PQhFNloS', 'evansur19@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'EVAN SURYAJAYA', NULL, 'SMA Negeri 1 Tuban', '085812455932', 1, NULL),
-(247, '', '0025336067', 'CmcvrBoL', 'fadindaza@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FADINDA IHZA WAHYUNINGTYAS', NULL, 'SMA Negeri 1 Tuban', '081230508489', 2, NULL),
-(248, '', '0024352524', 'vxAkJsMa', 'felixrom72@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FELIX ROMANSYAH', NULL, 'SMA Negeri 1 Tuban', '089509261807', 1, NULL),
-(249, '', '0030811186', 'NuOnvt5w', 'adelliahasna@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HASNA HAFIDHAH ADELLIA PUTRI', NULL, 'SMA Negeri 1 Tuban', '082229013450', 2, NULL),
-(250, '', '0024698168', 'VqFXZt8K', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IZZA SHABRINA AMALIA', NULL, 'SMA Negeri 1 Tuban', '085733414831', 2, NULL),
-(251, '', '0028768560', 'twLhn9BG', 'Lumingkewaskrisye@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Krisye Jeldi Lumingkewas', NULL, 'SMA Negeri 1 Tuban', '085230602917', 1, NULL),
-(252, '', '0025494570', 'VAF6Ns57', 'mariskariris3811@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MARISKA DEVI NOVITA ANDRIYANI', NULL, 'SMA Negeri 1 Tuban', '085701133952', 2, NULL),
-(253, '', '0030378769', 'WY08aqOy', 'mikechristopher06@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MICHAEL CHRISTOPHER', NULL, 'SMA Negeri 1 Tuban', '082140663340', 1, NULL),
-(254, '', '0024697995', 'vof49n1V', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOCH. SEPTIAN EDO DINATA', NULL, 'SMA Negeri 1 Tuban', '089679580214', 1, NULL),
-(255, '', '0029114494', 'vHNw54Qe', 'dzikrullisani9@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOCHAMAD DZIKRUL LISANI', NULL, 'SMA Negeri 1 Tuban', '081554554547', 1, NULL),
-(256, '', '0024618105', 'ObaB109U', 'nabilamartaniaa@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Nabila Martania Amalia', NULL, 'SMA Negeri 1 Tuban', '081330564242', 2, NULL),
-(257, '', '0031816703', 'cNpZ1iIS', 'nava.devokito3@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NADIVA PUTRI AGUNG', NULL, 'SMA Negeri 1 Tuban', '08124954535', 2, NULL),
-(258, '', '0032592034', '6YzMubi4', 'nindytri@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NINDY TRI SEKAR AYUNINGGATI HARTONO', NULL, 'SMA Negeri 1 Tuban', '082234676292', 2, NULL),
-(259, '', '0014891189', 'Gb1fveY8', 'nuhrulshofiksmansaips3@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NUHRUL SHOFIK', NULL, 'SMA Negeri 1 Tuban', '087757382507', 1, NULL),
-(260, '', '0024350384', 'VvqoTpte', 'bilarafida1112@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RAFIDA ARSABILILLAH', NULL, 'SMA Negeri 1 Tuban', '085732902276', 2, NULL),
-(261, '', '0024350197', 'R3LiVb6l', 'rafliramadhan972@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RAFLI REZKY RAMADHAN', NULL, 'SMA Negeri 1 Tuban', '082264177785', 1, NULL),
-(262, '', '0034494891', 'RefCT8y0', 'ajiw9616@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RAMADHANI PRASETYAWAN', NULL, 'SMA Negeri 1 Tuban', '085730927954', 1, NULL),
-(263, '', '0024697967', 'K1uWk2mM', 'raynaldigunawan83@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RAYNALDI GUNAWAN', NULL, 'SMA Negeri 1 Tuban', '081335248694', 1, NULL),
-(264, '', '0024618119', '249WxHM8', 'riza.chrysta@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Riza Chrysta Oktavianty', NULL, 'SMA Negeri 1 Tuban', '085708877996', 2, NULL),
-(265, '', '0022862521', 'JnHaAwPK', 'rizamzaragouza@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RIZKI AMRULLAH', NULL, 'SMA Negeri 1 Tuban', '085733378108', 1, NULL),
-(266, '', '0031935503', 'CNWlZgUc', 'shelarohmatul01@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHELA ROHMATUL ALIYAH', NULL, 'SMA Negeri 1 Tuban', '085236279773', 2, NULL),
-(267, '', '0024574483', 'prI7cliX', 'taliyaaf01@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Taliya Amalina Fitroh', NULL, 'SMA Negeri 1 Tuban', '081277030885', 2, NULL),
-(268, '', '0026692419', 'JmTZbcHQ', 'tiaraarna27@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TIARA MARTHA ASNADHINATA', NULL, 'SMA Negeri 1 Tuban', '08998822664', 2, NULL),
-(269, '', '0024619082', '1V2ixYb5', 'yorisaacrl@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YORISA CHRISTAFILIA', NULL, 'SMA Negeri 1 Tuban', '087765147495', 2, NULL),
-(270, '', '0030811156', '8pG0jHxY', 'adheliaalisyah@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ADHELIA PUTRI ALISYAH', NULL, 'SMA Negeri 1 Tuban', '08124946688', 2, NULL),
-(271, '', '0033194935', 'l4ceW0Yb', 'arizqi.mubarok@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AHMAD RIZQI MUBAROK', NULL, 'SMA Negeri 1 Tuban', '085908763409', 1, NULL),
-(272, '', '0026353936', 'FIMXKjJs', 'alyadimnaty@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALYA WAHYU RAHMA DINANTY', NULL, 'SMA Negeri 1 Tuban', '085790793161', 2, NULL),
-(273, '', '0024523695', 'hqcViIBR', 'amaliarosida384@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AMALIA BATUL ROSYIDAH', NULL, 'SMA Negeri 1 Tuban', '085334543315', 2, NULL),
-(274, '', '0024352541', 'jOz4hFox', 'rekzalaya11@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANDREAN REKZALAYA JATMIKA', NULL, 'SMA Negeri 1 Tuban', '0895380403200', 1, NULL),
-(275, '', '0026038279', 'zYZbyDtp', 'anggunwidyarti304@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANGGUN WIDYARTI', NULL, 'SMA Negeri 1 Tuban', '085746136986', 2, NULL),
-(276, '', '0030676048', 'IqkL0Jyt', 'akuarbi06@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ARBI HASANUN JIDDAN', NULL, 'SMA Negeri 1 Tuban', '081252802610', 1, NULL),
-(277, '', '0024350189', 'XmcuQlB4', 'Rinayukana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ATSIILAH DRRIAYUKANA NISRIINAA', NULL, 'SMA Negeri 1 Tuban', '0895389033590', 2, NULL);
-INSERT INTO `users_generate` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
-(278, '', '0033838029', 'Zj3CG21r', 'Ayu.d3r@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AYU ZULVA WIDYAWATI', NULL, 'SMA Negeri 1 Tuban', '081229871391', 2, NULL),
-(279, '', '0024350423', 'pTO9ehw2', 'nessabernessa@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BERNESSA GILDA FITRIANISA', NULL, 'SMA Negeri 1 Tuban', '081332954674', 2, NULL),
-(280, '', '0032877662', 'omYiGXan', 'akbarbima697@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BRILLIANT AKBAR BIMA NUSANTARA', NULL, 'SMA Negeri 1 Tuban', '089530507537', 1, NULL),
-(281, '', '0024618069', 'y1OVfZ7t', 'calvinmaulana10@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CALVIN MAULANA DWI RANGGA PUTRA', NULL, 'SMA Negeri 1 Tuban', '0895396342041', 1, NULL),
-(282, '', '0025496207', '3mRQebZD', 'danicarahmawati@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Danica Fitria Putri Rahmawati', NULL, 'SMA Negeri 1 Tuban', '081450207917', 2, NULL),
-(283, '', '0031719731', 'ml4pMRIz', 'alyaskar6@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DHIYA\'UL ALYA\'SKAR PUTRI', NULL, 'SMA Negeri 1 Tuban', '089530432339', 2, NULL),
-(284, '', '0026038544', 'f509k1VF', 'didinoktavia@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIDIN OKTAVIA PUTRA', NULL, 'SMA Negeri 1 Tuban', '082338568139', 1, NULL),
-(285, '', '0024350206', 'Lrx6M3SQ', 'elyaagustania.ea@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ELYA AGUSTANIA', NULL, 'SMA Negeri 1 Tuban', '08984803054', 2, NULL),
-(286, '', '0030378887', 'Ti0vb2Mu', 'Chriznawan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FERRY FERDYANSYAH', NULL, 'SMA Negeri 1 Tuban', '0895386620300', 1, NULL),
-(287, '', '0025494839', 'gQABymZi', 'laili7089@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HIDAYAH NURLAILI', NULL, 'SMA Negeri 1 Tuban', '081358242018', 2, NULL),
-(288, '', '0030416204', 'Jtp7WbPD', 'ridhaw054@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IKA RAHMA RIDHAWATI', NULL, 'SMA Negeri 1 Tuban', '081336335026', 2, NULL),
-(289, '', '0032730667', '10TW86Xi', 'izzatsaltsamaya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Izzatsaltsa Maya Azmi', NULL, 'SMA Negeri 1 Tuban', '081234855042', 2, NULL),
-(290, '', '0025655685', '0Jeljt84', 'Izzul.fahma@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IZZUL FAHMA ARROSYIDA', NULL, 'SMA Negeri 1 Tuban', '085733209305', 2, NULL),
-(291, '', '0024375472', 'oWnPelxB', 'diyyawulan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MAHDIYYASIH SUSILOWULAN MUMPUNI', NULL, 'SMA Negeri 1 Tuban', '082234627678', 2, NULL),
-(292, '', '0024352422', '5x2jTiYQ', 'becitut@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD RAIHAN ALFIRDAUS', NULL, 'SMA Negeri 1 Tuban', '082131794319', 1, NULL),
-(293, '', '0039853078', 'oM80TeYW', 'nauraputrisvn@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NAURA PUTRI SAVINA', NULL, 'SMA Negeri 1 Tuban', '085155288664', 2, NULL),
-(294, '', '0025475461', 'y6UpwCT0', 'nur02isnaini@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NUR LAILI ISNAINIYAH', NULL, 'SMA Negeri 1 Tuban', '082245748893', 2, NULL),
-(295, '', '0024765182', 'uoOn9mvw', 'ayurap2@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Puji Rahayu', NULL, 'SMA Negeri 1 Tuban', '08121614803', 2, NULL),
-(296, '', '0020323039', 'qv4mgI3w', 'djarimbah12@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RUSYDA SABILAN', NULL, 'SMA Negeri 1 Tuban', '081336729243', 2, NULL),
-(297, '', '0025336057', '5DeR2Wyj', 'Silviaeka554@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Silvia Eka Oktaviana', NULL, 'SMA Negeri 1 Tuban', '085231098606', 2, NULL),
-(298, '', '0025245542', 'mKPwsuoe', 'shofiaja763@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SITI NURUS SHOFIYAH', NULL, 'SMA Negeri 1 Tuban', '08979848411', 2, NULL),
-(299, '', '0029679690', '63MxpygX', 'sofyanaffandi03044@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Sofyan Affandi', NULL, 'SMA Negeri 1 Tuban', '085231352484', 1, NULL),
-(300, '', '0024352591', '5rifLoG6', 'habibganteng53@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SULTON HABIB MUBAROK', NULL, 'SMA Negeri 1 Tuban', '089523261668', 1, NULL),
-(301, '', '0033193906', 'xe4JkWrB', 'wahyuningsih.hidayatullah03@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Wahyuningsih Hidayatullah', NULL, 'SMA Negeri 1 Tuban', '089649810249', 2, NULL),
-(302, '', '0033809240', 'un8VWNp7', 'wandaellya32@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WANDA PRITTY ELLYA', NULL, 'SMA Negeri 1 Tuban', '085641992126', 2, NULL),
-(303, '', '0030719819', 'O6QwDCaF', 'zahrabila029@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Zahra Sania Salsabila', NULL, 'SMA Negeri 1 Tuban', '0881036520339', 2, NULL),
-(304, '', '0024350327', 'waWN7D68', 'arifnoval2002@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ACHMAD ARIF NAOVAL LAGUNA', NULL, 'SMA Negeri 1 Tuban', '085714034818', 1, NULL),
-(305, '', '0033838033', 'tIAEBLPn', 'aprilianaagata15@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'APRILIANA NOVIA AGATA', NULL, 'SMA Negeri 1 Tuban', '082259809239', 2, NULL),
-(306, '', '0036440167', 'ROv6sNZu', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BINTANG AVERUSIYA MUHAMMAD', NULL, 'SMA Negeri 1 Tuban', '085815532026', 1, NULL),
-(307, '', '0024698151', 'n4MVixj2', 'chairrini8a@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CHAIRRINI NABIILAH ANGEMBANI', NULL, 'SMA Negeri 1 Tuban', '085886662452', 2, NULL),
-(308, '', '0024350370', 'bCB1rtX0', 'yewmimawidyanti@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CINTIA YEMIMA WIDYANTI', NULL, 'SMA Negeri 1 Tuban', '081332032816', 2, NULL),
-(309, '', '0024350306', 'GYrOHAJj', 'cuttasya45@yahoo.gmail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CUT TASYA NUR LAYLITA', NULL, 'SMA Negeri 1 Tuban', '085899508428', 2, NULL),
-(310, '', '0024698284', '40waWJkc', 'davidce08@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DAVID EKA RIZKI AGUNG DARMAWAN', NULL, 'SMA Negeri 1 Tuban', '082145142190', 1, NULL),
-(311, '', '0010368679', 'TqIeWXA1', 'Ditasetya9090@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DITA TRI SETYA', NULL, 'SMA Negeri 1 Tuban', '085785478941', 1, NULL),
-(312, '', '0027236593', 'hm7D1Os3', 'Elhatrimaulana90x@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ELHA TRI MAULANA', NULL, 'SMA Negeri 1 Tuban', '082140608226', 1, NULL),
-(313, '', '0031734970', 'Ecu5XeQM', 'fawnia1501@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FAWNIA ERLINDA WAHYU SABIYA ', NULL, 'SMA Negeri 1 Tuban', '08993136488', 2, NULL),
-(314, '', '0030378879', 'brWB4Gy0', 'febianaay@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FEBIANA AYU PRAMUNINGTIA', NULL, 'SMA Negeri 1 Tuban', '089643835856', 2, NULL),
-(315, '', '0024574479', '4CNwkaEO', 'fidela.icha@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FIDELA RAISSA RATNAMAYA KINANTI', NULL, 'SMA Negeri 1 Tuban', '081358282388', 2, NULL),
-(316, '', '0025396821', 'MvX0yZ8a', 'ayu352424@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ISROH DWI RAHAYU', NULL, 'SMA Negeri 1 Tuban', '081228182758', 2, NULL),
-(317, '', '0031953321', 'XcJ0kn4q', 'jayaraga21@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'JAYA RAGA WIAN PUTRA', NULL, 'SMA Negeri 1 Tuban', '083134547436', 1, NULL),
-(318, '', '0030851901', 'Y6yblOPT', 'jvwijaya.jv@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'JEREMY VICTOR WIJAYA', NULL, 'SMA Negeri 1 Tuban', '089515277453', 1, NULL),
-(319, '', '0024375465', 'eVCShKRo', 'akbar.viid@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'JUNIANTA FADILAH AKBAR', NULL, 'SMA Negeri 1 Tuban', '082140345408', 1, NULL),
-(320, '', '0020323034', 'NzfJBxvC', 'Fadilabel.mf@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'M. FADLIL FISABILILLAH', NULL, 'SMA Negeri 1 Tuban', '0895327372000', 1, NULL),
-(321, '', '0030376383', 'nIFaRtb9', 'mareliahp333@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MARELIA HANAFIANTI PUTRI', NULL, 'SMA Negeri 1 Tuban', '081252729883', 2, NULL),
-(322, '', '0024350358', 'cuEDGvR1', 'esaerlang.samodra@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD ESA ERLANG SAMODRA', NULL, 'SMA Negeri 1 Tuban', '082230047525', 1, NULL),
-(323, '', '0024670047', '61pPwyKJ', 'alfa_zulfikar24@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD ZULFIKAR ALFA RAMADHANI', NULL, 'SMA Negeri 1 Tuban', '085859810899', 1, NULL),
-(324, '', '0033758274', 'bfgepBRr', 'enhuda74@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NADHIFA AYU NABILA', NULL, 'SMA Negeri 1 Tuban', '081249661290', 2, NULL),
-(325, '', '0032876685', 'Y2ZxW4tX', 'nadiahisma21@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NADIAH ISMA HAFIZAH', NULL, 'SMA Negeri 1 Tuban', '08993989881', 2, NULL),
-(326, '', '0024350616', '2Ji4ZLl7', 'nisa.uj2014@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NISA ULFIATUL JANNAH', NULL, 'SMA Negeri 1 Tuban', '0895632432485', 2, NULL),
-(327, '', '0024698162', '5DQOVHKy', 'ranggaprasetya90@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RANGGA PRASETYA NUGRAHA', NULL, 'SMA Negeri 1 Tuban', '081264774173', 2, NULL),
-(328, '', '0025497554', 'khHjOQJ3', 'ratrirahayuwati@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RATRI RAHAYUWATI', NULL, 'SMA Negeri 1 Tuban', '085816230161', 2, NULL),
-(329, '', '0034923870', 'FujSpUML', 'shanadiya2127@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SITI HANADIYA DHARMASTUTI', NULL, 'SMA Negeri 1 Tuban', '082298123302', 2, NULL),
-(330, '', '0020323042', 'pi7lMcFS', 'soniamelda185@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SONIA IMELDA ROMPAS', NULL, 'SMA Negeri 1 Tuban', '082230576617', 2, NULL),
-(331, '', '0029894615', 'XDQP9ghi', 'talitha.rahma.sabela@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Talitha Rahma Sabela', NULL, 'SMA Negeri 1 Tuban', '085232239444', 2, NULL),
-(332, '', '0024616495', 'HPoku1Gt', 'asifatina27@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TINA ASIFATUN KASESI', NULL, 'SMA Negeri 1 Tuban', '08813102752', 2, NULL),
-(333, '', '0029614797', 'EyBzTNbc', 'rizkat@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TRYANDIKA RIZKAT PRASHODANG', NULL, 'SMA Negeri 1 Tuban', '081333483254', 1, NULL),
-(334, '', '0025495274', 'akZxRGcf', 'widayana2@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WIDAYANA TRI MEILIYA', NULL, 'SMA Negeri 1 Tuban', '082332505488', 2, NULL),
-(335, '', '0026039076', 'mszxIMc9', 'pangestiyas07@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WINDI PANGESTI KUSUMANING TIYAS', NULL, 'SMA Negeri 1 Tuban', '081227841027', 2, NULL),
-(336, '', '0024698061', 'we7SE8XU', 'zhafirahadriany11@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ZHAFIRAH NABILAH ADRIANY', NULL, 'SMA Negeri 1 Tuban', '081233681290', 2, NULL),
-(337, '', '0032397449', 'VQt36wgs', 'zulfiah.rahmawati@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ZULFIA RAHMAWATI UTAMI', NULL, 'SMA Negeri 1 Tuban', '082139728750', 2, NULL),
-(338, '', '0032331679', 'BthQZF1u', 'raihanbaihaqi90@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AHMAD RAIHAN BAIHAQI', NULL, 'SMA Negeri 1 Tuban', '081335485430', 1, NULL),
-(339, '', '0031999051', 'oRrNiSjx', 'Alfanchiks@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALFIAN EKA ADITYA', NULL, 'SMA Negeri 1 Tuban', '081234938185', 1, NULL),
-(340, '', '0032913400', 'cKvJDgAy', 'anandacaca24@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANANDA MARCELLA SALSABILLA', NULL, 'SMA Negeri 1 Tuban', '0895327084553', 2, NULL),
-(341, '', '0033053383', '9Dosmhc4', 'andreeka231@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANDRE EKA FERDIANSYAH', NULL, 'SMA Negeri 1 Tuban', '089515896944', 1, NULL),
-(342, '', '0031979575', 'pQjMRny3', 'arda.cahmontong@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ARDHA MAULANA PRAMUDIA', NULL, 'SMA Negeri 1 Tuban', '082223108988', 1, NULL),
-(343, '', '0024350214', 'RcXKvqzg', 'daffamaheswara64@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DAFFA MAHESWARA ISWIDONO', NULL, 'SMA Negeri 1 Tuban', '081216564546', 1, NULL),
-(344, '', '0017910823', 'b0QG4Tf5', 'durrotulasy@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Durrotul Asyfiya Khusnayati', NULL, 'SMA Negeri 1 Tuban', '082232905047', 2, NULL),
-(345, '', '0031951736', 'qAbc3jGe', 'Dwif25477@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DWI FITRIA RAHAYU', NULL, 'SMA Negeri 1 Tuban', '089514690549', 2, NULL),
-(346, '', '0024350375', 'oFCzDPQA', 'safa.fsrfadhila@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FADHILA SAFA RAHMADEWI', NULL, 'SMA Negeri 1 Tuban', '081216355817', 2, NULL),
-(347, '', '0025497654', 'WJpIS0xc', 'Shintafaradina713@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Fatimah Shinta Faradina', NULL, 'SMA Negeri 1 Tuban', '08977037711', 2, NULL),
-(348, '', '0031951713', 'lph7jzbm', 'Vigo.herlambang@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FIGO HERLAMBANG', NULL, 'SMA Negeri 1 Tuban', '082140327615', 1, NULL),
-(349, '', '0045614803', 'wjETmZyO', 'arsykh123@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FITRI NUR AIDA ARSY KHOIRIYAH', NULL, 'SMA Negeri 1 Tuban', '0895621131071', 2, NULL),
-(350, '', '0032045946', 'gPaikV32', 'Tataputriid@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'GRACE FEBRY PERMATA PUTRI', NULL, 'SMA Negeri 1 Tuban', '085233172664', 2, NULL),
-(351, '', '0026038552', '7VN8hl10', 'kholifahtur17@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KHOLIFAHTUR ROSIDA', NULL, 'SMA Negeri 1 Tuban', '085732236314', 2, NULL),
-(352, '', '0027769430', 'L0Ay8pNY', 'Lolasagita19@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LOLA SAGITA SINTA SARI', NULL, 'SMA Negeri 1 Tuban', '08816910840', 2, NULL),
-(353, '', '0024350309', '5eLXC3qk', 'melisakartika12@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MELISA KARTIKA NINGRUM', NULL, 'SMA Negeri 1 Tuban', '089530375823', 2, NULL),
-(354, '', '0025497550', 'P7cVXHYk', 'mirafirdia@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MIRA FERDIAWATI', NULL, 'SMA Negeri 1 Tuban', '085645909843', 2, NULL),
-(355, '', '0024698178', '8K2jFue6', 'jnaufal499@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD NAUFAL', NULL, 'SMA Negeri 1 Tuban', '081337724789', 1, NULL),
-(356, '', '0033251539', 'FXbOez6m', 'rafywibawanto@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD RAFY WIBAWANTO', NULL, 'SMA Negeri 1 Tuban', '081212837878', 1, NULL),
-(357, '', '0032222227', '01uNIiPx', 'wildan66637@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD WILDAN', NULL, 'SMA Negeri 1 Tuban', '087758487618', 1, NULL),
-(358, '', '0024618095', 'z7E8D0wQ', 'nabiladyah11@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Nabilla Dyah Tristiarni', NULL, 'SMA Negeri 1 Tuban', '082141419037', 2, NULL),
-(359, '', '0025538106', 'uAj4kTQb', 'Nafidaaulia31@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NAFIDA AULIA', NULL, 'SMA Negeri 1 Tuban', '085853972015', 2, NULL),
-(360, '', '0030718711', 'ifSotGOK', 'nazura2003@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NAZURA WIRAYUDA TAMA', NULL, 'SMA Negeri 1 Tuban', '081330300731', 1, NULL),
-(361, '', '0034887151', 'K0Vj3nWk', 'nazwafebrysavira@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NAZWA FEBRY SAVIRA', NULL, 'SMA Negeri 1 Tuban', '081216728787', 2, NULL),
-(362, '', '0026038945', 'OsIynw3j', 'novitamaheraputri02@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NOVITA MAHERA PUTRI', NULL, 'SMA Negeri 1 Tuban', '085608941103', 2, NULL),
-(363, '', '0024350205', 'S3kpoE4D', 'nurulfadhillah1008@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NURUL FADHILLAH', NULL, 'SMA Negeri 1 Tuban', '087701357562', 2, NULL),
-(364, '', '0025336059', 'ZJrcy0CA', 'okyardia29@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'OKY ARDIA KUSUMA ', NULL, 'SMA Negeri 1 Tuban', '081239271771', 1, NULL),
-(365, '', '0025397239', '2s5Br7mg', 'gitaputripramesti123@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'OLIVIA REGITA PRAMESTI', NULL, 'SMA Negeri 1 Tuban', '085806417489', 2, NULL),
-(366, '', '0031933453', 'C1l4LfwG', 'rizka1st1310@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RIZKA SHAFA TSABITAH', NULL, 'SMA Negeri 1 Tuban', '081332325400', 2, NULL),
-(367, '', '0024350315', 'StBY3u9o', 'Nrizkarina@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RIZKARINA NURKITAWANGI', NULL, 'SMA Negeri 1 Tuban', '089677613767', 2, NULL),
-(368, '', '0024350359', 'UG2FvDg0', 'sherinaqmarina99@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHERIN AQMARINA SYAFI\'IE', NULL, 'SMA Negeri 1 Tuban', '085785837128', 2, NULL),
-(369, '', '0033251533', 'TWFJsECr', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SYAHRINA LAYLIA RAHMA', NULL, 'SMA Negeri 1 Tuban', '085713922405', 2, NULL),
-(370, '', '0024618065', 'EyBNTa6r', 'yyoga6297@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Yoga Tri Prayudha', NULL, 'SMA Negeri 1 Tuban', '082257410875', 1, NULL),
-(371, '', '0030852058', 'MTD0RXBg', 'ceisyawardhani913@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CEISYA WARDHANI PUTRI', NULL, 'SMA Negeri 1 Tuban', '081259069923', 2, NULL),
-(372, '', '0024350328', 'JaOpcmrq', 'olliviarinjani@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CITHRYFOLLIVIA RINJANI ENJELITA PRAYOGI', NULL, 'SMA Negeri 1 Tuban', '081235886312', 2, NULL),
-(373, '', '0024352429', 'wrRsInQg', 'clarissanataliaw57@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CLARISSA NATALIA WIBISONO', NULL, 'SMA Negeri 1 Tuban', '085607366316', 2, NULL),
-(374, '', '0034321054', 'b9cE7kMf', 'daffadam26@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Daffa Adam Maulana Muzhaffar', NULL, 'SMA Negeri 1 Tuban', '081450216040', 1, NULL),
-(375, '', '0022887799', '5UfPRF04', 'desinta@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DESINTA FITRI ANANDA', NULL, 'SMA Negeri 1 Tuban', '085606396981', 2, NULL),
-(376, '', '0030376327', '1EeavxMO', 'devinaalifa2@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DEVINA ALIFA PUTRI', NULL, 'SMA Negeri 1 Tuban', '082228498775', 2, NULL),
-(377, '', '0022473312', 'vg1Zp8Jf', 'dimasaditya07@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Dimas Aditya Ashari', NULL, 'SMA Negeri 1 Tuban', '08817067432', 1, NULL),
-(378, '', '0025496285', 'PbN1C8GO', 'erlisaalmahyra354@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Erlisa Nurul Rifani', NULL, 'SMA Negeri 1 Tuban', '083130748400', 2, NULL),
-(379, '', '0030852105', 'wn4g3C5O', 'febriantbn@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FEBRIAN FADHIL RAHMAN', NULL, 'SMA Negeri 1 Tuban', '089643663970', 1, NULL),
-(380, '', '0024618126', 'qGhxScL7', 'fsalsahira28@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Finanda Salsahira', NULL, 'SMA Negeri 1 Tuban', '088226204614', 2, NULL),
-(381, '', '0024698292', 'T3KvHQhc', 'hanjasmahatma09@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Hanjas Mahatma Wijaya', NULL, 'SMA Negeri 1 Tuban', '0895339747074', 1, NULL),
-(382, '', '0031951333', 'wv2tTfOD', 'hamidikmal129@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Ikmal Muntadhor Hamid', NULL, 'SMA Negeri 1 Tuban', '083135110003', 1, NULL),
-(383, '', '0028342589', 'Vubqf9aU', 'aryatampan678@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'M. ARYA ANUGRAH MAULIDIN', NULL, 'SMA Negeri 1 Tuban', '082178248274', 1, NULL),
-(384, '', '0024350285', 'GSjZaXiq', 'zabakuzen@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MARTHEN ZANUAR YUDHA PRAKOSO', NULL, 'SMA Negeri 1 Tuban', '0881026867449', 1, NULL),
-(385, '', '0024350335', 'P5pZQKGO', 'mresdaceasaria@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MELATI RESDA CEASARIA', NULL, 'SMA Negeri 1 Tuban', '082333919217', 2, NULL),
-(386, '', '0025336035', 'VcCAPuto', 'miftakhulagung19@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MIFTAKHUL AGUNG DANANG KUSWORO', NULL, 'SMA Negeri 1 Tuban', '085706938053', 1, NULL),
-(387, '', '0036201260', 'WqLrNj6O', 'michelcleo304@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Miracella Atif Sahmura', NULL, 'SMA Negeri 1 Tuban', '082139141901', 1, NULL),
-(388, '', '0030378902', 'jRBq7rID', 'monickaf17@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MONICKA FERNANDA PUJA PUSPITA SARI', NULL, 'SMA Negeri 1 Tuban', '085607736620', 2, NULL),
-(389, '', '0022001281', 'efAV0toU', 'mtfirmansyah15@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUCHAMMAD TEGAR FIRMANSYAH', NULL, 'SMA Negeri 1 Tuban', '082245933513', 1, NULL),
-(390, '', '0030376264', 'R15UPehI', 'muhammaddewanto920@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD SATRIO DEWANTO', NULL, 'SMA Negeri 1 Tuban', '081233763855', 1, NULL),
-(391, '', '0024352531', 'PfOUGory', 'mp38590@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUTIARA PERMATA PUTRI', NULL, 'SMA Negeri 1 Tuban', '082232907835', 2, NULL),
-(392, '', '0030811171', 'FPAnRciQ', 'nan.ariba@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NABILA NURUL ARIBA', NULL, 'SMA Negeri 1 Tuban', '082139144350', 2, NULL),
-(393, '', '0032592050', 'ciX4LAh9', 'nisfipuji14@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NISFI PUJI ROSANTI', NULL, 'SMA Negeri 1 Tuban', '085839135531', 2, NULL),
-(394, '', '0026767701', 'bsxcQyjr', 'lel.alf1104@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Nur Laili Alfiatin Mukharomah', NULL, 'SMA Negeri 1 Tuban', '081615315263', 2, NULL),
-(395, '', '0029680088', '35ExToS0', 'putriagustina2729@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PUTRI AGUSTINA', NULL, 'SMA Negeri 1 Tuban', '081231036549', 2, NULL),
-(396, '', '0024698159', 'NoQSrwVt', 'resa.erviana95@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RESA ERVIANA', NULL, 'SMA Negeri 1 Tuban', '0895806711667', 2, NULL),
-(397, '', '0030811199', 'FhHg8L2X', 'amelrojwa@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ROJWA KAMILA AD DAFFA MUNIR', NULL, 'SMA Negeri 1 Tuban', '082233053100', 2, NULL),
-(398, '', '0026318845', '2pvRytCw', 'sahalbayhaqi2002@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SAHAL BAYHAQI', NULL, 'SMA Negeri 1 Tuban', '085336196464', 1, NULL),
-(399, '', '0025188042', 'yCJtkP1L', 'sarinastitinalurita@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SARI NASTITI NALURITA', NULL, 'SMA Negeri 1 Tuban', '089509261789', 2, NULL),
-(400, '', '0018079339', '0gVv2YZU', 'akufitria49@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Siti Nur Fitria', NULL, 'SMA Negeri 1 Tuban', '085704494184', 2, NULL),
-(401, '', '0024618083', 'hzyBupOD', 'syafa7101@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Syafa Rossita Firdadhila S', NULL, 'SMA Negeri 1 Tuban', '081335406426', 2, NULL),
-(402, '', '0032546053', 'j3gQlpXs', 'senoi248@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'VIALLI ABDALLAH NATA NEGARA', NULL, 'SMA Negeri 1 Tuban', '089515697312', 1, NULL),
-(403, '', '0025494562', 'qNSWPaUO', 'viankacahya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'VIANKA CAHYA KRISTANTI', NULL, 'SMA Negeri 1 Tuban', '085755123728', 2, NULL),
-(404, '', '0032592535', 'gZE7L3tW', 'yudhapurnomo616@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YUDHA PURNOMO', NULL, 'SMA Negeri 1 Tuban', '085731397013', 1, NULL),
-(405, '', '0043433483', 'rvohVPLy', 'hafidzok976@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'A. Hafidz Kurniawan', NULL, 'SMA Negeri 1 Tuban', '08983834306', 1, NULL),
-(406, '', '0024698179', '7spwHRWE', 'anisaretno16@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AANISA RETNO DWI NURLINDA', NULL, 'SMA Negeri 1 Tuban', '081327156647', 2, NULL),
-(407, '', '0024350395', 'v1fJ9lEL', 'wahyuwidito24@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ADHARI WAHYU WIDITO', NULL, 'SMA Negeri 1 Tuban', '082257606224', 1, NULL),
-(408, '', '0024698150', '23mkQrG5', 'Apanyeay@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALIYU APAN JUNIARTA SUBAGYO', NULL, 'SMA Negeri 1 Tuban', '081357869043', 1, NULL),
-(409, '', '0024375550', 'SbVk8Gvw', 'tikaltika07@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALTIKA NUR MUSTAFIDAH', NULL, 'SMA Negeri 1 Tuban', '085232917946', 2, NULL),
-(410, '', '0024618072', 'N0lxyqE5', 'amaliadwiardiniputri@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Amalia Dwi Ardini Putri', NULL, 'SMA Negeri 1 Tuban', '082143222768', 2, NULL),
-(411, '', '0030376326', 'TRBnqVP9', 'arlitadwina@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ARLITA DWINA FIRLANA SARI', NULL, 'SMA Negeri 1 Tuban', '082331666592', 2, NULL),
-(412, '', '0024618124', '0bn2ljA7', 'aurieldevina1@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Auriel Deviva', NULL, 'SMA Negeri 1 Tuban', '085646377691', 2, NULL),
-(413, '', '0017217011', 'UZ4RlwIa', 'congok_oktavia@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AURORA OCTAVIAN SUGIHARTO', NULL, 'SMA Negeri 1 Tuban', '081221745917', 1, NULL),
-(414, '', '0039218257', 'V9627oDN', 'brilifentri@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Brilianur Firdausi Kentri', NULL, 'SMA Negeri 1 Tuban', '081232643468', 2, NULL),
-(415, '', '0025497851', 'kAquGSUY', 'ruansyach28@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CHOIRUL ANAM SYACH', NULL, 'SMA Negeri 1 Tuban', '08993860273', 1, NULL),
-(416, '', '0024618063', 'Ex0v13Vf', 'dhianjeng.a.a@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Dhiajeng At-Tiryaqul Akbar', NULL, 'SMA Negeri 1 Tuban', '085607844000', 2, NULL),
-(417, '', '0024618114', 'U8DBEJRY', 'pratamadimasrizki@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Dimas Rizki Pratama', NULL, 'SMA Negeri 1 Tuban', '08558598704', 1, NULL),
-(418, '', '0039255315', 'FhBgSTiH', 'dindanurafianty@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DINDA NUR AFIANTY', NULL, 'SMA Negeri 1 Tuban', '0895335424061', 2, NULL),
-(419, '', '0020208686', '3WoJ6CBG', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ELMIA SOFA HERAWATI', NULL, 'SMA Negeri 1 Tuban', '081331921762', 2, NULL),
-(420, '', '0024698147', 'VUY5QvO0', 'fitmamaulidia@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FITMA MUFLIKATUL MAULIDIA', NULL, 'SMA Negeri 1 Tuban', '089515700959', 2, NULL),
-(421, '', '0031816212', 'iVQHkhpc', 'pamungkasgilang74@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Gilang Alif Pamungkas', NULL, 'SMA Negeri 1 Tuban', '083876800485', 1, NULL),
-(422, '', '0030811200', 'O8iHRwse', 'hanamaheswari12@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HANA MAHESWARI', NULL, 'SMA Negeri 1 Tuban', '0895366243899', 2, NULL),
-(423, '', '0024698046', 'w2ivBF8o', 'handika8e03@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HANDIKA DWI PRASETIA', NULL, 'SMA Negeri 1 Tuban', '089531360815', 1, NULL),
-(424, '', '0033754033', 'vtFwiloL', 'kaniasefhira@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KANIA SEFHIRA HASAN', NULL, 'SMA Negeri 1 Tuban', '085704522575', 2, NULL),
-(425, '', '0021967907', 'nTSYczl8', 'muhammad.iqbal.ramadhani.09@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Mohammad Iqbal Ramadhani', NULL, 'SMA Negeri 1 Tuban', '0881026274780', 1, NULL),
-(426, '', '0024698145', 'Sb2wXDN3', 'alifiansatriana23@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD ALIFIAN SATRIANA', NULL, 'SMA Negeri 1 Tuban', '0895606156619', 1, NULL),
-(427, '', '0030811163', 'mHwuxnW0', 'mahdabima@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUTIA SABINA MAHDANIA', NULL, 'SMA Negeri 1 Tuban', '082333870906', 2, NULL),
-(428, '', '0024698152', '1cswALMX', 'naliyarivana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NABIBAH ALIYA RIVANA', NULL, 'SMA Negeri 1 Tuban', '085648899801', 2, NULL),
-(429, '', '0026854662', 'Gr4qYe15', 'nafisgalih212@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NAFIS GALIH TRI ATMOJO', NULL, 'SMA Negeri 1 Tuban', '082139762784', 1, NULL),
-(430, '', '0024698183', '8JoZb57l', 'nianisaussholikha@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NIA NISA US SHOLIKHA', NULL, 'SMA Negeri 1 Tuban', '085733402606', 2, NULL),
-(431, '', '0024698239', 'eHsuwb3i', 'novianapp23@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NOVIANA PUSPITASARI', NULL, 'SMA Negeri 1 Tuban', '081335357664', 2, NULL),
-(432, '', '0024350194', '16sQaJbB', 'nurshofiatun249@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NUR SHOFIATUN', NULL, 'SMA Negeri 1 Tuban', '085334636013', 2, NULL),
-(433, '', '0030676362', 'nzYL5gAr', 'Robithfaiq2@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ROBITH FAIQUL HIMAM', NULL, 'SMA Negeri 1 Tuban', '0895808596789', 1, NULL),
-(434, '', '0027367165', 'jwk5vbZu', 'rrembes@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ROFIANSYAH', NULL, 'SMA Negeri 1 Tuban', '08982869192', 1, NULL),
-(435, '', '0031324733', '5L3lWhqy', 'shavira.priyantika@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHAVIRA PRIYANTIKA PUTRI', NULL, 'SMA Negeri 1 Tuban', '0895397369580', 2, NULL),
-(436, '', '0030676043', 'wmoYCGa8', 'shimahanum@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHIMA HANUM PRANATANINGTYAS', NULL, 'SMA Negeri 1 Tuban', '081237542663', 2, NULL),
-(437, '', '0024350341', 'T1iCg2oZ', 'yuliaandriani25@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YULIA ANDRIANI', NULL, 'SMA Negeri 1 Tuban', '085817706819', 2, NULL),
-(438, '', '0025496215', 'FTKo4UDi', 'majinarc11@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ABYAN MAULVI SETYA ADI', NULL, 'SMA Negeri 1 Tuban', '085606514264', 1, NULL),
-(439, '', '0038916789', 'nZD1yW3Q', 'afifahar26@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AFIFATUR ROHMAH', NULL, 'SMA Negeri 1 Tuban', '085259170564', 2, NULL),
-(440, '', '0024698009', 'pmTOEGh8', 'ahmadyusuf0234@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Ahmad Yusuf Habibur Rouf', NULL, 'SMA Negeri 1 Tuban', '085258630301', 1, NULL),
-(441, '', '0038176655', 'NSA0vicE', 'aisyah123id@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AISYAH MAY SHANTY', NULL, 'SMA Negeri 1 Tuban', '082139144062', 2, NULL),
-(442, '', '0033838038', 'Th2X0rw6', 'alifacheergirls@yahoo.co.id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALIFA AZWADINA FUAD', NULL, 'SMA Negeri 1 Tuban', '085895372234', 2, NULL),
-(443, '', '0026353945', 'nmVFa52W', 'kafkaraysha@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Ardhana Yuzril Ilham Fanany', NULL, 'SMA Negeri 1 Tuban', '085649176574', 1, NULL),
-(444, '', '0033759213', 'kyRHu5PW', 'arifhidayatullah220203@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ARIF HIDAYATULLAH', NULL, 'SMA Negeri 1 Tuban', '082233228126', 1, NULL),
-(445, '', '0027236627', 'eR5btnCL', 'ariniputri469@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ARINI PRASETYA PUTRI', NULL, 'SMA Negeri 1 Tuban', '081649388951', 2, NULL),
-(446, '', '0031998700', '0CZzbIwM', 'afanjoker19@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ARRIZAL ALFANANI RAHMAWAN', NULL, 'SMA Negeri 1 Tuban', '082332183889', 1, NULL),
-(447, '', '0024352517', 'Lsa1TPYX', 'azisasyrafil@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ASYRAFIL NUR AZIS', NULL, 'SMA Negeri 1 Tuban', '081359523190', 1, NULL),
-(448, '', '0030378762', '0vGFHVi1', 'bryanrpanjinata@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BRYAN RICONGA PANJINATA', NULL, 'SMA Negeri 1 Tuban', '087752843888', 1, NULL),
-(449, '', '0032592030', 'mbMZPYLR', 'Rosalikadinaismaya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DINA NILAM ROSALIKA', NULL, 'SMA Negeri 1 Tuban', '085235428149', 2, NULL),
-(450, '', '0024698173', 'cDI6ilMq', 'dwifuqoniirawan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DWI FURQONI IRAWAN', NULL, 'SMA Negeri 1 Tuban', '085231379893', 2, NULL),
-(451, '', '0038653285', 'jMsHhzwB', 'fitrinafsiatin@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FITRI NAFSIATIN', NULL, 'SMA Negeri 1 Tuban', '082332689942', 2, NULL),
-(452, '', '0025495856', 'Qqgy3vKO', 'hana.kholifatul@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HANA KHOLIFATUL HUSNIYAH', NULL, 'SMA Negeri 1 Tuban', '088231752385', 2, NULL),
-(453, '', '0030378925', 'CPMDUsQt', 'hazelduven12@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HAZEL KARL DUVEN', NULL, 'SMA Negeri 1 Tuban', '081383023395', 1, NULL),
-(454, '', '0024618066', 'nves1RQ5', 'Iftharramadhanawahyudi15@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Ifthar Ramadhana Wahyudi', NULL, 'SMA Negeri 1 Tuban', '085236842815', 1, NULL),
-(455, '', '0030416202', 's8gCYPiZ', 'ikrimatasmida@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IKRIMA ALI TASMIDA', NULL, 'SMA Negeri 1 Tuban', '085606384704', 2, NULL),
-(456, '', '0024618091', 'nQW12S9J', 'inchoniamellanidewi@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Inchonia Melani Dewi', NULL, 'SMA Negeri 1 Tuban', '081231112007', 2, NULL),
-(457, '', '0033251541', 'fI1vEO8u', 'izra.aliya28@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IZRA NOOR ZAHARA ALIYA', NULL, 'SMA Negeri 1 Tuban', '082333109593', 2, NULL),
-(458, '', '0025496198', 'PcrhlO7n', 'jesikamadea0302@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Jesika Amadea', NULL, 'SMA Negeri 1 Tuban', '085782248849', 2, NULL),
-(459, '', '0039024982', '79bSH4JI', 'daffariky27@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Moh. Daffa Rizky Abdillah', NULL, 'SMA Negeri 1 Tuban', '085888529948', 1, NULL),
-(460, '', '0024375552', 'v5gxKjVW', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOHAMMAD SYARIFUDIN', NULL, 'SMA Negeri 1 Tuban', '081217464399', 1, NULL),
-(461, '', '0031999327', 'lDuHCe6U', 'tubanlovers90@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD IRFAN FEBRIANSYAH', NULL, 'SMA Negeri 1 Tuban', '082133067483', 1, NULL),
-(462, '', '0024698139', 'nyCQMkej', 'nadiaaprillita2904@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NADIA APRILLITA PUSPA DEWI', NULL, 'SMA Negeri 1 Tuban', '083832777197', 2, NULL),
-(463, '', '0030416201', 'jyx9pueI', 'nadiralouenza11@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NADIRA LOURENZA', NULL, 'SMA Negeri 1 Tuban', '085859157468', 2, NULL),
-(464, '', '0028307326', '7pCBYMaE', 'Neyedk19@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NESTIAN TEGUH WIBOWO', NULL, 'SMA Negeri 1 Tuban', '085784692018', 1, NULL),
-(465, '', '0026498619', 'avOZ2TAs', 'nindycandra0902@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NINDY CANDRA AYU PUSPA SARI', NULL, 'SMA Negeri 1 Tuban', '082337465771', 2, NULL),
-(466, '', '0031830272', 'pTQhvEtS', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NUR KHOLIFATIN ISNAENI PUTRI', NULL, 'SMA Negeri 1 Tuban', '082245820270', 2, NULL),
-(467, '', '0030376262', 'D1hTHLc2', 'rachelpuja@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RACHEL PUJA CHRISANTI BUDIONO', NULL, 'SMA Negeri 1 Tuban', '08123414960', 2, NULL),
-(468, '', '0024350127', 'FjTb3VnO', 'ndevianty7@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RAHMA NABILA DEVIANTY', NULL, 'SMA Negeri 1 Tuban', '085843108441', 2, NULL),
-(469, '', '0031951286', 'hAZ4Kt0l', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RISMA DWI RAHMAWATI', NULL, 'SMA Negeri 1 Tuban', '082135228430', 2, NULL),
-(470, '', '0024618116', 'FMKXU98q', 'rizkasaudahyp@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RIZKA SAUDAH YUNIDA PUTRI', NULL, 'SMA Negeri 1 Tuban', '082234871001', 2, NULL),
-(471, '', '0031498447', 'DclAymI9', 'Ulfa.bilqis03@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ULFATUR ROHMAH', NULL, 'SMA Negeri 1 Tuban', '081515692778', 2, NULL),
-(472, '', '0024350227', 'C9kvX1uL', 'widiarahmati@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WIDIANA RAHMAWATI', NULL, 'SMA Negeri 1 Tuban', '082237068792', 2, NULL),
-(473, '', '0025497840', 'CjkeRws8', 'mr.daniel354@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AHMAD DANIEL', NULL, 'SMA Negeri 1 Tuban', '0895341821083', 1, NULL),
-(474, '', '0024698169', '7TqEC9fL', 'aldystr2@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALDYS TERTIA RAHMATIN', NULL, 'SMA Negeri 1 Tuban', '089514690526', 2, NULL),
-(475, '', '0024350381', 'Gn0EejUR', 'angelina.elin0312@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANGELINA DESTIANI DARUSSALAM', NULL, 'SMA Negeri 1 Tuban', '081450223630', 2, NULL),
-(476, '', '0024352564', 'S6CyJv7t', 'anidaaffandi01@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANIDA OKTAVIA PUTRI', NULL, 'SMA Negeri 1 Tuban', '085336398390', 2, NULL),
-(477, '', '0024350382', 'sp7CnVv5', 'asyiranurviana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ASYIRA NURVIANA', NULL, 'SMA Negeri 1 Tuban', '082131604813', 2, NULL),
-(478, '', '0027321798', '41Ify2Jn', 'azilatul8@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AZILATUL HIDA KHOIRUNNISA', NULL, 'SMA Negeri 1 Tuban', '082245766385', 2, NULL),
-(479, '', '0033964473', 'a8uk1Hgf', 'wirayuda170203@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BAMBANG BIMA SATRIA WIRAYUDA', NULL, 'SMA Negeri 1 Tuban', '085233280150', 1, NULL),
-(480, '', '0024350204', 'yz2ctSR3', 'brenyka.ayu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BRENYKA AYU SOPHIANA', NULL, 'SMA Negeri 1 Tuban', '082234733367', 2, NULL),
-(481, '', '0025538163', 'vXzf3lKI', 'deedhat17@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Deedhat Nugraha Mahardhika', NULL, 'SMA Negeri 1 Tuban', '082156579520', 1, NULL),
-(482, '', '0024350313', 'G3UgTfV7', 'deaauliyap@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DHIYAUL AULIYA PANGESTU', NULL, 'SMA Negeri 1 Tuban', '081259138034', 2, NULL),
-(483, '', '0036933737', 'tZYi1D3K', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DINDA FARAH TAMAMA', NULL, 'SMA Negeri 1 Tuban', '085727719462', 2, NULL),
-(484, '', '0024698714', 'HcKFmyDL', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'EARLANGGA ROHMAT SATRIAWAN', NULL, 'SMA Negeri 1 Tuban', '081330538514', 1, NULL),
-(485, '', '0024350310', 'mphuzFa8', 'kurniawankandang@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'GHIA FERNANDA KUSUMA PUTRA', NULL, 'SMA Negeri 1 Tuban', '081230891787', 1, NULL),
-(486, '', '0033251532', 'BUFHfXnJ', 'hafidridho564@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HAFID RIDHO', NULL, 'SMA Negeri 1 Tuban', '083852446387', 1, NULL),
-(487, '', '0024350305', 'WSaQhcyK', 'hafiyyanfaza8@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HAFIYYAN DHAFINO FAZA', NULL, 'SMA Negeri 1 Tuban', '085794181173', 1, NULL),
-(488, '', '0024350351', 'D4lNA8Rh', 'zahra170802@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HALIZAH AZZAHROH NUR SYIFA', NULL, 'SMA Negeri 1 Tuban', '089676452402', 2, NULL),
-(489, '', '0026316452', 'AmyjeGRK', 'gitacahyani743@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HANUGRAH REGITA PUTRI CAHYANI', NULL, 'SMA Negeri 1 Tuban', '082125220277', 2, NULL),
-(490, '', '0030376253', '0WMKGXA5', 'antok270103@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HERMAWAN PUTRANTO', NULL, 'SMA Negeri 1 Tuban', '0895366980482', 1, NULL),
-(491, '', '0023326530', 'P41pHvQe', 'ilaayuaupi48@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ILA AYU AUPI', NULL, 'SMA Negeri 1 Tuban', '085733373156', 2, NULL),
-(492, '', '0030416205', 'IAoX9UiG', 'kevindanurcahya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KEVINDA ANUGRAH NURCAHYA', NULL, 'SMA Negeri 1 Tuban', '081216252217', 1, NULL),
-(493, '', '0039675308', 'kPBDyMsJ', 'lailasdyh16@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LAILATUS SA\'DIYAH', NULL, 'SMA Negeri 1 Tuban', '081515692702', 2, NULL),
-(494, '', '0024350461', 'LWIBs9Kz', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MARGA PUTRA MADANI', NULL, 'SMA Negeri 1 Tuban', '082257147740', 1, NULL),
-(495, '', '0026353930', 'K7hmpr2E', 'mehtajuwita@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MEHTA JUWITA RESI IKLAS DARMAGATI', NULL, 'SMA Negeri 1 Tuban', '082228538026', 2, NULL),
-(496, '', '0024515892', 'Oc0iHepV', 'an.021202@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD RIZAL ADITYA NUGRAHA', NULL, 'SMA Negeri 1 Tuban', '081235018660', 1, NULL),
-(497, '', '0024698181', 'bDNXQeVH', 'noviaanggraeni2311@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NOVIA ANGGRAENI WIDIASTUTI', NULL, 'SMA Negeri 1 Tuban', '085895861390', 2, NULL),
-(498, '', '0030376437', 'ITC5XhMj', 'nurhikmatussaadah@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NUR HIKMATUS SA\'ADAH', NULL, 'SMA Negeri 1 Tuban', '082247584610', 2, NULL),
-(499, '', '0030752153', '7uw0BRWI', 'nurfaizah.herpristanti2003@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NURFAIZAH HERPRISTANTI', NULL, 'SMA Negeri 1 Tuban', '082140315527', 2, NULL),
-(500, '', '0028364023', 'F4mzrIg0', 'okkyrizput20@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'OKKY RIZKY SAPUTRA', NULL, 'SMA Negeri 1 Tuban', '081542739801', 1, NULL),
-(501, '', '0031816707', 'J9EjUo86', 'praditaanggi16@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PRADITA ANGGI ANGGOROWATI', NULL, 'SMA Negeri 1 Tuban', '085846047292', 2, NULL),
-(502, '', '0032733550', 'wZbUyB61', 'sidan1722@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RAMBANANG SIDAN LANANG', NULL, 'SMA Negeri 1 Tuban', '085607336771', 1, NULL),
-(503, '', '0024350380', 'hFO9zGVL', 'riskyanirmala@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RISKYANIRMALA NOVATIANA', NULL, 'SMA Negeri 1 Tuban', '085211324033', 2, NULL),
-(504, '', '0030376384', 'AcLezKY9', 'rzktarhmwt@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RIZKITA RAHMAWATI', NULL, 'SMA Negeri 1 Tuban', '0895410590309', 2, NULL),
-(505, '', '0030852063', '15ZPzAEk', 'rizkydaniswara67@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RIZKY DANISWARA', NULL, 'SMA Negeri 1 Tuban', '088235828740', 1, NULL),
-(506, '', '0030376339', 'xoz9rClj', 'sintadwiamalia@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHINTA DWI AMALIA', NULL, 'SMA Negeri 1 Tuban', '089514690696', 2, NULL),
-(507, '', '0024350210', 'Tx2IPS7A', 'tiraseptiawati@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TIRA SEPTIAWATI', NULL, 'SMA Negeri 1 Tuban', '085808240050', 2, NULL),
-(508, '', '0032592052', 'kr6vB0IZ', 'Wulansriutami05@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'WULAN SRI UTAMI', NULL, 'SMA Negeri 1 Tuban', '085730652578', 2, NULL),
-(509, '', '0030376245', 'ZBVC2cXD', 'noctis290503@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ABDUL MALIK', NULL, 'SMA Negeri 1 Tuban', '082337729706', 1, NULL),
-(510, '', '0026979457', 'jZm9Q6Oz', 'madricmaly13@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ACHMAD ARIC PRATAMA ALLY', NULL, 'SMA Negeri 1 Tuban', '085704201750', 1, NULL),
-(511, '', '0032292665', 'gstHnOQN', 'adien.ans@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Addhien Noor Sari', NULL, 'SMA Negeri 1 Tuban', '085156316126', 2, NULL),
-(512, '', '0024698136', 'yGJonhsQ', 'ainur.jestawa@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AINUR SALWA JESTAWANA', NULL, 'SMA Negeri 1 Tuban', '081217531804', 1, NULL),
-(513, '', '0024350403', '6Xv4GJVf', 'salsabilabila147@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ALFAINA SALSABILA', NULL, 'SMA Negeri 1 Tuban', '082229441468', 2, NULL),
-(514, '', '0024670060', 'Bomzyt4K', 'apnugrha@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ANANDA PUTRA NUGRAHA', NULL, 'SMA Negeri 1 Tuban', '081230403766', 1, NULL),
-(515, '', '0030376173', '2fS7Ochp', 'brendaryndt@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'BRENDA MENTARI ARYANDITA', NULL, 'SMA Negeri 1 Tuban', '0895359665333', 2, NULL),
-(516, '', '0031953314', 'vILWB6s4', 'cleolansyachinta@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CLEOLANSYA AFIZA CHINTA ARNESSYA', NULL, 'SMA Negeri 1 Tuban', '081235405000', 2, NULL),
-(517, '', '0025336072', 'Atgk31ui', 'Pipitala@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DESTRI FIRLIDYA FITRIANTI', NULL, 'SMA Negeri 1 Tuban', '081252951612', 2, NULL),
-(518, '', '0025538159', 'eXnRLwsN', 'faizolmwijaya123@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Faizol Malik Wijaya', NULL, 'SMA Negeri 1 Tuban', '085815549182', 1, NULL),
-(519, '', '0024618076', 'TXmZklhz', 'Florentiadsp@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Florentia Destine Syah Putri', NULL, 'SMA Negeri 1 Tuban', '082228436490', 2, NULL),
-(520, '', '0024350229', '7YRUrscL', 'haedarilhamuddin@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HAEDAR ILHAMUDDIN KALAMULLAH', NULL, 'SMA Negeri 1 Tuban', '082332775400', 1, NULL),
-(521, '', '0030852061', '9RVA4Sl1', 'hurina03@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'HURINA URFAN ARISSUNARSO', NULL, 'SMA Negeri 1 Tuban', '085706648861', 2, NULL),
-(522, '', '0031816708', 'JesSlHfN', 'ikayussia.mayla@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IKA YUSSIA MAYLA CAHYANI EFFENDIE', NULL, 'SMA Negeri 1 Tuban', '081246262818', 2, NULL),
-(523, '', '0030376163', 'Gl5ehCc6', 'ilfarahmayanti@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ILFA RAHMAYANTI', NULL, 'SMA Negeri 1 Tuban', '089682546374', 2, NULL),
-(524, '', '0024606795', 'jiEFlg23', 'jambalenak58@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ILHAM TRI PRABOWO', NULL, 'SMA Negeri 1 Tuban', '082228477177', 1, NULL),
-(525, '', '0024350414', 'vWC0523H', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'INTAN NURUN NI\'MAH', NULL, 'SMA Negeri 1 Tuban', '085755957186', 2, NULL),
-(526, '', '0032116273', 'SBN0E9WO', 'ilhamfakhri749@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOCHAMMAD ILHAM FAKHRI', NULL, 'SMA Negeri 1 Tuban', '083850791657', 1, NULL),
-(527, '', '0024350316', 'Co8BfiYI', 'naufalkhulafa.nk@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOHAMMAD NAUFAL KHULAFA', NULL, 'SMA Negeri 1 Tuban', '08985927591', 1, NULL),
-(528, '', '0024618068', 'ySuA9Cq8', 'rafijunior094@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD ALAUDDIN ISYRAFI', NULL, 'SMA Negeri 1 Tuban', '085157332903', 1, NULL),
-(529, '', '0024618081', '0bgAHVeI', 'muhammadnurilhuda374@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Muhammad Nuril Huda', NULL, 'SMA Negeri 1 Tuban', '089525034874', 1, NULL);
-INSERT INTO `users_generate` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
-(530, '', '0025335892', 'JMq9exLU', 'nandaharum286@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NANDA HARUM DWI PRASASTI', NULL, 'SMA Negeri 1 Tuban', '082275488873', 2, NULL),
-(531, '', '0030376330', 'Ir598uDX', 'ifannasrul456@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NASHRUL KHANIFAN', NULL, 'SMA Negeri 1 Tuban', '081332308382', 1, NULL),
-(532, '', '0029784267', '4DhTkVi5', 'akmaludintbn12@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NUR AKMALLUDIN', NULL, 'SMA Negeri 1 Tuban', '089652601137', 1, NULL),
-(533, '', '0024352632', 'rE6hvVpM', 'nurintanvalentiani23@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NUR INTAN VALENTIANI', NULL, 'SMA Negeri 1 Tuban', '085730796300', 2, NULL),
-(534, '', '0024350187', 'jDARKuB5', 'putriwidiyanti55@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'PUTRI WIDIYANTI', NULL, 'SMA Negeri 1 Tuban', '089601517951', 2, NULL),
-(535, '', '0030378868', 'qbwlEsJt', 'rafidah.rahajeng.rara@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RAFIDAH RAHAJENG WILIS', NULL, 'SMA Negeri 1 Tuban', '081330141160', 2, NULL),
-(536, '', '0024350319', '4CwjbVuc', 'Regynaayusabila@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'REGYNA AYU SABILA', NULL, 'SMA Negeri 1 Tuban', '085865624720', 2, NULL),
-(537, '', '0033251678', '2sQnq6xL', 'reva.abidin25@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'RESA ELRICA VIRDAYANTI ABIDIN', NULL, 'SMA Negeri 1 Tuban', '081211512249', 2, NULL),
-(538, '', '0030376342', 'sFJMGtvV', 'sayidinazahrahendrikaputri@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SAYIDINA ZAHRA HENDRIKA PUTRI', NULL, 'SMA Negeri 1 Tuban', '082142661978', 2, NULL),
-(539, '', '0025305588', 's0ITZQcb', 'sulistiana02.hp@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SULISTIANA', NULL, 'SMA Negeri 1 Tuban', '089508786042', 2, NULL),
-(540, '', '0039839270', 'ytRCvIaw', 'tiraimeirtakartika@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TIRAI MEIRTA KARTIKA', NULL, 'SMA Negeri 1 Tuban', '082293679911', 2, NULL),
-(541, '', '0024618108', 'CIO719ya', 'ulfianisah42@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Ulfi Anisah', NULL, 'SMA Negeri 1 Tuban', '081332307706', 2, NULL),
-(542, '', '0031951101', 'JokL9tCv', 'ayumsah@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'YUMSAH AMALIA NURJANNAH', NULL, 'SMA Negeri 1 Tuban', '085967231956', 2, NULL),
-(543, '', '0024350216', 'yOXkLFQN', 'assegafzaenab09@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ZAENAB', NULL, 'SMA Negeri 1 Tuban', '081335249004', 2, NULL),
-(544, '', '0024350336', 'rtVAs1iP', 'zain.aryanta27@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'ZAIN ARYANTA', NULL, 'SMA Negeri 1 Tuban', '082301441886', 1, NULL),
-(545, '', '0037435333', 'D3bjxN4w', 'aisyaharani732@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AISYAH HARANI HIBATTUL HAQQI', NULL, 'SMA Negeri 1 Tuban', '082338141369', 2, NULL),
-(546, '', '0035593838', 'xXcBDMVs', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Alfa Akifuna Fi\'lalk Hoirot', NULL, 'SMA Negeri 1 Tuban', '088227687597', 1, NULL),
-(547, '', '0039471136', 'ilhyR4Vq', 'amalianajwa1193@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AMALIA NAJWANNISA', NULL, 'SMA Negeri 1 Tuban', '081338989747', 2, NULL),
-(548, '', '0035635556', 'cUWOkFIv', 'athayyanayya02@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Athayya Indy Nasywa', NULL, 'SMA Negeri 1 Tuban', '085106023883', 2, NULL),
-(549, '', '0050373433', 'cxJi4klE', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'AZZAHRA RAMADHANI WIDYANTI', NULL, 'SMA Negeri 1 Tuban', '081217409819', 2, NULL),
-(550, '', '0032202110', '5Y1amlWk', 'cheacq@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CHEVIARA FALIASCHATZY HASNABIGHA', NULL, 'SMA Negeri 1 Tuban', '081249920427', 2, NULL),
-(551, '', '0041513178', 'txEoFGRn', 'cindyazzn@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'CINDY PUTRI AZIZAN', NULL, 'SMA Negeri 1 Tuban', '085715502335', 2, NULL),
-(552, '', '0035597901', 'tnmMU82r', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DEVINA CHANDRA BENEDIKTA', NULL, 'SMA Negeri 1 Tuban', '081252888656', 2, NULL),
-(553, '', '0036932157', '4EUGjpxq', 'diaputri2212@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DIAPUTRI AMRINA OVIANGGRAENI', NULL, 'SMA Negeri 1 Tuban', '081227692292', 2, NULL),
-(554, '', '0041513709', 'kfQSntCb', 'dwiirma333@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'DWI IRMA AMALIA HUSNA', NULL, 'SMA Negeri 1 Tuban', '085334541811', 2, NULL),
-(555, '', '0035635542', 't9eiuB4F', 'dyatiaraa05@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Dyatiara Wulandari', NULL, 'SMA Negeri 1 Tuban', '081358967529', 2, NULL),
-(556, '', '0041575441', 'MWltbBxQ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'IKE SEPTI MARINDA', NULL, 'SMA Negeri 1 Tuban', '081231976004', 2, NULL),
-(557, '', '0039205247', 'EzhF9eSC', 'Shofiyyatullaila@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Intan Shofiyyatul Laila', NULL, 'SMA Negeri 1 Tuban', '082132490327', 2, NULL),
-(558, '', '0035598963', '8bAEokFM', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KADEK IMELDA ANINDRA ERASWATI', NULL, 'SMA Negeri 1 Tuban', '081252216274', 2, NULL),
-(559, '', '0041510192', 'Jcq5HUGF', 'kartikataufani@gmail.con', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'KARTIKA TAUFANI SUKARNO', NULL, 'SMA Negeri 1 Tuban', '082143781114', 2, NULL),
-(560, '', '0024446385', 'yIn1rYGm', 'linaililulya01@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LINAILIL \'ULYA', NULL, 'SMA Negeri 1 Tuban', '082141345601', 2, NULL),
-(561, '', '0035578946', '53c64wtA', 'luluk4832@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'LU LUATUL AZIZAH', NULL, 'SMA Negeri 1 Tuban', '08990665897', 2, NULL),
-(562, '', '0035591579', 'funz2cFZ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MOCH. WAHYU SEPTIADI', NULL, 'SMA Negeri 1 Tuban', '085785125610', 1, NULL),
-(563, '', '0035591588', '5Ex9Dibn', 'danianko1010@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD DANI ANKO PUTRA', NULL, 'SMA Negeri 1 Tuban', '085735010882', 1, NULL),
-(564, '', '0047958336', 'jl34hkfP', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MUHAMMAD SHIDQY WASIS', NULL, 'SMA Negeri 1 Tuban', '0895367300368', 1, NULL),
-(565, '', '0032500906', 'qChUbzAf', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'NABILA ZAHWA SYAYIDINA', NULL, 'SMA Negeri 1 Tuban', '089513743543', 2, NULL),
-(566, '', '0046083933', 'oejqNgY1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Nisa Aprilia Setiana', NULL, 'SMA Negeri 1 Tuban', '0881036721496', 2, NULL),
-(567, '', '0045614805', '07tybpHM', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Nizar Arkana Abiyu', NULL, 'SMA Negeri 1 Tuban', '081297580191', 1, NULL),
-(568, '', '0035635538', 'B7GckPYh', 'rafikafauziah123@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Rafika Fauziah', NULL, 'SMA Negeri 1 Tuban', '082244901936', 2, NULL),
-(569, '', '0035591612', 'HYSQT1v8', 'salmaauliadr@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SALMA AULIA DWISARASWATI', NULL, 'SMA Negeri 1 Tuban', '082140324975', 2, NULL),
-(570, '', '0041531548', 'lm1Leau5', 'Zahraniwijayashandya@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'SHANDYA ZAHRANI WIJAYA', NULL, 'SMA Negeri 1 Tuban', '082196198241', 2, NULL),
-(571, '', '0037334719', 'o32v5pjQ', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Shella Windy Antika Putri', NULL, 'SMA Negeri 1 Tuban', '082257190846', 2, NULL),
-(572, '', '0041530730', 'Ds6EvueF', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'THESALONIKA RINDU ANDREASPUTRI', NULL, 'SMA Negeri 1 Tuban', '081339541722', 2, NULL),
-(573, '', '0035593871', '2LOliz9X', 'tinarismaa456@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'TINA RISMA AZHARANI', NULL, 'SMA Negeri 1 Tuban', '081335645804', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -5515,8 +5212,8 @@ CREATE TABLE `user_exam` (
   `answer` tinyint(1) UNSIGNED NOT NULL,
   `user_answer` tinyint(1) UNSIGNED DEFAULT NULL,
   `explanation` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `category` tinyint(1) UNSIGNED NOT NULL COMMENT '1=ujian tka-saintek, 2=ujian tka-soshum, 3=ujian tka-campuran, 4=ujian tps',
   `exam_id` int(10) UNSIGNED NOT NULL,
   `kategori_soal_id` int(10) UNSIGNED NOT NULL,
@@ -5542,6 +5239,12 @@ ALTER TABLE `butir_paket_soal`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_butir_paket_soal_paket_soal` (`paket_soal_id`),
   ADD KEY `fk_butir_paket_soal_soal` (`soal_id`);
+
+--
+-- Indexes for table `dummy`
+--
+ALTER TABLE `dummy`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `exam`
@@ -5578,6 +5281,14 @@ ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_orders_product` (`product_id`),
+  ADD KEY `fk_orders_users` (`user_id`);
+
+--
 -- Indexes for table `paket_soal`
 --
 ALTER TABLE `paket_soal`
@@ -5588,6 +5299,13 @@ ALTER TABLE `paket_soal`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_item`
+--
+ALTER TABLE `product_item`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_product_item_product` (`product_id`);
 
 --
 -- Indexes for table `ptn`
@@ -5672,16 +5390,22 @@ ALTER TABLE `butir_paket_soal`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=513;
 
 --
+-- AUTO_INCREMENT for table `dummy`
+--
+ALTER TABLE `dummy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+
+--
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `exam_history`
 --
 ALTER TABLE `exam_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `groups`
@@ -5702,6 +5426,12 @@ ALTER TABLE `login_attempts`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `paket_soal`
 --
 ALTER TABLE `paket_soal`
@@ -5712,6 +5442,12 @@ ALTER TABLE `paket_soal`
 --
 ALTER TABLE `product`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `product_item`
+--
+ALTER TABLE `product_item`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ptn`
@@ -5729,7 +5465,7 @@ ALTER TABLE `soal`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=578;
 
 --
 -- AUTO_INCREMENT for table `tryout`
@@ -5747,7 +5483,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_generate`
 --
 ALTER TABLE `users_generate`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=574;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
@@ -5791,6 +5527,19 @@ ALTER TABLE `exam`
 --
 ALTER TABLE `exam_history`
   ADD CONSTRAINT `fk_exam_history_exam` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `fk_orders_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_orders_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_item`
+--
+ALTER TABLE `product_item`
+  ADD CONSTRAINT `fk_product_item_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `soal`

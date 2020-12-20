@@ -111,7 +111,7 @@ endif;
             </a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link <?= $laporan_1 ?>" href="<?= base_url('admin/laporan') ?>">
+            <a class="nav-link <?= $laporan_1 ?>" href="<?= base_url('manage/laporan') ?>">
                 <i class="fa fa-pie-chart <?= $laporan ?>" aria-hidden="true"></i>
                 <span>Laporan</span>
             </a>

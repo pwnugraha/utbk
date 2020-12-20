@@ -36,7 +36,7 @@ class Usr extends CI_Controller
                 $this->data['active_room'][$sesi['active_month']]['tps'] = 0;
             }
             $doing_exam = $this->base_model->get_item('row', 'exam', 'month, status, COUNT(*) as active_exam', ['month' => $sesi['active_month'], 'status' => $sesi['type']]);
- 
+
             if (!empty($doing_exam)) {
                 if ($doing_exam['status'] == 1) {
                     $this->data['active_room'][$sesi['active_month']]['tka_saintek'] = $doing_exam['active_exam'];
@@ -62,7 +62,8 @@ class Usr extends CI_Controller
 
     public function statistik()
     {
-        $this->data['exam_history'] = $this->base_model->get_join_item('result', 'exam_history.*, score', NULL, 'exam_history', ['exam'], ['exam.id=exam_history.exam_id'], ['inner'], ['exam.user_id' => $this->session->userdata('user_id')]);
+        $this->data['exam_history'] = $this->base_model->get_join_item('result', 'exam_history.*, score', 'exam_id ASC', 'exam_history', ['exam'], ['exam.id=exam_history.exam_id'], ['inner'], ['exam.user_id' => $this->session->userdata('user_id')]);
+        $this->data['orders'] = $this->base_model->get_item('result', 'orders', '*', ['user_id' => $this->session->userdata('user_id')]);
         $this->data['title'] = "Statistik";
 
         $this->load->view('user/template/header', $this->data);
@@ -76,10 +77,50 @@ class Usr extends CI_Controller
     {
         $this->data['title'] = "Product";
 
+        $this->data['product'] = $this->base_model->get_item('result', 'product', '*');
+
         $this->load->view('user/template/header', $this->data);
         $this->load->view('user/template/sidebar');
         $this->load->view('user/template/topbar');
-        $this->load->view('user/product');
+        $this->load->view('user/product/product');
+        $this->load->view('user/template/footer');
+    }
+
+    public function order($id)
+    {
+        $this->data['title'] = "Product";
+        $this->data['product'] = $this->base_model->get_item('row', 'product', '*', ['id' => $id]);
+        if (!$this->data['product']) {
+            show_404();
+        }
+        $this->data['product_item'] = $this->base_model->get_item('result', 'product_item', '*', ['product_id' => $id]);
+
+        if ($this->input->post('ticket')) {
+            $this->form_validation->set_rules('ticket', 'Tiket', 'trim|numeric|required');
+
+            if ($this->form_validation->run() === TRUE) {
+                $item = $this->base_model->get_item('row', 'product_item', '*', ['id' => $this->input->post('ticket')]);
+                $params = [
+                    'product_id' => $item['product_id'],
+                    'product_name' => $this->data['product']['name'],
+                    'quantity' => $item['quantity'],
+                    'price' => $item['price'],
+                    'user_id' => $this->session->userdata('user_id'),
+                    'created' => date('Y-m-d H:i:s')
+                ];
+                $order = $this->base_model->insert_item('orders', $params, 'id');
+                if ($order) {
+                    $order_item = $this->base_model->get_item('row', 'orders', '*', ['id' => $order]);
+                    $this->session->set_flashdata('message_sa', 'Kamu memesan ' . $order_item['quantity'] . ' Tiket ' . $order_item['product_name'] . ' Harga ' . number_format($order_item['price'], 0, '', '.') . '. Kamu akan diarahkan ke WA untuk menyelesaikan pesananmu.');
+                    $this->session->set_flashdata('message_wa', 'Halo kak saya telah pesan ' . $order_item['quantity'] . ' Tiket ' . $order_item['product_name'] . ' Harga ' . number_format($order_item['price'], 0, '', '.'));
+                    redirect('usr/product');
+                }
+            }
+        }
+        $this->load->view('user/template/header', $this->data);
+        $this->load->view('user/template/sidebar');
+        $this->load->view('user/template/topbar');
+        $this->load->view('user/product/product_item');
         $this->load->view('user/template/footer');
     }
 
