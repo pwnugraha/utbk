@@ -935,7 +935,7 @@ class Auth extends CI_Controller
     //         show_404();
 	// 	}
 	// 	show_404();
-	// 	$users_data = $this->base_model->get_item('result', 'users', '*');
+	// 	$users_data = $this->base_model->get_item('result', 'users', '*', ['id >' => 786]);
 
 	// 	if(!empty($users_data)){
 	// 		foreach($users_data as $i){

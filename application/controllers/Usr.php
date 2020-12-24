@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once 'application/third_party/midtrans/Midtrans.php';
 
 class Usr extends CI_Controller
 {
@@ -106,6 +107,7 @@ class Usr extends CI_Controller
                     'quantity' => $item['quantity'],
                     'price' => $item['price'],
                     'user_id' => $this->session->userdata('user_id'),
+                    'category' => $this->input->post('category'),
                     'created' => date('Y-m-d H:i:s')
                 ];
                 $order = $this->base_model->insert_item('orders', $params, 'id');
@@ -121,6 +123,18 @@ class Usr extends CI_Controller
         $this->load->view('user/template/sidebar');
         $this->load->view('user/template/topbar');
         $this->load->view('user/product/product_item');
+        $this->load->view('user/template/footer');
+    }
+
+    public function orderhistory($id)
+    {
+        $this->data['orders'] = $this->base_model->get_item('result', 'orders', '*', ['user_id' => $this->session->userdata('user_id')]);
+        $this->data['title'] = "Statistik";
+
+        $this->load->view('user/template/header', $this->data);
+        $this->load->view('user/template/sidebar');
+        $this->load->view('user/template/topbar');
+        $this->load->view('user/order_detail');
         $this->load->view('user/template/footer');
     }
 
@@ -170,5 +184,47 @@ class Usr extends CI_Controller
                 redirect('usr');
             }
         }
+    }
+
+    //Transaction Handling
+    public function transaction($id)
+    {
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-LeUCYpw_pv89q-NPJ8ovRHB7';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => 10000,
+            ),
+            'item_details' => [array(
+                'id' => '',
+                'price' => 10000,
+                'quantity' => 1,
+                'name' => 'Midtrans Bear',
+                'category' => 'Toys',
+            )],
+            'customer_details' => array(
+                'first_name' => 'budi',
+                'email' => 'budi.pra@example.com',
+                'phone' => '08111222333',
+            ),
+        );
+
+        $this->data['snapToken'] = \Midtrans\Snap::getSnapToken($params);
+        $this->data['clientKey'] = 'SB-Mid-client-_MbfciIfUsdrBIKp';
+        $this->data['title'] = "Statistik";
+
+        $this->load->view('user/template/header', $this->data);
+        $this->load->view('user/template/sidebar');
+        $this->load->view('user/template/topbar');
+        $this->load->view('user/order_detail');
+        $this->load->view('user/template/footer');
     }
 }

@@ -61,6 +61,31 @@
         $(this).next('.custom-file-label').addClass("selected").html(filename);
     });
 </script>
+<?php if ($this->uri->segment(2) == 'transaction') : ?>
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= $clientKey ?>"></script>
+    <script type="text/javascript">
+        document.getElementById('pay-button').onclick = function() {
+            // SnapToken acquired from previous step
+            snap.pay('<?= $snapToken ?>', {
+                // Optional
+                onSuccess: function(result) {
+                    /* You may add your own js here, this is just example */
+                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                },
+                // Optional
+                onPending: function(result) {
+                    /* You may add your own js here, this is just example */
+                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                },
+                // Optional
+                onError: function(result) {
+                    /* You may add your own js here, this is just example */
+                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                }
+            });
+        };
+    </script>
+<?php endif; ?>
 </body>
 
 </html>

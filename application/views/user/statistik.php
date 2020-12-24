@@ -379,7 +379,7 @@
                                             <td><?= date('d', strtotime($i['created'])) . ' ' . get_month(date('n', strtotime($i['created']))) . ' ' . date('Y', strtotime($i['created'])) ?></td>
                                             <td><?= number_format($i['price'], 0, '', '.') ?></td>
                                             <td><?= $i['status'] == 0 ? 'Diproses' : 'Complete' ?></td>
-                                            <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                                            <td><a href="<?= site_url('usr/transaction/' . $i['id']) ?>">Detail</a></td>
                                         </tr>
                                 <?php endforeach;
                                 endif; ?>

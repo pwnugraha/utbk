@@ -24,6 +24,7 @@
                                         ?>
                                     </select>
                                 </div>
+                                <?=form_hidden('category', $product['type'])?>
                                 <button type="submit" class="btn btn-mulai-ptn btn-block mt-4" id="btn-mulai-ptn">Beli Tiket</button>
                             </div>
                         </div>

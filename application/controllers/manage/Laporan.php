@@ -37,7 +37,7 @@ class Laporan extends AdminBase
 
     public function define_exam_score($month)
     {
-        if(!$this->base_model->get_item('result', 'exam', '*', ['month' => $month])){
+        if (!$this->base_model->get_item('result', 'exam', '*', ['month' => $month])) {
             show_404();
         }
         $start_time = microtime(true);
@@ -48,19 +48,21 @@ class Laporan extends AdminBase
         $exam_data = [];
         $mapel = $this->base_model->get_item('result', 'kategori_soal', '*');
         $exam = $this->base_model->get_join_item('result', 'user_exam.*, exam.user_id', NULL, ['user_exam'], ['exam'], ['exam.id = user_exam.exam_id'], ['inner'], ['month' => $month, 'tka' => 1, 'tps' => 1]);
+
         $v = 0;
         foreach ($exam as $i) {
             $exam_data[$i['kategori_soal_id']]['score_data'][] = [
                 'soal' => $i['soal_id'],
                 'user' => $i['user_id'],
-                'score' => $i['score']
+                'score' => $i['score'],
+                'exam_id' => $i['exam_id']
             ];
             $v++;
         }
 
         $x = 0;
         foreach ($exam_data as $key => $i) {
-            $exam_data[$key]['score_processed'] = $this->_define_score($i['score_data']);
+            $this->_define_score($i['score_data'], $key);
             $x++;
         }
 
@@ -69,7 +71,7 @@ class Laporan extends AdminBase
         redirect('manage/laporan');
     }
 
-    public function _define_score($exam_data)
+    public function _define_score($exam_data, $kategori)
     {
         if (empty($exam_data)) {
             show_404();
@@ -80,6 +82,7 @@ class Laporan extends AdminBase
         //arrange score/soal
         foreach ($exam_data as $i) {
             $nilai[$i['soal']]['users'][$i['user']] = $i['score'];
+            $nilai[$i['soal']]['exam'][$i['user']] = $i['exam_id'];
         }
 
         //process start
@@ -107,6 +110,7 @@ class Laporan extends AdminBase
             foreach ($i['users'] as $ukey => $v) {
                 $nilai_mentah[$ukey]['soal'][$key] = $users_score[$ukey]['answer'] > 0 ? $users_score[$ukey]['user_answer_true'] / $users_score[$ukey]['answer'] * $nilai[$key]['users'][$ukey] * $nilai[$key]['score_level'] : 0;
                 $nilai_mentah[$ukey]['nilai_mentah'] = !isset($nilai_mentah[$ukey]['nilai_mentah']) ? (($nilai_mentah[$ukey]['soal'][$key] > 0) ? $nilai_mentah[$ukey]['soal'][$key] : 0) : $nilai_mentah[$ukey]['nilai_mentah'] + $nilai_mentah[$ukey]['soal'][$key];
+                $nilai_mentah[$ukey]['exam_id'] = $nilai[$key]['exam'][$ukey];
                 $populate_score += $nilai_mentah[$ukey]['soal'][$key];
             }
         }
@@ -122,7 +126,17 @@ class Laporan extends AdminBase
         //last process calculate nilai
         foreach ($nilai_mentah as $key => $i) {
             $nilai_mentah[$key]['final_score'] = round(500 + ((($i['nilai_mentah'] - $populate_avg) / $std) * 100), 2);
-            $this->base_model->update_item('exam', ['score' => $nilai_mentah[$key]['final_score']], ['user_id' => $key]);
+            if ($this->base_model->get_item('row', 'exam_score', '*', ['kategori_soal_id' => $kategori, 'exam_id' => $i['exam_id']])) {
+                $this->base_model->update_item('exam_score', ['score' => $nilai_mentah[$key]['final_score']], ['exam_id' => $i['exam_id'], 'kategori_soal_id' => $kategori]);
+            } else {
+                $params = [
+                    'kategori_soal_id' => $kategori,
+                    'score' => $nilai_mentah[$key]['final_score'],
+                    'created' => date('Y-m-d H:i:s'),
+                    'exam_id' => $i['exam_id']
+                ];
+                $this->base_model->insert_item('exam_score', $params);
+            }
         }
 
         return ['nilai' => $nilai, 'users_score' => $users_score, 'nilai_mentah' => $nilai_mentah];
