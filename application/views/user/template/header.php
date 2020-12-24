@@ -26,6 +26,9 @@
     <script src="<?= base_url('asset/user/') ?>vendor/chart.js/Chart.min.js"></script>
     <script src="<?= base_url('asset/user/') ?>vendor/jquery/jquery.min.js"></script>
 
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 </head>
 

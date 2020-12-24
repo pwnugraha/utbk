@@ -34,6 +34,10 @@
     display: none;
 }
 
+.ubuntu{
+    font-family: 'Ubuntu', sans-serif;
+}
+
 .content{
     background-color: white;
 }
@@ -169,3 +173,22 @@
     right: 25px;
     transform: translateY(-25px);
   }
+
+
+.detail-pembayaran{
+    transform: translateY(-160px);
+}
+
+.bg-hijau{
+    background-color: #00be29 !important;
+}
+
+.btn-bayar{
+    background-color: #EF8521;
+    color: white;
+}
+
+.btn-bayar:hover{
+    background-color: #a05107;
+    color: white;
+}

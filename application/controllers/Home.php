@@ -71,4 +71,13 @@ class Home extends CI_Controller
             echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
         }
     }
+
+    public function detail_pembayaran()
+    {
+        $this->data['title'] = "Pembayaran";
+
+        $this->load->view('user/template/header', $this->data);
+        $this->load->view('user/product/detail_pembayaran');
+        $this->load->view('user/template/footer');
+    }
 }
