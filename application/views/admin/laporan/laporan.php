@@ -188,7 +188,7 @@
     </div> -->
 
     <div class="row mt-4">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <div class="card shadow orders" style="border-radius: 1em;">
                 <div class="card-body">
                     <div class="container-fluid p-0">
@@ -201,7 +201,7 @@
                         </div>
                     </div>
                     <div class="table-responsive mt-4">
-                        <table class="table mb-0">
+                        <table class="table mb-0" id="data_table">
                             <thead>
                                 <tr>
                                     <th class="text-hitam">INVOICE</th>
@@ -209,8 +209,9 @@
                                     <th class="text-hitam">DATE</th>
                                     <th class="text-hitam">TIKET</th>
                                     <th class="text-hitam">AMOUNT</th>
+                                    <th class="text-hitam">PAYMENT</th>
                                     <th class="text-hitam">STATUS</th>
-                                    <th class="text-hitam"></th>
+                                    <th class="text-hitam">METHOD</th>
                                 </tr>
                             </thead>
 
@@ -221,12 +222,29 @@
                                             <td><?= $i['id'] ?></td>
                                             <td><?= $i['first_name'] ?></td>
                                             <td><?= date('d-m-Y H:i', strtotime($i['created'])) ?></td>
-                                            <td><?= $i['quantity'] ?></td>
+                                            <td><?= $i['quantity'] . ' ' . product_category($i['category']) ?></td>
                                             <td><?= number_format($i['price'], 0, '', '.') ?></td>
-                                            <td><?= $i['status'] == 1 ? 'Paid' : 'Unpaid' ?></td>
+                                            <td><?= $i['payment'] ?></td>
                                             <td>
-                                                <?php if ($i['status'] == 1) : ?>
-                                                    Complete
+                                                <?php
+                                                switch ($i['status']) {
+                                                    case 'settlement':
+                                                    case 'capture':
+                                                        echo 'Paid';
+                                                        break;
+                                                    case 'deny':
+                                                    case 'expire':
+                                                    case 'cancel':
+                                                        echo 'Cancel';
+                                                        break;
+                                                    default:
+                                                        echo 'Pending';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($i['method'] == 2) : ?>
+                                                    Auto
                                                 <?php else : ?>
                                                     <a href="<?= base_url('manage/laporan/order_update/' . $i['id']) ?>" class="btn-update">
                                                         Proses
@@ -274,9 +292,9 @@
                                         <tr>
                                             <td><?= get_month($i['month']) ?></td>
                                             <td><?= $i['total'] ?></td>
-                                            <td><?= !empty($i['proses']) ?$i['proses']: 'Semua tryout sudah dinilai' ?></td>
+                                            <td><?= !empty($i['proses']) ? $i['proses'] : 'Semua tryout sudah dinilai' ?></td>
                                             <td>
-                                                <a href="<?= base_url('manage/laporan/define_exam_score/'. $i['month']) ?>" class="btn-proses">
+                                                <a href="<?= base_url('manage/laporan/define_exam_score/' . $i['month']) ?>" class="btn-proses">
                                                     Proses Nilai
                                                 </a>
                                             </td>
@@ -293,7 +311,21 @@
 
 </div>
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message_sa'); ?>"></div>
-<?php 
+<?php
+function product_category($category)
+{
+    switch ($category) {
+        case 1:
+            return 'SAINTEK';
+        case 2:
+            return 'SOSHUM';
+        case 3:
+            return 'Campuran';
+        default:
+            return '';
+    }
+}
+
 function get_month($month)
 {
     switch ($month) {

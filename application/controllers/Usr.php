@@ -78,7 +78,7 @@ class Usr extends CI_Controller
     {
         $this->data['title'] = "Product";
 
-        $this->data['product'] = $this->base_model->get_item('result', 'product', '*');
+        $this->data['product'] = $this->base_model->get_join_item('result', 'product.*', NULL, 'product', ['product_item'], ['product.id=product_item.product_id'], ['inner']);
 
         $this->load->view('user/template/header', $this->data);
         $this->load->view('user/template/sidebar');
@@ -101,6 +101,9 @@ class Usr extends CI_Controller
 
             if ($this->form_validation->run() === TRUE) {
                 $item = $this->base_model->get_item('row', 'product_item', '*', ['id' => $this->input->post('ticket')]);
+                if (!$item) {
+                    show_404();
+                }
                 $params = [
                     'product_id' => $item['product_id'],
                     'product_name' => $this->data['product']['name'],
@@ -113,9 +116,9 @@ class Usr extends CI_Controller
                 $order = $this->base_model->insert_item('orders', $params, 'id');
                 if ($order) {
                     $order_item = $this->base_model->get_item('row', 'orders', '*', ['id' => $order]);
-                    $this->session->set_flashdata('message_sa', 'Kamu memesan ' . $order_item['quantity'] . ' Tiket ' . $order_item['product_name'] . ' Harga ' . number_format($order_item['price'], 0, '', '.') . '. Kamu akan diarahkan ke WA untuk menyelesaikan pesananmu.');
-                    $this->session->set_flashdata('message_wa', 'Halo kak saya telah pesan ' . $order_item['quantity'] . ' Tiket ' . $order_item['product_name'] . ' Harga ' . number_format($order_item['price'], 0, '', '.'));
-                    redirect('usr/product');
+                    //$this->session->set_flashdata('message_sa', 'Kamu memesan ' . $order_item['quantity'] . ' Tiket ' . $order_item['product_name'] . ' Harga ' . number_format($order_item['price'], 0, '', '.') . '. Kamu akan diarahkan ke WA untuk menyelesaikan pesananmu.');
+                    //$this->session->set_flashdata('message_wa', 'Halo kak saya telah pesan ' . $order_item['quantity'] . ' Tiket ' . $order_item['product_name'] . ' Harga ' . number_format($order_item['price'], 0, '', '.'));
+                    redirect('usr/transaction/' . $order);
                 }
             }
         }
@@ -126,16 +129,8 @@ class Usr extends CI_Controller
         $this->load->view('user/template/footer');
     }
 
-    public function orderhistory($id)
+    public function order_history($id)
     {
-        $this->data['orders'] = $this->base_model->get_item('result', 'orders', '*', ['user_id' => $this->session->userdata('user_id')]);
-        $this->data['title'] = "Statistik";
-
-        $this->load->view('user/template/header', $this->data);
-        $this->load->view('user/template/sidebar');
-        $this->load->view('user/template/topbar');
-        $this->load->view('user/order_detail');
-        $this->load->view('user/template/footer');
     }
 
     public function profile()
@@ -189,6 +184,10 @@ class Usr extends CI_Controller
     //Transaction Handling
     public function transaction($id)
     {
+        $this->data['orders'] = $this->base_model->get_join_item('row', 'orders.*, users.first_name, users.email, users.phone', NULL, ['orders'], ['users'], ['orders.user_id = users.id'], ['inner'], ['orders.id' => $id]);
+        if (empty($this->data['orders'])) {
+            show_404();
+        }
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = 'SB-Mid-server-LeUCYpw_pv89q-NPJ8ovRHB7';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
@@ -197,34 +196,84 @@ class Usr extends CI_Controller
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
-
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 10000,
-            ),
-            'item_details' => [array(
-                'id' => '',
-                'price' => 10000,
-                'quantity' => 1,
-                'name' => 'Midtrans Bear',
-                'category' => 'Toys',
-            )],
-            'customer_details' => array(
-                'first_name' => 'budi',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ),
-        );
-
-        $this->data['snapToken'] = \Midtrans\Snap::getSnapToken($params);
         $this->data['clientKey'] = 'SB-Mid-client-_MbfciIfUsdrBIKp';
-        $this->data['title'] = "Statistik";
+        $this->data['snapToken'] = $this->data['orders']['snaptoken'];
+
+        if (is_null($this->data['orders']['snaptoken'])) {
+
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => $this->data['orders']['id'],
+                    'gross_amount' => $this->data['orders']['price'],
+                ),
+                'item_details' => [array(
+                    'id' => $this->data['orders']['product_id'],
+                    'price' => $this->data['orders']['price'],
+                    'quantity' => $this->data['orders']['quantity'],
+                    'name' => $this->data['orders']['product_name'],
+                    'category' => $this->data['orders']['category'],
+                )],
+                'customer_details' => array(
+                    'first_name' => $this->data['orders']['first_name'],
+                    'email' => $this->data['orders']['email'],
+                    'phone' => $this->data['orders']['phone'],
+                ),
+            );
+
+            $this->data['snapToken'] = \Midtrans\Snap::getSnapToken($params);
+        }
+
+        if ($this->data['orders']['payment'] == 'gopay' && $this->data['orders']['status'] == 'pending') {
+            $status = get_object_vars(\Midtrans\Transaction::status($this->data['orders']['id']));
+            if ($status['transaction_status'] == 'pending') {
+                $cancel = \Midtrans\Transaction::cancel($this->data['orders']['id']);
+                $this->base_model->update_item('orders', ['status' => 'cancel'], ['id' => $this->data['orders']['id']]);
+                $this->data['orders']['status'] = 'cancel';
+            }
+        }
+        $this->data['title'] = "Pembayaran";
 
         $this->load->view('user/template/header', $this->data);
-        $this->load->view('user/template/sidebar');
-        $this->load->view('user/template/topbar');
-        $this->load->view('user/order_detail');
+        $this->load->view('user/product/detail_pembayaran');
         $this->load->view('user/template/footer');
+    }
+
+    public function update_transaction()
+    {
+        if ($this->base_model->get_item('row', 'orders', '*', ['id' => $this->input->post('id')])) {
+
+            $params = [
+                'payment' => $this->input->post('payment'),
+                'status' => $this->input->post('status'),
+                'modified' => $this->input->post('modified'),
+            ];
+            $this->base_model->update_item('orders', $params, ['id' => $this->input->post('id')]);
+            echo json_encode(['status' => TRUE]);
+        } else {
+            echo json_encode(['status' => FALSE]);
+        }
+    }
+
+    public function update_snaptoken()
+    {
+        $data = $this->base_model->get_item('row', 'orders', '*', ['id' => $this->input->post('id')]);
+        if ($data) {
+            if (is_null($data['snaptoken'])) {
+                $this->base_model->update_item('orders', ['snaptoken' => $this->input->post('snaptoken')], ['id' => $this->input->post('id')]);
+            }
+            echo json_encode(['status' => TRUE]);
+        } else {
+            echo json_encode(['status' => FALSE]);
+        }
+    }
+
+    public function get_transaction()
+    {
+        $data = $this->base_model->get_item('row', 'orders', 'product_name, payment, status', ['id' => $this->input->post('id')]);
+        if ($data) {
+            echo json_encode(['status' => TRUE, 'data' => $data]);
+        } else {
+            echo json_encode(['status' => FALSE]);
+        }
     }
 }

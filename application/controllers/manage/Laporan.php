@@ -31,7 +31,7 @@ class Laporan extends AdminBase
         if (!$this->data['post']) {
             show_404();
         }
-        $this->base_model->update_item('orders', ['status' => 1], array('id' => $id));
+        $this->base_model->update_item('orders', ['status' => 'settlement'], array('id' => $id));
         redirect('manage/laporan');
     }
 

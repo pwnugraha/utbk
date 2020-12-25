@@ -42,42 +42,37 @@ class Home extends CI_Controller
         $order_id = $notif->order_id;
         $fraud = $notif->fraud_status;
 
+        $log_params = [
+            'order_id' => $order_id,
+            'payment' => $type,
+            'status' => $transaction,
+            'created' => date('Y-m-d H:i:s'),
+            'status_code' => $notif->status_code
+        ];
+
+        $data_order = $this->base_model->get_item('row', 'orders', '*', ['id' => $order_id]);
+        if ($data_order['status'] == 'pending' || is_null($data_order['status'])) {
+            $this->base_model->update_item('orders', ['payment' => $type, 'status' => $transaction, 'modified' => $notif->transaction_time], ['id' => $order_id]);
+        }
         if ($transaction == 'capture') {
-            // For credit card transaction, we need to check whether transaction is challenge by FDS or not
             if ($type == 'credit_card') {
                 if ($fraud == 'challenge') {
-                    // TODO set payment status in merchant's database to 'Challenge by FDS'
-                    // TODO merchant should decide whether this transaction is authorized or not in MAP
-                    echo "Transaction order_id: " . $order_id . " is challenged by FDS";
+                    $log_params['msg'] = "Transaction order_id: " . $order_id . " is challenged by FDS";
                 } else {
-                    // TODO set payment status in merchant's database to 'Success'
-                    echo "Transaction order_id: " . $order_id . " successfully captured using " . $type;
+                    $log_params['msg'] = "Transaction order_id: " . $order_id . " successfully captured using " . $type;
                 }
             }
         } else if ($transaction == 'settlement') {
-            // TODO set payment status in merchant's database to 'Settlement'
-            echo "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
+            $log_params['msg'] = "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
         } else if ($transaction == 'pending') {
-            // TODO set payment status in merchant's database to 'Pending'
-            echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
+            $log_params['msg'] = "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
         } else if ($transaction == 'deny') {
-            // TODO set payment status in merchant's database to 'Denied'
-            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
+            $log_params['msg'] = "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
         } else if ($transaction == 'expire') {
-            // TODO set payment status in merchant's database to 'expire'
-            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
+            $log_params['msg'] = "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
         } else if ($transaction == 'cancel') {
-            // TODO set payment status in merchant's database to 'Denied'
-            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
+            $log_params['msg'] = "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
         }
-    }
-
-    public function detail_pembayaran()
-    {
-        $this->data['title'] = "Pembayaran";
-
-        $this->load->view('user/template/header', $this->data);
-        $this->load->view('user/product/detail_pembayaran');
-        $this->load->view('user/template/footer');
+        $this->base_model->insert_item('order_notif', $log_params);
     }
 }

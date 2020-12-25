@@ -10,7 +10,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="h4 text-biru mb-2 text-center"><?= $product['name'] ?></div>
-                                <p>Kamu akan diarahkan ke WA CS kami untuk pemesanan.</p>
+                                <!-- <p>Kamu akan diarahkan ke WA CS kami untuk pemesanan.</p> -->
                                 <div class="h5 text-biru mb-2">Pilih Tiket</div>
                                 <div class="form-group">
                                     <select class="form-control" name="ticket" id="ticket">
