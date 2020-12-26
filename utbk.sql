@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2020 at 12:40 PM
+-- Generation Time: Dec 26, 2020 at 07:55 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -765,6 +765,20 @@ INSERT INTO `exam_history` (`id`, `name`, `date`, `exam_id`, `category`, `start_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `exam_score`
+--
+
+CREATE TABLE `exam_score` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `kategori_soal_id` int(10) UNSIGNED NOT NULL,
+  `score` float NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `exam_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `groups`
 --
 
@@ -826,13 +840,6 @@ CREATE TABLE `login_attempts` (
   `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `login_attempts`
---
-
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(1, '::1', 'admin', 1608295262);
-
 -- --------------------------------------------------------
 
 --
@@ -847,16 +854,46 @@ CREATE TABLE `orders` (
   `price` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `payment` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '1=transfer',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=unpaid, 1=paid'
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `payment` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category` tinyint(3) UNSIGNED NOT NULL COMMENT '1=saintek, 2=soshum, 3=campuran',
+  `snaptoken` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `method` tinyint(1) UNSIGNED NOT NULL DEFAULT '2' COMMENT '1=manual, 2=midtrans'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `product_id`, `product_name`, `quantity`, `price`, `user_id`, `created`, `payment`, `status`) VALUES
-(1, 3, 'SOSHUM', 1, 100000, 1, '2020-12-19 07:20:27', 1, 1);
+INSERT INTO `orders` (`id`, `product_id`, `product_name`, `quantity`, `price`, `user_id`, `created`, `modified`, `payment`, `status`, `category`, `snaptoken`, `method`) VALUES
+(10033, 3, 'SOSHUM', 1, 100000, 1, '2020-12-24 12:01:43', '2020-12-25 09:48:07', 'bank_transfer', 'pending', 2, '43781d32-d5c6-446d-a698-f343a4a758ec', 2),
+(10034, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:26:27', '2020-12-25 11:26:31', NULL, NULL, 2, '15e5ebc0-62b0-4e5f-910d-9d74f31706ed', 2),
+(10035, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:30:13', '2020-12-25 11:32:31', 'cstore', 'pending', 2, '68f3dc16-fba3-498a-a9cb-0bb7f6d9712e', 2),
+(10036, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:32:44', '2020-12-25 11:33:23', 'cstore', 'pending', 2, 'fa96cd59-a6d8-4277-8d16-565bdd554873', 2),
+(10037, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:33:46', '2020-12-25 11:33:49', NULL, NULL, 2, '850e256f-bf1f-4548-85c9-acc4722738b2', 2),
+(10038, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:34:24', '2020-12-25 11:35:09', 'cstore', 'pending', 2, '2115888a-dc7c-4f0f-a5ee-f6c9e3565019', 2),
+(10039, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:38:20', '2020-12-25 11:43:24', 'credit_card', 'capture', 2, '00156564-1323-4827-9426-5567ac8862bb', 2),
+(10040, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:53:43', '2020-12-25 11:54:07', 'bank_transfer', 'pending', 2, '87792ca6-6aa1-42a6-96b6-bccd3635aa06', 2),
+(10041, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:54:30', '2020-12-25 11:55:23', 'bank_transfer', 'pending', 2, 'f38186d9-b74d-43cd-9774-8c05329c12fc', 2),
+(10042, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:55:36', '2020-12-25 11:55:39', NULL, NULL, 2, '0445558c-375a-4cbe-b217-338eb75e85d0', 2),
+(10043, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:58:28', '2020-12-25 11:58:46', 'echannel', 'pending', 2, 'b54196d4-c71f-479f-ad0c-4099db4d0e65', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_notif`
+--
+
+CREATE TABLE `order_notif` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `order_id` int(10) UNSIGNED NOT NULL,
+  `payment` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `msg` text COLLATE utf8mb4_unicode_ci,
+  `status_code` smallint(3) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -920,6 +957,13 @@ CREATE TABLE `product_item` (
   `price` int(10) UNSIGNED NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_item`
+--
+
+INSERT INTO `product_item` (`id`, `product_id`, `quantity`, `price`, `description`) VALUES
+(1, 3, 1, 100000, '30%');
 
 -- --------------------------------------------------------
 
@@ -3994,7 +4038,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$XiRevnvtyCo.I0DF3InheuyudhNCcFJp9kXp8TmoEY9Cq7ZjjjQ/q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1608352973, 1, 'Admin', 'istrator', 'ADMIN', '085743', 1, 'homepage-13.png'),
+(1, '127.0.0.1', 'administrator', '$2y$12$XiRevnvtyCo.I0DF3InheuyudhNCcFJp9kXp8TmoEY9Cq7ZjjjQ/q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1608875379, 1, 'Admin', 'istrator', 'ADMIN', '085743', 1, 'homepage-13.png'),
 (173, '::1', '0020904782', '$2y$10$vPt0iuT32EJgpmqqu.BLnesm/9rY5UBa.eiHdMDTHXvHONxVZXcuW', 'ekafitrian88@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861365, NULL, 1, 'ALEX PRIGUNTORO', NULL, 'SMAN 5 TUBAN', '085785135558', 1, NULL),
 (174, '::1', '0034375628', '$2y$10$LL6BSH7j6Oi3bmUsnlHTQOINWO4hMhQKQDEBVFJHiJXgG9oGg.9Jy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861366, NULL, 1, 'ANNISA FATHONI', NULL, 'SMAN 5 TUBAN', '085784385499', 2, NULL),
 (175, '::1', '0024042345', '$2y$10$3bl2GeXf.cUrxhkGYu3cW.y4/yu7ganJuiX1XtM8.ElFtv1vCfw7e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861366, NULL, 1, 'ARIA RAHMATDANI MULYONO', NULL, 'SMAN 5 TUBAN', '085708856537', 1, NULL),
@@ -5263,6 +5307,14 @@ ALTER TABLE `exam_history`
   ADD KEY `fk_exam_history_exam` (`exam_id`);
 
 --
+-- Indexes for table `exam_score`
+--
+ALTER TABLE `exam_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_exam_score_exam` (`exam_id`),
+  ADD KEY `fk_exam_score_kategori_soal` (`kategori_soal_id`);
+
+--
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
@@ -5287,6 +5339,12 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_orders_product` (`product_id`),
   ADD KEY `fk_orders_users` (`user_id`);
+
+--
+-- Indexes for table `order_notif`
+--
+ALTER TABLE `order_notif`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `paket_soal`
@@ -5408,6 +5466,12 @@ ALTER TABLE `exam_history`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `exam_score`
+--
+ALTER TABLE `exam_score`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
@@ -5423,13 +5487,19 @@ ALTER TABLE `kategori_soal`
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10044;
+
+--
+-- AUTO_INCREMENT for table `order_notif`
+--
+ALTER TABLE `order_notif`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `paket_soal`
@@ -5527,6 +5597,13 @@ ALTER TABLE `exam`
 --
 ALTER TABLE `exam_history`
   ADD CONSTRAINT `fk_exam_history_exam` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `exam_score`
+--
+ALTER TABLE `exam_score`
+  ADD CONSTRAINT `fk_exam_score_exam` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_exam_score_kategori_soal` FOREIGN KEY (`kategori_soal_id`) REFERENCES `kategori_soal` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `orders`
