@@ -105,8 +105,8 @@ class Laporan extends AdminBase
                 $sheet->setCellValue('A' . $i, $v['first_name']);
                 $sheet->setCellValue('B' . $i, $v['company']);
                 $sheet->setCellValue('C' . $i, $tryout);
-                $sheet->setCellValue('E' . $i, $v['month']);
-                $sheet->setCellValue('D' . $i, $doing_tryout);
+                $sheet->setCellValue('D' . $i, $v['month']);
+                $sheet->setCellValue('E' . $i, $doing_tryout);
                 $i++;
             }
         }

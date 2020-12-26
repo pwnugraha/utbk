@@ -67,14 +67,39 @@ class Usr extends CI_Controller
         $this->data['orders'] = $this->base_model->get_item('result', 'orders', '*', ['user_id' => $this->session->userdata('user_id')]);
         $this->data['utbk_score'] = $this->base_model->get_join_item('result', 'exam_score.*, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.user_id' => $this->session->userdata('user_id'), 'exam.month' => 12]);
         $score_limit = $this->base_model->get_join_item('result', 'MIN(exam_score.score) as min, MAX(exam_score.score) as max, exam_score.kategori_soal_id', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.month' => 12], ['exam_score.kategori_soal_id']);
-        foreach ($score_limit as $v) {
-            $this->data['score_limit'][$v['kategori_soal_id']] = [
-                'max' => $v['max'],
-                'min' => $v['min'],
-            ];
+        if (!empty($score_limit)) {
+            foreach ($score_limit as $v) {
+                $this->data['score_limit'][$v['kategori_soal_id']] = [
+                    'max' => $v['max'],
+                    'min' => $v['min'],
+                ];
+            }
         }
-        $this->data['ptn1'] = $this->base_model->get_join_item('row', 'exam.ptn1, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn1'], ['inner'], ['exam.month' => 12]);
-        $this->data['ptn2'] = $this->base_model->get_join_item('row', 'exam.ptn2, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn2'], ['inner'], ['exam.month' => 12]);
+        $this->data['ptn1'] = $this->base_model->get_join_item('row', 'exam.ptn1, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn1'], ['inner'], ['exam.month' => 12, 'exam.user_id' => $this->session->userdata('user_id')]);
+        $this->data['ptn2'] = $this->base_model->get_join_item('row', 'exam.ptn2, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn2'], ['inner'], ['exam.month' => 12, 'exam.user_id' => $this->session->userdata('user_id')]);
+        //get chart data
+        $chart_data = $this->base_model->get_join_item('result', 'SUM(exam_score.score)/COUNT(exam_score.score) as pfm, exam.month', 'exam.id ASC', 'exam_score', ['exam'], ['exam.id=exam_score.exam_id'], ['inner'], ['exam.user_id' => $this->session->userdata('user_id')], ['month']);
+        //assign to month as index
+        $chart_item = [
+            12 => 0,
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0,
+            7 => 0,
+            8 => 0,
+            9 => 0,
+            10 => 0,
+            11 => 0,
+        ];
+        if (!empty($chart_data)) {
+            foreach ($chart_data as $v) {
+                $chart_item[$v['month']] = round($v['pfm'], 2);
+            }
+        }
+        $this->data['chart_data'] = implode(',', $chart_item);
         $this->data['title'] = "Statistik";
 
         $this->load->view('user/template/header', $this->data);
@@ -108,7 +133,7 @@ class Usr extends CI_Controller
         }
         $this->data['item'] = [];
         $item = $this->base_model->get_join_item('result', 'user_exam.*, kategori_soal.category, kategori_soal.subject', NULL, 'user_exam', ['exam', 'kategori_soal'], ['exam.id=user_exam.exam_id', 'user_exam.kategori_soal_id=kategori_soal.id'], ['inner', 'inner'], ['exam.user_id' => $this->session->userdata('user_id'), 'exam_id' => $exam_id, "kategori_soal_id IN $ctg" => NULL]);
-        foreach($item as $v){
+        foreach ($item as $v) {
             $this->data['item'][$v['kategori_soal_id']]['soal'][] = $v;
             $this->data['item'][$v['kategori_soal_id']]['category'] = $v['category'];
             $this->data['item'][$v['kategori_soal_id']]['subject'] = $v['subject'];
@@ -124,7 +149,7 @@ class Usr extends CI_Controller
     {
         $this->data['title'] = "Product";
 
-        $this->data['product'] = $this->base_model->get_join_item('result', 'product.*', NULL, 'product', ['product_item'], ['product.id=product_item.product_id'], ['inner']);
+        $this->data['product'] = $this->base_model->get_join_item('result', 'product.*', NULL, 'product', ['product_item'], ['product.id=product_item.product_id'], ['inner'], ['status' => 1]);
 
         $this->load->view('user/template/header', $this->data);
         $this->load->view('user/template/sidebar');

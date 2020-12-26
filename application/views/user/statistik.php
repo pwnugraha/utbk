@@ -153,13 +153,13 @@
                                     <div class="h3 mb-0">
                                         <table width="100%">
                                             <tr>
-                                                <td><?=$ptn1['nama']?></td>
+                                                <td><?= $ptn1['nama'] ?></td>
                                                 <td class="text-right"><img src="img/menu-3-putih.png" alt=""></td>
                                             </tr>
                                         </table>
                                     </div>
                                     <div class="mb-4">Pilihan Pertama</div>
-                                    <div class="h4"><?=$ptn1['jurusan']?></div>
+                                    <div class="h4"><?= $ptn1['jurusan'] ?></div>
                                 </td>
                             </tr>
                         </table>
@@ -180,13 +180,13 @@
                                     <div class="h3 mb-0">
                                         <table width="100%">
                                             <tr>
-                                                <td><?=$ptn2['nama']?></td>
+                                                <td><?= $ptn2['nama'] ?></td>
                                                 <td class="text-right"><img src="img/menu-3-putih.png" alt=""></td>
                                             </tr>
                                         </table>
                                     </div>
                                     <div class="mb-4">Pilihan Kedua</div>
-                                    <div class="h4"><?=$ptn2['jurusan']?></div>
+                                    <div class="h4"><?= $ptn2['jurusan'] ?></div>
                                 </td>
                             </tr>
                         </table>
@@ -226,7 +226,7 @@
                                             <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
                                             <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
                                             <td><?= date('d', strtotime($i['date'])) . ' ' . get_month(date('n', strtotime($i['date']))) . ' ' . date('Y', strtotime($i['date'])) . ' - ' . date('H:i', strtotime($i['date'])) ?></td>
-                                            <td><a href="<?=site_url('usr/pembahasan/'.$i['exam_id'].'/'.$i['category'])?>">Pembahasan</a></td>
+                                            <td><a href="<?= site_url('usr/pembahasan/' . $i['exam_id'] . '/' . $i['category']) ?>">Pembahasan</a></td>
                                         </tr>
                                 <?php $no++;
                                     endforeach;
@@ -324,10 +324,10 @@
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: ['Dec','Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
             datasets: [{
                 label: 'Performance',
-                data: [0],
+                data: [<?= $chart_data ?>],
                 backgroundColor: [
                     'rgba(38, 85, 214,0.1)'
                 ],
