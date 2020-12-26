@@ -65,6 +65,16 @@ class Usr extends CI_Controller
     {
         $this->data['exam_history'] = $this->base_model->get_join_item('result', 'exam_history.*, score', 'exam_id ASC', 'exam_history', ['exam'], ['exam.id=exam_history.exam_id'], ['inner'], ['exam.user_id' => $this->session->userdata('user_id')]);
         $this->data['orders'] = $this->base_model->get_item('result', 'orders', '*', ['user_id' => $this->session->userdata('user_id')]);
+        $this->data['utbk_score'] = $this->base_model->get_join_item('result', 'exam_score.*, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.user_id' => $this->session->userdata('user_id'), 'exam.month' => 12]);
+        $score_limit = $this->base_model->get_join_item('result', 'MIN(exam_score.score) as min, MAX(exam_score.score) as max, exam_score.kategori_soal_id', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.month' => 12], ['exam_score.kategori_soal_id']);
+        foreach ($score_limit as $v) {
+            $this->data['score_limit'][$v['kategori_soal_id']] = [
+                'max' => $v['max'],
+                'min' => $v['min'],
+            ];
+        }
+        $this->data['ptn1'] = $this->base_model->get_join_item('row', 'exam.ptn1, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn1'], ['inner'], ['exam.month' => 12]);
+        $this->data['ptn2'] = $this->base_model->get_join_item('row', 'exam.ptn2, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn2'], ['inner'], ['exam.month' => 12]);
         $this->data['title'] = "Statistik";
 
         $this->load->view('user/template/header', $this->data);
@@ -74,6 +84,42 @@ class Usr extends CI_Controller
         $this->load->view('user/template/footer');
     }
 
+    public function pembahasan($exam_id, $category)
+    {
+        if (!$this->base_model->get_item('row', 'exam', '*', ['id' => $exam_id])) {
+            show_404();
+        }
+        $ctg = '';
+        switch ($category) {
+            case 1:
+                $ctg = '(1,2,3,4)';
+                break;
+            case 2:
+                $ctg = '(5,6,7,8,9)';
+                break;
+            case 3:
+                $ctg = '(1,2,3,4,5,6,7,8,9)';
+                break;
+            case 4:
+                $ctg = '(10,11,12,13)';
+                break;
+            default:
+                show_404();
+        }
+        $this->data['item'] = [];
+        $item = $this->base_model->get_join_item('result', 'user_exam.*, kategori_soal.category, kategori_soal.subject', NULL, 'user_exam', ['exam', 'kategori_soal'], ['exam.id=user_exam.exam_id', 'user_exam.kategori_soal_id=kategori_soal.id'], ['inner', 'inner'], ['exam.user_id' => $this->session->userdata('user_id'), 'exam_id' => $exam_id, "kategori_soal_id IN $ctg" => NULL]);
+        foreach($item as $v){
+            $this->data['item'][$v['kategori_soal_id']]['soal'][] = $v;
+            $this->data['item'][$v['kategori_soal_id']]['category'] = $v['category'];
+            $this->data['item'][$v['kategori_soal_id']]['subject'] = $v['subject'];
+        }
+        $this->data['title'] = "Pembahasan";
+        $this->load->view('user/template/header', $this->data);
+        $this->load->view('user/pembahasan');
+        $this->load->view('user/template/footer');
+    }
+
+    //Product Section
     public function product()
     {
         $this->data['title'] = "Product";
@@ -131,54 +177,6 @@ class Usr extends CI_Controller
 
     public function order_history($id)
     {
-    }
-
-    public function profile()
-    {
-        $this->data['title'] = "Profile";
-
-        $this->load->view('user/template/header', $this->data);
-        $this->load->view('user/template/sidebar');
-        $this->load->view('user/template/topbar');
-        $this->load->view('user/profile');
-        $this->load->view('user/template/footer');
-    }
-
-    public function _is_logged_in()
-    {
-        if (!$this->ion_auth->logged_in()) {
-            // redirect them to the login page
-            redirect('auth/login', 'refresh');
-        }
-    }
-
-    public function _is_doing_exam()
-    {
-
-        $exam_data = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status !=' => 0]);
-        if ($exam_data) {
-            if (date('Y-m-d H:i:s') <= date('Y-m-d H:i:s', strtotime($exam_data['end_date']))) {
-                redirect('exm/start');
-            } else {
-                $params = array(
-                    'status' => 0,
-                    'end_date' => NULL,
-                );
-                switch ($exam_data['status']) {
-                    case 1:
-                    case 2:
-                    case 3:
-                        $params['tka'] = 1;
-                        break;
-                    case 4:
-                        $params['tps'] = 1;
-                        break;
-                }
-                $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
-                $this->session->set_flashdata('message_sa', 'Selamat kamu telah menyelesaikan TPS/TKA');
-                redirect('usr');
-            }
-        }
     }
 
     //Transaction Handling
@@ -274,6 +272,55 @@ class Usr extends CI_Controller
             echo json_encode(['status' => TRUE, 'data' => $data]);
         } else {
             echo json_encode(['status' => FALSE]);
+        }
+    }
+
+    public function profile()
+    {
+        $this->data['title'] = "Profile";
+
+        $this->load->view('user/template/header', $this->data);
+        $this->load->view('user/template/sidebar');
+        $this->load->view('user/template/topbar');
+        $this->load->view('user/profile');
+        $this->load->view('user/template/footer');
+    }
+
+    //Authentication
+    public function _is_logged_in()
+    {
+        if (!$this->ion_auth->logged_in()) {
+            // redirect them to the login page
+            redirect('auth/login', 'refresh');
+        }
+    }
+
+    public function _is_doing_exam()
+    {
+
+        $exam_data = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status !=' => 0]);
+        if ($exam_data) {
+            if (date('Y-m-d H:i:s') <= date('Y-m-d H:i:s', strtotime($exam_data['end_date']))) {
+                redirect('exm/start');
+            } else {
+                $params = array(
+                    'status' => 0,
+                    'end_date' => NULL,
+                );
+                switch ($exam_data['status']) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        $params['tka'] = 1;
+                        break;
+                    case 4:
+                        $params['tps'] = 1;
+                        break;
+                }
+                $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
+                $this->session->set_flashdata('message_sa', 'Selamat kamu telah menyelesaikan TPS/TKA');
+                redirect('usr');
+            }
         }
     }
 }

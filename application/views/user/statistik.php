@@ -62,7 +62,7 @@
                     <div class="h5 text-hitam">
                         <table width="100%">
                             <tr>
-                                <td>Rata-rata nilai permapel TKA</td>
+                                <td>Nilai permapel TKA</td>
                                 <td class="text-right">
                                     <a href="" class="text-dark">
                                         <img src="<?= base_url('asset/user/') ?>img/menu-3.png" class="img-fluid">
@@ -72,115 +72,27 @@
                         </table>
                     </div>
                     <hr>
+                    <?php
+                    if (!empty($utbk_score)) :
+                        foreach ($utbk_score as $v) :
+                            if ($v['category'] == 'saintek' || $v['category'] == 'soshum') :
+                    ?>
+                                <div class="range-mk">
+                                    <table width="100%">
+                                        <tr>
+                                            <td class="text-hitam"><?= ucwords($v['subject']) ?></td>
+                                            <td class="text-right pr-3"><small><?= $v['score'] ?></small></td>
+                                        </tr>
+                                    </table>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <?= $score_limit[$v['kategori_soal_id']]['max'] > 0 ? $v['score'] / $score_limit[$v['kategori_soal_id']]['max'] * 100 : 0 ?>%" aria-valuenow="<?= $v['score'] ?>" aria-valuemin="<?= $score_limit[$v['kategori_soal_id']]['min'] ?>" aria-valuemax="<?= $score_limit[$v['kategori_soal_id']]['max'] ?>"></div>
+                                    </div>
+                                </div>
 
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Sejarah</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Geografi</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Ekonomi</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Sosiologi</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Matematika Soshum</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Kimia</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Biologi</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Fisika</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Matematika Saintek</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
+                    <?php
+                            endif;
+                        endforeach;
+                    endif; ?>
                 </div>
             </div>
         </div>
@@ -191,7 +103,7 @@
                     <div class="h5 text-hitam">
                         <table width="100%">
                             <tr>
-                                <td>Rata-rata nilai permapel TPS</td>
+                                <td>Nilai permapel TPS</td>
                                 <td class="text-right">
                                     <a href="" class="text-dark">
                                         <img src="<?= base_url('asset/user/') ?>img/menu-3.png" class="img-fluid">
@@ -202,54 +114,27 @@
                     </div>
                     <hr>
 
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Penalaran Umum</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
+                    <?php
+                    if (!empty($utbk_score)) :
+                        foreach ($utbk_score as $v) :
+                            if ($v['category'] == 'tps') :
+                    ?>
+                                <div class="range-mk">
+                                    <table width="100%">
+                                        <tr>
+                                            <td class="text-hitam"><?= ucwords($v['subject']) ?></td>
+                                            <td class="text-right pr-3"><small><?= $v['score'] ?></small></td>
+                                        </tr>
+                                    </table>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <?= $score_limit[$v['kategori_soal_id']]['max'] > 0 ? $v['score'] / $score_limit[$v['kategori_soal_id']]['max'] * 100 : 0 ?>%" aria-valuenow="<?= $v['score'] ?>" aria-valuemin="<?= $score_limit[$v['kategori_soal_id']]['min'] ?>" aria-valuemax="<?= $score_limit[$v['kategori_soal_id']]['max'] ?>"></div>
+                                    </div>
+                                </div>
 
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Pemahaman bacaan</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Pengetahuan Umum</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
-                    <div class="range-mk">
-                        <table width="100%">
-                            <tr>
-                                <td class="text-hitam">Pengetahuan Kuantitatif</td>
-                                <td class="text-right pr-3"><small>0</small></td>
-                            </tr>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
-                        </div>
-                    </div>
-
+                    <?php
+                            endif;
+                        endforeach;
+                    endif; ?>
                 </div>
             </div>
         </div>
@@ -261,20 +146,20 @@
                     <div class="table-responsive">
                         <table width="100%">
                             <tr>
-                                <td width="30%">
+                                <!-- <td width="30%">
                                     <canvas id="chartProgress" height="50" width="100"></canvas>
-                                </td>
+                                </td> -->
                                 <td class="pl-3">
                                     <div class="h3 mb-0">
                                         <table width="100%">
                                             <tr>
-                                                <td>UGM</td>
+                                                <td><?=$ptn1['nama']?></td>
                                                 <td class="text-right"><img src="img/menu-3-putih.png" alt=""></td>
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="mb-4">Fakultas Ekonomi</div>
-                                    <div class="h3">0</div>
+                                    <div class="mb-4">Pilihan Pertama</div>
+                                    <div class="h4"><?=$ptn1['jurusan']?></div>
                                 </td>
                             </tr>
                         </table>
@@ -288,20 +173,20 @@
 
                         <table width="100%">
                             <tr>
-                                <td width="30%">
+                                <!-- <td width="30%">
                                     <canvas id="chartProgress2" height="50" width="100"></canvas>
-                                </td>
+                                </td> -->
                                 <td class="pl-3">
                                     <div class="h3 mb-0">
                                         <table width="100%">
                                             <tr>
-                                                <td>UNS</td>
+                                                <td><?=$ptn2['nama']?></td>
                                                 <td class="text-right"><img src="img/menu-3-putih.png" alt=""></td>
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="mb-4">Akuntansi</div>
-                                    <div class="h3">0</div>
+                                    <div class="mb-4">Pilihan Kedua</div>
+                                    <div class="h4"><?=$ptn2['jurusan']?></div>
                                 </td>
                             </tr>
                         </table>
@@ -327,7 +212,6 @@
                                     <th>Tanggal Sesi</th>
                                     <th>Jam Sesi</th>
                                     <th>Mengikuti Tryout Pada</th>
-                                    <th>Nilai</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -342,9 +226,7 @@
                                             <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
                                             <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
                                             <td><?= date('d', strtotime($i['date'])) . ' ' . get_month(date('n', strtotime($i['date']))) . ' ' . date('Y', strtotime($i['date'])) . ' - ' . date('H:i', strtotime($i['date'])) ?></td>
-
-                                            <td><?= ($i['score'] == NULL) ? '-' : $i['score'] ?></td>
-                                            <td><img src="img/menu-3.png" class="img-fluid" alt=""></td>
+                                            <td><a href="<?=site_url('usr/pembahasan/'.$i['exam_id'].'/'.$i['category'])?>">Pembahasan</a></td>
                                         </tr>
                                 <?php $no++;
                                     endforeach;

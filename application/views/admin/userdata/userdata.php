@@ -33,6 +33,16 @@
                                 <td class="text-biru">UserName</td>
                                 <td><?= empty($user) ? '-' : $user['username'] ?></td>
                             </tr>
+                            <tr>
+                                <td class="text-biru">Tiket</td>
+                                <td>
+                                    <?php if (empty($ticket)) {
+                                        echo '-';
+                                    } else {
+                                        echo $ticket['tka_saintek'] . ' TKA Saintek<br>' . $ticket['tka_soshum'] . ' TKA Soshum<br>' . $ticket['tka_campuran'] . ' TKA Campuran<br>' . $ticket['tps'] . ' TPS';
+                                    } ?>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>

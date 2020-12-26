@@ -270,7 +270,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <span class="h4 text-biru">
-                                    Ujian
+                                    Nilai Ujian
                                 </span>
                             </div>
                         </div>
@@ -297,12 +297,31 @@
                                                 <a href="<?= base_url('manage/laporan/define_exam_score/' . $i['month']) ?>" class="btn-proses">
                                                     Proses Nilai
                                                 </a>
+                                                <a href="<?= base_url('manage/laporan/nilai_tryout/' . $i['month']) ?>">
+                                                    Download
+                                                </a>
                                             </td>
                                         </tr>
                                 <?php endforeach;
                                 endif; ?>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card shadow" style="border-radius: 2em;">
+                <div class="card-body border-0">
+                    <div class="h2 mb-0">Ujian</div>
+                    <div class="mb-4">Download data siswa sudah/sedang ujian</div>
+                    <div class="text-right">
+                        <a href="<?=site_url('manage/laporan/had_tryout')?>">
+                            <b>Klik disini</b>
+                            <svg width="3em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="background-color: rgba(216, 216, 216, 0.514); padding: 10px; border-radius: 50%">
+                                <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>

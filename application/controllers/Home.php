@@ -1,9 +1,11 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 require_once 'application/third_party/midtrans/Midtrans.php';
 
 class Home extends CI_Controller
 {
+
     public function index()
     {
         $data['title'] = "";
@@ -74,5 +76,5 @@ class Home extends CI_Controller
             $log_params['msg'] = "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
         }
         $this->base_model->insert_item('order_notif', $log_params);
-    }
+    }   
 }

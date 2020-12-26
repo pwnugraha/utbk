@@ -3,6 +3,9 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require_once 'application/controllers/manage/Base.php';
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Laporan extends AdminBase
 {
     public function __construct()
@@ -15,6 +18,7 @@ class Laporan extends AdminBase
     {
         $this->data['item'] = $this->base_model->get_join_item('result', 'orders.*, users.first_name', NULL, ['orders'], ['users'], ['orders.user_id = users.id'], ['inner']);
         $this->data['exam'] = $this->base_model->get_item('result', 'exam', 'month, COUNT(month) as total', ['tka' => 1, 'tps' => 1], 'month');
+        $this->data['had_exam'] = $this->base_model->get_join_item('result', 'exam.*, users.first_name, users.company', NULL, 'exam', ['users'], ['exam.user_id = users.id'], ['inner']);
 
         foreach ($this->data['exam'] as $key => $i) {
             $score_null = $this->base_model->count_result_item('exam', ['tka' => 1, 'tps' => 1, 'score' => NULL]);
@@ -35,6 +39,84 @@ class Laporan extends AdminBase
         redirect('manage/laporan');
     }
 
+    public function nilai_tryout($month)
+    {
+        $exam_data = $this->base_model->get_join_item('result', 'users.first_name, users.company, exam_score.score, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'users', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam.user_id=users.id', 'kategori_soal.id=exam_score.kategori_soal_id'], ['inner', 'inner', 'inner'], ['exam.month' => $month]);
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $i = 2;
+        $sheet->setCellValue('A1', 'Nama');
+        $sheet->setCellValue('B1', 'Sekolah');
+        $sheet->setCellValue('C1', 'Tryout');
+        $sheet->setCellValue('D1', 'Subject');
+        $sheet->setCellValue('E1', 'Nilai');
+        if (!empty($exam_data)) {
+            foreach ($exam_data as $v) {
+                $sheet->setCellValue('A' . $i, $v['first_name']);
+                $sheet->setCellValue('B' . $i, $v['company']);
+                $sheet->setCellValue('C' . $i, $v['category']);
+                $sheet->setCellValue('D' . $i, $v['subject']);
+                $sheet->setCellValue('E' . $i, $v['score']);
+                $i++;
+            }
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . urlencode('data.xlsx') . '"');
+        $writer->save('php://output');
+    }
+
+    public function had_tryout()
+    {
+        $exam_data = $this->base_model->get_join_item('result', 'exam.*, users.first_name, users.company', NULL, 'exam', ['users'], ['exam.user_id = users.id'], ['inner']);
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $i = 2;
+        $sheet->setCellValue('A1', 'Nama');
+        $sheet->setCellValue('B1', 'Sekolah');
+        $sheet->setCellValue('C1', 'Tryout');
+        $sheet->setCellValue('D1', 'Bulan');
+        $sheet->setCellValue('E1', 'Keterangan');
+        if (!empty($exam_data)) {
+            foreach ($exam_data as $v) {
+                $tryout = '';
+                $doing_tryout = '';
+                if ($v['tka'] == 1 && $v['tps'] == 1) {
+                    $tryout = 'TKA, TPS';
+                } else if ($v['tka'] == 1 && $v['tps'] == 0) {
+                    $tryout = 'TKA';
+                } else if ($v['tka'] == 0 && $v['tps'] == 1) {
+                    $tryout = 'TPS';
+                }
+
+                if ($v['status'] == 1) {
+                    $doing_tryout = 'Sedang Ujian TKA Saintek';
+                } else if ($v['status'] == 2) {
+                    $doing_tryout = 'Sedang Ujian TKA Soshum';
+                } else if ($v['status'] == 3) {
+                    $doing_tryout = 'Sedang Ujian TKA Campuran';
+                } else if ($v['status'] == 4) {
+                    $doing_tryout = 'Sedang Ujian TPS';
+                } else {
+                    $doing_tryout = 'Tidak Sedang Ujian';
+                }
+
+                $sheet->setCellValue('A' . $i, $v['first_name']);
+                $sheet->setCellValue('B' . $i, $v['company']);
+                $sheet->setCellValue('C' . $i, $tryout);
+                $sheet->setCellValue('E' . $i, $v['month']);
+                $sheet->setCellValue('D' . $i, $doing_tryout);
+                $i++;
+            }
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . urlencode('data.xlsx') . '"');
+        $writer->save('php://output');
+    }
+
     public function define_exam_score($month)
     {
         if (!$this->base_model->get_item('result', 'exam', '*', ['month' => $month])) {
@@ -49,25 +131,27 @@ class Laporan extends AdminBase
         $mapel = $this->base_model->get_item('result', 'kategori_soal', '*');
         $exam = $this->base_model->get_join_item('result', 'user_exam.*, exam.user_id', NULL, ['user_exam'], ['exam'], ['exam.id = user_exam.exam_id'], ['inner'], ['month' => $month, 'tka' => 1, 'tps' => 1]);
 
-        $v = 0;
-        foreach ($exam as $i) {
-            $exam_data[$i['kategori_soal_id']]['score_data'][] = [
-                'soal' => $i['soal_id'],
-                'user' => $i['user_id'],
-                'score' => $i['score'],
-                'exam_id' => $i['exam_id']
-            ];
-            $v++;
-        }
+        if (!empty($exam)) {
+            $v = 0;
+            foreach ($exam as $i) {
+                $exam_data[$i['kategori_soal_id']]['score_data'][] = [
+                    'soal' => $i['soal_id'],
+                    'user' => $i['user_id'],
+                    'score' => $i['score'],
+                    'exam_id' => $i['exam_id']
+                ];
+                $v++;
+            }
 
-        $x = 0;
-        foreach ($exam_data as $key => $i) {
-            $this->_define_score($i['score_data'], $key);
-            $x++;
-        }
+            $x = 0;
+            foreach ($exam_data as $key => $i) {
+                $this->_define_score($i['score_data'], $key);
+                $x++;
+            }
 
-        $execution_time = (microtime(true) - $start_time);
-        $this->session->set_flashdata('message_sa', 'Nilai Tryout berhasil diproses.');
+            $execution_time = (microtime(true) - $start_time);
+            $this->session->set_flashdata('message_sa', 'Nilai Tryout berhasil diproses.');
+        }
         redirect('manage/laporan');
     }
 

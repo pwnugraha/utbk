@@ -15,6 +15,7 @@ class Userdata extends AdminBase
     {
         $this->data['user'] = $this->base_model->get_item('row', 'users', '*', ['id' => $id]);
         $this->data['item'] = $this->base_model->get_item('result', 'users', '*', ['id !=' => 1]);
+        $this->data['ticket'] = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $id]);
         $this->adminview('admin/userdata/userdata', $this->data);
     }
 
