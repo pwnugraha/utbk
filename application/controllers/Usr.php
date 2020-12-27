@@ -149,7 +149,7 @@ class Usr extends CI_Controller
     {
         $this->data['title'] = "Product";
 
-        $this->data['product'] = $this->base_model->get_join_item('result', 'product.*', NULL, 'product', ['product_item'], ['product.id=product_item.product_id'], ['inner'], ['status' => 1]);
+        $this->data['product'] = $this->base_model->get_join_item('result', 'product.*', NULL, 'product', ['product_item'], ['product.id=product_item.product_id'], ['inner'], ['status' => 1], ['product.id']);
 
         $this->load->view('user/template/header', $this->data);
         $this->load->view('user/template/sidebar');
@@ -232,8 +232,8 @@ class Usr extends CI_Controller
                 'item_details' => [array(
                     'id' => $this->data['orders']['product_id'],
                     'price' => $this->data['orders']['price'],
-                    'quantity' => $this->data['orders']['quantity'],
-                    'name' => $this->data['orders']['product_name'],
+                    'quantity' => 1,
+                    'name' => $this->data['orders']['product_name'] . ' ' . $this->data['orders']['quantity'] . ' Tiket',
                     'category' => $this->data['orders']['category'],
                 )],
                 'customer_details' => array(
@@ -263,14 +263,41 @@ class Usr extends CI_Controller
 
     public function update_transaction()
     {
-        if ($this->base_model->get_item('row', 'orders', '*', ['id' => $this->input->post('id')])) {
-
+        $data_order = $this->base_model->get_item('row', 'orders', '*', ['id' => $this->input->post('id')]);
+        if ($data_order) {
             $params = [
                 'payment' => $this->input->post('payment'),
                 'status' => $this->input->post('status'),
                 'modified' => $this->input->post('modified'),
             ];
             $this->base_model->update_item('orders', $params, ['id' => $this->input->post('id')]);
+
+            if ($this->input->post('status') == 'settlement' && ($data_order['status'] == 'pending' || is_null($data_order['status']))) {
+                $ticket = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $data_order['user_id']]);
+                if (!$ticket) {
+                    $params = array(
+                        'user_id' => $data_order['user_id'],
+                        $this->_category($data_order['category']) => $data_order['quantity'],
+                        'tps' => $data_order['quantity'],
+                    );
+                    $this->base_model->insert_item('ticket', $params, 'id');
+                } else {
+                    $params = array(
+                        $this->_category($data_order['category']) => $ticket[$this->_category($data_order['category'])] + $data_order['quantity'],
+                        'tps' => $ticket['tps'] + $data_order['quantity'],
+                    );
+                    $this->base_model->update_item('ticket', $params, array('user_id' => $data_order['user_id']));
+                }
+                $log_params = [
+                    'order_id' => $this->input->post('id'),
+                    'payment' => $this->input->post('payment'),
+                    'status' => $this->input->post('status'),
+                    'created' => date('Y-m-d H:i:s'),
+                    'status_code' => 200,
+                    'msg' => "Transaction order_id: " . $this->input->post('id') . " successfully transfered using " . $this->input->post('payment') . ". Give " . $data_order['quantity'] . " ticket to user_id: " . $data_order['user_id'],
+                ];
+                $this->base_model->insert_item('order_notif', $log_params);
+            }
             echo json_encode(['status' => TRUE]);
         } else {
             echo json_encode(['status' => FALSE]);
@@ -346,6 +373,18 @@ class Usr extends CI_Controller
                 $this->session->set_flashdata('message_sa', 'Selamat kamu telah menyelesaikan TPS/TKA');
                 redirect('usr');
             }
+        }
+    }
+
+    public function _category($ctg)
+    {
+        switch ($ctg) {
+            case 1:
+                return 'tka_saintek';
+            case 2:
+                return 'tka_soshum';
+            case 3:
+                return 'tka_campuran';
         }
     }
 }

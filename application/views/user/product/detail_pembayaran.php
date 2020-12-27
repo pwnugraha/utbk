@@ -135,8 +135,11 @@
                                         <small class="text-secondary">Nomor HP</small>
                                         <p><?= ucwords($orders['phone']) ?></p>
                                     </div>
+                                    <div class="form-group mb-0">
+                                        <small class="text-secondary">Apabila kamu memilih pembayaran Gopay, dan menutup/close tampilan barcode sebelum dilakukan pembayaran/scan barcode maka order akan di cancel. Kamu harus mengulangi order.</small>
+                                    </div>
                                     <?php if (is_null($orders['status']) || $orders['status'] == 'pending') : ?>
-                                        <button id="pay-button" class="btn btn-block btn-bayar mt-5">Bayar Tryout</button>
+                                        <button id="pay-button" class="btn btn-block btn-bayar mt-4">Bayar Tryout</button>
                                         <!-- <pre><div id="result-json">JSON result will appear here after payment:<br></div></pre> -->
                                     <?php endif; ?>
                                 </div>
