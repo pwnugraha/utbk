@@ -292,7 +292,7 @@
                                         <tr>
                                             <td><?= get_month($i['month']) ?></td>
                                             <td><?= $i['total'] ?></td>
-                                            <td><?= !empty($i['proses']) ? $i['proses'] : 'Semua tryout sudah dinilai' ?></td>
+                                            <td><?= $i['proses'] > 0 ? $i['proses'] : 'Semua tryout sudah dinilai' ?></td>
                                             <td>
                                                 <a href="<?= base_url('manage/laporan/define_exam_score/' . $i['month']) ?>" class="btn-proses">
                                                     Proses Nilai

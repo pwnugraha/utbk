@@ -7,7 +7,7 @@ class Transaction extends CI_Controller
 {
     public function notifhandler()
     {
-
+        $this->load->model('base_model');
         \Midtrans\Config::$isProduction = false;
         \Midtrans\Config::$serverKey = 'SB-Mid-server-LeUCYpw_pv89q-NPJ8ovRHB7';
         $notif = new \Midtrans\Notification();

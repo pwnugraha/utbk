@@ -270,8 +270,10 @@ class Usr extends CI_Controller
                 'status' => $this->input->post('status'),
                 'modified' => $this->input->post('modified'),
             ];
-            $this->base_model->update_item('orders', $params, ['id' => $this->input->post('id')]);
-
+            if($data_order['status'] == 'pending' || is_null($data_order['status'])){
+                $this->base_model->update_item('orders', $params, ['id' => $this->input->post('id')]);
+            }
+            
             if ($this->input->post('status') == 'settlement' && ($data_order['status'] == 'pending' || is_null($data_order['status']))) {
                 $ticket = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $data_order['user_id']]);
                 if (!$ticket) {

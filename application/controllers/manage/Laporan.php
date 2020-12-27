@@ -21,9 +21,9 @@ class Laporan extends AdminBase
         $this->data['had_exam'] = $this->base_model->get_join_item('result', 'exam.*, users.first_name, users.company', NULL, 'exam', ['users'], ['exam.user_id = users.id'], ['inner']);
 
         foreach ($this->data['exam'] as $key => $i) {
-            $score_null = $this->base_model->count_result_item('exam', ['tka' => 1, 'tps' => 1, 'score' => NULL]);
+            $score_null = $this->base_model->get_join_item('row', 'COUNT(DISTINCT(exam.id)) as numrows', NULL, 'exam', ['exam_score'], ['exam.id=exam_score.exam_id'], ['inner'], ['tka' => 1, 'tps' => 1, 'month' => $i['month']]);
             if ($score_null > 0) {
-                $this->data['exam'][$key]['proses'] = $score_null . ' nilai tryout belum diproses';
+                $this->data['exam'][$key]['proses'] = $i['total'] - $score_null['numrows'] . ' nilai tryout belum diproses';
             }
         }
         $this->adminview('admin/laporan/laporan', $this->data);
@@ -41,22 +41,24 @@ class Laporan extends AdminBase
 
     public function nilai_tryout($month)
     {
-        $exam_data = $this->base_model->get_join_item('result', 'users.first_name, users.company, exam_score.score, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'users', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam.user_id=users.id', 'kategori_soal.id=exam_score.kategori_soal_id'], ['inner', 'inner', 'inner'], ['exam.month' => $month]);
+        $exam_data = $this->base_model->get_join_item('result', 'users.username, users.first_name, users.company, exam_score.score, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'users', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam.user_id=users.id', 'kategori_soal.id=exam_score.kategori_soal_id'], ['inner', 'inner', 'inner'], ['exam.month' => $month]);
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $i = 2;
-        $sheet->setCellValue('A1', 'Nama');
-        $sheet->setCellValue('B1', 'Sekolah');
-        $sheet->setCellValue('C1', 'Tryout');
-        $sheet->setCellValue('D1', 'Subject');
-        $sheet->setCellValue('E1', 'Nilai');
+        $sheet->setCellValue('A1', 'Username/NISN');
+        $sheet->setCellValue('B1', 'Nama');
+        $sheet->setCellValue('C1', 'Sekolah');
+        $sheet->setCellValue('D1', 'Tryout');
+        $sheet->setCellValue('E1', 'Subject');
+        $sheet->setCellValue('F1', 'Nilai');
         if (!empty($exam_data)) {
             foreach ($exam_data as $v) {
-                $sheet->setCellValue('A' . $i, $v['first_name']);
-                $sheet->setCellValue('B' . $i, $v['company']);
-                $sheet->setCellValue('C' . $i, $v['category']);
-                $sheet->setCellValue('D' . $i, $v['subject']);
-                $sheet->setCellValue('E' . $i, $v['score']);
+                $sheet->setCellValue('A' . $i, $v['username']);
+                $sheet->setCellValue('B' . $i, $v['first_name']);
+                $sheet->setCellValue('C' . $i, $v['company']);
+                $sheet->setCellValue('D' . $i, $v['category']);
+                $sheet->setCellValue('E' . $i, $v['subject']);
+                $sheet->setCellValue('F' . $i, $v['score']);
                 $i++;
             }
         }

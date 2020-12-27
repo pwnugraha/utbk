@@ -62,75 +62,77 @@
     });
 </script>
 <?php if ($this->uri->segment(2) == 'transaction') : ?>
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= $clientKey ?>"></script>
-    <script type="text/javascript">
-        document.getElementById('pay-button').onclick = function() {
-            $.ajax({
-                url: '<?= base_url() ?>' + '/usr/update_snaptoken',
-                method: "POST",
-                data: {
-                    id: <?= $orders['id'] ?>,
-                    snaptoken: '<?= $snapToken ?>'
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data.status);
-                }
-            });
-            getStats();
-            // SnapToken acquired from previous step
-            snap.pay('<?= $snapToken ?>', {
-                // Optional
-                onSuccess: function(result) {
-                    updStats(result);
-                    getStats();
-                },
-                // Optional
-                onPending: function(result) {
-                    updStats(result);
-                    getStats();
-                },
-                // Optional
-                onError: function(result) {}
-            });
-        };
+    <?php if (is_null($orders['status']) || $orders['status'] == 'pending') : ?>
+        <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= $clientKey ?>"></script>
+        <script type="text/javascript">
+            document.getElementById('pay-button').onclick = function() {
+                $.ajax({
+                    url: '<?= base_url() ?>' + '/usr/update_snaptoken',
+                    method: "POST",
+                    data: {
+                        id: <?= $orders['id'] ?>,
+                        snaptoken: '<?= $snapToken ?>'
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data.status);
+                    }
+                });
+                getStats();
+                // SnapToken acquired from previous step
+                snap.pay('<?= $snapToken ?>', {
+                    // Optional
+                    onSuccess: function(result) {
+                        updStats(result);
+                        getStats();
+                    },
+                    // Optional
+                    onPending: function(result) {
+                        updStats(result);
+                        getStats();
+                    },
+                    // Optional
+                    onError: function(result) {}
+                });
+            };
 
-        function updStats(result) {
-            $.ajax({
-                url: '<?= base_url() ?>' + '/usr/update_transaction',
-                method: "POST",
-                data: {
-                    id: <?= $orders['id'] ?>,
-                    payment: result.payment_type,
-                    status: result.transaction_status,
-                    modified: result.transaction_time,
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data.status);
-                }
-            });
-        };
+            function updStats(result) {
+                $.ajax({
+                    url: '<?= base_url() ?>' + '/usr/update_transaction',
+                    method: "POST",
+                    data: {
+                        id: <?= $orders['id'] ?>,
+                        payment: result.payment_type,
+                        status: result.transaction_status,
+                        modified: result.transaction_time,
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data.status);
+                    }
+                });
+            };
 
-        function getStats() {
-            $.ajax({
-                url: '<?= base_url() ?>' + '/usr/get_transaction',
-                method: "POST",
-                data: {
-                    id: <?= $orders['id'] ?>,
-                },
-                dataType: 'json',
-                success: function(data) {
-                    if (data.status) {
-                        if (data.data.status != 'pending' && data.data.status != null) {
-                            location.reload();
+            function getStats() {
+                $.ajax({
+                    url: '<?= base_url() ?>' + '/usr/get_transaction',
+                    method: "POST",
+                    data: {
+                        id: <?= $orders['id'] ?>,
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.status) {
+                            if (data.data.status != 'pending' && data.data.status != null) {
+                                location.reload();
+                            }
                         }
                     }
-                }
-            });
-        };
-    </script>
-<?php endif; ?>
+                });
+            };
+        </script>
+<?php endif;
+endif; ?>
 </body>
 
 </html>
