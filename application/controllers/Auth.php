@@ -79,7 +79,7 @@ class Auth extends CI_Controller
 
 			if ($this->ion_auth->login($this->input->post('identitylog'), $this->input->post('passwordlog'), $remember)) {
 				//this is for testing only and first test on 17th des 2020
-				
+
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
@@ -548,8 +548,8 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'trim|numeric|required');
 		$this->form_validation->set_rules('company', 'Asal Sekolah', 'trim|required');
 		$this->form_validation->set_rules('gender', 'Gender', 'trim|required|in_list[1,2]');
-		
-		if($user->email == NULL){
+
+		if ($user->email == NULL) {
 			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
 		}
 
@@ -573,7 +573,7 @@ class Auth extends CI_Controller
 					'phone' => $this->input->post('phone'),
 					'gender' => $this->input->post('gender'),
 				];
-				if($user->email == NULL){
+				if ($user->email == NULL) {
 					$data['email'] = $this->input->post('email');
 				}
 
@@ -665,14 +665,14 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('gender', $user->gender),
 		];
 
-		if($user->email == NULL){
+		if ($user->email == NULL) {
 			$this->data['email'] = [
 				'name'  => 'email',
 				'id'    => 'email',
 				'type'  => 'email',
 				'value' => $this->form_validation->set_value('email', $user->email),
 			];
-		}		
+		}
 
 		$this->data['title'] = 'Profile';
 		$this->load->view('user/template/header', $this->data);
@@ -885,12 +885,12 @@ class Auth extends CI_Controller
 
 	// public function generate_user()
 	// {
-		
-    //     if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
-    //         // redirect them to the login page
-    //         show_404();
+	// 	if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
+	// 		// redirect them to the login page
+	// 		show_404();
 	// 	}
-	// 	show_404();
+	// 	ini_set("memory_limit", "-1");
+	// 	set_time_limit(0);
 	// 	$users_data = $this->base_model->get_item('result', 'users_generate', '*');
 	// 	if (!empty($users_data)) {
 	// 		$j = 1;
@@ -914,6 +914,10 @@ class Auth extends CI_Controller
 	// 				// check to see if we are creating the user
 	// 				// redirect them back to the admin page
 	// 				$this->base_model->update_item('users_generate', ['password' => $password], ['id' => $i['id']]);
+	// 				$curr_user = $this->base_model->get_item('row', 'users', 'id', ['username' => $identity]);
+	// 				if ($curr_user) {
+	// 					$this->base_model->insert_item('ticket', ['user_id' => $curr_user['id'], 'tka_saintek' => 1, 'tka_soshum' => 1, 'tka_campuran' => 1, 'tps' => 1]);
+	// 				}
 	// 				echo 'acoount succesfully created';
 	// 			} else {
 	// 				// display the create user form
@@ -925,21 +929,6 @@ class Auth extends CI_Controller
 	// 			}
 	// 			echo '<br>';
 	// 			$j++;
-	// 		}
-	// 	}
-	// }
-
-	// public function generate_group(){
-	// 	if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
-    //         // redirect them to the login page
-    //         show_404();
-	// 	}
-	// 	show_404();
-	// 	$users_data = $this->base_model->get_item('result', 'users', '*', ['id >' => 786]);
-
-	// 	if(!empty($users_data)){
-	// 		foreach($users_data as $i){
-	// 			$this->base_model->insert_item('users_groups', ['user_id' => $i['id'], 'group_id' => 2]);
 	// 		}
 	// 	}
 	// }

@@ -25,7 +25,12 @@
                                     </li>
                                     <li>
                                         <span class="text-hitam">
-                                            Bila ada masalah pada jaringan, jawaban anda akan tetep tersimpan
+                                            Bila ada masalah pada jaringan, jawaban anda akan tetep tersimpan.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="text-hitam">
+                                            Bila ada masalah pada jaringan, waktu tetap akan berjalan dan tryout tidak dapat diulang. Jadi pastikan koneksimu stabil.
                                         </span>
                                     </li>
                                     <li>

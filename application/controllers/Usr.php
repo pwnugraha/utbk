@@ -23,33 +23,35 @@ class Usr extends CI_Controller
         $this->data['tryout'] = $this->base_model->get_item('result', 'tryout', '*', ['status' => 1], NULL, 'active_month DESC');
         $this->data['exam'] = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id')]);
 
-        foreach ($this->data['tryout'] as $sesi) {
-            if ($sesi['type'] == 1) {
-                $this->data['active_room'][$sesi['active_month']]['tka_saintek'] = 0;
-            }
-            if ($sesi['type'] == 2) {
-                $this->data['active_room'][$sesi['active_month']]['tka_soshum'] = 0;
-            }
-            if ($sesi['type'] == 3) {
-                $this->data['active_room'][$sesi['active_month']]['tka_campuran'] = 0;
-            }
-            if ($sesi['type'] == 4) {
-                $this->data['active_room'][$sesi['active_month']]['tps'] = 0;
-            }
-            $doing_exam = $this->base_model->get_item('row', 'exam', 'month, status, COUNT(*) as active_exam', ['month' => $sesi['active_month'], 'status' => $sesi['type']]);
+        if (!empty($this->data['tryout'])) {
+            foreach ($this->data['tryout'] as $sesi) {
+                if ($sesi['type'] == 1) {
+                    $this->data['active_room'][$sesi['active_month']]['tka_saintek'] = 0;
+                }
+                if ($sesi['type'] == 2) {
+                    $this->data['active_room'][$sesi['active_month']]['tka_soshum'] = 0;
+                }
+                if ($sesi['type'] == 3) {
+                    $this->data['active_room'][$sesi['active_month']]['tka_campuran'] = 0;
+                }
+                if ($sesi['type'] == 4) {
+                    $this->data['active_room'][$sesi['active_month']]['tps'] = 0;
+                }
+                $doing_exam = $this->base_model->get_item('row', 'exam', 'month, status, COUNT(*) as active_exam', ['month' => $sesi['active_month'], 'status' => $sesi['type']]);
 
-            if (!empty($doing_exam)) {
-                if ($doing_exam['status'] == 1) {
-                    $this->data['active_room'][$sesi['active_month']]['tka_saintek'] = $doing_exam['active_exam'];
-                }
-                if ($doing_exam['status'] == 2) {
-                    $this->data['active_room'][$sesi['active_month']]['tka_soshum'] = $doing_exam['active_exam'];
-                }
-                if ($doing_exam['status'] == 3) {
-                    $this->data['active_room'][$sesi['active_month']]['tka_campuran'] = $doing_exam['active_exam'];
-                }
-                if ($doing_exam['status'] == 4) {
-                    $this->data['active_room'][$sesi['active_month']]['tps'] = $doing_exam['active_exam'];
+                if (!empty($doing_exam)) {
+                    if ($doing_exam['status'] == 1) {
+                        $this->data['active_room'][$sesi['active_month']]['tka_saintek'] = $doing_exam['active_exam'];
+                    }
+                    if ($doing_exam['status'] == 2) {
+                        $this->data['active_room'][$sesi['active_month']]['tka_soshum'] = $doing_exam['active_exam'];
+                    }
+                    if ($doing_exam['status'] == 3) {
+                        $this->data['active_room'][$sesi['active_month']]['tka_campuran'] = $doing_exam['active_exam'];
+                    }
+                    if ($doing_exam['status'] == 4) {
+                        $this->data['active_room'][$sesi['active_month']]['tps'] = $doing_exam['active_exam'];
+                    }
                 }
             }
         }
@@ -270,10 +272,10 @@ class Usr extends CI_Controller
                 'status' => $this->input->post('status'),
                 'modified' => $this->input->post('modified'),
             ];
-            if($data_order['status'] == 'pending' || is_null($data_order['status'])){
+            if ($data_order['status'] == 'pending' || is_null($data_order['status'])) {
                 $this->base_model->update_item('orders', $params, ['id' => $this->input->post('id')]);
             }
-            
+
             if ($this->input->post('status') == 'settlement' && ($data_order['status'] == 'pending' || is_null($data_order['status']))) {
                 $ticket = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $data_order['user_id']]);
                 if (!$ticket) {

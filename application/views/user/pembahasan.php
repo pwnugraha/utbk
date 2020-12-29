@@ -93,26 +93,47 @@
                                                                                                             <li <?= ($i['answer'] == 5) ? 'class="text-success"' : '' ?>><?= $i['opt5'] ?></li>
                                                                                                         </ol>
                                                                                                     </div>
-                                                                                                    Jawaban kamu <?= $i['answer'] == $i['user_answer'] ? 'Benar' : 'Belum benar' ?> :
-                                                                                                    <?php
-                                                                                                    switch ($i['user_answer']) {
-                                                                                                        case 1:
-                                                                                                            echo 'A';
-                                                                                                            break;
-                                                                                                        case 2:
-                                                                                                            echo 'B';
-                                                                                                            break;
-                                                                                                        case 3:
-                                                                                                            echo 'C';
-                                                                                                            break;
-                                                                                                        case 4:
-                                                                                                            echo 'D';
-                                                                                                            break;
-                                                                                                        case 5:
-                                                                                                            echo 'E';
-                                                                                                            break;
-                                                                                                    }
-                                                                                                    ?>
+                                                                                                    <strong>Jawabanmu :
+                                                                                                        <?php
+                                                                                                        switch ($i['user_answer']) {
+                                                                                                            case 1:
+                                                                                                                echo 'A';
+                                                                                                                break;
+                                                                                                            case 2:
+                                                                                                                echo 'B';
+                                                                                                                break;
+                                                                                                            case 3:
+                                                                                                                echo 'C';
+                                                                                                                break;
+                                                                                                            case 4:
+                                                                                                                echo 'D';
+                                                                                                                break;
+                                                                                                            case 5:
+                                                                                                                echo 'E';
+                                                                                                                break;
+                                                                                                        }
+                                                                                                        ?></strong>
+                                                                                                    <br>
+                                                                                                    <strong>Jawaban yang benar :
+                                                                                                        <?php
+                                                                                                        switch ($i['answer']) {
+                                                                                                            case 1:
+                                                                                                                echo 'A';
+                                                                                                                break;
+                                                                                                            case 2:
+                                                                                                                echo 'B';
+                                                                                                                break;
+                                                                                                            case 3:
+                                                                                                                echo 'C';
+                                                                                                                break;
+                                                                                                            case 4:
+                                                                                                                echo 'D';
+                                                                                                                break;
+                                                                                                            case 5:
+                                                                                                                echo 'E';
+                                                                                                                break;
+                                                                                                        }
+                                                                                                        ?></strong>
                                                                                                     <div class="card" style="background-color: bisque;">
                                                                                                         <div class="card-body">
                                                                                                             <div class="text-biru">Pembahasan <i id="pembahasan<?= $no_soal ?>" class="fa fa-eye text-primary" aria-hidden="true" style="cursor: pointer;"></i> </div>
