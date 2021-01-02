@@ -41,24 +41,68 @@ class Laporan extends AdminBase
 
     public function nilai_tryout($month)
     {
-        $exam_data = $this->base_model->get_join_item('result', 'users.username, users.first_name, users.company, exam_score.score, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'users', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam.user_id=users.id', 'kategori_soal.id=exam_score.kategori_soal_id'], ['inner', 'inner', 'inner'], ['exam.month' => $month]);
+        $exam_data = $this->base_model->get_join_item('result', 'users.id, users.username, users.first_name, users.company, exam_score.score, exam_score.kategori_soal_id, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'users', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam.user_id=users.id', 'kategori_soal.id=exam_score.kategori_soal_id'], ['inner', 'inner', 'inner'], ['exam.month' => $month]);
+        $exam_data_sheet = [];
+        if (!empty($exam_data)) {
+            foreach ($exam_data as $v) {
+                $exam_data_sheet[$v['id']][1] = '';
+                $exam_data_sheet[$v['id']][2] = '';
+                $exam_data_sheet[$v['id']][3] = '';
+                $exam_data_sheet[$v['id']][4] = '';
+                $exam_data_sheet[$v['id']][5] = '';
+                $exam_data_sheet[$v['id']][6] = '';
+                $exam_data_sheet[$v['id']][7] = '';
+                $exam_data_sheet[$v['id']][8] = '';
+                $exam_data_sheet[$v['id']][9] = '';
+                $exam_data_sheet[$v['id']][10] = '';
+                $exam_data_sheet[$v['id']][11] = '';
+                $exam_data_sheet[$v['id']][12] = '';
+                $exam_data_sheet[$v['id']][13] = '';
+                $exam_data_sheet[$v['id']]['username'] = $v['username'];
+                $exam_data_sheet[$v['id']]['first_name'] = $v['first_name'];
+                $exam_data_sheet[$v['id']]['company'] = $v['company'];
+            }
+            foreach ($exam_data as $v) {
+                $exam_data_sheet[$v['id']][$v['kategori_soal_id']] = $v['score'];
+            }
+        }
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $i = 2;
         $sheet->setCellValue('A1', 'Username/NISN');
         $sheet->setCellValue('B1', 'Nama');
         $sheet->setCellValue('C1', 'Sekolah');
-        $sheet->setCellValue('D1', 'Tryout');
-        $sheet->setCellValue('E1', 'Subject');
-        $sheet->setCellValue('F1', 'Nilai');
-        if (!empty($exam_data)) {
-            foreach ($exam_data as $v) {
+        $sheet->setCellValue('D1', 'Matematika');
+        $sheet->setCellValue('E1', 'Biologi');
+        $sheet->setCellValue('F1', 'Fisika');
+        $sheet->setCellValue('G1', 'Kimia');
+        $sheet->setCellValue('H1', 'Geografi');
+        $sheet->setCellValue('I1', 'Ekonomi');
+        $sheet->setCellValue('J1', 'Sejarah');
+        $sheet->setCellValue('K1', 'Sosiologi');
+        $sheet->setCellValue('L1', 'Matematika Soshum');
+        $sheet->setCellValue('M1', 'Penalaran Umum');
+        $sheet->setCellValue('N1', 'Pemahaman Bacaan dan Menulis');
+        $sheet->setCellValue('O1', 'Pengetahuan dan Pemahaman Umum');
+        $sheet->setCellValue('P1', 'Pengetahuan Kuantitatif');
+        if (!empty($exam_data_sheet)) {
+            foreach ($exam_data_sheet as $v) {
                 $sheet->setCellValue('A' . $i, $v['username']);
                 $sheet->setCellValue('B' . $i, $v['first_name']);
                 $sheet->setCellValue('C' . $i, $v['company']);
-                $sheet->setCellValue('D' . $i, $v['category']);
-                $sheet->setCellValue('E' . $i, $v['subject']);
-                $sheet->setCellValue('F' . $i, $v['score']);
+                $sheet->setCellValue('D' . $i, $v[1]);
+                $sheet->setCellValue('E' . $i, $v[2]);
+                $sheet->setCellValue('F' . $i, $v[3]);
+                $sheet->setCellValue('G' . $i, $v[4]);
+                $sheet->setCellValue('H' . $i, $v[5]);
+                $sheet->setCellValue('I' . $i, $v[6]);
+                $sheet->setCellValue('J' . $i, $v[7]);
+                $sheet->setCellValue('K' . $i, $v[8]);
+                $sheet->setCellValue('L' . $i, $v[9]);
+                $sheet->setCellValue('M' . $i, $v[10]);
+                $sheet->setCellValue('N' . $i, $v[11]);
+                $sheet->setCellValue('O' . $i, $v[12]);
+                $sheet->setCellValue('P' . $i, $v[13]);
                 $i++;
             }
         }

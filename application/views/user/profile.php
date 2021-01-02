@@ -1,7 +1,7 @@
 <!-- Begin Page Content -->
-<div id="infoMessage"><?php echo $message; ?></div>
-<div id="infoMessage"><?php echo $this->session->flashdata('picmessage'); ?></div>
 <div class="container-fluid mb-5 pb-5">
+    <div id="infoMessage"><?php echo $message; ?></div>
+    <div id="infoMessage"><?php echo $this->session->flashdata('picmessage'); ?></div>
     <div class="row profile">
         <div class="col-lg-4">
             <div class="card" style="border: 1px solid #183f9b;">

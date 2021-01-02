@@ -353,8 +353,7 @@ class Usr extends CI_Controller
 
     public function _is_doing_exam()
     {
-
-        $exam_data = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status !=' => 0]);
+        $exam_data = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'status !=' => 0]);
         if ($exam_data) {
             if (date('Y-m-d H:i:s') <= date('Y-m-d H:i:s', strtotime($exam_data['end_date']))) {
                 redirect('exm/start');
@@ -373,7 +372,7 @@ class Usr extends CI_Controller
                         $params['tps'] = 1;
                         break;
                 }
-                $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'month' => date('n'), 'status' => $exam_data['status']));
+                $this->base_model->update_item('exam', $params, array('user_id' => $this->session->userdata('user_id'), 'status' => $exam_data['status']));
                 $this->session->set_flashdata('message_sa', 'Selamat kamu telah menyelesaikan TPS/TKA');
                 redirect('usr');
             }

@@ -34,7 +34,7 @@ class Auth extends CI_Controller
 		} else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			show_error('You must be an administrator to view this page.');
+			show_404();
 		} else {
 			$this->data['title'] = $this->lang->line('index_heading');
 
@@ -85,6 +85,10 @@ class Auth extends CI_Controller
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				if ($this->ion_auth->is_admin()) {
 					redirect('admin', 'refresh');
+				}
+
+				if ($this->base_model->get_join_item('row', '*', NULL, 'users', ['users_groups'], ['users.id=users_groups.user_id'], ['inner'], ['users.id' => $this->session->userdata('user_id'), 'group_id' => 3])) {
+					redirect('manage/userdata', 'refresh');
 				}
 				redirect('usr', 'refresh');
 			} else {
@@ -531,7 +535,7 @@ class Auth extends CI_Controller
 		$tables = $this->config->item('tables', 'ion_auth');
 
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id))) {
-			redirect('auth', 'refresh');
+			show_404();
 		}
 
 		$user = $this->ion_auth->user($id)->row();
@@ -675,11 +679,19 @@ class Auth extends CI_Controller
 		}
 
 		$this->data['title'] = 'Profile';
-		$this->load->view('user/template/header', $this->data);
-		$this->load->view('user/template/sidebar');
-		$this->load->view('user/template/topbar');
-		$this->_render_page('user/profile');
-		$this->load->view('user/template/footer');
+		if ($this->base_model->get_item('row', 'users_groups', '*', ['user_id' => $id, 'group_id' => 2])) {
+			$this->load->view('user/template/header', $this->data);
+			$this->load->view('user/template/sidebar');
+			$this->load->view('user/template/topbar');
+			$this->_render_page('user/profile');
+			$this->load->view('user/template/footer');
+		} else {
+			$this->load->view('admin/template/header', $this->data);
+			$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/template/topbar');
+			$this->_render_page('user/profile');
+			$this->load->view('admin/template/footer');
+		}
 	}
 
 	/**

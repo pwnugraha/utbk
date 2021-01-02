@@ -407,4 +407,40 @@ class Exm extends CI_Controller
                 return '';
         }
     }
+
+    //for simulation only
+    public function simulation()
+    {
+        $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
+
+        $data['title'] = "Selamat Mengerjakan Tryout - SobatUTBK";
+        //get exam data
+        $data['exam_items'] = $this->base_model->get_join_item('result', 'soal.*, kategori_soal.category as kategori_soal, subject', NULL, 'soal', ['butir_paket_soal', 'paket_soal', 'kategori_soal'], ['soal.id=butir_paket_soal.soal_id', 'butir_paket_soal.paket_soal_id=paket_soal.id', 'soal.kategori_soal_id=kategori_soal.id'], ['inner', 'inner', 'inner'], ['paket_soal.id' => 4]);
+        //arrange subject/mapel
+        $data['subjects'] = [];
+        foreach ($data['exam_items'] as $i) {
+            if (!in_array($i['subject'], $data['subjects'])) {
+                array_push($data['subjects'], $i['subject']);
+            }
+        }
+
+        //arrange subject soal
+        $data['subjects_soal'] = [];
+        foreach ($data['subjects'] as $i) {
+            foreach ($data['exam_items'] as $j) {
+                if ($i == $j['subject']) {
+                    $data['subjects_soal'][$i][] = [
+                        'soal' => $j['description'],
+                        'opt' => [$j['opt1'], $j['opt2'], $j['opt3'], $j['opt4'], $j['opt5']],
+                        'soal_id' => $j['id'],
+                        'user_answer' => ''
+                    ];
+                }
+            }
+        }
+
+        $this->load->view('exam/start-template/header', $data);
+        $this->load->view('exam/simulation', $data);
+        $this->load->view('exam/start-template/footer', $data);
+    }
 }

@@ -103,8 +103,13 @@
                 <div class="card-body px-0">
                     <div class="container-fluid">
                         <div class="row mt-3">
+                            <?php if ($reseller) : ?>
+                                <div class="col-md-12 mt-3 mt-md-0 text-right">
+                                    <a href="<?= site_url('manage/userdata/create_user') ?>" class="bg-biru-muda text-light px-4 h5" style="border-radius: 2em;">+ Add New</a>
+                                </div>
+                            <?php endif; ?>
                             <div class="col-12">
-                                <div class="table-responsive">
+                                <div class="table-responsive mt-3">
                                     <table class="table" id="data_table">
                                         <thead>
                                             <tr class="text-dark">
@@ -154,4 +159,59 @@
             </div>
         </div>
     </div>
+    <?php if ($reseller) : ?>
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="h3 text-biru">Status Tiket</div>
+            </div>
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-body px-0">
+                        <div class="container-fluid">
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <div class="table-responsive mt-3">
+                                        <table class="table" id="data_table">
+                                            <thead>
+                                                <tr class="text-dark">
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Phone</th>
+                                                    <th>Sekolah</th>
+                                                    <th>Tiket</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Diajukan pada</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                if (empty($users_ticket)) {
+                                                    echo '<tr><td colspan="5" class="text-center">No data <b>Belum ada data user.</b> </td></tr>';
+                                                } else {
+                                                    foreach ($users_ticket as $i) { ?>
+                                                        <tr>
+                                                            <td><?= $i['first_name'] ?></td>
+                                                            <td><?= $i['phone'] ?></td>
+                                                            <td><?= $i['company'] ?></td>
+                                                            <td><?= $i['category'] ?></td>
+                                                            <td><?= $i['quantity'] ?></td>
+                                                            <td><?= date('d-m-Y - H:i', $i['created']) ?></td>
+                                                            <td><?= $i['status'] == 1 ? 'Disetujui' : 'Pending' ?></td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 </div>

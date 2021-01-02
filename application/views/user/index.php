@@ -36,14 +36,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 d-none">
+        <div class="col-lg-3">
             <div class="card shadow" style="background-color: #7D00B5; border-radius: 2em;">
                 <div class="card-body text-light border-0">
                     <img src="<?= base_url('asset/user/') ?>img/paper-plane.png" alt="">
                     <div class="h2 mb-0">Free tiket</div>
                     <div class="mb-4">Coba pengalaman tryout</div>
                     <div class="text-right">
-                        <a href="#" class="text-light">
+                        <a href="<?= site_url('exm/simulation') ?>" class="text-light" id="btn-simulation">
                             <b>Klik disini</b>
                             <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="background-color: rgba(216, 216, 216, 0.514); padding: 10px; border-radius: 50%">
                                 <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
@@ -61,12 +61,11 @@
                 <div class="card-body">
                     <img src="<?= base_url('asset/user/') ?>img/tiket-kuning.png" class="img-fluid float-left mr-2">
                     <div class="text-hitam">
-                        <div class="mb-0">Tiket Tryout</div>
+                        <div class="mb-0">Tryout TKA SAINTEK</div>
                         <div>
                             <?php
-                            $user_ticket = $ticket['tka_saintek'] + $ticket['tka_soshum'] + $ticket['tka_campuran'] + $ticket['tps'];
-                            echo $user_ticket
-                            ?>
+                            echo !empty($ticket) ? $ticket['tka_saintek'] : 0;
+                            ?> tiket
                         </div>
                     </div>
                 </div>
@@ -77,8 +76,12 @@
                 <div class="card-body">
                     <img src="<?= base_url('asset/user/') ?>img/tiketmerah.png" class="img-fluid float-left mr-2">
                     <div class="text-hitam">
-                        <div class="mb-0">Tiket Pendalaman Soal</div>
-                        <div>0</div>
+                        <div class="mb-0">Tryout TKA SOSHUM</div>
+                        <div>
+                            <?php
+                            echo !empty($ticket) ? $ticket['tka_soshum'] : 0;
+                            ?> tiket
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,8 +91,27 @@
                 <div class="card-body">
                     <img src="<?= base_url('asset/user/') ?>img/tiket-hijau.png" class="img-fluid float-left mr-2">
                     <div class="text-hitam">
-                        <div class="mb-0">Tiket Konsultasi</div>
-                        <div>0</div>
+                        <div class="mb-0">Tryout TKA CAMPURAN</div>
+                        <div>
+                            <?php
+                            echo !empty($ticket) ? $ticket['tka_campuran'] : 0;
+                            ?> tiket
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-12 my-1">
+            <div class="card shadow border-0" style="border-radius: 1em;">
+                <div class="card-body">
+                    <img src="<?= base_url('asset/user/') ?>img/tiket-kuning.png" class="img-fluid float-left mr-2">
+                    <div class="text-hitam">
+                        <div class="mb-0">Tryout TPS</div>
+                        <div>
+                            <?php
+                            echo !empty($ticket) ? $ticket['tps'] : 0;
+                            ?> tiket
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,6 +124,7 @@
                 <div class="card-body px-0 jadwal">
                     <div class="h3 mb-4 text-hitam ml-4">Jadwal Tryout</div>
                     <?php
+                    $user_ticket = $ticket['tka_saintek'] + $ticket['tka_soshum'] + $ticket['tka_campuran'] + $ticket['tps'];
                     if ($user_ticket < 1) {
                     ?>
                         <p class="text-center">Kamu tidak memiliki jadwal tryout</p>
@@ -288,6 +311,24 @@ function get_month($month)
             icon: 'info'
         });
     };
+
+    $('#btn-simulation').on('click', function(e) {
+        e.preventDefault();
+        const href = $(this).attr('href');
+
+        Swal.fire({
+            text: "Mulai simulasi tryout?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Mulai',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+    });
 </script>
 
 <!-- /.container-fluid -->

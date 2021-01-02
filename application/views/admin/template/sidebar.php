@@ -68,7 +68,7 @@ endif;
     <ul class="navbar-nav bg-menu sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center text-hitam justify-content-center" href="<?= base_url('admin') ?>">
+        <a class="sidebar-brand d-flex align-items-center text-hitam justify-content-center" href="#">
             <div class="sidebar-brand-icon">
                 <img src="<?= base_url('asset/admin/') ?>img/logo-admin.png" class="img-fluid" width="88%">
             </div>
@@ -80,58 +80,56 @@ endif;
         <!-- <hr class="sidebar-divider bg-dark my-0"> -->
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link <?= $dashboard_1 ?>" href="<?= base_url('admin') ?>">
-                <i class="fa fa-home <?= $dashboard ?>" aria-hidden="true"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link <?= $banksoal_1 ?>" href="<?= base_url('manage/bank_soal') ?>">
-                <i class="fa fa-pencil <?= $banksoal ?>" aria-hidden="true"></i>
-                <span>Bank soal</span>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link <?= $paketsoal_1 ?>" href="<?= base_url('manage/paket_soal') ?>">
-                <i class="fa fa-files-o <?= $paketsoal ?>" aria-hidden="true"></i>
-                <span>Paket soal</span>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link <?= $paketujian_1 ?>" href="<?= base_url('manage/paket_ujian') ?>">
-                <i class="fa fa-folder-o <?= $paketujian ?>" aria-hidden="true"></i>
-                <span>Paket ujian</span>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link <?= $product_1 ?>" href="<?= base_url('manage/product') ?>">
-                <i class="fa fa-shopping-cart <?= $product ?>" aria-hidden="true"></i>
-                <span>Product</span>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link <?= $laporan_1 ?>" href="<?= base_url('manage/laporan') ?>">
-                <i class="fa fa-pie-chart <?= $laporan ?>" aria-hidden="true"></i>
-                <span>Laporan</span>
-            </a>
-        </li>
+        <?php
+        if (empty($user_reseller)) :
+        ?>
+            <li class="nav-item active">
+                <a class="nav-link <?= $dashboard_1 ?>" href="<?= base_url('admin') ?>">
+                    <i class="fa fa-home <?= $dashboard ?>" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link <?= $banksoal_1 ?>" href="<?= base_url('manage/bank_soal') ?>">
+                    <i class="fa fa-pencil <?= $banksoal ?>" aria-hidden="true"></i>
+                    <span>Bank soal</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link <?= $paketsoal_1 ?>" href="<?= base_url('manage/paket_soal') ?>">
+                    <i class="fa fa-files-o <?= $paketsoal ?>" aria-hidden="true"></i>
+                    <span>Paket soal</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link <?= $paketujian_1 ?>" href="<?= base_url('manage/paket_ujian') ?>">
+                    <i class="fa fa-folder-o <?= $paketujian ?>" aria-hidden="true"></i>
+                    <span>Paket ujian</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link <?= $product_1 ?>" href="<?= base_url('manage/product') ?>">
+                    <i class="fa fa-shopping-cart <?= $product ?>" aria-hidden="true"></i>
+                    <span>Product</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link <?= $laporan_1 ?>" href="<?= base_url('manage/laporan') ?>">
+                    <i class="fa fa-pie-chart <?= $laporan ?>" aria-hidden="true"></i>
+                    <span>Laporan</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link <?= $reseller_1 ?>" href="<?= base_url('manage/reseller') ?>">
+                    <i class="fa fa-users <?= $reseller ?>" aria-hidden="true"></i>
+                    <span>Reseller</span>
+                </a>
+            </li>
+        <?php endif; ?>
         <li class="nav-item active">
             <a class="nav-link <?= $userdata_1 ?>" href="<?= base_url('manage/userdata') ?>">
                 <i class="fa fa-user <?= $userdata ?>" aria-hidden="true"></i>
                 <span>User data</span>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link <?= $reseller_1 ?>" href="<?= base_url('admin/reseller') ?>">
-                <i class="fa fa-users <?= $reseller ?>" aria-hidden="true"></i>
-                <span>Reseller</span>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link <?= $homepage_1 ?>" href="<?= base_url('admin/homepage') ?>" data-toggle="modal" data-target="#modelId">
-                <i class="fa fa-desktop <?= $homepage ?>" aria-hidden="true"></i>
-                <span>Homepage</span>
             </a>
         </li>
 
