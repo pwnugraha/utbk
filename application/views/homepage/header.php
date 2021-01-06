@@ -26,7 +26,7 @@
         <?php endif; ?>
         <!-- Notif -->
         <div class="notif bg-biru text-center text-baloo text-light py-2">
-            <span class="mr-3"> Promo Akhir tahun tahun Disc. 15% </span> <a href="<?= base_url(''); ?>" class="btn-notif px-3"><b>Cek
+            <span class="mr-3"> Promo Akhir tahun tahun Disc. 15% </span> <a href="<?= base_url('auth/login'); ?>" class="btn-notif px-3"><b>Cek
                     Sekarang</b></a>
         </div>
         <!-- Akhir Notif -->

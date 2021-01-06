@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-7">
                 <div class="container-testi">
-                    <iframe class="responsive-iframe mx-auto" src="https://www.youtube.com/embed/4HfFKGUwAQM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="responsive-iframe mx-auto" src="https://www.youtube.com/embed/MkWBK_xxi5I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <h6 class="text-center mt-1 text-biru">Yuk kita dengar apa kata mereka tentang bagaimana sobatUTBK
                     berkontribusi

@@ -52,7 +52,7 @@
                     <img src="<?= base_url('asset/homepage/img'); ?>/logo-2.png" alt="" class="img-fluid" width="60%">
                 </li>
                 <li>
-                    <p>The Rasyiidu Center <br>
+                    <p>SobatUTBK <br>
                         Jl. Kaliurang KM 10, <br>
                         Kota Sleman, <br>
                         D.I Yogyakarta</p>

@@ -8,7 +8,7 @@
                 mulai menipis daya tampungnya,
                 mumpung masih ada waktu,
                 rebut kembali kesempatan PTN impianmu</p>
-            <a href="<?= base_url(''); ?>" class="btn-cover px-4">Tryout sekarang</a>
+            <a href="<?= base_url('auth/login'); ?>" class="btn-cover px-4">Tryout sekarang</a>
         </div>
         <div class="col-6">
             <img src="<?= base_url('asset/homepage/img'); ?>/homepage-1.png" alt="" class="img-fluid">
