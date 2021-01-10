@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2020 at 07:55 AM
+-- Generation Time: Jan 10, 2021 at 05:20 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -727,14 +727,6 @@ CREATE TABLE `exam` (
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `exam`
---
-
-INSERT INTO `exam` (`id`, `ptn1`, `ptn2`, `user_id`, `month`, `tka`, `tps`, `score`, `status`, `end_date`, `created`, `modified`) VALUES
-(3, 503, 580, 177, 12, 1, 1, NULL, 1, NULL, '2020-12-17 13:33:10', '2020-12-18 00:39:17'),
-(4, 503, 580, 180, 12, 1, 1, NULL, 3, NULL, '2020-12-17 13:33:10', '2020-12-18 02:39:05');
-
 -- --------------------------------------------------------
 
 --
@@ -752,15 +744,6 @@ CREATE TABLE `exam_history` (
   `start_time` time NOT NULL,
   `end_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `exam_history`
---
-
-INSERT INTO `exam_history` (`id`, `name`, `date`, `exam_id`, `category`, `start_date`, `end_date`, `start_time`, `end_time`) VALUES
-(2, 'TKA SOSHUM', '2020-12-17 20:33:10', 3, 2, '2020-12-17', '2020-12-26', '09:00:00', '23:59:00'),
-(3, 'TPS SAINTEK-SOSHUM', '2020-12-17 20:34:21', 3, 4, '2020-12-17', '2020-12-26', '09:00:00', '23:59:00'),
-(4, 'TKA CAMPURAN', '2020-12-17 20:35:12', 3, 3, '2020-12-17', '2020-12-26', '09:00:00', '23:59:00');
 
 -- --------------------------------------------------------
 
@@ -794,7 +777,8 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
-(2, 'members', 'General User');
+(2, 'members', 'General User'),
+(3, 'resellers', 'Reseller Group');
 
 -- --------------------------------------------------------
 
@@ -867,17 +851,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `product_id`, `product_name`, `quantity`, `price`, `user_id`, `created`, `modified`, `payment`, `status`, `category`, `snaptoken`, `method`) VALUES
-(10033, 3, 'SOSHUM', 1, 100000, 1, '2020-12-24 12:01:43', '2020-12-25 09:48:07', 'bank_transfer', 'pending', 2, '43781d32-d5c6-446d-a698-f343a4a758ec', 2),
-(10034, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:26:27', '2020-12-25 11:26:31', NULL, NULL, 2, '15e5ebc0-62b0-4e5f-910d-9d74f31706ed', 2),
-(10035, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:30:13', '2020-12-25 11:32:31', 'cstore', 'pending', 2, '68f3dc16-fba3-498a-a9cb-0bb7f6d9712e', 2),
-(10036, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:32:44', '2020-12-25 11:33:23', 'cstore', 'pending', 2, 'fa96cd59-a6d8-4277-8d16-565bdd554873', 2),
-(10037, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:33:46', '2020-12-25 11:33:49', NULL, NULL, 2, '850e256f-bf1f-4548-85c9-acc4722738b2', 2),
-(10038, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:34:24', '2020-12-25 11:35:09', 'cstore', 'pending', 2, '2115888a-dc7c-4f0f-a5ee-f6c9e3565019', 2),
-(10039, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:38:20', '2020-12-25 11:43:24', 'credit_card', 'capture', 2, '00156564-1323-4827-9426-5567ac8862bb', 2),
-(10040, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:53:43', '2020-12-25 11:54:07', 'bank_transfer', 'pending', 2, '87792ca6-6aa1-42a6-96b6-bccd3635aa06', 2),
-(10041, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:54:30', '2020-12-25 11:55:23', 'bank_transfer', 'pending', 2, 'f38186d9-b74d-43cd-9774-8c05329c12fc', 2),
-(10042, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:55:36', '2020-12-25 11:55:39', NULL, NULL, 2, '0445558c-375a-4cbe-b217-338eb75e85d0', 2),
-(10043, 3, 'SOSHUM', 1, 100000, 1, '2020-12-25 11:58:28', '2020-12-25 11:58:46', 'echannel', 'pending', 2, 'b54196d4-c71f-479f-ad0c-4099db4d0e65', 2);
+(1, 3, 'SOSHUM', 2, 100000, 1, '2020-12-26 23:31:28', '2020-12-26 23:32:02', NULL, NULL, 2, '544e0cf3-66a9-459b-bf8d-5d2fd6be7b56', 2),
+(2, 3, 'SOSHUM', 2, 100000, 1, '2020-12-26 23:34:04', '2020-12-27 00:44:16', 'gopay', 'settlement', 2, '544e0cf3-66a9-459b-bf8d-5d2fd6be7b56', 2),
+(3, 3, 'SOSHUM', 2, 100000, 1, '2020-12-27 02:32:21', '2020-12-27 02:32:26', NULL, NULL, 2, 'a377c9a2-27c7-41fd-a150-b6048d4bcbf4', 2),
+(4, 3, 'SOSHUM', 2, 100000, 1, '2020-12-27 02:33:49', '2020-12-27 02:34:04', 'gopay', 'settlement', 2, 'd28c852e-67e3-4c21-8520-0fbe1db0c18f', 2);
 
 -- --------------------------------------------------------
 
@@ -894,6 +871,13 @@ CREATE TABLE `order_notif` (
   `msg` text COLLATE utf8mb4_unicode_ci,
   `status_code` smallint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_notif`
+--
+
+INSERT INTO `order_notif` (`id`, `order_id`, `payment`, `status`, `created`, `msg`, `status_code`) VALUES
+(1, 4, 'gopay', 'settlement', '2020-12-27 02:34:22', 'Transaction order_id: 4 successfully transfered using gopay. Give 2 ticket to user_id: 1', 200);
 
 -- --------------------------------------------------------
 
@@ -963,7 +947,8 @@ CREATE TABLE `product_item` (
 --
 
 INSERT INTO `product_item` (`id`, `product_id`, `quantity`, `price`, `description`) VALUES
-(1, 3, 1, 100000, '30%');
+(1, 3, 1, 100000, '30%'),
+(2, 3, 2, 100000, '');
 
 -- --------------------------------------------------------
 
@@ -3966,8 +3951,28 @@ INSERT INTO `ticket` (`id`, `user_id`, `tka_saintek`, `tka_soshum`, `tka_campura
 (572, 743, 1, 1, 1, 1),
 (573, 744, 1, 1, 1, 1),
 (574, 745, 1, 1, 1, 1),
-(575, 1, 10, 9, 9, 9),
-(577, 173, 5, 3, 1, 9);
+(575, 1, 10, 11, 9, 11),
+(577, 173, 5, 3, 1, 9),
+(582, 772, 1, 1, 1, 1),
+(583, 773, 1, 1, 1, 1),
+(584, 774, 1, 1, 1, 1),
+(585, 775, 1, 1, 1, 1),
+(586, 776, 1, 1, 1, 1),
+(587, 777, 1, 1, 1, 1),
+(588, 778, 1, 1, 1, 1),
+(589, 779, 1, 1, 1, 1),
+(590, 780, 1, 1, 1, 1),
+(591, 781, 1, 1, 1, 1),
+(592, 782, 1, 1, 1, 1),
+(593, 783, 1, 1, 1, 1),
+(594, 784, 1, 1, 1, 1),
+(595, 785, 1, 1, 1, 1),
+(596, 786, 1, 1, 1, 1),
+(597, 787, 1, 1, 1, 1),
+(598, 788, 1, 1, 1, 1),
+(599, 789, 1, 1, 1, 1),
+(600, 790, 1, 1, 1, 1),
+(601, 791, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -3998,7 +4003,7 @@ CREATE TABLE `tryout` (
 
 INSERT INTO `tryout` (`id`, `name`, `description`, `quota`, `start_date`, `start_time`, `end_date`, `end_time`, `status`, `type`, `active_month`, `paket_soal_id`, `created`, `modified`) VALUES
 (5, 'TKA SAINTEK', 'ini paket soal TKA saintek untuk desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 1, 12, 1, '2020-12-10 02:47:20', '2020-12-16 13:29:59'),
-(6, 'TKA SOSHUM', 'ini paket soal TKA soshum untuk desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 2, 12, 2, '2020-12-10 02:47:54', '2020-12-16 13:33:55'),
+(6, 'TKA SOSHUM', 'ini paket soal TKA soshum untuk desember', 500, '2020-12-17', '09:00:00', '2021-01-08', '23:59:00', 1, 2, 12, 2, '2020-12-10 02:47:54', '2021-01-02 04:52:06'),
 (7, 'TPS SAINTEK-SOSHUM', 'ini paket soal TPS saintek dan soshum untuk desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 4, 12, 3, '2020-12-10 02:48:45', '2020-12-18 02:58:48'),
 (8, 'simulasi pengerjaan soal', 'Simulasi', 500, '2020-12-14', '00:01:00', '2020-12-26', '23:58:00', 0, 3, 12, 4, '2020-12-15 01:03:19', '2020-12-16 12:46:47'),
 (9, 'TKA CAMPURAN', 'Paket CAMPURAN Desember', 500, '2020-12-17', '09:00:00', '2020-12-26', '23:59:00', 1, 3, 12, 5, '2020-12-16 07:50:18', '2020-12-16 13:44:41');
@@ -4038,7 +4043,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$XiRevnvtyCo.I0DF3InheuyudhNCcFJp9kXp8TmoEY9Cq7ZjjjQ/q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1608875379, 1, 'Admin', 'istrator', 'ADMIN', '085743', 1, 'homepage-13.png'),
+(1, '127.0.0.1', 'administrator', '$2y$12$XO0xwGA8zTEWedgv27jHQOOP46UHEATx8QlS5rkLMRMI/VLYuqpZ.', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1610295577, 1, 'Administrator', 'istrator', 'SYS ADMIN', '0857438888', 2, 'homepage-13.png'),
 (173, '::1', '0020904782', '$2y$10$vPt0iuT32EJgpmqqu.BLnesm/9rY5UBa.eiHdMDTHXvHONxVZXcuW', 'ekafitrian88@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861365, NULL, 1, 'ALEX PRIGUNTORO', NULL, 'SMAN 5 TUBAN', '085785135558', 1, NULL),
 (174, '::1', '0034375628', '$2y$10$LL6BSH7j6Oi3bmUsnlHTQOINWO4hMhQKQDEBVFJHiJXgG9oGg.9Jy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861366, NULL, 1, 'ANNISA FATHONI', NULL, 'SMAN 5 TUBAN', '085784385499', 2, NULL),
 (175, '::1', '0024042345', '$2y$10$3bl2GeXf.cUrxhkGYu3cW.y4/yu7ganJuiX1XtM8.ElFtv1vCfw7e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861366, NULL, 1, 'ARIA RAHMATDANI MULYONO', NULL, 'SMAN 5 TUBAN', '085708856537', 1, NULL),
@@ -4540,7 +4545,7 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activ
 (669, '::1', '0024698181', '$2y$10$ty8feZP50G8MPT.YIbUdW.D3YB4qd5KWW6NG6EBSK6c28VxTCKnIC', 'noviaanggraeni2311@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861458, 1608089540, 1, 'NOVIA ANGGRAENI WIDIASTUTI', NULL, 'SMA Negeri 1 Tuban', '085895861390', 2, NULL),
 (670, '::1', '0030376437', '$2y$10$cLzHgh54T.XEj0qxR8XQpe2jLYE./At/4uxbtJmhSd0gqx/0JcLDC', 'nurhikmatussaadah@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861458, 1608089026, 1, 'NUR HIKMATUS SA\'ADAH', NULL, 'SMA Negeri 1 Tuban', '082247584610', 2, NULL),
 (671, '::1', '0030752153', '$2y$10$tVbcuhBQIiXUvuLtI5DRouLDHVaSSJKktYzDV.GqSxgh/jclWGTsy', 'nurfaizah.herpristanti2003@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861458, 1608088407, 1, 'NURFAIZAH HERPRISTANTI', NULL, 'SMA Negeri 1 Tuban', '082140315527', 2, NULL),
-(672, '::1', '0028364023', '$2y$10$dTAr8rcY11KtxKanVXQaluibHe0V2evheVZHu6OLGX.MtFFFzqP.O', 'okkyrizput20@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861458, 1608088284, 1, 'OKKY RIZKY SAPUTRA', NULL, 'SMA Negeri 1 Tuban', '081542739801', 1, NULL),
+(672, '::1', '0028364023', '$2y$10$dTAr8rcY11KtxKanVXQaluibHe0V2evheVZHu6OLGX.MtFFFzqP.O', 'okkyrizput20@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861458, 1608973944, 1, 'OKKY RIZKY SAPUTRA', NULL, 'SMA Negeri 1 Tuban', '081542739801', 1, NULL),
 (673, '::1', '0031816707', '$2y$10$xYxocS/T2H73wuAyeI2WjOLdMDJ6L5AV17eJ1wWvsOUaPKVDwqAIW', 'praditaanggi16@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861458, 1608119274, 1, 'PRADITA ANGGI ANGGOROWATI', NULL, 'SMA Negeri 1 Tuban', '085846047292', 2, NULL),
 (674, '::1', '0032733550', '$2y$10$RN7HenOviNk1q78yp16YXuARLSB9v0sm4XbU3Ur.ORgAsV9aFRr3S', 'sidan1722@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861459, NULL, 1, 'RAMBANANG SIDAN LANANG', NULL, 'SMA Negeri 1 Tuban', '085607336771', 1, NULL),
 (675, '::1', '0024350380', '$2y$10$zXseDyez2cfkJQToyQhkju12TLCogrC5GbwGw/EDtNPH.xFKZqezi', 'riskyanirmala@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861459, 1608088439, 1, 'RISKYANIRMALA NOVATIANA', NULL, 'SMA Negeri 1 Tuban', '085211324033', 2, NULL),
@@ -4614,7 +4619,28 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activ
 (743, '::1', '0037334719', '$2y$10$C6SnZMn.uakMPbTuWYCky.TL7S95uv6khkVjzWXDP7l0Xz/MY5/Mu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861471, 1608088025, 1, 'Shella Windy Antika Putri', NULL, 'SMA Negeri 1 Tuban', '082257190846', 2, NULL),
 (744, '::1', '0041530730', '$2y$10$qzmc6Qz6WipIQVBAP/hlpONVhq704xcLqCdaVgqs0h6Dlw/kkQN3C', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861471, 1608087956, 1, 'THESALONIKA RINDU ANDREASPUTRI', NULL, 'SMA Negeri 1 Tuban', '081339541722', 2, NULL),
 (745, '::1', '0035593871', '$2y$10$Dzs7MqaFg2NHJRYBJY9UXOzrF5g/To4e.OCI/BOadHTLk1mvfmF1i', 'tinarismaa456@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861471, 1608089377, 1, 'TINA RISMA AZHARANI', NULL, 'SMA Negeri 1 Tuban', '081335645804', 2, NULL),
-(771, '36.72.214.156', 'Geo Ginting', '$2y$10$yE9XXs88vZ1fS2f2FfG5seoQt/GnPZ6MxLrYt8MopEnLfuyKUPW6W', 'geovani.geovani1290@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1608122330, 1608125473, 1, 'Geo Ginting', NULL, 'SMA SANTO THOMAS 1 MEDAN', '082273270557', 1, NULL);
+(771, '36.72.214.156', 'Geo Ginting', '$2y$10$yE9XXs88vZ1fS2f2FfG5seoQt/GnPZ6MxLrYt8MopEnLfuyKUPW6W', 'geovani.geovani1290@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1608122330, 1608125473, 1, 'Geo Ginting', NULL, 'SMA SANTO THOMAS 1 MEDAN', '082273270557', 1, NULL),
+(772, '::1', '35826342', '$2y$10$SusxKCS1f..4Xk.8HE0/9uEKaDc815If2dPtzRAH3DsAKnmaP..iO', 'bagsurega4@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242593, NULL, 1, 'AGAPE BAGUS REGA ANGGARA', NULL, 'SMAN 1 KEDIRI', '81217023029', 0, NULL),
+(773, '::1', '35287334', '$2y$10$et60fNVpIcSkBBWsvrYPD.3B1bot4yqCp.FKMU55whhhQOrLaqPNa', 'af0215170@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242594, NULL, 1, 'ANNISA FITRI', NULL, 'SMAN 1 KEDIRI', '81217023031', 0, NULL),
+(774, '::1', '35740789', '$2y$10$.LuqowQU/u4Umju8CuPV6.hf538mXyFAgdv.sskRXSsN/jIuwsQqS', 'aurashakina@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242594, NULL, 1, 'AURA INKA DHEAUDI ARDITYA', NULL, 'SMAN 1 KEDIRI', '81217023033', 0, NULL),
+(775, '::1', '46294146', '$2y$10$vGkfyTw87rG6kyoTAXNokemzRPJbslF0OFn21iIg3U/ylAnYxeFN6', 'beningkuoke@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242594, NULL, 1, 'BENING KALYANA INDRIYACIPTA', NULL, 'SMAN 1 KEDIRI', '81217023035', 0, NULL),
+(776, '::1', '43237687', '$2y$10$DWvSNmMT5CiOoK6jaUIcweqTxba9F1jgajXKNqxxZr8d.tTdDuD3K', '43237687', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242594, NULL, 1, 'Bethania Crist Indraswari', NULL, 'SMAN 1 KEDIRI', '81217023039', 0, NULL),
+(777, '::1', '37476760', '$2y$10$E1HVIdjdgUjUHYj55trC8e/1KkyR6mT0QRt6KIgGbSLo8WumMXvk6', '37476760', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242594, NULL, 1, 'BIMO SATRIO WICAKSONO', NULL, 'SMAN 1 KEDIRI', '81217023040', 0, NULL),
+(778, '::1', '43237681', '$2y$10$J78vw8S9plYHvkx5D6ffQeaRma.BRe7e/QM9Q3.Wp6Cb4X3nXI9ee', 'dewakresno04@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242594, NULL, 1, 'DEWA KRESNO PUTRA', NULL, 'SMAN 1 KEDIRI', '81217023047', 0, NULL),
+(779, '::1', '42800263', '$2y$10$AiAAisFdpIPyZhb2Ti6NlO4pCi1/kt/e2SSHdO9bC0NYFzladTp7i', 'dioprastyoo10@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242594, NULL, 1, 'DIO PRASTYO', NULL, 'SMAN 1 KEDIRI', '81217023048', 0, NULL),
+(780, '::1', '44091343', '$2y$10$gT6KaUTzm9NAI0XeVsQEne0tqkM/.scLbWTABOLKsVeoQTrJtPssS', 'charistia944@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242595, NULL, 1, 'Dyah ayu charistya', NULL, 'SMAN 1 KEDIRI', '81217023049', 0, NULL),
+(781, '::1', '49785329', '$2y$10$af2Sdv23tKKZ3fHQCxGWFe1dBVxhgY9TpCveYjjHcOI5trkqsxWUy', '49785329', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242595, NULL, 1, 'ELSA FIRLIANA PUTRI SUSANTI', NULL, 'SMAN 1 KEDIRI', '81217023050', 0, NULL),
+(782, '::1', '40770007', '$2y$10$PUvJE8ni6H9Yb7f0C0N9vuorkyI.eixu1mjOChOhQCx6jFJip2Lkq', 'enricaryan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242595, NULL, 1, 'ENRICA RYAN GEMINARQI', NULL, 'SMAN 1 KEDIRI', '81217023053', 0, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
+(783, '::1', '43978841', '$2y$10$itjeIuhrATGKak9OF7eKhOKSoU4D.WQuHfXqDTw9WV6NzMPnG.aRW', '43978841', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242595, NULL, 1, 'EXCELLENT ELSA AYU NUGRAHA', NULL, 'SMAN 1 KEDIRI', '81217023054', 0, NULL),
+(784, '::1', '36451700', '$2y$10$3DscjwV60N5WX4Bfv8ChS.3MFDRjG09mvJ.mCbC72.MeYumlhrtIS', '36451700', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242595, NULL, 1, 'IDONEA KHOSY MUHAMMAD', NULL, 'SMAN 1 KEDIRI', '81217023057', 0, NULL),
+(785, '::1', '36070009', '$2y$10$jvATdnE5j138XBfX1Sdh2OPun.TjDw9I4N.RajApt2qBqzGXbTrt2', 'elianairma1234@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242595, NULL, 1, 'IRMA ELIANA', NULL, 'SMAN 1 KEDIRI', '81217023058', 0, NULL),
+(786, '::1', '40772979', '$2y$10$o2l.Nn6I3ODk9ZHYeldXiOz8okzQx4bhstT0tryKElrBDlwGvBIBy', 'kevinleo1235@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242595, NULL, 1, 'KEVIN LEONARDO JULIANTO', NULL, 'SMAN 1 KEDIRI', '81217023062', 0, NULL),
+(787, '::1', '43551125', '$2y$10$fM.d7OR2IagBua0kVRXG4eSfocPMjlvEwcVgJiwPvPiZwX8C8Oex.', 'sherinaatlair@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242595, NULL, 1, 'KHALISSA SHAFADILLA PURNAMASARI', NULL, 'SMAN 1 KEDIRI', '81217023063', 0, NULL),
+(788, '::1', '37798438', '$2y$10$8CitFmi9hpCZapekvP0CV.JH2NFEM96hZDIdkIiK2i2fz5ccFFLS.', 'lathifahtara@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'LATHIFAH TARA MUDITA', NULL, 'SMAN 1 KEDIRI', '81217023064', 0, NULL),
+(789, '::1', '44016719', '$2y$10$1RPNe.Ipmvzc4jZkn2vpoOEBrlr6no9icBCKUU0I0YCWih3jca5vi', '44016719', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'LINTANG KUSUMANING PRATIWI', NULL, 'SMAN 1 KEDIRI', '81217023065', 0, NULL),
+(790, '::1', '49670405', '$2y$10$1zpVtAfgw2jSod3jOIl8lOIm3dxfgF7DJoEnLLZ4QMUESSi26GBfu', 'izzuddinsyifa@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'M. IZZUDDIN FATHUSYSYIFA`', NULL, 'SMAN 1 KEDIRI', '81230575858', 0, NULL),
+(791, '::1', '44072131', '$2y$10$pRJfOVaMv4jMnHdygLsPwOOTBQ5G7CP9JeGrBhonoCLctNlF1E/BS', 'milhamardana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'MOH. ILHAM ARDANA PUTRA', NULL, 'SMAN 1 KEDIRI', '81217023069', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -5237,7 +5263,55 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (606, 743, 2),
 (607, 744, 2),
 (608, 745, 2),
-(634, 771, 2);
+(634, 771, 2),
+(642, 772, 2),
+(643, 773, 2),
+(644, 774, 2),
+(645, 775, 2),
+(646, 776, 2),
+(647, 777, 2),
+(648, 778, 2),
+(649, 779, 2),
+(650, 780, 2),
+(651, 781, 2),
+(652, 782, 2),
+(653, 783, 2),
+(654, 784, 2),
+(655, 785, 2),
+(656, 786, 2),
+(657, 787, 2),
+(658, 788, 2),
+(659, 789, 2),
+(660, 790, 2),
+(661, 791, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_resellers`
+--
+
+CREATE TABLE `users_resellers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `reseller_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_ticket`
+--
+
+CREATE TABLE `users_ticket` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `reseller_id` int(10) UNSIGNED NOT NULL,
+  `category` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` tinyint(1) UNSIGNED NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `created` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -5424,6 +5498,22 @@ ALTER TABLE `users_groups`
   ADD KEY `fk_users_groups_groups1_idx` (`group_id`);
 
 --
+-- Indexes for table `users_resellers`
+--
+ALTER TABLE `users_resellers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_users_reseller` (`user_id`),
+  ADD KEY `fk_user_userreseller` (`reseller_id`);
+
+--
+-- Indexes for table `users_ticket`
+--
+ALTER TABLE `users_ticket`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_users_ticket_users` (`user_id`),
+  ADD KEY `fk_users_ticket_reseller` (`reseller_id`);
+
+--
 -- Indexes for table `user_exam`
 --
 ALTER TABLE `user_exam`
@@ -5457,13 +5547,13 @@ ALTER TABLE `dummy`
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `exam_history`
 --
 ALTER TABLE `exam_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `exam_score`
@@ -5475,7 +5565,7 @@ ALTER TABLE `exam_score`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kategori_soal`
@@ -5493,13 +5583,13 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10044;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_notif`
 --
 ALTER TABLE `order_notif`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `paket_soal`
@@ -5517,7 +5607,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `product_item`
 --
 ALTER TABLE `product_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ptn`
@@ -5535,7 +5625,7 @@ ALTER TABLE `soal`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=578;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=607;
 
 --
 -- AUTO_INCREMENT for table `tryout`
@@ -5547,7 +5637,7 @@ ALTER TABLE `tryout`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=772;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=804;
 
 --
 -- AUTO_INCREMENT for table `users_generate`
@@ -5559,7 +5649,19 @@ ALTER TABLE `users_generate`
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=635;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=674;
+
+--
+-- AUTO_INCREMENT for table `users_resellers`
+--
+ALTER TABLE `users_resellers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users_ticket`
+--
+ALTER TABLE `users_ticket`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_exam`
@@ -5643,6 +5745,20 @@ ALTER TABLE `tryout`
 ALTER TABLE `users_groups`
   ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `users_resellers`
+--
+ALTER TABLE `users_resellers`
+  ADD CONSTRAINT `fk_user_userreseller` FOREIGN KEY (`reseller_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_users_reseller` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `users_ticket`
+--
+ALTER TABLE `users_ticket`
+  ADD CONSTRAINT `fk_users_ticket_reseller` FOREIGN KEY (`reseller_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_users_ticket_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user_exam`
