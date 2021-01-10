@@ -171,7 +171,7 @@
                             <div class="row mt-3">
                                 <div class="col-12">
                                     <div class="table-responsive mt-3">
-                                        <table class="table" id="data_table">
+                                        <table class="table" id="data_table2">
                                             <thead>
                                                 <tr class="text-dark">
                                                     <th>Nama Lengkap</th>

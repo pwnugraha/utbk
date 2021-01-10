@@ -16,7 +16,7 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard";
-        $data['item'] = $this->base_model->get_join_item('result', 'users_ticket.*, a.first_name, a.phone, a.company, b.first_name as reseller', NULL, 'users_ticket', ['users a', 'users b'], ['a.id=users_ticket.user_id', 'b.id=users_ticket.reseller_id'], ['inner', 'inner'], ['users_ticket.status' => 0]);
+        $data['item'] = $this->base_model->get_join_item('result', 'users_ticket.*, b.phone, b.company, b.first_name as reseller, SUM(users_ticket.quantity) as qty', NULL, 'users_ticket', ['users a', 'users b'], ['a.id=users_ticket.user_id', 'b.id=users_ticket.reseller_id'], ['inner', 'inner'], ['users_ticket.status' => 0], ['reseller_id']);
         $data['tryout'] = $this->base_model->count_result_item('exam', ['status !=' => 0]);
 
         $this->load->view('admin/template/header', $data);
@@ -28,24 +28,27 @@ class Admin extends CI_Controller
 
     public function add_ticket($id = NULL)
     {
-        $ticket = $this->base_model->get_item('row', 'users_ticket', '*', ['id' => $id]);
-        if (!empty($ticket)) {
-            $current_ticket = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $ticket['user_id']]);
-            if (!$current_ticket) {
-                $params = array(
-                    'user_id' => $ticket['user_id'],
-                    $ticket['category'] => $ticket['quantity'],
-                    'tps' => $ticket['quantity'],
-                );
-                $this->base_model->insert_item('ticket', $params, 'id');
-            } else {
-                $params = array(
-                    $ticket['category'] => $current_ticket[$ticket['category']] + $ticket['quantity'],
-                    'tps' => $current_ticket['tps'] + $ticket['quantity'],
-                );
-                $this->base_model->update_item('ticket', $params, ['user_id' => $ticket['user_id']]);
+        $tickets = $this->base_model->get_item('result', 'users_ticket', '*', ['reseller_id' => $id, 'status' => 0]);
+        if (!empty($tickets)) {
+            foreach ($tickets as $ticket) {
+                $current_ticket = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $ticket['user_id']]);
+                if (!$current_ticket) {
+                    $params = array(
+                        'user_id' => $ticket['user_id'],
+                        $ticket['category'] => $ticket['quantity'],
+                        'tps' => $ticket['quantity'],
+                    );
+                    $this->base_model->insert_item('ticket', $params, 'id');
+                } else {
+                    $params = array(
+                        $ticket['category'] => $current_ticket[$ticket['category']] + $ticket['quantity'],
+                        'tps' => $current_ticket['tps'] + $ticket['quantity'],
+                    );
+                    $this->base_model->update_item('ticket', $params, ['user_id' => $ticket['user_id']]);
+                }
+                $this->base_model->update_item('users_ticket', ['status' => 1], ['id' => $ticket['id']]);
             }
-            $this->base_model->update_item('users_ticket', ['status' => 1], ['id' => $id]);
+            
             $this->session->set_flashdata('message', 'Tiket telah ditambahkan');
         }
         redirect('admin', 'refresh');

@@ -48,6 +48,7 @@
 <script>
     $(document).ready(function() {
         $('#data_table').DataTable();
+        $('#data_table2').DataTable();
     });
 </script>
 <?php

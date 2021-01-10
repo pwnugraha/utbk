@@ -2,6 +2,11 @@
 
 <div class="container-fluid mb-4" style="height: 2000px;">
     <div class="row">
+        <div class="col-lg-12">
+            <p>
+                <?= $this->session->flashdata('message') ?>
+            </p>
+        </div>
         <div class="col-lg-8">
             <div class="card shadow">
                 <div class="card-body px-0">
@@ -16,12 +21,11 @@
                                 <table class="table table-hover table-sm" id="data_table">
                                     <thead>
                                         <tr class="text-biru">
-                                            <th>Nama</th>
+                                            <th>Reseller</th>
                                             <th>No. Telp</th>
                                             <th>Sekolah</th>
-                                            <th>Tiket</th>
-                                            <th>Jumlah</th>
-                                            <th>Reseller</th>
+                                            <th>Jumlah Tiket</th>
+                                            <th>Reseller ID</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -32,14 +36,13 @@
                                         } else {
                                             foreach ($item as $i) { ?>
                                                 <tr>
-                                                    <td><?= ucwords($i['first_name']) ?></td>
+                                                    <td><?= ucwords($i['reseller']) ?></td>
                                                     <td><?= $i['phone'] ?></td>
                                                     <td><?= $i['company'] ?></td>
-                                                    <td><?= $i['category'] ?></td>
-                                                    <td><?= $i['quantity'] ?></td>
-                                                    <td><?= ucwords($i['reseller']) ?></td>
+                                                    <td><?= $i['qty'] ?></td>
+                                                    <td><?= ucwords($i['reseller_id']) ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('admin/add_ticket/' . $i['id']) ?>" class="btn-proses">
+                                                        <a href="<?= base_url('admin/add_ticket/' . $i['reseller_id']) ?>" class="btn-proses">
                                                             Accept
                                                         </a>
                                                     </td>
@@ -77,7 +80,7 @@
                 <div class="card-body">
                     <div class="d-inline-block">
                         <div class="h5 text-biru">Pengajuan Tiket</div>
-                        <div class="text-secondary"><?= empty($item) ? 0 : count($item) ?> tiket belum disetujui</div>
+                        <div class="text-secondary"><?= empty($item) ? 0 : count($item) ?> reseller belum disetujui</div>
                     </div>
                     <div class="float-right">
                         <svg style="background-color: #0fd2f5; color:white; padding: 10px; border-radius: 50%" width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

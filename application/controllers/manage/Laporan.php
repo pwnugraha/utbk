@@ -20,10 +20,12 @@ class Laporan extends AdminBase
         $this->data['exam'] = $this->base_model->get_item('result', 'exam', 'month, COUNT(month) as total', ['tka' => 1, 'tps' => 1], 'month');
         $this->data['had_exam'] = $this->base_model->get_join_item('result', 'exam.*, users.first_name, users.company', NULL, 'exam', ['users'], ['exam.user_id = users.id'], ['inner']);
 
-        foreach ($this->data['exam'] as $key => $i) {
-            $score_null = $this->base_model->get_join_item('row', 'COUNT(DISTINCT(exam.id)) as numrows', NULL, 'exam', ['exam_score'], ['exam.id=exam_score.exam_id'], ['inner'], ['tka' => 1, 'tps' => 1, 'month' => $i['month']]);
-            if ($score_null > 0) {
-                $this->data['exam'][$key]['proses'] = $i['total'] - $score_null['numrows'] . ' nilai tryout belum diproses';
+        if (!empty($this->data['exam'])) {
+            foreach ($this->data['exam'] as $key => $i) {
+                $score_null = $this->base_model->get_join_item('row', 'COUNT(DISTINCT(exam.id)) as numrows', NULL, 'exam', ['exam_score'], ['exam.id=exam_score.exam_id'], ['inner'], ['tka' => 1, 'tps' => 1, 'month' => $i['month']]);
+                if ($score_null > 0) {
+                    $this->data['exam'][$key]['proses'] = $i['total'] - $score_null['numrows'] . ' nilai tryout belum diproses';
+                }
             }
         }
         $this->adminview('admin/laporan/laporan', $this->data);
