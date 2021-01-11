@@ -181,12 +181,13 @@
                                                     <th>Jumlah</th>
                                                     <th>Diajukan pada</th>
                                                     <th>Status</th>
+                                                    <th>AKsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
                                                 if (empty($users_ticket)) {
-                                                    echo '<tr><td colspan="5" class="text-center">No data <b>Belum ada data user.</b> </td></tr>';
+                                                    echo '<tr><td colspan="8" class="text-center">No data <b>Belum ada pengajuan tiket.</b> </td></tr>';
                                                 } else {
                                                     foreach ($users_ticket as $i) { ?>
                                                         <tr>
@@ -197,6 +198,15 @@
                                                             <td><?= $i['quantity'] ?></td>
                                                             <td><?= date('d-m-Y - H:i', $i['created']) ?></td>
                                                             <td><?= $i['status'] == 1 ? 'Disetujui' : 'Pending' ?></td>
+                                                            <td>
+                                                                <?php if ($i['status'] == 0) : ?>
+                                                                    <a href="<?= base_url('manage/userdata/delete_ticket/' . $i['ticket_id']) ?>" class="btn-hapus">
+                                                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-trash-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+                                                                        </svg>
+                                                                    </a>
+                                                                <?php endif; ?>
+                                                            </td>
                                                         </tr>
                                                 <?php
                                                     }

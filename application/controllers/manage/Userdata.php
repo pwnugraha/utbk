@@ -25,7 +25,7 @@ class Userdata extends AdminBase
                 show_404();
             }
             $this->data['item'] = $this->base_model->get_join_item('result', 'users.*', NULL, 'users', ['users_resellers'], ['users.id=users_resellers.user_id'], ['inner'], ['reseller_id' => $this->session->userdata('user_id')]);
-            $this->data['users_ticket'] = $this->base_model->get_join_item('result', 'users.*, users_ticket.category, users_ticket.quantity, users_ticket.status,users_ticket.created', NULL, 'users', ['users_ticket'], ['users.id=users_ticket.user_id'], ['inner'], ['reseller_id' => $this->session->userdata('user_id')]);
+            $this->data['users_ticket'] = $this->base_model->get_join_item('result', 'users.*, users_ticket.id as ticket_id, users_ticket.category, users_ticket.quantity, users_ticket.status,users_ticket.created', NULL, 'users', ['users_ticket'], ['users.id=users_ticket.user_id'], ['inner'], ['reseller_id' => $this->session->userdata('user_id')]);
             $this->data['reseller'] = TRUE;
         }
         $this->data['user'] = $this->base_model->get_item('row', 'users', '*', ['id' => $id]);
@@ -73,10 +73,20 @@ class Userdata extends AdminBase
                     );
                     $this->base_model->update_item('ticket', $params, array('user_id' => $this->input->post('user_id')));
                 }
-                $this->_result_msg('success', 'Tiket berhasil ditambahkan');
+                $this->_result_msg('success', 'Tiket berhasil ditambahkan. Menunggu disetujui.');
             }
             redirect('manage/userdata/index/' . $this->input->post('user_id'));
         }
+    }
+
+    public function delete_ticket($id = NULL)
+    {
+        $ticket = $this->base_model->get_item('row', 'users_ticket', '*', ['id' => $id, 'status' => 0]);
+        if (!empty($ticket)) {
+            $this->base_model->delete_item('users_ticket', ['id' => $id]);
+            $this->_result_msg('success', 'Pengajuan tiket telah dibatalkan.');
+        }
+        redirect('manage/userdata/index/');
     }
 
     public function create_user()
