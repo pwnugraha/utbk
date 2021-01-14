@@ -103,6 +103,11 @@
                 <div class="card-body px-0">
                     <div class="container-fluid">
                         <div class="row mt-3">
+                            <?php if ($this->ion_auth->is_admin()) : ?>
+                                <div class="col-md-12 mt-3 mt-md-0 text-right">
+                                    <button type="button" data-toggle="modal" data-target="#importModal" class="bg-biru-muda text-light px-4 h5" style="border-radius: 2em; border-width: 0;">+ Import User</button>
+                                </div>
+                            <?php endif; ?>
                             <?php if ($reseller) : ?>
                                 <div class="col-md-12 mt-3 mt-md-0 text-right">
                                     <a href="<?= site_url('manage/userdata/create_user') ?>" class="bg-biru-muda text-light px-4 h5" style="border-radius: 2em;">+ Add New</a>
@@ -225,3 +230,37 @@
         </div>
     <?php endif; ?>
 </div>
+<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <?= form_open_multipart('manage/userdata/import_user') ?>
+            <div class="modal-header">
+                <h5 class="modal-title">Import User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" name="user_file" class="custom-file-input" id="user_file">
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                </div>
+                <p>Import file sesuai format. Untuk melihat format yang harus digunakan klik Download Format.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Import</button>
+                <a href="<?= base_url('manage/userdata/import_user_format') ?>" class="btn btn-secondary">Download Format</a>
+            </div>
+            <?= form_close() ?>
+        </div>
+    </div>
+</div>
+<script>
+    $('.custom-file-input').on('change', function() {
+        let filename = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(filename);
+    });
+</script>

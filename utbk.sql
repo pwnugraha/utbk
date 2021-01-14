@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2021 at 05:20 PM
+-- Generation Time: Jan 14, 2021 at 11:40 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -823,6 +823,14 @@ CREATE TABLE `login_attempts` (
   `login` varchar(100) NOT NULL,
   `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
+(1, '::1', 'primawn', 1610619299),
+(2, '::1', 'primawn', 1610619305);
 
 -- --------------------------------------------------------
 
@@ -4043,7 +4051,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `gender`, `profile`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$XO0xwGA8zTEWedgv27jHQOOP46UHEATx8QlS5rkLMRMI/VLYuqpZ.', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1610295577, 1, 'Administrator', 'istrator', 'SYS ADMIN', '0857438888', 2, 'homepage-13.png'),
+(1, '127.0.0.1', 'administrator', '$2y$12$XO0xwGA8zTEWedgv27jHQOOP46UHEATx8QlS5rkLMRMI/VLYuqpZ.', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1610619598, 1, 'Administrator', 'istrator', 'SYS ADMIN', '0857438888', 2, 'homepage-13.png'),
 (173, '::1', '0020904782', '$2y$10$vPt0iuT32EJgpmqqu.BLnesm/9rY5UBa.eiHdMDTHXvHONxVZXcuW', 'ekafitrian88@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861365, NULL, 1, 'ALEX PRIGUNTORO', NULL, 'SMAN 5 TUBAN', '085785135558', 1, NULL),
 (174, '::1', '0034375628', '$2y$10$LL6BSH7j6Oi3bmUsnlHTQOINWO4hMhQKQDEBVFJHiJXgG9oGg.9Jy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861366, NULL, 1, 'ANNISA FATHONI', NULL, 'SMAN 5 TUBAN', '085784385499', 2, NULL),
 (175, '::1', '0024042345', '$2y$10$3bl2GeXf.cUrxhkGYu3cW.y4/yu7ganJuiX1XtM8.ElFtv1vCfw7e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1607861366, NULL, 1, 'ARIA RAHMATDANI MULYONO', NULL, 'SMAN 5 TUBAN', '085708856537', 1, NULL),
@@ -4640,7 +4648,9 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activ
 (788, '::1', '37798438', '$2y$10$8CitFmi9hpCZapekvP0CV.JH2NFEM96hZDIdkIiK2i2fz5ccFFLS.', 'lathifahtara@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'LATHIFAH TARA MUDITA', NULL, 'SMAN 1 KEDIRI', '81217023064', 0, NULL),
 (789, '::1', '44016719', '$2y$10$1RPNe.Ipmvzc4jZkn2vpoOEBrlr6no9icBCKUU0I0YCWih3jca5vi', '44016719', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'LINTANG KUSUMANING PRATIWI', NULL, 'SMAN 1 KEDIRI', '81217023065', 0, NULL),
 (790, '::1', '49670405', '$2y$10$1zpVtAfgw2jSod3jOIl8lOIm3dxfgF7DJoEnLLZ4QMUESSi26GBfu', 'izzuddinsyifa@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'M. IZZUDDIN FATHUSYSYIFA`', NULL, 'SMAN 1 KEDIRI', '81230575858', 0, NULL),
-(791, '::1', '44072131', '$2y$10$pRJfOVaMv4jMnHdygLsPwOOTBQ5G7CP9JeGrBhonoCLctNlF1E/BS', 'milhamardana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'MOH. ILHAM ARDANA PUTRA', NULL, 'SMAN 1 KEDIRI', '81217023069', 0, NULL);
+(791, '::1', '44072131', '$2y$10$pRJfOVaMv4jMnHdygLsPwOOTBQ5G7CP9JeGrBhonoCLctNlF1E/BS', 'milhamardana@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1609242596, NULL, 1, 'MOH. ILHAM ARDANA PUTRA', NULL, 'SMAN 1 KEDIRI', '81217023069', 0, NULL),
+(792, '::1', 'res1', '$2y$10$8Fx5djbza.iaD4OKxrOevO.NTQhkR50jxpIS1gqwTLhD2.Du4lXBW', 'admin@admin.cos', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1610331165, 1610331180, 1, 'ss', NULL, 'dw', '7', 0, NULL),
+(793, '::1', 'us1', '$2y$10$opE80Vx4iomAEDt6u1qZZeHQwC5ZCHzoWHzBmL47yoT3W.ApYkVS.', 'admin@admin.cc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1610331674, NULL, 1, 'dwd', NULL, 'dwa', '7', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -4650,26 +4660,14 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activ
 
 CREATE TABLE `users_generate` (
   `id` int(11) UNSIGNED NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(254) DEFAULT NULL,
-  `activation_selector` varchar(255) DEFAULT NULL,
-  `activation_code` varchar(255) DEFAULT NULL,
-  `forgotten_password_selector` varchar(255) DEFAULT NULL,
-  `forgotten_password_code` varchar(255) DEFAULT NULL,
-  `forgotten_password_time` int(11) UNSIGNED DEFAULT NULL,
-  `remember_selector` varchar(255) DEFAULT NULL,
-  `remember_code` varchar(255) DEFAULT NULL,
-  `created_on` int(11) UNSIGNED NOT NULL,
-  `last_login` int(11) UNSIGNED DEFAULT NULL,
-  `active` tinyint(1) UNSIGNED DEFAULT NULL,
   `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `gender` tinyint(1) NOT NULL,
-  `profile` text
+  `log` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5283,7 +5281,9 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (658, 788, 2),
 (659, 789, 2),
 (660, 790, 2),
-(661, 791, 2);
+(661, 791, 2),
+(662, 792, 3),
+(663, 793, 2);
 
 -- --------------------------------------------------------
 
@@ -5296,6 +5296,13 @@ CREATE TABLE `users_resellers` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `reseller_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users_resellers`
+--
+
+INSERT INTO `users_resellers` (`id`, `user_id`, `reseller_id`) VALUES
+(1, 793, 792);
 
 -- --------------------------------------------------------
 
@@ -5483,9 +5490,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users_generate`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uc_activation_selector` (`activation_selector`),
-  ADD UNIQUE KEY `uc_forgotten_password_selector` (`forgotten_password_selector`),
-  ADD UNIQUE KEY `uc_remember_selector` (`remember_selector`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
@@ -5577,7 +5581,7 @@ ALTER TABLE `kategori_soal`
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -5625,7 +5629,7 @@ ALTER TABLE `soal`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=607;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=641;
 
 --
 -- AUTO_INCREMENT for table `tryout`
@@ -5637,31 +5641,31 @@ ALTER TABLE `tryout`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=804;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=842;
 
 --
 -- AUTO_INCREMENT for table `users_generate`
 --
 ALTER TABLE `users_generate`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=674;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=712;
 
 --
 -- AUTO_INCREMENT for table `users_resellers`
 --
 ALTER TABLE `users_resellers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users_ticket`
 --
 ALTER TABLE `users_ticket`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_exam`

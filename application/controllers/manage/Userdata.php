@@ -1,9 +1,11 @@
 <?php
 
-use function Complex\theta;
-
 defined('BASEPATH') or exit('No direct script access allowed');
 require_once 'application/controllers/manage/Base.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Userdata extends AdminBase
 {
@@ -192,5 +194,119 @@ class Userdata extends AdminBase
             ];
             $this->adminview('admin/reseller/create_user', $this->data);
         }
+    }
+
+    public function import_user()
+    {
+        $file_mime = array('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/zip', 'application/vnd.ms-excel', 'application/msword', 'application/x-zip', 'application/vnd.ms-excel', 'application/msexcel', 'application/x-msexcel', 'application/x-ms-excel', 'application/x-excel', 'application/x-dos_ms_excel', 'application/xls', 'application/x-xls', 'application/excel', 'application/download', 'application/vnd.ms-office', 'application/msword');
+        $file_name = $_FILES['user_file']['name'];
+        if ($file_name && in_array($_FILES['user_file']['type'], $file_mime)) {
+
+            $worksheet = IOFactory::load($_FILES['user_file']['tmp_name']);
+            $sheetData = $worksheet->getActiveSheet()->toArray();
+            if (!empty($sheetData)) {
+                for ($i = 1; $i < count($sheetData); $i++) {
+                    $param = [
+                        'username' => $sheetData[$i][0],
+                        'email' => $sheetData[$i][1],
+                        'first_name' => $sheetData[$i][2],
+                        'company' => $sheetData[$i][3],
+                        'phone' => $sheetData[$i][4],
+                        'gender' => $sheetData[$i][5]
+                    ];
+                    if (!$this->base_model->get_item('row', 'users_generate', '*', ['username' => $param['username']]) && !$this->base_model->get_item('row', 'users_generate', '*', ['email' => $param['email']])) {
+                        $this->base_model->insert_item('users_generate', $param);
+                    }
+                }
+                $this->_generate_user();
+
+                //create result output
+                $user_data = $this->base_model->get_item('result', 'users_generate', '*');
+                $spreadsheet = new Spreadsheet();
+                $sheet = $spreadsheet->getActiveSheet();
+                $i = 2;
+                $sheet->setCellValue('A1', 'Username/NISN');
+                $sheet->setCellValue('B1', 'Password');
+                $sheet->setCellValue('C1', 'Nama');
+                $sheet->setCellValue('D1', 'Sekolah');
+                $sheet->setCellValue('E1', 'Keterangan');
+                if (!empty($user_data)) {
+                    foreach ($user_data as $v) {
+                        $sheet->setCellValue('A' . $i, $v['username']);
+                        $sheet->setCellValue('B' . $i, $v['password']);
+                        $sheet->setCellValue('C' . $i, $v['first_name']);
+                        $sheet->setCellValue('D' . $i, $v['company']);
+                        $sheet->setCellValue('E' . $i, $v['log']);
+                        $i++;
+                    }
+                }
+
+                $writer = new Xlsx($spreadsheet);
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                header('Content-Disposition: attachment; filename="' . urlencode('result.xlsx') . '"');
+                $writer->save('php://output');
+            }
+
+            $this->base_model->empty_table('users_generate');
+        } else {
+            $this->session->set_flashdata('msg', 'Pilih file excel .xlsx atau .xls');
+            redirect('manage/userdata', 'refresh');
+        }
+    }
+
+    public function _generate_user()
+    {
+        ini_set("memory_limit", "-1");
+        set_time_limit(0);
+        $users_data = $this->base_model->get_item('result', 'users_generate', '*');
+        if (!empty($users_data)) {
+            $this->config->set_item('ion_auth', FALSE, 'email_activation');
+            $j = 1;
+            foreach ($users_data as $i) {
+                $char = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+
+                $email = (isset($i['email']) && $i['email'] != '') ? strtolower($i['email']) : $i['username'];
+                $identity = $i['username'];
+                $password = substr(str_shuffle($char), 0, 8);;
+
+                $additional_data = [
+                    'first_name' => $i['first_name'],
+                    'last_name' => NULL,
+                    'company' => $i['company'],
+                    'phone' => $i['phone'],
+                    'gender' => $i['gender'],
+                ];
+                if ($this->ion_auth->register($identity, $password, $email, $additional_data)) {
+
+                    // update the userpassword then give the ticket
+                    $this->base_model->update_item('users_generate', ['password' => $password, 'log' => 'acoount succesfully created'], ['id' => $i['id']]);
+                    $curr_user = $this->base_model->get_item('row', 'users', 'id', ['username' => $identity]);
+                    if ($curr_user) {
+                        $this->base_model->insert_item('ticket', ['user_id' => $curr_user['id'], 'tka_saintek' => 1, 'tka_soshum' => 1, 'tka_campuran' => 1, 'tps' => 1]);
+                    }
+                } else {
+                    // update the error log
+                    $this->base_model->update_item('users_generate', ['log' => 'Unable to Create Account. Make sure username or email hasn\'t been use'], ['id' => $i['id']]);
+                }
+                $j++;
+            }
+        }
+    }
+
+    public function import_user_format()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Username/NISN');
+        $sheet->setCellValue('B1', 'Email');
+        $sheet->setCellValue('C1', 'Nama Lengkap');
+        $sheet->setCellValue('D1', 'Sekolah');
+        $sheet->setCellValue('E1', 'No. WA');
+        $sheet->setCellValue('F1', 'Gender');
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . urlencode('format_file.xlsx') . '"');
+        $writer->save('php://output');
     }
 }
