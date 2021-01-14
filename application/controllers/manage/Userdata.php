@@ -249,7 +249,7 @@ class Userdata extends AdminBase
 
             $this->base_model->empty_table('users_generate');
         } else {
-            $this->session->set_flashdata('msg', 'Pilih file excel .xlsx atau .xls');
+            $this->session->set_flashdata('msg', 'Pilih file excel .xlsx');
             redirect('manage/userdata', 'refresh');
         }
     }
