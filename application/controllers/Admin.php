@@ -16,7 +16,7 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard";
-        $data['item'] = $this->base_model->get_join_item('result', 'users_ticket.*, b.phone, b.company, b.first_name as reseller, SUM(users_ticket.quantity) as qty', NULL, 'users_ticket', ['users a', 'users b'], ['a.id=users_ticket.user_id', 'b.id=users_ticket.reseller_id'], ['inner', 'inner'], ['users_ticket.status' => 0], ['reseller_id']);
+        // $data['item'] = $this->base_model->get_join_item('result', 'users_ticket.*, b.phone, b.company, b.first_name as reseller, SUM(users_ticket.quantity) as qty', NULL, 'users_ticket', ['users a', 'users b'], ['a.id=users_ticket.user_id', 'b.id=users_ticket.reseller_id'], ['inner', 'inner'], ['users_ticket.status' => 0], ['reseller_id']);
         $data['tryout'] = $this->base_model->count_result_item('exam', ['status !=' => 0]);
 
         $this->load->view('admin/template/header', $data);
@@ -48,7 +48,7 @@ class Admin extends CI_Controller
                 }
                 $this->base_model->update_item('users_ticket', ['status' => 1], ['id' => $ticket['id']]);
             }
-            
+
             $this->session->set_flashdata('message', 'Tiket telah ditambahkan');
         }
         redirect('admin', 'refresh');

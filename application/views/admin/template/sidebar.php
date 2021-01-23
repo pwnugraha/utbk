@@ -65,7 +65,7 @@ endif;
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-menu sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+    <ul class="navbar-nav bg-menu sidebar sidebar-dark accordion toggled" style="height: 100%; position: fixed;" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center text-hitam justify-content-center" href="#">
@@ -125,6 +125,8 @@ endif;
                     <span>Reseller</span>
                 </a>
             </li>
+
+
         <?php endif; ?>
         <li class="nav-item active">
             <a class="nav-link <?= $userdata_1 ?>" href="<?= base_url('manage/userdata') ?>">
@@ -133,13 +135,25 @@ endif;
             </a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        <?php
+        if (empty($user_reseller)) :
+        ?>
+            <li class="nav-item">
+                <a class="nav-link <?= $homepage_1 ?>" href="<?= base_url('admin/homepage') ?>">
+                    <i class="fa fa-desktop <?= $homepage ?>" aria-hidden="true"></i>
+                    <span>Homepage</span>
+                </a>
+            </li>
+        <?php endif; ?>
 
-        <!-- Sidebar Toggler (Sidebar) -->
+
+
+        <!-- Divider -->
+        <!-- <hr class="sidebar-divider d-none d-md-block">
+
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0 " style="background-color: #64646446;" id="sidebarToggle"></button>
-        </div>
+        </div> -->
 
     </ul>
     <!-- End of Sidebar -->

@@ -26,9 +26,9 @@
 
 
 
-*{
+/* *{
     transition: 1s;
-}
+} */
 
 .hide-content{
     display: none;
@@ -156,3 +156,11 @@
     color: white;
 }
 
+.homepage{
+    /* transition: .3s !important; */
+}
+
+.dropdown-item:hover{
+    background-color: #004caf;
+    color: white;
+}

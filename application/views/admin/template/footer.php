@@ -1,4 +1,5 @@
 </div>
+</div>
 <!-- End of Main Content -->
 
 <!-- Footer -->
@@ -41,7 +42,9 @@
 <?php if ($this->uri->segment(2) == 'product') : ?>
     <script src="https://cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('description', {height: 150});
+        CKEDITOR.replace('description', {
+            height: 150
+        });
     </script>
 <?php endif; ?>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
