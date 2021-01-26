@@ -177,7 +177,7 @@ class Laporan extends AdminBase
         $this->load->model('base_model');
         $exam_data = [];
         $mapel = $this->base_model->get_item('result', 'kategori_soal', '*');
-        $exam = $this->base_model->get_join_item('result', 'user_exam.*, exam.user_id', NULL, ['user_exam'], ['exam'], ['exam.id = user_exam.exam_id'], ['inner'], ['month' => $month, 'tka' => 1, 'tps' => 1]);
+        $exam = $this->base_model->get_join_item('result', 'user_exam.soal_id, user_exam.score, user_exam.exam_id, user_exam.kategori_soal_id, exam.user_id', NULL, ['user_exam'], ['exam'], ['exam.id = user_exam.exam_id'], ['inner'], ['month' => $month, 'tka' => 1, 'tps' => 1]);
 
         if (!empty($exam)) {
             $v = 0;

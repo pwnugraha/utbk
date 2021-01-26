@@ -54,8 +54,34 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <?= form_open('usr/statistik', ['class' => 'form-inline']) ?>
+            <label style="padding-right: 10px;"><strong>Nilai Tryout Bulan</strong></label>
+            <div class="form-group">
+                <select name="exam_score_item" class="form-control mb-2 mr-sm-2">
+                    <option value="12" <?= $exam_month == 12 ? 'selected' : '' ?>>Desember</option>
+                    <option value="1" <?= $exam_month == 1 ? 'selected' : '' ?>>Januari</option>
+                    <option value="2" <?= $exam_month == 2 ? 'selected' : '' ?>>Februari</option>
+                    <option value="3" <?= $exam_month == 3 ? 'selected' : '' ?>>Maret</option>
+                    <option value="4" <?= $exam_month == 4 ? 'selected' : '' ?>>April</option>
+                    <option value="5" <?= $exam_month == 5 ? 'selected' : '' ?>>Mei</option>
+                    <option value="6" <?= $exam_month == 6 ? 'selected' : '' ?>>Juni</option>
+                    <option value="7" <?= $exam_month == 7 ? 'selected' : '' ?>>Juli</option>
+                    <option value="8" <?= $exam_month == 8 ? 'selected' : '' ?>>Agustus</option>
+                    <option value="9" <?= $exam_month == 9 ? 'selected' : '' ?>>September</option>
+                    <option value="10" <?= $exam_month == 10 ? 'selected' : '' ?>>Oktober</option>
+                    <option value="11" <?= $exam_month == 11 ? 'selected' : '' ?>>November</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-mulai-ptn mb-2">Tampilkan</button>
 
-    <div class="row mb-5 activity">
+            <?= form_close() ?>
+        </div>
+
+    </div>
+
+    <div class="row mb-5 activity mt-2">
         <div class="col-lg-4">
             <div class="card shadow mb-4" style="border-radius: 1em;">
                 <div class="card-body">
@@ -324,7 +350,7 @@
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Dec','Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+            labels: ['Dec', 'Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
             datasets: [{
                 label: 'Performance',
                 data: [<?= $chart_data ?>],

@@ -207,16 +207,14 @@ class Userdata extends AdminBase
             if (!empty($sheetData)) {
                 for ($i = 1; $i < count($sheetData); $i++) {
                     $param = [
-                        'username' => $sheetData[$i][0],
-                        'email' => $sheetData[$i][1],
-                        'first_name' => $sheetData[$i][2],
-                        'company' => $sheetData[$i][3],
-                        'phone' => $sheetData[$i][4],
-                        'gender' => $sheetData[$i][5]
+                        'username' => trim($sheetData[$i][0]),
+                        'email' => empty(trim($sheetData[$i][1])) ? NULL : trim($sheetData[$i][1]),
+                        'first_name' => empty(trim($sheetData[$i][2])) ? NULL : trim($sheetData[$i][2]),
+                        'company' => empty(trim($sheetData[$i][3])) ? NULL : trim($sheetData[$i][3]),
+                        'phone' => empty(trim($sheetData[$i][4])) ? NULL : trim($sheetData[$i][4]),
+                        'gender' => empty(trim($sheetData[$i][5])) ? 0 : trim($sheetData[$i][5])
                     ];
-                    if (!$this->base_model->get_item('row', 'users_generate', '*', ['username' => $param['username']]) && !$this->base_model->get_item('row', 'users_generate', '*', ['email' => $param['email']])) {
-                        $this->base_model->insert_item('users_generate', $param);
-                    }
+                    $this->base_model->insert_item('users_generate', $param);
                 }
                 $this->_generate_user();
 
@@ -286,7 +284,7 @@ class Userdata extends AdminBase
                     }
                 } else {
                     // update the error log
-                    $this->base_model->update_item('users_generate', ['log' => 'Unable to Create Account. Make sure username or email hasn\'t been use'], ['id' => $i['id']]);
+                    $this->base_model->update_item('users_generate', ['log' => 'Unable to Create Account. Make sure username or email hasn\'t been used'], ['id' => $i['id']]);
                 }
                 $j++;
             }

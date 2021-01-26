@@ -65,10 +65,17 @@ class Usr extends CI_Controller
 
     public function statistik()
     {
+        $this->data['exam_month'] = 12;
+        if ($this->input->post('exam_score_item')) {
+            $this->form_validation->set_rules('exam_score_item', 'Bulan', 'trim|numeric|required');
+            if ($this->form_validation->run() === TRUE) {
+                $this->data['exam_month'] = $this->input->post('exam_score_item', TRUE);
+            }
+        };
         $this->data['exam_history'] = $this->base_model->get_join_item('result', 'exam_history.*, score', 'exam_id ASC', 'exam_history', ['exam'], ['exam.id=exam_history.exam_id'], ['inner'], ['exam.user_id' => $this->session->userdata('user_id')]);
         $this->data['orders'] = $this->base_model->get_item('result', 'orders', '*', ['user_id' => $this->session->userdata('user_id')]);
-        $this->data['utbk_score'] = $this->base_model->get_join_item('result', 'exam_score.*, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.user_id' => $this->session->userdata('user_id'), 'exam.month' => 12]);
-        $score_limit = $this->base_model->get_join_item('result', 'MIN(exam_score.score) as min, MAX(exam_score.score) as max, exam_score.kategori_soal_id', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.month' => 12], ['exam_score.kategori_soal_id']);
+        $this->data['utbk_score'] = $this->base_model->get_join_item('result', 'exam_score.*, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.user_id' => $this->session->userdata('user_id'), 'exam.month' => $this->data['exam_month']]);
+        $score_limit = $this->base_model->get_join_item('result', 'MIN(exam_score.score) as min, MAX(exam_score.score) as max, exam_score.kategori_soal_id', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.month' => $this->data['exam_month']], ['exam_score.kategori_soal_id']);
         if (!empty($score_limit)) {
             foreach ($score_limit as $v) {
                 $this->data['score_limit'][$v['kategori_soal_id']] = [
@@ -77,8 +84,8 @@ class Usr extends CI_Controller
                 ];
             }
         }
-        $this->data['ptn1'] = $this->base_model->get_join_item('row', 'exam.ptn1, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn1'], ['inner'], ['exam.month' => 12, 'exam.user_id' => $this->session->userdata('user_id')]);
-        $this->data['ptn2'] = $this->base_model->get_join_item('row', 'exam.ptn2, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn2'], ['inner'], ['exam.month' => 12, 'exam.user_id' => $this->session->userdata('user_id')]);
+        $this->data['ptn1'] = $this->base_model->get_join_item('row', 'exam.ptn1, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn1'], ['inner'], ['exam.month' => $this->data['exam_month'], 'exam.user_id' => $this->session->userdata('user_id')]);
+        $this->data['ptn2'] = $this->base_model->get_join_item('row', 'exam.ptn2, ptn.nama, ptn.jurusan', NULL, 'exam', ['ptn'], ['ptn.id = exam.ptn2'], ['inner'], ['exam.month' => $this->data['exam_month'], 'exam.user_id' => $this->session->userdata('user_id')]);
         //get chart data
         $chart_data = $this->base_model->get_join_item('result', 'SUM(exam_score.score)/COUNT(exam_score.score) as pfm, exam.month', 'exam.id ASC', 'exam_score', ['exam'], ['exam.id=exam_score.exam_id'], ['inner'], ['exam.user_id' => $this->session->userdata('user_id')], ['month']);
         //assign to month as index
