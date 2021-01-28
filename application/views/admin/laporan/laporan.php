@@ -220,7 +220,7 @@
                                     foreach ($item as $i) : ?>
                                         <tr>
                                             <td><?= $i['id'] ?></td>
-                                            <td><?= $i['first_name'] ?></td>
+                                            <td><?= $i['username'] ?></td>
                                             <td><?= date('d-m-Y H:i', strtotime($i['created'])) ?></td>
                                             <td><?= $i['quantity'] . ' ' . product_category($i['category']) ?></td>
                                             <td><?= number_format($i['price'], 0, '', '.') ?></td>
@@ -316,7 +316,7 @@
                     <div class="h2 mb-0">Ujian</div>
                     <div class="mb-4">Download data siswa sudah/sedang ujian</div>
                     <div class="text-right">
-                        <a href="<?=site_url('manage/laporan/had_tryout')?>">
+                        <a href="<?= site_url('manage/laporan/had_tryout') ?>">
                             <b>Klik disini</b>
                             <svg width="3em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="background-color: rgba(216, 216, 216, 0.514); padding: 10px; border-radius: 50%">
                                 <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />

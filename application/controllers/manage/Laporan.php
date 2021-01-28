@@ -16,7 +16,7 @@ class Laporan extends AdminBase
 
     public function index()
     {
-        $this->data['item'] = $this->base_model->get_join_item('result', 'orders.*, users.first_name', NULL, ['orders'], ['users'], ['orders.user_id = users.id'], ['inner']);
+        $this->data['item'] = $this->base_model->get_join_item('result', 'orders.*, users.username, users.first_name', NULL, ['orders'], ['users'], ['orders.user_id = users.id'], ['inner']);
         $this->data['exam'] = $this->base_model->get_item('result', 'exam', 'month, COUNT(month) as total', ['tka' => 1, 'tps' => 1], 'month');
         $this->data['had_exam'] = $this->base_model->get_join_item('result', 'exam.*, users.first_name, users.company', NULL, 'exam', ['users'], ['exam.user_id = users.id'], ['inner']);
 
