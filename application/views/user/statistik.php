@@ -100,7 +100,12 @@
                     <hr>
                     <?php
                     if (!empty($utbk_score)) :
+                        $subject_tka = 1;
+                        $score_tka = 0;
                         foreach ($utbk_score as $v) :
+                            $current_score_tka = $score_limit[$v['kategori_soal_id']]['max'] > 0 ? $v['score'] / $score_limit[$v['kategori_soal_id']]['max'] * 100 : 0;
+                            $score_tka += $current_score_tka;
+                            $subject_tka++;
                             if ($v['category'] == 'saintek' || $v['category'] == 'soshum') :
                     ?>
                                 <div class="range-mk">
@@ -142,7 +147,12 @@
 
                     <?php
                     if (!empty($utbk_score)) :
+                        $subject_tps = 1;
+                        $score_tps = 0;
                         foreach ($utbk_score as $v) :
+                            $current_score_tps = $score_limit[$v['kategori_soal_id']]['max'] > 0 ? $v['score'] / $score_limit[$v['kategori_soal_id']]['max'] * 100 : 0;
+                            $score_tps += $current_score_tps;
+                            $subject_tps++;
                             if ($v['category'] == 'tps') :
                     ?>
                                 <div class="range-mk">
@@ -172,9 +182,9 @@
                     <div class="table-responsive">
                         <table width="100%">
                             <tr>
-                                <!-- <td width="30%">
+                                <td width="30%">
                                     <canvas id="chartProgress" height="50" width="100"></canvas>
-                                </td> -->
+                                </td>
                                 <td class="pl-3">
                                     <div class="h3 mb-0">
                                         <table width="100%">
@@ -199,9 +209,9 @@
 
                         <table width="100%">
                             <tr>
-                                <!-- <td width="30%">
+                                <td width="30%">
                                     <canvas id="chartProgress2" height="50" width="100"></canvas>
-                                </td> -->
+                                </td>
                                 <td class="pl-3">
                                     <div class="h3 mb-0">
                                         <table width="100%">
@@ -385,8 +395,10 @@
         }
     });
 
-    var persen1 = 0;
-    var persen2 = 0;
+    var num1 = <?= $score_tka / $subject_tka - (0.15 * $score_tka / $subject_tka) ?>;
+    var num2 = <?= $score_tps / $subject_tps ?>;
+    var persen1 = num1.toFixed(0);
+    var persen2 = num2.toFixed(0);
 
     var chartProgress = document.getElementById("chartProgress");
     if (chartProgress) {
