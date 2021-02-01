@@ -2,16 +2,12 @@
 <div class="container text-baloo py-5 cover">
     <div class="row">
         <div class="col-md-6">
-            <h1 class="text-biru">Ambil Kesempatanmu sekarang</h1>
-            <p class="text-biru">Hay sobat bagaimana persipan PTNmu?
-                Wah sepertinya PTN impianmu sudah
-                mulai menipis daya tampungnya,
-                mumpung masih ada waktu,
-                rebut kembali kesempatan PTN impianmu</p>
-            <a href="<?= base_url('auth/login'); ?>" class="btn-cover px-4">Tryout sekarang</a>
+            <h1 class="text-biru"><?= $master[2]['isi'] ?></h1>
+            <p class="text-biru"><?= $master[3]['isi'] ?></p>
+            <a href="<?= base_url('auth/login'); ?>" class="btn-cover px-4"><?= $master[4]['isi'] ?></a>
         </div>
         <div class="col-6">
-            <img src="<?= base_url('asset/homepage/img'); ?>/homepage-1.png" alt="" class="img-fluid">
+            <img src="<?= base_url('asset/homepage/img/') . $img[0]['isi'] ?>" alt="" class="img-fluid">
         </div>
     </div>
 </div>
@@ -22,36 +18,33 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="text-orange">UTBK itu?</h1>
+                <h1 class="text-orange"><?= $master[5]['isi'] ?></h1>
             </div>
             <div class="col-12 text-center">
-                <span class="text-biru">Ujian Tulis Berbasis Komputer (UTBK) merupakan tes masuk ke perguruan
-                    tinggi yang dilandaskan oleh <br> Lembaga Tes Masuk Perguruan Tinggi (LTMPT)</span>
+                <span class="text-biru"><?= $master[6]['isi'] ?></span>
             </div>
             <div class="col-12 text-center">
-                <h2 class="text-biru mt-5">Tujuan UTBK adalah</h1>
+                <h2 class="text-biru mt-5"><?= $master[7]['isi'] ?></h1>
             </div>
             <div class="col-md-6 text-biru">
-                <img src="<?= base_url('asset/homepage/img'); ?>/icon-tujuan-1.png" class="img-fluid float-left mr-2" width="10%">
-                Memprediksi calon mahasiswa yang mampu meyelesaikan studi
-                di perguruan tinggi dengan baik & tepat waktu
+                <img src="<?= base_url('asset/homepage/img/') . $img[1]['isi'] ?>" class="img-fluid float-left mr-2" width="10%">
+                <?= $master[8]['isi'] ?>
             </div>
             <div class="col-md-6 text-biru">
-                <img src="<?= base_url('asset/homepage/img'); ?>/icon-tujuan-2.png" class="img-fluid float-left mr-2" width="10%">
-                Memberikan kesempatan bagi calon mahasiswa untuk ikut tes
-                secara fleksbel dalam memilih waktu & lokasi tes
+                <img src="<?= base_url('asset/homepage/img/') . $img[2]['isi'] ?>" class="img-fluid float-left mr-2" width="10%">
+                <?= $master[9]['isi'] ?>
             </div>
             <div class="col-12 text-center">
-                <h2 class="text-orange mt-5">Kelompok UTBK dibagi menjadi 3</h2>
+                <h2 class="text-orange mt-5"><?= $master[10]['isi'] ?></h2>
             </div>
             <div class="col-12 text-center">
                 <div class="container kelompok text-baloo">
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6 text-center text-biru py-3 navigation">
-                            <label id="rr1" for="r1" class="bar kelompok-active">SOSHUM</label>
-                            <label id="rr2" for="r2" class="bar">SAINTEK</label>
-                            <label id="rr3" for="r3" class="bar">CAMPURAN</label>
+                            <label id="rr1" for="r1" class="bar kelompok-active"><?= $master[11]['isi'] ?></label>
+                            <label id="rr2" for="r2" class="bar"><?= $master[15]['isi'] ?></label>
+                            <label id="rr3" for="r3" class="bar"><?= $master[19]['isi'] ?></label>
                         </div>
                         <div class="col-md-3"></div>
 
@@ -68,19 +61,16 @@
                                         <div class="kotak-kelompok text-left p-5 shadow">
                                             <div class="row">
                                                 <div class="col-md-12 text-biru h2">
-                                                    SOSIAL DAN HUMANIORA (SOSHUM)
+                                                    <?= $master[12]['isi'] ?>
                                                 </div>
                                                 <div class="col-md-7">
                                                     <p>
-                                                        Materi yang di ujian TPS & TKA SOSHUM
-                                                        (Matematika Soshum, Sejarah, Ekonomi, Geografi, dan
-                                                        Sosiologi. Dengan
-                                                        jumlah soal 180 dan waktu pengerjaan 210 menit
+                                                        <?= $master[13]['isi'] ?>
                                                     </p>
-                                                    <a href="" class="btn-cek-soal">Cek Soal Sekarang</a>
+                                                    <a href="" class="btn-cek-soal"><?= $master[14]['isi'] ?></a>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <img src="<?= base_url('asset/homepage/img'); ?>/kelompok.png" class="img-fluid" width="90%" alt="">
+                                                    <img src="<?= base_url('asset/homepage/img/') . $img[3]['isi'] ?>" class="img-fluid" width="90%" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -89,18 +79,16 @@
                                         <div class="kotak-kelompok text-left p-5 shadow">
                                             <div class="row">
                                                 <div class="col-md-12 text-biru h2">
-                                                    SAINT DAN TEKNOLOGI (SAINTEK)
+                                                    <?= $master[16]['isi'] ?>
                                                 </div>
                                                 <div class="col-md-7">
                                                     <p>
-                                                        Materi yang di ujian TPS & TKA Saintek
-                                                        (Matematika Saintek, Kimia, Fisika, dan Biologi.
-                                                        Dengan jumlah soal 160 dan waktu pengerjaan 210 menit
+                                                        <?= $master[17]['isi'] ?>
                                                     </p>
-                                                    <a href="" class="btn-cek-soal">Cek Soal Sekarang</a>
+                                                    <a href="" class="btn-cek-soal"><?= $master[18]['isi'] ?></a>
                                                 </div>
                                                 <div class="col-md-5 text-center">
-                                                    <img src="<?= base_url('asset/homepage/img'); ?>/Untitled-5.png" class="img-fluid" width="60%" alt="">
+                                                    <img src="<?= base_url('asset/homepage/img/') . $img[4]['isi'] ?>" class="img-fluid" width="60%" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -109,19 +97,16 @@
                                         <div class="kotak-kelompok text-left p-5 shadow">
                                             <div class="row">
                                                 <div class="col-md-12 text-biru h2">
-                                                    SOSHUM DAN SAINTEK (CAMPURAN)
+                                                    <?= $master[20]['isi'] ?>
                                                 </div>
                                                 <div class="col-md-7">
                                                     <p>
-                                                        Materi yang di ujian TPS & TKA SOSHUM dan TKA SAINTEK
-                                                        (Matematika campuran, Sejarah, Ekonomi, Geografi, Sosiologi,
-                                                        Kimia, Fisika, dan Biologi dengan jumlah soal 180 dan waktu
-                                                        pengerjaan 210 menit
+                                                        <?= $master[21]['isi'] ?>
                                                     </p>
-                                                    <a href="" class="btn-cek-soal">Cek Soal Sekarang</a>
+                                                    <a href="" class="btn-cek-soal"><?= $master[22]['isi'] ?></a>
                                                 </div>
                                                 <div class="col-md-5 text-center">
-                                                    <img src="<?= base_url('asset/homepage/img'); ?>/Untitled-9.png" class="img-fluid" width="50%" alt="">
+                                                    <img src="<?= base_url('asset/homepage/img/') . $img[5]['isi'] ?>" class="img-fluid" width="50%" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -142,10 +127,10 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-12 text-center mb-5">
-            <h1 class="text-biru text-baloo">Alasan Memilih <span class="text-orange"> Sobat UTBK</span></h1>
+            <h1 class="text-biru text-baloo"><?= $master[23]['isi'] ?></h1>
         </div>
         <div class="col-12 text-center">
-            <img src="<?= base_url('asset/homepage/img'); ?>/alasan.png" class="img-fluid">
+            <img src="<?= base_url('asset/homepage/img/') . $img[6]['isi'] ?>" class="img-fluid">
         </div>
     </div>
 </div>
@@ -156,41 +141,32 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5">
-                <h1 class="text-orange">Promo Sobat<span class="text-biru">UTBK</span></h1>
+                <h1 class="text-orange"><?= $master[24]['isi'] ?></h1>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="card-promo shadow">
-                    <div class="head text-center bg-biru">
-                        <h1 class="mb-0 pt-4 pb-3 text-light">SOSHUM</h1>
-                    </div>
-                    <div class="body pt-4 pb-4 px-4">
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <h5 class="text-biru">Paket Hemat SOSHUM DISC 15%</h5>
+            <?php $no = 1;
+            foreach ($product as $p) : ?>
+                <?php if ($no <= 3) : ?>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card-promo shadow">
+                            <div class="head text-center bg-biru">
+                                <h1 class="mb-0 pt-4 pb-3 text-light"><?= $p['name']; ?></h1>
                             </div>
-                            <div class="col-12 text-center">
-                                <p class="text-biru">Semakian rajin tryout
-                                    semakin murah
-                                </p>
-                            </div>
-                            <div class="col-12">
-                                <div>6 x Tryout soshum</div>
-                                <div>6 x konsultasi jurusan</div>
-                                <div>Pembahasan soal</div>
-                                <div>Report Progress full akses</div>
-                            </div>
-                            <div class="col-12 text-center py-3">
-                                <h2 class="text-biru">Rp. 280.000,-</h2>
-                            </div>
-                            <div class="col-12 text-center py-3">
-                                <a href="<?= base_url(''); ?>" class="btn-promo text-orange px-5">Beli</a>
+                            <div class="body pt-4 pb-4 px-4">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <?= $p['description']; ?>
+                                    </div>
+                                    <div class="col-12 text-center py-3">
+                                        <a href="<?= base_url('auth'); ?>" class="btn-promo text-orange px-5"><?= $master[25]['isi'] ?></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-6">
+                <?php endif; ?>
+            <?php $no++;
+            endforeach; ?>
+            <!-- <div class="col-lg-3 col-sm-6">
                 <div class="card-promo shadow">
                     <div class="head text-center bg-biru">
                         <h1 class="mb-0 pt-4 pb-3 text-light">SAINTEK</h1>
@@ -220,9 +196,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-3 col-sm-6">
+            <!-- <div class="col-lg-3 col-sm-6">
                 <div class="card-promo shadow">
                     <div class="head text-center bg-biru">
                         <h1 class="mb-0 pt-4 pb-3 text-light">CAMPURAN</h1>
@@ -252,9 +228,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
             <div class="col-lg-3 col-sm-6 col-produk-lain">
-                <a href="" class="btn-promo text-orange px-3 produk-lain">Produk lain <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <a href="<?= base_url('auth'); ?>" class="btn-promo text-orange px-3 produk-lain"><?= $master[26]['isi'] ?> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                     </svg></a>
             </div>
@@ -267,7 +244,7 @@
 <div class="container text-baloo py-5">
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1 class="text-orange">Testimoni</h1>
+            <h1 class="text-orange"><?= $master[27]['isi'] ?></h1>
         </div>
         <div class="col-md-12 text-center">
             <div id="carouselId" class="carousel slide" style="width: 100%;" data-ride="carousel">
@@ -277,106 +254,36 @@
                     <li data-target="#carouselId" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-10 py-5">
-                                    <div class="kotak-kelompok bg-orange-muda text-left p-5 shadow">
-                                        <div class="row">
-                                            <div class="col-md-12 text-light h3">
-                                                @Awang_angkasa
-                                            </div>
-                                            <div class="col-md-12 text-light h3">
-                                                UGM (FEB)
-                                            </div>
-                                            <div class="col-md-7">
-                                                <p class="text-light h4">
-                                                    Disni saya bisa tau apa yang harus saya maksimalkan dari maple
-                                                    untuk dapat lolos PTN
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-10 py-5">
-                                    <div class="kotak-kelompok bg-orange-muda text-left p-5 shadow">
-                                        <div class="row">
-                                            <div class="col-md-12 text-light h3">
-                                                @Awang_angkasa
-                                            </div>
-                                            <div class="col-md-12 text-light h3">
-                                                UGM (FEB)
-                                            </div>
-                                            <div class="col-md-7">
-                                                <p class="text-light h4">
-                                                    Disni saya bisa tau apa yang harus saya maksimalkan dari maple
-                                                    untuk dapat lolos PTN
-                                                </p>
+                    <?php $no = 1;
+                    foreach ($testi as $t) : ?>
+                        <div class="carousel-item <?php if ($no == 2) {
+                                                        echo 'active';
+                                                    } ?>">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10 py-5">
+                                        <div class="kotak-kelompok bg-orange-muda text-left p-5 shadow">
+                                            <div class="row">
+                                                <div class="col-md-12 text-light h3">
+                                                    <?= $t['nama'] ?>
+                                                </div>
+                                                <div class="col-md-12 text-light h3">
+                                                    <?= $t['instansi'] ?>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <p class="text-light h4">
+                                                        <?= $t['isi'] ?>
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-10 py-5">
-                                    <div class="kotak-kelompok bg-orange-muda text-left p-5 shadow">
-                                        <div class="row">
-                                            <div class="col-md-12 text-light h3">
-                                                @Awang_angkasa
-                                            </div>
-                                            <div class="col-md-12 text-light h3">
-                                                UGM (FEB)
-                                            </div>
-                                            <div class="col-md-7">
-                                                <p class="text-light h4">
-                                                    Disni saya bisa tau apa yang harus saya maksimalkan dari maple
-                                                    untuk dapat lolos PTN
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-10 py-5">
-                                    <div class="kotak-kelompok bg-orange-muda text-left p-5 shadow">
-                                        <div class="row">
-                                            <div class="col-md-12 text-light h3">
-                                                @Awang_angkasa
-                                            </div>
-                                            <div class="col-md-12 text-light h3">
-                                                UGM (FEB)
-                                            </div>
-                                            <div class="col-md-7">
-                                                <p class="text-light h4">
-                                                    Disni saya bisa tau apa yang harus saya maksimalkan dari maple
-                                                    untuk dapat lolos PTN
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $no++;
+                    endforeach; ?>
                 </div>
                 <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
                     <svg viewBox="0 0 16 16" class="bi bi-caret-left-fill prev-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -399,8 +306,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-orange text-center py-2 text-baloo text-qna">
-                <span class="mr-3 "> Cari tau apa yang ingin kamu ketahui</span>
-                <a href="<?= base_url('home/tentang'); ?>" class="btn-qna px-5"><b>F&Q</b></a>
+                <span class="mr-3 "><?= $master[28]['isi'] ?></span>
+                <a href="<?= base_url('home/tentang'); ?>" class="btn-qna px-5"><b><?= $master[29]['isi'] ?></b></a>
             </div>
         </div>
     </div>

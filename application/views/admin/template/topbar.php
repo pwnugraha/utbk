@@ -48,4 +48,4 @@
             </ul>
         </nav>
         <!-- End of Topbar -->
-        <div style="margin-left: 100px;">
+        <div>

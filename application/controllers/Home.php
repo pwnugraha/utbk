@@ -9,10 +9,21 @@ class Home extends CI_Controller
     {
         parent::__construct();
         error_reporting(0);
+        $this->load->model('base_model');
     }
     public function index()
     {
         $data['title'] = "";
+
+        $data['master'] = $this->db->get('interface')->result_array();
+        $data['misi'] = $this->db->get('interface_misi')->result_array();
+        $data['faq'] = $this->db->get('interface_faq')->result_array();
+        $data['img'] = $this->db->get('interface_img')->result_array();
+        $data['testi'] = $this->db->get('testimoni')->result_array();
+        $data['product'] = $this->base_model->get_join_item('result', 'product.*', NULL, 'product', ['product_item'], ['product.id=product_item.product_id'], ['inner'], ['status' => 1], ['product.id']);
+
+
+        // die;
 
         $this->load->view('homepage/header', $data);
         $this->load->view('homepage/index');
@@ -21,6 +32,12 @@ class Home extends CI_Controller
 
     public function tentang()
     {
+        $data['master'] = $this->db->get('interface')->result_array();
+        $data['misi'] = $this->db->get('interface_misi')->result_array();
+        $data['faq'] = $this->db->get('interface_faq')->result_array();
+        $data['img'] = $this->db->get('interface_img')->result_array();
+        $data['testi'] = $this->db->get('testimoni')->result_array();
+
         $data['title'] = "Tentang -";
         $this->load->view('homepage/header', $data);
         $this->load->view('homepage/tentang');
@@ -29,6 +46,12 @@ class Home extends CI_Controller
 
     public function testimoni()
     {
+        $data['master'] = $this->db->get('interface')->result_array();
+        $data['misi'] = $this->db->get('interface_misi')->result_array();
+        $data['faq'] = $this->db->get('interface_faq')->result_array();
+        $data['img'] = $this->db->get('interface_img')->result_array();
+        $data['testi'] = $this->db->get('testimoni')->result_array();
+
         $data['title'] = "Testimoni -";
 
         $this->load->view('homepage/header', $data);

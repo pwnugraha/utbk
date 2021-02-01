@@ -1,5 +1,10 @@
 <!-- Begin Page Content -->
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message_sa'); ?>"></div>
+
+<?php if ($user_dashboard[3]['is_active'] == 1) : ?>
+    <label id="notif-popup" name="<?= $user_dashboard[3]['isi'] ?>"></label>
+<?php endif; ?>
+
 <div class="container-fluid mb-5 pb-5">
     <div class="row">
         <div class="col-lg-9">
@@ -8,28 +13,26 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="h3 mb-5 text-hitam">Welcome back <span class="badge badge-light text-hitam">
+                                <div class="h3 mb-5 text-hitam"><?= $user_dashboard[0]['isi'] ?>
+                                    <span class="badge badge-light text-hitam">
                                         <?php if ($this->session->userdata('name')) {
                                             echo ucwords(strtolower($this->session->userdata('name')));
                                         } else {
                                             echo $this->session->userdata('username');
                                         }; ?>
-                                    </span></div>
-                                <div class="text-hitam">Apa yang harus kamu lakukan sekarang :</div>
+                                    </span>
+                                </div>
+                                <div class="text-hitam"><?= $user_dashboard[1]['isi'] ?></div>
                                 <ul>
-                                    <li><span class="text-hitam"> Wow UTBK sudah mulai dekat ayo
-                                            persiapkan
-                                            dirimu</span></li>
-                                    <li><span class="text-hitam"> Setiap tanggal 27, Report akan keluar,
-                                            yuk lihat
-                                            hasilmu</span></li>
-                                    <li><span class="text-hitam"> Emm sepertinya lagi ada discount 50%
-                                            pembelian 10x
-                                            tryout</span></li>
+                                    <?php foreach ($user_list_1 as $ul1) : ?>
+                                        <li>
+                                            <span class="text-hitam"> <?= $ul1['isi'] ?> </span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                             <div class="col-md-4">
-                                <img src="<?= base_url('asset/user/') ?>img/welcome.png" class="img-fluid">
+                                <img src="<?= base_url('asset/user/img/') . $img[9]['isi'] ?>" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -247,10 +250,7 @@
                 <div class="card-body text-light">
                     <div class="h4">Note:</div>
                     <div>
-                        Untuk UTBK kamu wajib
-                        menyelesaikan soal TPS dan TKA
-                        bila tidak nanti nilaimu tidak keluar
-                        loh di statistik
+                        <?= $user_dashboard[2]['isi'] ?>
                     </div>
                 </div>
             </div>
@@ -297,6 +297,19 @@ function get_month($month)
     const flashdata = $('.flash-data').data('flashdata');
     const notif = $('.notif-tpas-tpa-clear').data('notif');
 
+    var visited = localStorage.getItem('visited');
+    if (!visited) {
+        const notif_popup = $('#notif-popup').attr('name');
+        if (notif_popup) {
+            Swal.fire({
+                title: 'Informasi',
+                html: notif_popup,
+                icon: 'info'
+            });
+        }
+        sessionStorage.setItem("session_notif_popup", 0);
+        localStorage.setItem('visited', true);
+    }
 
     if (flashdata) {
         Swal.fire({

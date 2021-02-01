@@ -24,9 +24,9 @@
 
 /* AKHIR SCROLLBAR */
 
-*{
+/* *{
     transition: .3s;
-}
+} */
 
 .bg-orange{
     background-color: rgb(243, 149, 41) !important;

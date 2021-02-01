@@ -8,41 +8,13 @@
                             <div class="col-md-8">
                                 <div class="text-hitam mb-3">Tata tertib pengerjaan:</div>
                                 <ul class="pl-0 pl-md-4">
-                                    <li>
-                                        <span class="text-hitam">
-                                            Soal dikerjakan dengan batas waktu yang di tentukan
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="text-hitam">
-                                            Aplikasi akan selesai sendiri bila waktu sudah habis
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="text-hitam">
-                                            SAINTEK terdiri 80 soal dan SOSHUM terdiri 100 soal
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="text-hitam">
-                                            Bila ada masalah pada jaringan, jawaban anda akan tetep tersimpan.
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="text-hitam">
-                                            Bila ada masalah pada jaringan, waktu tetap akan berjalan dan tryout tidak dapat diulang. Jadi pastikan koneksimu stabil.
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="text-hitam">
-                                            Soal akan aktif bila waktu telah berjalan
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="text-hitam">
-                                            Berdoa sebelum mengerjakan
-                                        </span>
-                                    </li>
+                                    <?php foreach ($user_list_2 as $ul2) : ?>
+                                        <li>
+                                            <span class="text-hitam">
+                                                <?= $ul2['isi'] ?>
+                                            </span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                                 <a href="<?= base_url('usr') ?>" class="text-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Dashboard</a>
                             </div>

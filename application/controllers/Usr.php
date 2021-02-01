@@ -23,6 +23,10 @@ class Usr extends CI_Controller
         $this->data['tryout'] = $this->base_model->get_item('result', 'tryout', '*', ['status' => 1], NULL, 'active_month DESC');
         $this->data['exam'] = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id')]);
 
+        $this->data['user_dashboard'] = $this->db->get('interface_user_dashboard')->result_array();
+        $this->data['user_list_1'] = $this->db->get('interface_user_list_1')->result_array();
+        $this->data['img'] = $this->db->get('interface_img')->result_array();
+
         if (!empty($this->data['tryout'])) {
             foreach ($this->data['tryout'] as $sesi) {
                 if ($sesi['type'] == 1) {
@@ -68,6 +72,11 @@ class Usr extends CI_Controller
         $this->data['exam_history'] = $this->base_model->get_join_item('result', 'exam_history.*, score', 'exam_id ASC', 'exam_history', ['exam'], ['exam.id=exam_history.exam_id'], ['inner'], ['exam.user_id' => $this->session->userdata('user_id')]);
         $this->data['orders'] = $this->base_model->get_item('result', 'orders', '*', ['user_id' => $this->session->userdata('user_id')]);
         $this->data['utbk_score'] = $this->base_model->get_join_item('result', 'exam_score.*, kategori_soal.category, kategori_soal.subject', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.user_id' => $this->session->userdata('user_id'), 'exam.month' => 12]);
+
+        $this->data['user_dashboard'] = $this->db->get('interface_user_dashboard')->result_array();
+        $this->data['user_list_1'] = $this->db->get('interface_user_list_1')->result_array();
+        $this->data['img'] = $this->db->get('interface_img')->result_array();
+
         $score_limit = $this->base_model->get_join_item('result', 'MIN(exam_score.score) as min, MAX(exam_score.score) as max, exam_score.kategori_soal_id', NULL, 'exam_score', ['exam', 'kategori_soal'], ['exam.id=exam_score.exam_id', 'exam_score.kategori_soal_id = kategori_soal.id'], ['inner', 'inner'], ['exam.month' => 12], ['exam_score.kategori_soal_id']);
         if (!empty($score_limit)) {
             foreach ($score_limit as $v) {

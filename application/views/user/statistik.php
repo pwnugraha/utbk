@@ -8,12 +8,16 @@
         </div>
     </div>
 
-    <div class="row activity d-none">
-        <div class="col text-center">
-            <div class="text-biru h4 mb-5"> Nilai tryout kamu sedang kami proses <br> silahkan cek lagi ditanggal <b> 27 </b> ya </div>
-            <img src="<?= base_url('asset/user/img/statistik2.svg') ?>" width="45%" class="img-fluid" alt="">
+    <?php if ($user_dashboard[4]['is_active'] == 1) : ?>
+
+        <div class="row activity d-none">
+            <div class="col text-center">
+                <div class="text-biru h4 mb-5"> <?= $user_dashboard[4]['isi'] ?> </div>
+                <img src="<?= base_url('asset/user/img/') . $img[8]['isi'] ?>" width="45%" class="img-fluid" alt="">
+            </div>
         </div>
-    </div>
+
+    <?php endif; ?>
 
     <!-- Activity -->
     <div class="row mb-5 activity">
@@ -27,12 +31,16 @@
         </div>
 
         <div class="col-md-4 text-center">
-            <div class="card shadow bg-warning border-0" style="border-radius: 1em;">
-                <div class="card-body">
-                    <div class="text-biru h5 mb-5"> Nilai tryout kamu sedang kami proses silahkan cek lagi ditanggal <b> 27 </b> ya </div>
-                    <img src="<?= base_url('asset/user/img/statistik2.svg') ?>" width="90%" class="img-fluid" alt="">
+
+            <?php if ($user_dashboard[4]['is_active'] == 1) : ?>
+                <div class="card shadow bg-warning border-0" style="border-radius: 1em;">
+                    <div class="card-body">
+                        <div class="text-biru h5 mb-5"> <?= $user_dashboard[4]['isi'] ?> </div>
+                        <img src="<?= base_url('asset/user/img/') . $img[8]['isi'] ?>" width="90%" class="img-fluid" alt="">
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
+
         </div>
 
         <div class="col-xl-1 d-none"></div>
@@ -324,7 +332,7 @@
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Dec','Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+            labels: ['Dec', 'Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
             datasets: [{
                 label: 'Performance',
                 data: [<?= $chart_data ?>],

@@ -57,7 +57,22 @@ class Admin extends CI_Controller
     // ========== HOMEPAGE
     public function homepage()
     {
-        $data['title'] = "Homepage";
+        $data['title'] = "Interface";
+
+        // $this->data['product'] = $this->base_model->get_join_item('result', 'product.*', NULL, 'product', ['product_item'], ['product.id=product_item.product_id'], ['inner'], ['status' => 1], ['product.id']);
+
+        $data['master'] = $this->db->get('interface')->result_array();
+        $data['misi'] = $this->db->get('interface_misi')->result_array();
+        $data['faq'] = $this->db->get('interface_faq')->result_array();
+        $data['img'] = $this->db->get('interface_img')->result_array();
+        $data['testi'] = $this->db->get('testimoni')->result_array();
+        $data['user_dashboard'] = $this->db->get('interface_user_dashboard')->result_array();
+        $data['user_list_1'] = $this->db->get('interface_user_list_1')->result_array();
+        $data['user_list_2'] = $this->db->get('interface_user_list_2')->result_array();
+
+        // for ($no = 0; $no < count($data['master']); $no++) {
+        //     echo $no . '-' . $data['master'][$no]['isi'] . '<br>';
+        // }
 
         $this->load->view('admin/template/header', $data);
         $this->load->view('admin/template/sidebar');

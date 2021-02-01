@@ -17,6 +17,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <script>
+        // len_fag = $('#jml-fag').attr('name');
+        // console.log(len_fag);
+
+        function toggleFAG(i) {
+            $("#answer" + i).toggle(600, "swing");
+        }
+    </script>
 
 </head>
 
@@ -26,8 +34,10 @@
         <?php endif; ?>
         <!-- Notif -->
         <div class="notif bg-biru text-center text-baloo text-light py-2">
-            <span class="mr-3"> Promo Akhir tahun tahun Disc. 15% </span> <a href="<?= base_url('auth/login'); ?>" class="btn-notif px-3"><b>Cek
-                    Sekarang</b></a>
+            <span class="mr-3"> <?= $master[0]['isi'] ?> </span>
+            <a href="<?= base_url('auth/login'); ?>" class="btn-notif px-3">
+                <b><?= $master[1]['isi'] ?></b>
+            </a>
         </div>
         <!-- Akhir Notif -->
 

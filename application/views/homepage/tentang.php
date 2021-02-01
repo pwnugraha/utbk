@@ -3,20 +3,17 @@
     <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6">
-            <h1 class="text-orange">Apasih Sobat<span class="text-biru">UTBK ?</span></h1>
-            <p>Sobatunbk adalah simulasi SBMPTN dimana dapat mengukur potensi siswa dalam menyelesaikan soal dan
-                meprioritaskan mata palajaran yang harus di maksimalkan untuk dapat meraih PTN impian.</p>
-            <h3 class="text-orange">VISI Sobat<span class="text-biru">UTBK</span></h3>
-            <p>Menjadi Platform no 1 di Indonesia dalam mengukur potensi dan memaksimalkan kemapuan siswa untuk
-                dapat masuk PTN</p>
-            <h3 class="text-orange">MISI Sobat<span class="text-biru">UTBK</span></h3>
+            <h1 class="text-orange"><?= $master[30]['isi'] ?></h1>
+            <p><?= $master[31]['isi'] ?></p>
+            <h3 class="text-orange"><?= $master[32]['isi'] ?></h3>
+            <p><?= $master[33]['isi'] ?></p>
+            <h3 class="text-orange"><?= $master[34]['isi'] ?></h3>
             <p>
-                <ul>
-                    <li>Menyedikan Platform yang berkualitas</li>
-                    <li>Menyediakan Soal yang Prediktif</li>
-                    <li>Meberikan report yang lengkap untuk dapat memaksimalkan potensi</li>
-                    <li>Menyajikan informasi yang akurat tentang PTN</li>
-                </ul>
+            <ul>
+                <?php foreach ($misi as $m) : ?>
+                    <li><?= $m['isi'] ?></li>
+                <?php endforeach; ?>
+            </ul>
             </p>
         </div>
     </div>
@@ -28,20 +25,27 @@
 <div class="container  text-baloo py-5">
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1 class="display-1 judul-fnq text-orange">F&Q</h1>
+            <h1 class="display-1 judul-fnq text-orange"><?= $master[35]['isi'] ?></h1>
         </div>
 
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <h4 class="question text-biru" id="quest1">
-                Apa itu sobat UTBK ?
-                <p class="answer1 text-orange"> Sobat UTBK adalah layanan digital tryout UTBK online berbasis sistem
-                    IRT, dengan soal-soal yang prediktif disertai dengan pembahasan dan layanan konsultasi siswa
-                    agar diterima di PTN impian</p>
-            </h4>
-        </div>
-        <div class="col-md-1"></div>
 
+        <?php $no = 1;
+        foreach ($faq as $f) : ?>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h4 class="question text-biru" onclick="toggleFAG(<?= $no; ?>)" id="quest<?= $no; ?>">
+                    <?= $f['tanya'] ?>
+                    <p class="text-orange" id="answer<?= $no; ?>">
+                        <?= $f['jawab'] ?>
+                    </p>
+                </h4>
+            </div>
+            <div class="col-md-1"></div>
+        <?php $no++;
+        endforeach; ?>
+        <label name="<?= $no - 1; ?>" id="jml-fag" class="d-none"></label>
+
+        <!-- 
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <h4 class="question text-biru" id="quest2">
@@ -210,7 +214,7 @@
                 </p>
             </h4>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-1"></div> -->
 
 
     </div>

@@ -45,7 +45,7 @@ if ($title == "Laporan") :
     $laporan = "text-putih";
     $laporan_1 = "text-putih border-kiri";
 endif;
-if ($title == "Homepage") :
+if ($title == "Interface") :
     $homepage = "text-putih";
     $homepage_1 = "text-putih border-kiri";
 endif;
@@ -65,7 +65,7 @@ endif;
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-menu sidebar sidebar-dark accordion toggled" style="height: 100%; position: fixed;" id="accordionSidebar">
+    <ul class="navbar-nav bg-menu sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center text-hitam justify-content-center" href="#">
@@ -141,7 +141,7 @@ endif;
             <li class="nav-item">
                 <a class="nav-link <?= $homepage_1 ?>" href="<?= base_url('admin/homepage') ?>">
                     <i class="fa fa-desktop <?= $homepage ?>" aria-hidden="true"></i>
-                    <span>Homepage</span>
+                    <span>Interface</span>
                 </a>
             </li>
         <?php endif; ?>

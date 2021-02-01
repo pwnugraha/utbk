@@ -10,7 +10,7 @@ $('.btn-hapus').on('click', function (e) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'HAPUS',
+        confirmButtonText: 'Hapus',
     }).then((result) => {
         if (result.isConfirmed) {
             document.location.href = href;
