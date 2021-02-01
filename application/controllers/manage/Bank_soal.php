@@ -68,6 +68,7 @@ class Bank_soal extends AdminBase
             if (!$act) {
                 $this->_result_msg('danger', 'Gagal menyimpan data');
             } else {
+                $this->base_model->update_item('soal', ['kategori_soal_id' => $this->input->post('subject', TRUE), 'modified' => date('Y-m-d H:i:s')], array('bank_soal_id' => $id));
                 $this->_result_msg('success', 'Data berhasil diubah');
             }
             redirect('manage/bank_soal/update/' . $id);
@@ -393,7 +394,7 @@ class Bank_soal extends AdminBase
                 }
             }
         }
-        redirect('manage/bank_soal/update/'.$bank_soal_id);
+        redirect('manage/bank_soal/update/' . $bank_soal_id);
     }
     /*
      End Butir Soal

@@ -16,7 +16,7 @@ class Laporan extends AdminBase
 
     public function index()
     {
-        $this->data['item'] = $this->base_model->get_join_item('result', 'orders.*, users.first_name', NULL, ['orders'], ['users'], ['orders.user_id = users.id'], ['inner']);
+        $this->data['item'] = $this->base_model->get_join_item('result', 'orders.*, users.username, users.first_name', NULL, ['orders'], ['users'], ['orders.user_id = users.id'], ['inner']);
         $this->data['exam'] = $this->base_model->get_item('result', 'exam', 'month, COUNT(month) as total', ['tka' => 1, 'tps' => 1], 'month');
         $this->data['had_exam'] = $this->base_model->get_join_item('result', 'exam.*, users.first_name, users.company', NULL, 'exam', ['users'], ['exam.user_id = users.id'], ['inner']);
 
@@ -177,7 +177,7 @@ class Laporan extends AdminBase
         $this->load->model('base_model');
         $exam_data = [];
         $mapel = $this->base_model->get_item('result', 'kategori_soal', '*');
-        $exam = $this->base_model->get_join_item('result', 'user_exam.*, exam.user_id', NULL, ['user_exam'], ['exam'], ['exam.id = user_exam.exam_id'], ['inner'], ['month' => $month, 'tka' => 1, 'tps' => 1]);
+        $exam = $this->base_model->get_join_item('result', 'user_exam.soal_id, user_exam.score, user_exam.exam_id, user_exam.kategori_soal_id, exam.user_id', NULL, ['user_exam'], ['exam'], ['exam.id = user_exam.exam_id'], ['inner'], ['month' => $month, 'tka' => 1, 'tps' => 1]);
 
         if (!empty($exam)) {
             $v = 0;

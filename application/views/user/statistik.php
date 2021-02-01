@@ -62,8 +62,34 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <?= form_open('usr/statistik', ['class' => 'form-inline']) ?>
+            <label style="padding-right: 10px;"><strong>Nilai Tryout Bulan</strong></label>
+            <div class="form-group">
+                <select name="exam_score_item" class="form-control mb-2 mr-sm-2">
+                    <option value="12" <?= $exam_month == 12 ? 'selected' : '' ?>>Desember</option>
+                    <option value="1" <?= $exam_month == 1 ? 'selected' : '' ?>>Januari</option>
+                    <option value="2" <?= $exam_month == 2 ? 'selected' : '' ?>>Februari</option>
+                    <option value="3" <?= $exam_month == 3 ? 'selected' : '' ?>>Maret</option>
+                    <option value="4" <?= $exam_month == 4 ? 'selected' : '' ?>>April</option>
+                    <option value="5" <?= $exam_month == 5 ? 'selected' : '' ?>>Mei</option>
+                    <option value="6" <?= $exam_month == 6 ? 'selected' : '' ?>>Juni</option>
+                    <option value="7" <?= $exam_month == 7 ? 'selected' : '' ?>>Juli</option>
+                    <option value="8" <?= $exam_month == 8 ? 'selected' : '' ?>>Agustus</option>
+                    <option value="9" <?= $exam_month == 9 ? 'selected' : '' ?>>September</option>
+                    <option value="10" <?= $exam_month == 10 ? 'selected' : '' ?>>Oktober</option>
+                    <option value="11" <?= $exam_month == 11 ? 'selected' : '' ?>>November</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-mulai-ptn mb-2">Tampilkan</button>
 
-    <div class="row mb-5 activity">
+            <?= form_close() ?>
+        </div>
+
+    </div>
+
+    <div class="row mb-5 activity mt-2">
         <div class="col-lg-4">
             <div class="card shadow mb-4" style="border-radius: 1em;">
                 <div class="card-body">
@@ -82,7 +108,12 @@
                     <hr>
                     <?php
                     if (!empty($utbk_score)) :
+                        $subject_tka = 1;
+                        $score_tka = 0;
                         foreach ($utbk_score as $v) :
+                            $current_score_tka = $score_limit[$v['kategori_soal_id']]['max'] > 0 ? $v['score'] / $score_limit[$v['kategori_soal_id']]['max'] * 100 : 0;
+                            $score_tka += $current_score_tka;
+                            $subject_tka++;
                             if ($v['category'] == 'saintek' || $v['category'] == 'soshum') :
                     ?>
                                 <div class="range-mk">
@@ -124,7 +155,12 @@
 
                     <?php
                     if (!empty($utbk_score)) :
+                        $subject_tps = 1;
+                        $score_tps = 0;
                         foreach ($utbk_score as $v) :
+                            $current_score_tps = $score_limit[$v['kategori_soal_id']]['max'] > 0 ? $v['score'] / $score_limit[$v['kategori_soal_id']]['max'] * 100 : 0;
+                            $score_tps += $current_score_tps;
+                            $subject_tps++;
                             if ($v['category'] == 'tps') :
                     ?>
                                 <div class="range-mk">
@@ -154,9 +190,9 @@
                     <div class="table-responsive">
                         <table width="100%">
                             <tr>
-                                <!-- <td width="30%">
+                                <td width="30%">
                                     <canvas id="chartProgress" height="50" width="100"></canvas>
-                                </td> -->
+                                </td>
                                 <td class="pl-3">
                                     <div class="h3 mb-0">
                                         <table width="100%">
@@ -181,9 +217,9 @@
 
                         <table width="100%">
                             <tr>
-                                <!-- <td width="30%">
+                                <td width="30%">
                                     <canvas id="chartProgress2" height="50" width="100"></canvas>
-                                </td> -->
+                                </td>
                                 <td class="pl-3">
                                     <div class="h3 mb-0">
                                         <table width="100%">
@@ -367,8 +403,10 @@
         }
     });
 
-    var persen1 = 0;
-    var persen2 = 0;
+    var num1 = <?= $score_tka / $subject_tka - (0.15 * $score_tka / $subject_tka) ?>;
+    var num2 = <?= $score_tps / $subject_tps ?>;
+    var persen1 = num1.toFixed(0);
+    var persen2 = num2.toFixed(0);
 
     var chartProgress = document.getElementById("chartProgress");
     if (chartProgress) {
