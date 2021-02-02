@@ -1,3 +1,13 @@
+<script>
+    function ShowToggle(bulan, jml) {
+        $("#down-" + bulan).toggleClass('d-none');
+        $("#right-" + bulan).toggleClass('d-none');
+        $('.list-sesi-' + bulan).removeClass("d-none");
+        $('.list-sesi-' + bulan).toggle("slow", "linear");
+        console.log('.list-sesi-' + bulan);
+    }
+</script>
+
 <!-- Begin Page Content -->
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message_sa'); ?>"></div>
 
@@ -135,82 +145,180 @@
                     } else {
                         if (!empty($tryout)) {
                         ?>
-                            <div class="table-responsive px-3">
-                                <table class="table table-sm">
-                                    <thead>
-                                        <tr class="border-0 text-hitam">
-                                            <th class="py-2">Nama Sesi</th>
-                                            <th class="py-2">Bulan Sesi</th>
-                                            <th class="py-2">Tanggal</th>
-                                            <th class="py-2">Jam</th>
-                                            <th class="py-2">Room Status</th>
-                                            <th class="py-2"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        foreach ($tryout as $i) {
-                                            if ($i['type'] == 1) {
-                                        ?>
-                                                <tr>
-                                                    <td><?= $i['name'] ?></td>
-                                                    <td><?= get_month($i['active_month']) ?></td>
-                                                    <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
-                                                    <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
-                                                    <td><?= ($active_room[$i['active_month']]['tka_saintek'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_saintek'] . ' kursi kosong' : 'Room Full' ?></td>
-                                                    <td>
-                                                        <a href="<?= base_url('exm/index/tka_saintek/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                                    </td>
-                                                </tr>
-                                            <?php }
-                                            if ($i['type'] == 2) {
-                                            ?>
-                                                <tr>
-                                                    <td><?= $i['name'] ?></td>
-                                                    <td><?= get_month($i['active_month']) ?></td>
-                                                    <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
-                                                    <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
-                                                    <td><?= ($active_room[$i['active_month']]['tka_soshum'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_soshum'] . ' kursi kosong' : 'Room Full' ?></td>
-                                                    <td>
-                                                        <a href="<?= base_url('exm/index/tka_soshum/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                                    </td>
-                                                </tr>
-                                            <?php }
-                                            if ($i['type'] == 3) {
-                                            ?>
-                                                <tr>
-                                                    <td><?= $i['name'] ?></td>
-                                                    <td><?= get_month($i['active_month']) ?></td>
-                                                    <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
-                                                    <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
-                                                    <td><?= ($active_room[$i['active_month']]['tka_campuran'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_campuran'] . ' kursi kosong' : 'Room Full' ?></td>
-                                                    <td>
-                                                        <a href="<?= base_url('exm/index/tka_campuran/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                                    </td>
-                                                </tr>
-                                            <?php }
-                                            if ($i['type'] == 4) {
-                                            ?>
-                                                <tr>
-                                                    <td><?= $i['name'] ?></td>
-                                                    <td><?= get_month($i['active_month']) ?></td>
-                                                    <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
-                                                    <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
-                                                    <td><?= ($active_room[$i['active_month']]['tps'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tps'] . ' kursi kosong' : 'Room Full' ?></td>
-                                                    <td>
-                                                        <a href="<?= base_url('exm/index/tps/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
-                                                    </td>
-                                                </tr>
-                                        <?php }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <?php $temp_bln = array_keys($tryout_schedule); ?>
+                            <?php $nomor = 1; ?>
+                            <?php $jml_bln = count($temp_bln); ?>
+                            <?php foreach ($temp_bln as $tb) : ?>
+                                <div class="mx-3 text-center head-sesi rounded my-1 pointer" onclick="ShowToggle(<?= $nomor ?>,<?= $jml_bln ?>)">
+                                    <?= get_month($tb) ?>
+                                    <svg id="right-<?= $nomor ?>" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-right-fill icon-sesi-right" viewBox="0 0 16 16">
+                                        <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                    </svg>
+                                    <svg id="down-<?= $nomor ?>" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill d-none" viewBox="0 0 16 16">
+                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                    </svg>
+                                </div>
+                                <div class="table-responsive px-3 list-sesi-<?= $nomor ?>">
+                                    <table class="table table-sm mb-0">
+                                        <thead>
+                                            <tr class="border-0 text-dark">
+                                                <th class="py-0">Nama Sesi</th>
+                                                <th class="py-0">Bulan Sesi</th>
+                                                <th class="py-0">Tanggal</th>
+                                                <th class="py-0">Jam</th>
+                                                <th class="py-0">Room Status</th>
+                                                <th class="py-0"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($tryout as $i) : ?>
+                                                <?php if ($i['active_month'] == $tb) : ?>
+                                                    <?php if ($i['type'] == 1) : ?>
+                                                        <tr>
+                                                            <td><?= $i['name'] ?></td>
+                                                            <td><?= get_month($i['active_month']) ?></td>
+                                                            <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                            <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                                            <td><?= ($active_room[$i['active_month']]['tka_saintek'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_saintek'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                            <td class="text-right">
+                                                                <a href="<?= base_url('exm/index/tka_saintek/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                    <?php if ($i['type'] == 2) : ?>
+                                                        <tr>
+                                                            <td><?= $i['name'] ?></td>
+                                                            <td><?= get_month($i['active_month']) ?></td>
+                                                            <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                            <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                                            <td><?= ($active_room[$i['active_month']]['tka_soshum'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_soshum'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                            <td class="text-right">
+                                                                <a href="<?= base_url('exm/index/tka_soshum/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                    <?php if ($i['type'] == 3) : ?>
+                                                        <tr>
+                                                            <td><?= $i['name'] ?></td>
+                                                            <td><?= get_month($i['active_month']) ?></td>
+                                                            <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                            <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                                            <td><?= ($active_room[$i['active_month']]['tka_campuran'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_campuran'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                            <td class="text-right">
+                                                                <a href="<?= base_url('exm/index/tka_campuran/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                    <?php if ($i['type'] == 4) : ?>
+                                                        <tr>
+                                                            <td><?= $i['name'] ?></td>
+                                                            <td><?= get_month($i['active_month']) ?></td>
+                                                            <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                            <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                                            <td><?= ($active_room[$i['active_month']]['tps'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tps'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                            <td class="text-right">
+                                                                <a href="<?= base_url('exm/index/tps/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?php $nomor++; ?>
+                            <?php endforeach; ?>
                     <?php
                         }
                     }
                     ?>
+                    <div class="d-none">
+                        <?php
+                        $user_ticket = $ticket['tka_saintek'] + $ticket['tka_soshum'] + $ticket['tka_campuran'] + $ticket['tps'];
+                        if ($user_ticket < 1) {
+                        ?>
+                            <p class="text-center">Kamu tidak memiliki jadwal tryout</p>
+                            <?php
+                        } else {
+                            if (!empty($tryout)) {
+                            ?>
+                                <div class="table-responsive px-3">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr class="border-0 text-hitam">
+                                                <th class="py-2">Nama Sesi</th>
+                                                <th class="py-2">Bulan Sesi</th>
+                                                <th class="py-2">Tanggal</th>
+                                                <th class="py-2">Jam</th>
+                                                <th class="py-2">Room Status</th>
+                                                <th class="py-2"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach ($tryout as $i) {
+                                                if ($i['type'] == 1) {
+                                            ?>
+                                                    <tr>
+                                                        <td><?= $i['name'] ?></td>
+                                                        <td><?= get_month($i['active_month']) ?></td>
+                                                        <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                        <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                                        <td><?= ($active_room[$i['active_month']]['tka_saintek'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_saintek'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('exm/index/tka_saintek/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                        </td>
+                                                    </tr>
+                                                <?php }
+                                                if ($i['type'] == 2) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $i['name'] ?></td>
+                                                        <td><?= get_month($i['active_month']) ?></td>
+                                                        <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                        <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                                        <td><?= ($active_room[$i['active_month']]['tka_soshum'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_soshum'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('exm/index/tka_soshum/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                        </td>
+                                                    </tr>
+                                                <?php }
+                                                if ($i['type'] == 3) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $i['name'] ?></td>
+                                                        <td><?= get_month($i['active_month']) ?></td>
+                                                        <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                        <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                                        <td><?= ($active_room[$i['active_month']]['tka_campuran'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tka_campuran'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('exm/index/tka_campuran/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                        </td>
+                                                    </tr>
+                                                <?php }
+                                                if ($i['type'] == 4) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $i['name'] ?></td>
+                                                        <td><?= get_month($i['active_month']) ?></td>
+                                                        <td><?= date('d', strtotime($i['start_date'])) . ' - ' . date('d', strtotime($i['end_date'])) . ' ' . get_month(date('n', strtotime($i['end_date']))) . ' ' . date('Y', strtotime($i['end_date'])) ?></td>
+                                                        <td><?= date('H:i', strtotime($i['start_time'])) . ' - ' . date('H:i', strtotime($i['end_time'])) ?></td>
+                                                        <td><?= ($active_room[$i['active_month']]['tps'] < $i['quota']) ? $i['quota'] - $active_room[$i['active_month']]['tps'] . ' kursi kosong' : 'Room Full' ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('exm/index/tps/' . $i['id']) ?>" class="btn py-0 px-3 btn-join-sesi">Join</a>
+                                                        </td>
+                                                    </tr>
+                                            <?php }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -257,8 +365,9 @@
 
         </div>
     </div>
-
 </div>
+
+<label id="jml_bulan" name="<?= $jml_bln ?>"></label>
 <?php
 function get_month($month)
 {
@@ -294,6 +403,16 @@ function get_month($month)
 ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
+    const jml_bulan = $('#jml_bulan').attr('name');
+
+    console.log(jml_bulan);
+
+    for (i = 1; i <= jml_bulan; i++) {
+        $('.list-sesi-' + i).hide();
+        console.log('.list-sesi-' + i);
+
+    }
+
     const flashdata = $('.flash-data').data('flashdata');
     const notif = $('.notif-tpas-tpa-clear').data('notif');
 

@@ -27,7 +27,7 @@
 
 
 *{
-    transition: 1s;
+    /* transition: 1s; */
 }
 
 .hide-content{
@@ -62,6 +62,7 @@
 .text-orange{
     color: #EF8521 !important;
 }
+
 
 .nav-item .nav-link i{
     font-size: 30px !important;
@@ -174,6 +175,10 @@
     transform: translateY(-25px);
   }
 
+.pointer{
+    cursor: pointer;
+}
+
 
 .detail-pembayaran{
     transform: translateY(-160px);
@@ -191,4 +196,16 @@
 .btn-bayar:hover{
     background-color: #a05107;
     color: white;
+}
+
+.head-sesi{
+    background-color: #fcd3af !important;
+    color: black;
+    transition: .3s;
+}
+
+.head-sesi:hover{
+    background-color: #fcd3af63 !important;
+    transition: .8s;
+    color: black;
 }

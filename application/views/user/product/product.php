@@ -27,6 +27,32 @@
             endif; ?>
         </div>
     </div>
+
+    <!-- MODAL BELI -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+        MODAL
+    </button>
+
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="h3 text-biru mb-2 text-center">SOSHUM</div>
+                    <div class="h5 text-biru mb-2">Pilih Tiket</div>
+                    <div class="form-group">
+                        <select class="form-control" name="ticket" id="ticket">
+                            <option value="1">Tiket 1</option>
+                            <option value="2">Tiket 2</option>
+                            <option value="3">Tiket 3</option>
+                            <option value="4">Tiket 4</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-mulai-ptn btn-block mt-4" id="btn-mulai-ptn">Beli Tiket</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- AKHIR MODAL BELI -->
     <!-- /.container-fluid -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
