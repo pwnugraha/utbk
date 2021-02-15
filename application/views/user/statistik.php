@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row activity">
         <div class="col-lg-12">
             <?= form_open('usr/statistik', ['class' => 'form-inline']) ?>
             <label style="padding-right: 10px;"><strong>Nilai Tryout Bulan</strong></label>
@@ -107,6 +107,7 @@
                     </div>
                     <hr>
                     <?php
+                    $subject_tka = 0;
                     if (!empty($utbk_score)) :
                         $subject_tka = 1;
                         $score_tka = 0;
@@ -154,6 +155,7 @@
                     <hr>
 
                     <?php
+                    $subject_tps = 0;
                     if (!empty($utbk_score)) :
                         $subject_tps = 1;
                         $score_tps = 0;
@@ -403,8 +405,8 @@
         }
     });
 
-    var num1 = <?= $score_tka / $subject_tka - (0.15 * $score_tka / $subject_tka) ?>;
-    var num2 = <?= $score_tps / $subject_tps ?>;
+    var num1 = <?= ($subject_tka > 0) ? $score_tka / $subject_tka - (0.15 * $score_tka / $subject_tka) : 0 ?>;
+    var num2 = <?= ($subject_tps > 0) ? $score_tps / $subject_tps : 0 ?>;
     var persen1 = num1.toFixed(0);
     var persen2 = num2.toFixed(0);
 
