@@ -296,4 +296,15 @@ class Laporan extends AdminBase
                 return 2;
         }
     }
+
+    public function reset_utbk()
+    {
+        if ($this->base_model->count_result_item('exam') > 0) {
+            $this->base_model->empty_table('exam');
+            if ($this->base_model->insert_item('log_reset', ['msg' => 'Reset telah berhasil di proses'])) {
+                $this->session->set_flashdata('message_sa', 'Proses reset sukses. Semua data tryout berhasil di reset. Data tryout telah kosong.');
+            }
+        }
+        redirect('manage/laporan');
+    }
 }

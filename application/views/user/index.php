@@ -366,8 +366,7 @@
         </div>
     </div>
 </div>
-
-<label id="jml_bulan" name="<?= $jml_bln ?>"></label>
+<label id="jml_bulan" name="<?= isset($jml_bln) ? $jml_bln : 0 ?>"></label>
 <?php
 function get_month($month)
 {

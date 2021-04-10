@@ -22,9 +22,12 @@ class Usr extends CI_Controller
         $this->data['title'] = "Dashboard";
         $this->data['ticket'] = $this->base_model->get_item('row', 'ticket', '*', ['user_id' => $this->session->userdata('user_id')]);
         $this->data['tryout'] = $this->base_model->get_item('result', 'tryout', '*', ['status' => 1], NULL, 'active_month DESC');
+        //show tryout schedule each month
+        foreach ($this->data['tryout'] as $v) {
+            $this->data['tryout_schedule'][$v['active_month']][] = $v;
+        };
 
-
-        $this->data['exam'] = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id')]);
+        $this->data['exam'] = $this->base_model->get_item('row', 'exam', '*', ['user_id' => $this->session->userdata('user_id'), 'month' => date('n')]);
 
         $this->data['user_dashboard'] = $this->db->get('interface_user_dashboard')->result_array();
         $this->data['user_list_1'] = $this->db->get('interface_user_list_1')->result_array();

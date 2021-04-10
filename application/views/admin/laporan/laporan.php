@@ -273,6 +273,11 @@
                                     Nilai Ujian
                                 </span>
                             </div>
+                            <div class="col-md-6 text-right">
+                                <a class="btn-reset" href="<?= base_url('manage/laporan/reset_utbk') ?>">
+                                    Reset Tryout
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="table-responsive mt-4">
@@ -404,6 +409,25 @@ function get_month($month)
         Swal.fire({
             // title: 'Yakin ?',
             text: "Lama waktu proses nilai tergantung jumlah ujian. Lanjutkan?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'PROSES',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+    });
+
+    $('.btn-reset').on('click', function(e) {
+        e.preventDefault();
+        const href = $(this).attr('href');
+
+        Swal.fire({
+            // title: 'Yakin ?',
+            html: "Proses ini akan menghapus seluruh data tryout, nilai dan pembahasan siswa. <strong>Download/Backup</strong> terlebih dahulu seluruh data nilai Ujian. Data tidak dapat dikembalikan setelah direset. Lanjutkan?",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
